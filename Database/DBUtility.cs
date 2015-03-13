@@ -36,19 +36,17 @@ namespace Database
         /// <param name="commandText">the stored procedure name or T-SQL command</param>
         /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
         /// <returns>an int representing the number of rows affected by the command</returns>
-        public static int ExecuteNonQuery(CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
-        {
+        //public static int ExecuteNonQuery(CommandType cmdType, string cmdText, params SqlParameter[] commandParameters) {
 
-            SqlCommand cmd = new SqlCommand();
+        //    SqlCommand cmd = new SqlCommand();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                PrepareCommand(cmd, conn, null, cmdType, cmdText, commandParameters);
-                int val = cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                return val;
-            }
-        }
+        //    using (SqlConnection conn = new SqlConnection(connectionString)) {
+        //        PrepareCommand(cmd, conn, null, cmdType, cmdText, commandParameters);
+        //        int val = cmd.ExecuteNonQuery();
+        //        cmd.Parameters.Clear();
+        //        return val;
+        //    }
+        //}
 
         /// <summary>
         /// Execute a SqlCommand (that returns no resultset) against an existing database connection 
