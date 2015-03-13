@@ -25,15 +25,15 @@ namespace TricorERP.POS
             else
                 gender = CashierRadio.Text;
 
-            Login user = new Login();
+            LoginModel user = new LoginModel();
             user.userName = NameTextBox.Text;
             user.password = PasswordTextBox.Text;
-            user.userType = gender;
+            //user.userType = gender; // set value in integer
             
 
 
-            UserLogin login = new UserLogin();
-            Boolean check = login.loginCheck(NameTextBox.Text, PasswordTextBox.Text, gender);
+            //UserLogin login = new UserLogin();
+            Boolean check = UserLogin.loginCheck(NameTextBox.Text, PasswordTextBox.Text, gender); // static method
 
             if (check && gender == "BranchManager")
             {
