@@ -8,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace Database.UserLogin
 {
-<<<<<<< HEAD
-=======
-    // Make it public
->>>>>>> origin/master
     public class UserLogin
     {
         public static Boolean loginCheck(String username, String password, String user)

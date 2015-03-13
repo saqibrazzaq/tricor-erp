@@ -25,9 +25,9 @@ namespace TricorERP.POS
             else
                 gender = CashierRadio.Text;
 
-            LoginModel user = new LoginModel();
-            user.userName = NameTextBox.Text;
-            user.password = PasswordTextBox.Text;
+            //LoginModel user = new LoginModel();
+            //user.userName = NameTextBox.Text;
+            //user.password = PasswordTextBox.Text;
             //user.userType = gender; // set value in integer
             
 
