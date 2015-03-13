@@ -3,3 +3,4 @@
 /// <reference path="npm.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="../samples/samples.js" />
+/// <reference path="jquery-1.10.2.min.js" />

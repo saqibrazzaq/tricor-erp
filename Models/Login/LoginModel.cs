@@ -11,6 +11,6 @@ namespace Models.Login
     {
         public String userName { get; set; }
         public String password { get; set; }
-        public int userType { get; set; }
+        public String userType { get; set; }
     }
 }

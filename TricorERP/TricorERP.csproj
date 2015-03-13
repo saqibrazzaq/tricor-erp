@@ -57,6 +57,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="POS\BranchManager\BranchManagerHome.aspx" />
+    <Content Include="POS\Cashier\CashierHome.aspx" />
+    <Content Include="POS\Cashier\CashierMaster.Master" />
+    <Content Include="POS\BranchManager\BranchManagerMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -78,13 +82,16 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
-    <Content Include="POS\POS-Home.aspx" />
+    <Content Include="POS\Cashier\CustomerList.aspx" />
+    <Content Include="POS\Cashier\NewCustomer.aspx" />
+    <Content Include="POS\Home.aspx" />
     <Content Include="Samples\EditCustomer.aspx" />
     <Content Include="Samples\Samples.css" />
     <Content Include="Samples\Samples.js" />
     <Content Include="Samples\Test.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\npm.js" />
@@ -93,12 +100,54 @@
     <Content Include="Scripts\jquery-2.1.3.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="POS\POS-Home.aspx.cs">
-      <DependentUpon>POS-Home.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\BranchManagerHome.aspx.cs">
+      <DependentUpon>BranchManagerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="POS\POS-Home.aspx.designer.cs">
-      <DependentUpon>POS-Home.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\BranchManagerHome.aspx.designer.cs">
+      <DependentUpon>BranchManagerHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\BranchManager\BranchManagerMaster.Master.cs">
+      <DependentUpon>BranchManagerMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\BranchManager\BranchManagerMaster.Master.designer.cs">
+      <DependentUpon>BranchManagerMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Cashier\CashierHome.aspx.cs">
+      <DependentUpon>CashierHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Cashier\CashierHome.aspx.designer.cs">
+      <DependentUpon>CashierHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Cashier\CashierMaster.Master.cs">
+      <DependentUpon>CashierMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Cashier\CashierMaster.Master.designer.cs">
+      <DependentUpon>CashierMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Cashier\CustomerList.aspx.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Cashier\CustomerList.aspx.designer.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Cashier\NewCustomer.aspx.cs">
+      <DependentUpon>NewCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Cashier\NewCustomer.aspx.designer.cs">
+      <DependentUpon>NewCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\EditCustomer.aspx.cs">
@@ -126,10 +175,7 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="POS\BranchManager\" />
-    <Folder Include="POS\Cashier\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

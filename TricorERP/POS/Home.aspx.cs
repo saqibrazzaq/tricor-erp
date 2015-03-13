@@ -25,25 +25,23 @@ namespace TricorERP.POS
             else
                 gender = CashierRadio.Text;
 
+            //Q. how can we use model class?
             //LoginModel user = new LoginModel();
             //user.userName = NameTextBox.Text;
             //user.password = PasswordTextBox.Text;
             //user.userType = gender; // set value in integer
             
-
-
-            //UserLogin login = new UserLogin();
             Boolean check = UserLogin.loginCheck(NameTextBox.Text, PasswordTextBox.Text, gender); // static method
 
             if (check && gender == "BranchManager")
             {
                 Session["UserName"] = NameTextBox.Text;
-                Response.Redirect("~/BranchManager/BranchManagerHome.aspx");
+                Response.Redirect("~/POS/BranchManager/BranchManagerHome.aspx");
             }
             else if (check && gender == "Cashier")
             {
                 Session["UserName"] = NameTextBox.Text;
-                Response.Redirect("~/Cashier/CashierHome.aspx");
+                Response.Redirect("~/POS/Cashier/CashierHome.aspx");
             }
             else if (ischeck == false)
                 loginMsg.Text = "<h4>You Choose Branch Manager OR Cashier </h4>";

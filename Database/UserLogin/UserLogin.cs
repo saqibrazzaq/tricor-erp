@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Database.UserLogin
 {
+
+    // Make it public
     public class UserLogin
     {
         public static Boolean loginCheck(String username, String password, String user)
         {
-            int success = 0;
             try
             {
-
                 String sql;
                 if (user == "Cashier")
                     sql = "select count(*) as count from CashierInfo where UserName = '" + username + "'and Password='" + password + "'";
@@ -25,10 +25,8 @@ namespace Database.UserLogin
                     return false;
 
                 SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-                //success = Convert.ToInt32(reader.ToString()); // Delete this line. reader.tostring() does nothing
                 if (reader.Read()) // Read() gets first record
                 {
-                    // Count should be greater than 0
                     int count = int.Parse(reader["count"].ToString());
                     if (count == 0)
                         return false; // 0 count means no user exists
@@ -41,11 +39,6 @@ namespace Database.UserLogin
                 e.ToString();
             }
             return false;
-            //if (success == 1)
-            //    return true;
-            //else
-            //    return false;
         }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="POS-Home.aspx.cs" Inherits="TricorERP.POS.POS_Home" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="TricorERP.POS.POS_Home" %>
 
 <!DOCTYPE html>
 

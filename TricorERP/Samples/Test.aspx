@@ -24,8 +24,8 @@
 
         <div class="container">
             <label>Testing Working of jQuery and Bootstrap</label>
-            <asp:Button ID="btnShowJumbotron" CssClass="btn btn-primary btnShowJumbotron" runat="server" Text="Show Jumbotron" />
-            <asp:Button ID="btnHideJumbotron" CssClass="btn btn-info btnHideJumbotron" runat="server" Text="Hide Jumbotron" />
+            <asp:Button ID="btnShowJumbotron" CssClass="btn btn-primary btnShowJumbotron" runat="server" Text="Show Jumbotron" OnClick="btnShowJumbotron_Click" />
+            <asp:Button ID="btnHideJumbotron" CssClass="btn btn-info btnHideJumbotron" runat="server" Text="Hide Jumbotron" OnClick="btnHideJumbotron_Click" />
         </div>
 
         <div class="panel panel-default">

@@ -1,0 +1,168 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="BranchManagerMaster.master.cs" Inherits="TricorERP.POS.BranchManager.BranchManagerMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>BranchManagerHome</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+    <script src='<%=ResolveClientUrl("~/Scripts/ie-emulation-modes-warning.js")%>'></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+
+            <h2><a href="#">
+                <% String s = (String)Session["UserName"];%>
+                <%=s%> <span class="glyphicon glyphicon-thumbs-up"></span>
+            </a></h2>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">POS</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <asp:HyperLink ID="HyperLink2" NavigateUrl="~/BranchManager/BranchManagerHome.aspx" runat="server">Home</asp:HyperLink>
+                            </li>
+                            <li class="dropdown">
+                                <asp:HyperLink CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink3" NavigateUrl="~/BranchManager/About.aspx" runat="server">Product1</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink4" NavigateUrl="~/BranchManager/About.aspx" runat="server">Product1</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink5" NavigateUrl="~/BranchManager/About.aspx" runat="server">Product1</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/BranchManager/About.aspx" runat="server">Product1</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <asp:HyperLink ID="ViewOrdersHyperLink" NavigateUrl="#" runat="server">View-Orders</asp:HyperLink>
+                            </li>
+
+                            <li class="dropdown">
+                                <asp:HyperLink CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">View-Reports<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink14" NavigateUrl="#" runat="server">Sales-Report</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink15" NavigateUrl="#" runat="server">Stock-Report</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink16" NavigateUrl="#" runat="server">Purchase-Report</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink17" NavigateUrl="#" runat="server">Salary-Report</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server"><span class="glyphicon glyphicon-log-out"></span>Log-Off</asp:LinkButton>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="row">
+                <div class="col-lg-2 bg-success">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Main Function.</li>
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                        <li><a href="#">About Us</a></li>
+
+                        <li class="tree well-sm">
+                            <asp:TreeView ID="TreeView2" runat="server">
+                                <Nodes>
+                                    <asp:TreeNode Text="Cashier">
+                                        <asp:TreeNode Text="Create" NavigateUrl="~/BranchManager/CashierRegister.aspx" Value="Create" />
+                                        <asp:TreeNode Text="View" Value="View" />
+                                        <asp:TreeNode Text="Update" Value="Update" />
+                                    </asp:TreeNode>
+                                </Nodes>
+                            </asp:TreeView>
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="HyperLink11" NavigateUrl="#" runat="server">View-Orders</asp:HyperLink>
+                        </li>
+                        <li class="tree well-sm">
+                            <asp:TreeView ID="TreeView3" runat="server">
+                                <Nodes>
+                                    <asp:TreeNode Text="View-Reports">
+                                        <asp:TreeNode Text="Sales-Report" Value="Sales-Report" />
+                                        <asp:TreeNode Text="Stock-Report" Value="Stock-Report" />
+                                        <asp:TreeNode Text="Purchase-Report" Value="Purchase-Report" />
+                                        <asp:TreeNode Text="Salary-Report" Value="Salary-Report" />
+                                    </asp:TreeNode>
+                                </Nodes>
+                            </asp:TreeView>
+                        </li>
+
+                        <li class="tree well-sm">
+                            <asp:TreeView ID="TreeView1" runat="server">
+                                <Nodes>
+                                    <asp:TreeNode Text="View-Reports">
+                                        <asp:TreeNode Text="Sales-Report" Value="Sales-Report" />
+                                        <asp:TreeNode Text="Stock-Report" Value="Stock-Report" />
+                                        <asp:TreeNode Text="Purchase-Report" Value="Purchase-Report" />
+                                        <asp:TreeNode Text="Salary-Report" Value="Salary-Report" />
+                                    </asp:TreeNode>
+                                </Nodes>
+                            </asp:TreeView>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-10">
+                    <div class="active focus">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <p>Copy Rights@ </p>
+        </div>
+    </form>
+    <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
+
+</body>
+</html>
