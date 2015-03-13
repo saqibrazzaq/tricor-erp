@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Database.UserLogin
 {
-    class UserLogin
+    public class UserLogin
     {
         public static Boolean loginCheck(String username, String password, String user)
         {

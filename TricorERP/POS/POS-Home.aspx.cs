@@ -13,15 +13,7 @@ namespace TricorERP.POS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserName"] != null)
-            {
-                if (Session["UserName"].ToString() == "BranchManager" || Session["UserName"].ToString() == "Cashier")
-                {
-                    loginMsg.Text = Session["logOutMsg"].ToString();
-                    Session["logOutMsg"] = null;
-                    Session["UserName"] = null;
-                }
-            }
+            
         }
 
         protected void Login_Click(object sender, EventArgs e)
@@ -38,7 +30,7 @@ namespace TricorERP.POS
             user.password = PasswordTextBox.Text;
             user.userType = gender;
             
-            
+
 
             UserLogin login = new UserLogin();
             Boolean check = login.loginCheck(NameTextBox.Text, PasswordTextBox.Text, gender);
