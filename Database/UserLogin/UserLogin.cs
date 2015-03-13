@@ -9,7 +9,7 @@ namespace Database.UserLogin
 {
     class UserLogin
     {
-        public Boolean loginCheck(String username, String password, String user)
+        public static Boolean loginCheck(String username, String password, String user)
         {
             int success = 0;
             try

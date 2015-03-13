@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Database.UserLogin;
+using Models.Login;
 
 namespace TricorERP.POS
 {
@@ -30,6 +32,13 @@ namespace TricorERP.POS
                 gender = BranchManagerRadio.Text;
             else
                 gender = CashierRadio.Text;
+
+            Login user = new Login();
+            user.userName = NameTextBox.Text;
+            user.password = PasswordTextBox.Text;
+            user.userType = gender;
+            
+            
 
             UserLogin login = new UserLogin();
             Boolean check = login.loginCheck(NameTextBox.Text, PasswordTextBox.Text, gender);

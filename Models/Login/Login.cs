@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.UserLogin
+namespace Models.Login
 {
-    class UserModel
+    class Login
     {
         public String userName { get; set; }
         public String password { get; set; }
