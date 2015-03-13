@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models.Login
 {
-    class Login
+    // Make this class public
+    public class LoginModel
     {
         public String userName { get; set; }
         public String password { get; set; }
