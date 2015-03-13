@@ -18,7 +18,10 @@ namespace Database
     public abstract class SqlHelper {
 
         //Database connection strings
-        public static readonly string connectionString = @"Server=localhost\sqlexpress;Database=Tricor;Trusted_Connection=True;";
+        //public static readonly string connectionString = @"Server=localhost\sqlexpress;Database=Tricor;Trusted_Connection=True;";
+        
+        //my database connection
+        public static readonly string connectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=G:\BSCS\Semester 08\FYP 3 & 4\Others\0.4- Bootstap Version\POS_DBHandler\POS_DataBase.mdf;Integrated Security=True;Connect Timeout=30";
         
         // Hashtable to store cached parameters
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());
@@ -36,17 +39,19 @@ namespace Database
         /// <param name="commandText">the stored procedure name or T-SQL command</param>
         /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
         /// <returns>an int representing the number of rows affected by the command</returns>
-        //public static int ExecuteNonQuery(CommandType cmdType, string cmdText, params SqlParameter[] commandParameters) {
+        public static int ExecuteNonQuery(CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        {
 
-        //    SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand();
 
-        //    using (SqlConnection conn = new SqlConnection(connectionString)) {
-        //        PrepareCommand(cmd, conn, null, cmdType, cmdText, commandParameters);
-        //        int val = cmd.ExecuteNonQuery();
-        //        cmd.Parameters.Clear();
-        //        return val;
-        //    }
-        //}
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                PrepareCommand(cmd, conn, null, cmdType, cmdText, commandParameters);
+                int val = cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                return val;
+            }
+        }
 
         /// <summary>
         /// Execute a SqlCommand (that returns no resultset) against an existing database connection 
@@ -61,15 +66,16 @@ namespace Database
         /// <param name="commandText">the stored procedure name or T-SQL command</param>
         /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
         /// <returns>an int representing the number of rows affected by the command</returns>
-        //public static int ExecuteNonQuery(SqlConnection connection, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters) {
+        public static int ExecuteNonQuery(SqlConnection connection, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        {
 
-        //    SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand();
 
-        //    PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
-        //    int val = cmd.ExecuteNonQuery();
-        //    cmd.Parameters.Clear();
-        //    return val;
-        //}
+            PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
+            int val = cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            return val;
+        }
 
         /// <summary>
         /// Execute a SqlCommand (that returns no resultset) using an existing SQL Transaction 
@@ -84,13 +90,14 @@ namespace Database
         /// <param name="commandText">the stored procedure name or T-SQL command</param>
         /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
         /// <returns>an int representing the number of rows affected by the command</returns>
-        //public static int ExecuteNonQuery(SqlTransaction trans, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters) {
-        //    SqlCommand cmd = new SqlCommand();
-        //    PrepareCommand(cmd, trans.Connection, trans, cmdType, cmdText, commandParameters);
-        //    int val = cmd.ExecuteNonQuery();
-        //    cmd.Parameters.Clear();
-        //    return val;
-        //}
+        public static int ExecuteNonQuery(SqlTransaction trans, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        {
+            SqlCommand cmd = new SqlCommand();
+            PrepareCommand(cmd, trans.Connection, trans, cmdType, cmdText, commandParameters);
+            int val = cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            return val;
+        }
 
         /// <summary>
         /// Execute a SqlCommand that returns a resultset against the database specified in the connection string 
@@ -137,16 +144,18 @@ namespace Database
         /// <param name="commandText">the stored procedure name or T-SQL command</param>
         /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
         /// <returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
-        //public static object ExecuteScalar(CommandType cmdType, string cmdText, params SqlParameter[] commandParameters) {
-        //    SqlCommand cmd = new SqlCommand();
+        public static object ExecuteScalar(CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        {
+            SqlCommand cmd = new SqlCommand();
 
-        //    using (SqlConnection connection = new SqlConnection(connectionString)) {
-        //        PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
-        //        object val = cmd.ExecuteScalar();
-        //        cmd.Parameters.Clear();
-        //        return val;
-        //    }
-        //}
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
+                object val = cmd.ExecuteScalar();
+                cmd.Parameters.Clear();
+                return val;
+            }
+        }
 
         /// <summary>
         /// Execute a SqlCommand that returns the first column of the first record against an existing database connection 
@@ -161,43 +170,46 @@ namespace Database
         /// <param name="commandText">the stored procedure name or T-SQL command</param>
         /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
         /// <returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
-        //public static object ExecuteScalar(SqlConnection connection, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters) {
+        public static object ExecuteScalar(SqlConnection connection, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        {
 
-        //    SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand();
 
-        //    PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
-        //    object val = cmd.ExecuteScalar();
-        //    cmd.Parameters.Clear();
-        //    return val;
-        //}
+            PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
+            object val = cmd.ExecuteScalar();
+            cmd.Parameters.Clear();
+            return val;
+        }
 
         /// <summary>
         /// add parameter array to the cache
         /// </summary>
         /// <param name="cacheKey">Key to the parameter cache</param>
         /// <param name="cmdParms">an array of SqlParamters to be cached</param>
-        //public static void CacheParameters(string cacheKey, params SqlParameter[] commandParameters) {
-        //    parmCache[cacheKey] = commandParameters;
-        //}
+        public static void CacheParameters(string cacheKey, params SqlParameter[] commandParameters)
+        {
+            parmCache[cacheKey] = commandParameters;
+        }
 
         /// <summary>
         /// Retrieve cached parameters
         /// </summary>
         /// <param name="cacheKey">key used to lookup parameters</param>
         /// <returns>Cached SqlParamters array</returns>
-        //public static SqlParameter[] GetCachedParameters(string cacheKey) {
-        //    SqlParameter[] cachedParms = (SqlParameter[])parmCache[cacheKey];
+        public static SqlParameter[] GetCachedParameters(string cacheKey)
+        {
+            SqlParameter[] cachedParms = (SqlParameter[])parmCache[cacheKey];
 
-        //    if (cachedParms == null)
-        //        return null;
+            if (cachedParms == null)
+                return null;
 
-        //    SqlParameter[] clonedParms = new SqlParameter[cachedParms.Length];
+            SqlParameter[] clonedParms = new SqlParameter[cachedParms.Length];
 
-        //    for (int i = 0, j = cachedParms.Length; i < j; i++)
-        //        clonedParms[i] = (SqlParameter)((ICloneable)cachedParms[i]).Clone();
+            for (int i = 0, j = cachedParms.Length; i < j; i++)
+                clonedParms[i] = (SqlParameter)((ICloneable)cachedParms[i]).Clone();
 
-        //    return clonedParms;
-        //}
+            return clonedParms;
+        }
 
         /// <summary>
         /// Prepare a command for execution

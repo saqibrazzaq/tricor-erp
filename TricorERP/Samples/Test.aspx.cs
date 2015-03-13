@@ -33,8 +33,8 @@ namespace TricorERP.Samples
             // Declare list
             List<Models.Samples.CustomerModel> customers = null;
             // Get from dummy
-            //customers = TryDummyData();
-            customers = GetFromDatabase();
+            customers = TryDummyData();
+            //customers = GetFromDatabase();
             // Bind it to the listview
             CustomerListview.DataSource = customers;
             CustomerListview.DataBind();
@@ -57,6 +57,7 @@ namespace TricorERP.Samples
             // Add first customer to the list
             Models.Samples.CustomerModel saqib = new Models.Samples.CustomerModel()
             {
+                ID = 222,
                 FullName = "Saqib Razzaq",
                 CustomerType = 1
             };
@@ -65,6 +66,7 @@ namespace TricorERP.Samples
             // Add second customer
             Models.Samples.CustomerModel shaheer = new Models.Samples.CustomerModel()
             {
+                ID = 654,
                 FullName = "Muhammad Shaheer",
                 CustomerType = 1
             };
@@ -95,6 +97,11 @@ namespace TricorERP.Samples
         {
             // Open the edit customer page, without any query string
             Response.Redirect("EditCustomer.aspx");
+        }
+
+        protected void CustomerListview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

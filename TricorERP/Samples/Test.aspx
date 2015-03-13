@@ -34,7 +34,7 @@
                 <asp:Button CssClass="btn btn-primary" runat="server" OnClick="Unnamed1_Click" Text="New Customer" />
             </div>
             <div class="panel-body">
-                <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand">
+                <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" OnSelectedIndexChanged="CustomerListview_SelectedIndexChanged">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                             <tr>
