@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="TricorERP.POS.POS_Home" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="TricorERP.POS.POS_Home" %>
 
 <!DOCTYPE html>
 
@@ -35,7 +35,7 @@
                                 </div>
                             </div>
 
-                            <div class="input-group">
+                            <%--<div class="input-group">
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="radio">
@@ -49,7 +49,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
                             <br />
                             <br />
                             <div class="form-group">

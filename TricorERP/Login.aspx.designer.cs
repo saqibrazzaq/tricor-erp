@@ -40,24 +40,6 @@ namespace TricorERP.POS {
         protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
         
         /// <summary>
-        /// BranchManagerRadio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton BranchManagerRadio;
-        
-        /// <summary>
-        /// CashierRadio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton CashierRadio;
-        
-        /// <summary>
         /// Login control.
         /// </summary>
         /// <remarks>
