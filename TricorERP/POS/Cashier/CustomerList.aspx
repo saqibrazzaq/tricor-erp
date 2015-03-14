@@ -38,9 +38,8 @@
                         <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Phonenumber") %>'></asp:LinkButton>
+                        <%# Eval("Phonenumber") %>
                     </td>
-                     <%--<td><%# Database.Samples.Customer.GetCustomerType(int.Parse(Eval("CustomerType").ToString())) %></td>--%>
                 </tr>
             </ItemTemplate>
         </asp:ListView>

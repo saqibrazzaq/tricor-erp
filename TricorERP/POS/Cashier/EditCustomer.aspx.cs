@@ -13,5 +13,20 @@ namespace TricorERP.POS.Cashier
         {
 
         }
+
+        protected void btnAddNewAddress_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Savebtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -34,7 +34,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li class="active">
-                                <asp:HyperLink ID="HyperLink2" NavigateUrl="~/POS/Home.aspx" runat="server"><span class="glyphicon glyphicon-home"></span></asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Home.aspx" runat="server"><span class="glyphicon glyphicon-home"></span></asp:HyperLink>
                             </li>
 
                             <!-- Same in each model  -->
