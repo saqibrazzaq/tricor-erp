@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer\AddressDB.cs" />
     <Compile Include="Customer\CustomerDB.cs" />
     <Compile Include="DBUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
