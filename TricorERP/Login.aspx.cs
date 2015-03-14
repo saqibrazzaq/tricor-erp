@@ -18,7 +18,7 @@ namespace TricorERP.POS
 
         protected void Login_Click(object sender, EventArgs e)
         {
-            String gender = "";
+            //String gender = "";
             //bool ischeck = BranchManagerRadio.Checked;
             //if (ischeck)
             //    gender = BranchManagerRadio.Text;

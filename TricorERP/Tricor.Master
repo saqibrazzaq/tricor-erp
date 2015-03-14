@@ -19,7 +19,6 @@
                 <% String s = (String)Session["UserName"];%>
                 <%=s%> <span class="glyphicon glyphicon-thumbs-up"></span>
             </a></h2>
-
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -38,6 +37,41 @@
                                 <asp:HyperLink ID="HyperLink2" NavigateUrl="~/POS/Home.aspx" runat="server"><span class="glyphicon glyphicon-home"></span></asp:HyperLink>
                             </li>
 
+                            <li class="dropdown">
+                                <asp:HyperLink ID="HyperLink1" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Cashier/About.aspx" runat="server">Product1</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Cashier/About.aspx" runat="server">Product2</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink5" NavigateUrl="~/Cashier/About.aspx" runat="server">Product3</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Cashier/About.aspx" runat="server">Product4</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li id="CustomerDropdown" class="dropdown">
+                                <asp:HyperLink ID="HyperLink7" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Customer<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink8" NavigateUrl="~/POS/Cashier/NewCustomer.aspx" runat="server">New Customer</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink9" NavigateUrl="~/POS/Cashier/CustomerList.aspx" runat="server">Customer List</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- here you can place own code of SCMS -->
                             <!-- All SCMS Menus -->
 
                             <li id="SCMMenu" class="dropdown">
@@ -61,45 +95,13 @@
                                 </ul>
                             </li>
 
-                            <li class="dropdown">
-                                <asp:HyperLink ID="HyperLink1" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Cashier/About.aspx" runat="server">Product1</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Cashier/About.aspx" runat="server">Product1</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink5" NavigateUrl="~/Cashier/About.aspx" runat="server">Product1</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Cashier/About.aspx" runat="server">Product1</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown">
-                                <asp:HyperLink ID="HyperLink7" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Customer<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink8" NavigateUrl="~/POS/Cashier/NewCustomer.aspx" runat="server">New Customer</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink9" NavigateUrl="~/POS/Cashier/CustomerList.aspx" runat="server">Customer List</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </nav>
@@ -129,7 +131,13 @@
     <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
 
     <script lang="javascript">
-        if ('3' == '<%=Session["RoleID"].ToString()%>') {
+        <%
+        String role = Session["RoleID"].ToString();
+        %>
+        if ('1' == '<%=role%>') {
+            $("#CustomerDropdown").addClass("hidden");
+            $("#SCMMenu").addClass("hidden");
+        }else if ('2' == '<%=role%>') {
             $("#SCMMenu").addClass("hidden");
         }
     </script>

@@ -18,21 +18,31 @@ namespace TricorERP.POS.Cashier
         }
         private void InitializePageContents()
         {
-            SearchCustomers();
+            SearchCustomers("");
         }
-        private void SearchCustomers()
+        private void SearchCustomers(String SearchCustomer)
         {
             // Declare list
             List<Models.Customer.CustomerModel> customers = null;
-            customers = GetFromDatabase();
-            // Bind it to the list-view
+            if (SearchCustomer == null)
+            {
+                customers = GetFromDatabase(null);
+            }
+            else if (SearchCustomer != null)
+            {
+                customers = GetFromDatabase(SearchCustomer);
+            }
+            else
+            { 
+                
+            }
             CustomerListview.DataSource = customers;
             CustomerListview.DataBind();
         }
 
-        private List<Models.Customer.CustomerModel> GetFromDatabase()
+        private List<Models.Customer.CustomerModel> GetFromDatabase(String x)
         {
-            return Database.CustomerDatabase.CustomerDB.getCustomersList("");
+            return Database.CustomerDatabase.CustomerDB.getCustomersList(x);
         }
 
         protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -49,7 +59,7 @@ namespace TricorERP.POS.Cashier
 
         protected void SearchCustomerButton1_Click(object sender, EventArgs e)
         {
-
+            SearchCustomers(SearchCustomer.Text);
         }
 
     }

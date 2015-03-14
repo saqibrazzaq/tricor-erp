@@ -17,7 +17,7 @@ namespace TricorERP
         {
             Session["logOutMsg"] = "You logout successfully";
             Session["UserName"] = null;
-            Response.Redirect("~/Home.aspx");
+            Response.Redirect("~/Login.aspx");
         }
     }
 }

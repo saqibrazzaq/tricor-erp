@@ -9,7 +9,7 @@
             <div class="input-group">
                 <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
                 <span class="input-group-btn">
-                    <asp:Button ID="Button1" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchCustomerButton1_Click" />
+                    <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchCustomerButton1_Click" />
                 </span>
             </div>
         </div>
