@@ -59,8 +59,6 @@
   <ItemGroup>
     <Content Include="Home.aspx" />
     <Content Include="POS\BranchManager\BranchManagerHome.aspx" />
-    <Content Include="POS\Cashier\CashierHome.aspx" />
-    <Content Include="POS\Cashier\CashierMaster.Master" />
     <Content Include="POS\BranchManager\BranchManagerMaster.Master" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="SCM\home.aspx" />
@@ -124,20 +122,6 @@
     </Compile>
     <Compile Include="POS\BranchManager\BranchManagerMaster.Master.designer.cs">
       <DependentUpon>BranchManagerMaster.Master</DependentUpon>
-    </Compile>
-    <Compile Include="POS\Cashier\CashierHome.aspx.cs">
-      <DependentUpon>CashierHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="POS\Cashier\CashierHome.aspx.designer.cs">
-      <DependentUpon>CashierHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="POS\Cashier\CashierMaster.Master.cs">
-      <DependentUpon>CashierMaster.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="POS\Cashier\CashierMaster.Master.designer.cs">
-      <DependentUpon>CashierMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="POS\Cashier\CustomerList.aspx.cs">
       <DependentUpon>CustomerList.aspx</DependentUpon>

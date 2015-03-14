@@ -54,6 +54,7 @@ namespace TricorERP.POS.Cashier
                 String customerID = e.CommandArgument.ToString();
                 // Open the edit customer page
                 Response.Redirect("EditCustomer.aspx?ID=" + customerID);
+                Session["CustomerID"] = customerID;
             }
         }
 

@@ -11,7 +11,8 @@ namespace TricorERP.POS.Cashier
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           // String x = (String) Session["CustomerID"].ToString();
+            //l.Text = x;
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)

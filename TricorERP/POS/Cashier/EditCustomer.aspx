@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
+        <asp:Label ID="l" runat="server" Text="Label"></asp:Label>
         <h2 class="h2">Customer</h2>
         <%-- to be continue... --%>
         <div class="row container-fluid">

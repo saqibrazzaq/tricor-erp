@@ -10,12 +10,10 @@ namespace Database.CustomerDatabase
 {
     public class CustomerDB
     {
+        //get all the data of customer from database. 
         public static List<CustomerModel> getCustomersList(String searchtext)
         {
             List<CustomerModel> customers = new List<CustomerModel>();
-//            String sql = @"select Customer.Id ID, Address.PhoneNo Phoneno, Customer.Name Name
-//                         from Customer, Address
-//                         where 1=1;";
             String sql = @"select top 10 Customer.Id ID, Customer.Name Name, Address.PhoneNo Phoneno
                         from Customer
                         join CustomerAddress on Customer.Id=CustomerAddress.Customer_ID
@@ -34,6 +32,9 @@ namespace Database.CustomerDatabase
             }
             return customers;
         }
-
+        public static CustomerModel getCustomerInFo(int ID) {
+           
+            return null;
+        }
     }
 }
