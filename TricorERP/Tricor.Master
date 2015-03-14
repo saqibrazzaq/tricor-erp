@@ -83,6 +83,10 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <asp:HyperLink ID="HyperLink11" NavigateUrl="~/Cashier/About.aspx" runat="server">S1</asp:HyperLink>
+                                        <ul class="nav navbar-nav"><li id="Li1" class="dropdown-menu-left">
+                                             <asp:HyperLink ID="HyperLink15" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Inner list<span class="caret"></span></asp:HyperLink>
+                               
+                                                                   </li> </ul>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
