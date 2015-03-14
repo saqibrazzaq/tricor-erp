@@ -15,14 +15,17 @@
             </div>
         </div>
     </div>
+
+
     <div class="panel-body">
+        <%-- error on that point --%>
         <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" OnSelectedIndexChanged="CustomerListview_SelectedIndexChanged">
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                     <tr>
                         <th>ID</th>
                         <th>Full Name</th>
-                        <%--<th>Customer Type</th>--%>
+                        <th>Phone Number</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -33,9 +36,12 @@
                         <%# Eval("ID") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("FullName") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
                     </td>
-                    <%-- <td><%# Database.Samples.Customer.GetCustomerType(int.Parse(Eval("CustomerType").ToString())) %></td>--%>
+                    <td>
+                        <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Phonenumber") %>'></asp:LinkButton>
+                    </td>
+                     <%--<td><%# Database.Samples.Customer.GetCustomerType(int.Parse(Eval("CustomerType").ToString())) %></td>--%>
                 </tr>
             </ItemTemplate>
         </asp:ListView>

@@ -58,5 +58,32 @@ namespace Database.Samples
             else
                 return "Unknown";
         }
+
+//        public static List<CustomerModel> getCustomersList(String searchtext)
+//        {
+//            // Initialize empty list of customers
+//            List<CustomerModel> customers = new List<CustomerModel>();
+
+//            // Prepare the SQL query
+//            String sql = @"select Customer.Id ID, Address.PhoneNo Phoneno, Customer.Name Name
+//                         from Customer, Address
+//                         where 1=1;";
+//            // Get datareader
+//            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+//            while (reader.Read())
+//            {
+//                // Create a new customer for every record
+//                Customer customerModel = new Customer();
+//                customerModel.ID = int.Parse(reader["ID"].ToString());
+//                customerModel.Name = reader["Name"].ToString();
+//                customerModel.Phonenumber = reader["Phoneno"];
+//                // Add it to list
+//                customers.Add(customerModel);
+//            }
+
+//            // return the list
+//            return customers;
+//        }
+
     }
 }

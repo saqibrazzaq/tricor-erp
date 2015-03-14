@@ -23,16 +23,28 @@ namespace TricorERP.POS.Cashier
         private void SearchCustomers()
         {
             // Declare list
-            List<Models.Samples.CustomerModel> customers = null;
+            List<Models.Customer.CustomerModel> customers = null;
             customers = GetFromDatabase();
             // Bind it to the list-view
             CustomerListview.DataSource = customers;
             CustomerListview.DataBind();
         }
 
-        private List<Models.Samples.CustomerModel> GetFromDatabase()
+        private List<Models.Customer.CustomerModel> GetFromDatabase()
         {
-            return Database.Samples.Customer.SearchCustomers("");
+            return Database.CustomerDatabase.Customer.getCustomersList("");
+        }
+
+        protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            // Edit customer command
+            if (e.CommandName == "EditCustomer")
+            {
+                // Customer ID is in argument
+                String customerID = e.CommandArgument.ToString();
+                // Open the edit customer page
+                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
+            }
         }
 
     }
