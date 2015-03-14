@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Database.CustomerDatabase
 {
-    public class Customer
+    public class CustomerDB
     {
         public static List<CustomerModel> getCustomersList(String searchtext)
         {

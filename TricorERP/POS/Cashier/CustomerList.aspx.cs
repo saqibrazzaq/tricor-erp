@@ -32,7 +32,7 @@ namespace TricorERP.POS.Cashier
 
         private List<Models.Customer.CustomerModel> GetFromDatabase()
         {
-            return Database.CustomerDatabase.Customer.getCustomersList("");
+            return Database.CustomerDatabase.CustomerDB.getCustomersList("");
         }
 
         protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -45,6 +45,11 @@ namespace TricorERP.POS.Cashier
                 // Open the edit customer page
                 Response.Redirect("EditCustomer.aspx?ID=" + customerID);
             }
+        }
+
+        protected void SearchCustomerButton1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

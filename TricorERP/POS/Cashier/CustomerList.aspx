@@ -7,10 +7,9 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <asp:TextBox ID="TextBox1" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
-                <%--<input type="text" class="form-control" placeholder="Search for...">--%>
+                <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
                 <span class="input-group-btn">
-                    <asp:Button ID="Button1" CssClass="btn btn-default" runat="server" Text="Search" />
+                    <asp:Button ID="Button1" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchCustomerButton1_Click" />
                 </span>
             </div>
         </div>
@@ -19,7 +18,7 @@
 
     <div class="panel-body">
         <%-- error on that point --%>
-        <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" OnSelectedIndexChanged="CustomerListview_SelectedIndexChanged">
+        <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand">
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                     <tr>

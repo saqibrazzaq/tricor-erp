@@ -13,13 +13,13 @@ namespace TricorERP.POS.Cashier {
     public partial class CustomerList {
         
         /// <summary>
-        /// TextBox1 control.
+        /// SearchCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox SearchCustomer;
         
         /// <summary>
         /// Button1 control.
