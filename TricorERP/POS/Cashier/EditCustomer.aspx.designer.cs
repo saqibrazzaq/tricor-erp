@@ -13,15 +13,6 @@ namespace TricorERP.POS.Cashier {
     public partial class EditCustomer {
         
         /// <summary>
-        /// l control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label l;
-        
-        /// <summary>
         /// CustomerNameLab control.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,13 @@ namespace TricorERP.POS.Cashier {
         protected global::System.Web.UI.WebControls.Label CustomerNameLab;
         
         /// <summary>
-        /// CustomerTyeppLab control.
+        /// CNICpLab control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CustomerTyeppLab;
+        protected global::System.Web.UI.WebControls.Label CNICpLab;
         
         /// <summary>
         /// btnAddNewAddress control.
@@ -47,6 +38,15 @@ namespace TricorERP.POS.Cashier {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
+        
+        /// <summary>
+        /// CustomerAddressesview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView CustomerAddressesview;
         
         /// <summary>
         /// Savebtn control.

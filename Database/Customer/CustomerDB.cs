@@ -32,9 +32,19 @@ namespace Database.CustomerDatabase
             }
             return customers;
         }
-        public static CustomerModel getCustomerInFo(int ID) {
-           
-            return null;
+
+        //get all basic information related to the an customer
+        public static CustomerModel getCustomerInFo(String ID) {
+            CustomerModel customer = new CustomerModel();
+            String sql = @"select Customer.Name Name, Customer.CNIC CNIC from Customer where Customer.Id='"+ID+"'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            if (reader.Read()) {
+                customer.Name = reader["Name"].ToString();
+                customer.CNIC = reader["CNIC"].ToString();
+            }
+            return customer;
         }
+
+
     }
 }

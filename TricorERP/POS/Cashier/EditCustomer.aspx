@@ -1,26 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="EditCustomer.aspx.cs" Inherits="TricorERP.POS.Cashier.EditCustomer" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
-        <asp:Label ID="l" runat="server" Text="Label"></asp:Label>
         <h2 class="h2">Customer</h2>
         <%-- to be continue... --%>
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <label for="InputName">Full Name :</label>
                 <div class="input-group">
-
                     <asp:Label ID="CustomerNameLab" Font-Names="InputName" CssClass="form-control" runat="server" Text="Name is"></asp:Label>
-
-                    <%-- <asp:TextBox ID="InputName" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>--%>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
             <div class="col-lg-3">
-                <label for="InputName">Type :</label>
+                <label for="InputName">CNIC Number :</label>
                 <div class="input-group">
-                    <asp:Label ID="CustomerTyeppLab" Font-Names="InputName" CssClass="form-control" runat="server" Text="Type is.."></asp:Label>
+                    <asp:Label ID="CNICpLab" Font-Names="InputName" CssClass="form-control" runat="server" Text="Type is.."></asp:Label>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
@@ -36,9 +33,32 @@
             <div class="col-lg-6">
                 <h5 class="h5">
                     <label for="InputName">All Possible Addresses...</label></h5>
-                <div class="table">
-                    <%--<asp:GridView CssClass="table table-hover table-responsive" ID="AddressGridView" runat="server">
-                    </asp:GridView>--%>
+                <div class="panel-body">
+                    <asp:ListView ID="CustomerAddressesview" runat="server" >
+                        <LayoutTemplate>
+                            <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
+                                <tr>
+                                    <th>Phone Number</th>
+                                    <th>City</th>
+                                    <th>Location</th>
+                                </tr>
+                                <tr runat="server" id="itemPlaceholder"></tr>
+                            </table>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <tr runat="server">
+                                <td>
+                                    <%# Eval("Phonenumber") %>
+                                </td>
+                                <td>
+                                    <%# Eval("City") %>
+                                </td>
+                                <td>
+                                    <%# Eval("Location") %>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:ListView>
                 </div>
             </div>
         </div>

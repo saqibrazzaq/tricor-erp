@@ -42,6 +42,7 @@ namespace TricorERP.POS.Cashier
 
         private List<Models.Customer.CustomerModel> GetFromDatabase(String x)
         {
+            //what is CustomerDatabase?
             return Database.CustomerDatabase.CustomerDB.getCustomersList(x);
         }
 

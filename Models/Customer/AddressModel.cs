@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Models.Customer
 {
-    class AddressModel
+    public class AddressModel
     {
         public int ID { set; get; }
         public String Location { set; get; }
         public String Phonenumber { set; get; }
+        public String City { set; get; }
         public String Email { set; get; }
     }
 }
