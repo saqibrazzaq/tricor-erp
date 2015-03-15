@@ -61,7 +61,7 @@ namespace TricorERP.POS.Cashier
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/POS/Cashier/CustomerList.aspx");
         }
     }
 }

@@ -37,7 +37,7 @@
                     <asp:ListView ID="CustomerAddressesview" runat="server" >
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
-                                <tr>
+                                <tr class="active">
                                     <th>Phone Number</th>
                                     <th>City</th>
                                     <th>Location</th>

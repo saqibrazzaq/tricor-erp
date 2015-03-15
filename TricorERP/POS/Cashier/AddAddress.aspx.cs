@@ -13,5 +13,15 @@ namespace TricorERP.POS.Cashier
         {
 
         }
+
+        protected void Savebtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("");
+        }
     }
 }
