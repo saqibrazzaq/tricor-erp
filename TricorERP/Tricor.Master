@@ -175,27 +175,23 @@
         <%
         String roleID = Session["RoleID"].ToString();
         %>
-        if ('1' == '<%=roleID%>') {
-            $("#CustomerDropdown").addClass("hidden");
-            $("#SCMMenu").addClass("hidden");
-            $("#Products").addClass("hidden");
-            $("#PurchaseOrder").addClass("hidden");
-            $("#SaleOrder").addClass("hidden");
-            $("#Queue").addClass("hidden");
-            <% Session["RoleName"] = "BranchManager"; %>
+        if ("1" == '<%=roleID%>') {
+            $("#CustomerDropdown").removeClass("hidden");
+            $("#SCMMenu").removeClass("hidden");
+            $("#Products").removeClass("hidden");
+            $("#PurchaseOrder").removeClass("hidden");
+            $("#SaleOrder").removeClass("hidden");
+            $("#Queue").removeClass("hidden");
         } else if ('2' == '<%=roleID%>') {
-            $("#SCMMenu").addClass("hidden");
-            $("#Products").addClass("hidden");
-            $("#PurchaseOrder").addClass("hidden");
-            $("#SaleOrder").addClass("hidden");
-            $("#Queue").addClass("hidden");
-            <% Session["RoleName"] = "Cashier"; %>
+            $("#SCMMenu").removeClass("hidden");
+            $("#Products").removeClass("hidden");
+            $("#PurchaseOrder").removeClass("hidden");
+            $("#SaleOrder").removeClass("hidden");
+            $("#Queue").removeClass("hidden");
         } else if ('3' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            <% Session["RoleName"] = "SCM Manager"; %>
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            <% Session["RoleName"] = "SCM Supervisor"; %>
         }
     </script>
 
