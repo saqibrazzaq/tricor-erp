@@ -63,7 +63,7 @@
     <Content Include="POS\Cashier\AddAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="SCM\home.aspx" />
-    <Content Include="SCM\AddNewProduct..aspx" />
+    <Content Include="SCM\AddNewProduct.aspx" />
     <Content Include="Tricor.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -182,12 +182,12 @@
     <Compile Include="SCM\home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SCM\AddNewProduct..aspx.cs">
-      <DependentUpon>AddNewProduct..aspx</DependentUpon>
+    <Compile Include="SCM\AddNewProduct.aspx.cs">
+      <DependentUpon>AddNewProduct.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SCM\AddNewProduct..aspx.designer.cs">
-      <DependentUpon>AddNewProduct..aspx</DependentUpon>
+    <Compile Include="SCM\AddNewProduct.aspx.designer.cs">
+      <DependentUpon>AddNewProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tricor.Master.cs">
       <DependentUpon>Tricor.Master</DependentUpon>

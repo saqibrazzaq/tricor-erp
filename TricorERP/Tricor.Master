@@ -5,8 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>
-        <% String RoleName = (String)Session["RoleName"].ToString();%>
-        <%= RoleName%>
     </title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -76,11 +74,8 @@
                                 </ul>
                             </li>
                             <!-- --------------------------------------- -->
+                                        <!-- All SCMS Menus -->
 
-
-
-
-                            <!-- All SCMS Menus -->
                             <li id="Products" class="dropdown">
                                 <asp:HyperLink ID="HyperLink10" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Products<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
@@ -89,7 +84,7 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink12" NavigateUrl="" runat="server">Add new Product</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink12" NavigateUrl="~/SCM/AddNewProduct.aspx" runat="server">Add new Product</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -170,7 +165,6 @@
                     </div>
                 </div>
             </nav>
-
             <div class="row">
                 <div class="col-lg-2">
                     <ul class="nav nav-list">
@@ -179,17 +173,13 @@
                         <li><a href="#">About Us</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-10">
                     <div class="active focus">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </form>
     <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
@@ -203,13 +193,8 @@
             $("#CustomerDropdown").addClass("hidden");
             $("#SCMMenu").addClass("hidden");
             <% Session["RoleName"] = "BranchManager"; %>
-        } else if ('2' == '<%=roleID%>') {
-<<<<<<< HEAD
-=======
-
-        }
+        } 
         else if ('2' == '<%=roleID%>') {
->>>>>>> origin/master
             $("#SCMMenu").addClass("hidden");
             <% Session["RoleName"] = "Cashier"; %>
         }
