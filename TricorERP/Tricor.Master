@@ -4,7 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Cashier-Home</title>
+    <title>
+        <%
+            String RoleName = (String)Session["RoleName"];
+        %>
+        <%=RoleName%>
+    </title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src='<%=ResolveClientUrl("~/Scripts/ie-emulation-modes-warning.js")%>'></script>
@@ -38,7 +43,6 @@
                             </li>
 
                             <!-- Same in each model  -->
-
                             <li class="dropdown">
                                 <asp:HyperLink ID="HyperLink1" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
@@ -61,7 +65,6 @@
                             </li>
 
                             <!--POS Values For Cashier -->
-
                             <li id="CustomerDropdown" class="dropdown">
                                 <asp:HyperLink ID="HyperLink7" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Customer<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
@@ -76,7 +79,6 @@
                             </li>
 
                             <!-- All SCMS Menus -->
-
                             <li id="PurchaseOrder" class="dropdown">
                                 <asp:HyperLink ID="HyperLink10" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
@@ -101,7 +103,6 @@
                                     </li>
                                 </ul>
                             </li>
-
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
@@ -144,8 +145,10 @@
         if ('1' == '<%=role%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#SCMMenu").addClass("hidden");
-        }else if ('2' == '<%=role%>') {
+            <% Session["RoleName"] = "BranchManager"; %>
+        } else if ('2' == '<%=role%>') {
             $("#SCMMenu").addClass("hidden");
+            <% Session["RoleName"] = "Cashier"; %>
         }
     </script>
 </body>
