@@ -9,11 +9,8 @@
             <div class="col-lg-3">
                 <label for="InputName">Full Name :</label>
                 <div class="input-group">
-
-                    <asp:Label ID="InputName" Font-Names="InputName" CssClass="form-control" runat="server" Text="Name is"></asp:Label>
-
-                    <%-- <asp:TextBox ID="InputName" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>--%>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    <asp:TextBox ID="FullNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <%--<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>--%>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -24,33 +21,51 @@
                         <asp:ListItem>Individual</asp:ListItem>
                         <asp:ListItem>Company  </asp:ListItem>
                     </asp:DropDownList>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    <%--<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>--%>
                 </div>
             </div>
         </div>
+
+        <br />
+        <br />
+        <div class="row container-fluid">
+            <div class="col-lg-3">
+                <label for="InputName">CNIC :</label>
+                <div class="input-group">
+                    <asp:TextBox ID="CNICText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <%--<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>--%>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label for="InputName">Gender :</label>
+                <div class="input-group">
+                    <asp:DropDownList ID="GenderDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
+                        <asp:ListItem>---Select---</asp:ListItem>
+                        <asp:ListItem>Male</asp:ListItem>
+                        <asp:ListItem>Female</asp:ListItem>
+                        <asp:ListItem>Other</asp:ListItem>
+                    </asp:DropDownList>
+                    <%--<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>--%>
+                </div>
+            </div>
+        </div>
+
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <h4 class="h4">
-                    <label for="InputName">Address :</label></h4>
-                <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add New</asp:LinkButton>
+                <label for="InputName">Address :</label></h4>
+                <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add Address</asp:LinkButton>
             </div>
         </div>
-        <div class="row container-fluid">
-            <div class="col-lg-6">
-                <h5 class="h5">
-                    <label for="InputName">All Possible Addresses...</label></h5>
-                <div class="table">
-                    <asp:GridView CssClass="table table-hover table-responsive" ID="AddressGridView" runat="server">
-                    </asp:GridView>
-                </div>
-            </div>
-        </div>
-        <div class="row"></div>
+        
+        <br />
+        <br />
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>
                 <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click">Cancel</asp:LinkButton>
             </div>
         </div>
+
     </div>
 </asp:Content>

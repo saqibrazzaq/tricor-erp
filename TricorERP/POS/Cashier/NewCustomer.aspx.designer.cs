@@ -13,13 +13,13 @@ namespace TricorERP.POS.Cashier {
     public partial class NewCustomer {
         
         /// <summary>
-        /// InputName control.
+        /// FullNameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label InputName;
+        protected global::System.Web.UI.WebControls.TextBox FullNameText;
         
         /// <summary>
         /// DropDownList1 control.
@@ -31,6 +31,24 @@ namespace TricorERP.POS.Cashier {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
+        /// CNICText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CNICText;
+        
+        /// <summary>
+        /// GenderDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList GenderDropDown;
+        
+        /// <summary>
         /// btnAddNewAddress control.
         /// </summary>
         /// <remarks>
@@ -38,15 +56,6 @@ namespace TricorERP.POS.Cashier {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
-        
-        /// <summary>
-        /// AddressGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView AddressGridView;
         
         /// <summary>
         /// Savebtn control.
