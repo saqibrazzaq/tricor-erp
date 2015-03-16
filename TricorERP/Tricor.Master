@@ -4,17 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-<<<<<<< HEAD
     <title>
-        <%
-            String RoleName = (String)Session["RoleName"];
-        %>
-        <%=RoleName%>
+        <% String RoleName = (String)Session["RoleName"].ToString();%>
+        <%= RoleName%>
     </title>
-=======
-    <% String RoleName = (String)Session["RoleName"];%> 
-    <title>RoleName</title>
->>>>>>> origin/master
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src='<%=ResolveClientUrl("~/Scripts/ie-emulation-modes-warning.js")%>'></script>
@@ -82,6 +75,10 @@
                                     </li>
                                 </ul>
                             </li>
+                            <!-- --------------------------------------- -->
+
+
+
 
                             <!-- All SCMS Menus -->
                             <li id="PurchaseOrder" class="dropdown">
@@ -116,7 +113,7 @@
                                     </li>
                                 </ul>
                             </li>
-                             <li id="Queue" class="dropdown">
+                            <li id="Queue" class="dropdown">
                                 <asp:HyperLink ID="HyperLink16" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Manufacture Queue <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -126,11 +123,22 @@
                                     <li>
                                         <asp:HyperLink ID="HyperLink18" NavigateUrl="" runat="server">Pause Manufacture Queue</asp:HyperLink>
                                     </li>
-                                     <li class="divider"></li>
+                                    <li class="divider"></li>
                                     <li>
                                         <asp:HyperLink ID="HyperLink19" NavigateUrl="" runat="server">Resume Manufacture Queue</asp:HyperLink>
                                     </li>
                                 </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <asp:LinkButton ID="SaleorderLink" OnClick="LogoffLinkButton" runat="server"></asp:LinkButton>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <asp:LinkButton ID="LinkButton2" OnClick="LogoffLinkButton" runat="server"></asp:LinkButton>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -174,13 +182,8 @@
         if ('1' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#SCMMenu").addClass("hidden");
-<<<<<<< HEAD
             <% Session["RoleName"] = "BranchManager"; %>
-        } else if ('2' == '<%=role%>') {
-=======
-        }
-        else if ('2' == '<%=roleID%>') {
->>>>>>> origin/master
+        } else if ('2' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
             <% Session["RoleName"] = "Cashier"; %>
         }
