@@ -22,6 +22,7 @@ namespace TricorERP.POS
 
             if (userModel != null)
             {
+
                 Session["Username"] = NameTextBox.Text;
                 Session["RoleID"] = userModel.RoleID;
                 Response.Redirect("~/Home.aspx");
