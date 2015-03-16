@@ -145,17 +145,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <asp:LinkButton ID="SaleorderLink" OnClick="LogoffLinkButton" runat="server"></asp:LinkButton>
-                            </li>
-                        </ul>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <asp:LinkButton ID="LinkButton2" OnClick="LogoffLinkButton" runat="server"></asp:LinkButton>
-                            </li>
-                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
@@ -193,8 +183,7 @@
             $("#SaleOrder").addClass("hidden");
             $("#Queue").addClass("hidden");
             <% Session["RoleName"] = "BranchManager"; %>
-        } 
-        else if ('2' == '<%=roleID%>') {
+        } else if ('2' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
             $("#Products").addClass("hidden");
             $("#PurchaseOrder").addClass("hidden");
