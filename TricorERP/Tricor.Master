@@ -171,6 +171,11 @@
             </div>
         </div>
     </form>
+    
+
+    <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
+
     <script lang="javascript">
         <%
         String roleID = Session["RoleID"].ToString();
@@ -194,8 +199,5 @@
             $("#CustomerDropdown").addClass("hidden");
         }
     </script>
-
-    <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
-    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
 </body>
 </html>
