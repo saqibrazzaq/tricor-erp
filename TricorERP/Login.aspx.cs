@@ -35,7 +35,7 @@ namespace TricorERP.POS
 
             if (userModel != null)
             {
-                loginMsg.Text = "<h4>You Choose Branch Manager OR Cashier </h4>";
+               // loginMsg.Text = "<h4>You Choose Branch Manager OR Cashier </h4>";
                 Session["Username"] = NameTextBox.Text;
                 Session["RoleID"] = userModel.RoleID;
                 Response.Redirect("~/Home.aspx");
