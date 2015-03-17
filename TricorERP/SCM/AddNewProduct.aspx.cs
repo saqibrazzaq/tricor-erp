@@ -13,5 +13,10 @@ namespace TricorERP.SCM
         {
 
         }
+        protected void AddProductClick(object sender, EventArgs e)
+        {
+            //    AddProductModel productModel = AddProductDB
+        }
+
     }
 }

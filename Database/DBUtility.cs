@@ -18,7 +18,7 @@ namespace Database
     public abstract class SqlHelper {
 
         //Database connection strings
-        public static readonly string connectionString = @"Server=MAMOON-RASHID\SQLEXPRESS;Database=SCMS;Trusted_Connection=True;";
+        public static readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=TRICOR_POS;Trusted_Connection=True;";
         
         //my database connection
         ////public static readonly string connectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=G:\BSCS\Semester 08\FYP 3 & 4\Others\0.4- Bootstap Version\POS_DBHandler\POS_DataBase.mdf;Integrated Security=True;Connect Timeout=30";

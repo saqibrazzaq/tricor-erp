@@ -19,7 +19,6 @@ namespace TricorERP.POS
         protected void Login_Click(object sender, EventArgs e)
         {
             UserModel userModel = UserLogin.loginCheck(NameTextBox.Text, PasswordTextBox.Text); // static method
-
             if (userModel != null)
             {
                 Session["Username"] = NameTextBox.Text;

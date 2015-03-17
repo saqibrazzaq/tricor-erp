@@ -101,7 +101,8 @@
 
                             </li>
                             
-                             <li id="PurchaseOrder" class="dropdown">
+                            <li id="PurchaseOrder" class="dropdown">
+
                                 <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -150,23 +151,12 @@
                                 </ul>
                             </li>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <asp:LinkButton ID="SaleorderLink" OnClick="LogoffLinkButton" runat="server"></asp:LinkButton>
-                            </li>
-                        </ul>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <asp:LinkButton ID="LinkButton2" OnClick="LogoffLinkButton" runat="server"></asp:LinkButton>
-                            </li>
-                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </nav>
@@ -187,6 +177,8 @@
             </div>
         </div>
     </form>
+    
+
     <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
     <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
 
@@ -194,24 +186,24 @@
         <%
         String roleID = Session["RoleID"].ToString();
         %>
-        if ('1' == '<%=roleID%>') {
+        if ("1" == '<%=roleID%>') {
+            $("#CustomerDropdown").removeClass("hidden");
+            $("#SCMMenu").removeClass("hidden");
+            $("#Products").removeClass("hidden");
+            $("#PurchaseOrder").removeClass("hidden");
+            $("#SaleOrder").removeClass("hidden");
+            $("#Queue").removeClass("hidden");
+        } else if ('2' == '<%=roleID%>') {
+            $("#SCMMenu").removeClass("hidden");
+            $("#Products").removeClass("hidden");
+            $("#PurchaseOrder").removeClass("hidden");
+            $("#SaleOrder").removeClass("hidden");
+            $("#Queue").removeClass("hidden");
+        } else if ('3' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            $("#SCMMenu").addClass("hidden");
-            <% Session["RoleName"] = "BranchManager"; %>
-        } 
-        else if ('2' == '<%=roleID%>') {
-            $("#SCMMenu").addClass("hidden");
-            <% Session["RoleName"] = "Cashier"; %>
-        }
-        else if ('3' == '<%=roleID%>') {
+        } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            <% Session["RoleName"] = "SCM Manager"; %>
         }
-        else if ('4' == '<%=roleID%>') {
-            $("#CustomerDropdown").addClass("hidden");
-            <% Session["RoleName"] = "SCM Supervisor"; %>
-        }
-
     </script>
 </body>
 </html>
