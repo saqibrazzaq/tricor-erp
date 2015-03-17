@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.SCM
 {
-     public class AddProductModel
+     public class ProductModel
     {
         public String ProductName { get; set; }
         public String ProductCode { get; set; }

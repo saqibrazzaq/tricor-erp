@@ -1,4 +1,5 @@
 ﻿using Database.SCM;
+using Models.SCM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace TricorERP.SCM
         }
         protected void AddProductClick(object sender, EventArgs e)
         {
-            Models.SCM.AddProductModel productModel = ProductDB.addProduct(ProductNameText.Text, ProductCodeText.Text,
+            ProductModel productModel = ProductDB.addProduct(ProductNameText.Text, ProductCodeText.Text,
                                                                        float.Parse(ProductPriceText.Text), float.Parse(PerFixPriceText.Text),
                                                                        ProductDiscriptionText.Text);
         }
