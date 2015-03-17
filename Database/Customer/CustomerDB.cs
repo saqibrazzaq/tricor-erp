@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Models.Customer;
 using System.Data.SqlClient;
 
-namespace Database.CustomerDatabase
+namespace Database.Customer
 {
     public class CustomerDB
     {
@@ -45,6 +45,17 @@ namespace Database.CustomerDatabase
             return customer;
         }
 
+        // save data of new customer in DB
+        public static CustomerModel addNewCustomer(CustomerModel newcustomer) {
+
+            String sql = @"INSERT INTO [dbo].[Customer]
+                        ([Name],[CNIC],[Gender])
+		                output inserted.ID 
+                        VALUES ('"+newcustomer.Name+"','"+newcustomer.CNIC+"','"+newcustomer.Gender+"')";
+            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            newcustomer.ID = int.Parse(id.ToString());
+            return newcustomer;
+        }
 
     }
 }

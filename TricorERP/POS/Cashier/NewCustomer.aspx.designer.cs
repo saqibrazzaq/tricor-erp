@@ -22,13 +22,13 @@ namespace TricorERP.POS.Cashier {
         protected global::System.Web.UI.WebControls.TextBox FullNameText;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// CustomerTyepDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList CustomerTyepDropDown;
         
         /// <summary>
         /// CNICText control.
@@ -58,13 +58,13 @@ namespace TricorERP.POS.Cashier {
         protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
         
         /// <summary>
-        /// Savebtn control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Savebtn;
+        protected global::System.Web.UI.WebControls.LinkButton btnSave;
         
         /// <summary>
         /// btnCancel control.

@@ -5,6 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>
+        <% 
+            String role = Session["RoleID"].ToString();
+            String title=null;
+            if (role == "1")
+                title = "Branch Manager";
+            else if (role == "2")
+                title = "Cashier";
+        %>
+        <%=title%>
+        <%-- set title dynamically --%>
     </title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -186,19 +196,21 @@
         <%
         String roleID = Session["RoleID"].ToString();
         %>
-        if ("1" == '<%=roleID%>') {
-            $("#CustomerDropdown").removeClass("hidden");
-            $("#SCMMenu").removeClass("hidden");
-            $("#Products").removeClass("hidden");
-            $("#PurchaseOrder").removeClass("hidden");
-            $("#SaleOrder").removeClass("hidden");
-            $("#Queue").removeClass("hidden");
+        if ('1' == '<%=roleID%>') {
+            $("#CustomerDropdown").addClass("hidden");
+            $("#SCMMenu").addClass("hidden");
+            $("#Products").addClass("hidden");
+            $("#PurchaseOrder").addClass("hidden");
+            $("#SaleOrder").addClass("hidden");
+            $("#Queue").addClass("hidden");
+            $("#Inventory").addClass("hidden");
         } else if ('2' == '<%=roleID%>') {
-            $("#SCMMenu").removeClass("hidden");
-            $("#Products").removeClass("hidden");
-            $("#PurchaseOrder").removeClass("hidden");
-            $("#SaleOrder").removeClass("hidden");
-            $("#Queue").removeClass("hidden");
+            $("#SCMMenu").addClass("hidden");
+            $("#Products").addClass("hidden");
+            $("#PurchaseOrder").addClass("hidden");
+            $("#SaleOrder").addClass("hidden");
+            $("#Queue").addClass("hidden");
+            $("#Inventory").addClass("hidden");
         } else if ('3' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
         } else if ('4' == '<%=roleID%>') {

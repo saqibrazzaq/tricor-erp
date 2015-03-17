@@ -10,11 +10,14 @@ namespace TricorERP.POS.Cashier
 {
     public partial class EditCustomer : System.Web.UI.Page
     {
+        String customerID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
+            customerID = Request.QueryString["Id"];
+            
             if (IsPostBack == false)
             {
-                InitializePageContents(Request.QueryString["Id"]);
+                InitializePageContents(customerID);
             }
         }
 
@@ -25,21 +28,21 @@ namespace TricorERP.POS.Cashier
         private void SearchCustomers(String Id)
         {
             CustomerModel customer = null;
-            List<Models.Customer.AddressModel> customers = null;
+            List<Models.Customer.AddressModel> customerAddresses = null;
 
             customer = GetCustomerInFo(Id);
-            customers = GetAddressesFromDB(Id);
+            customerAddresses = GetAddressesFromDB(Id);
             
             CustomerNameLab.Text = customer.Name;
             CNICpLab.Text = customer.CNIC;
             
-            CustomerAddressesview.DataSource = customers;
+            CustomerAddressesview.DataSource = customerAddresses;
             CustomerAddressesview.DataBind();
         }
 
         private CustomerModel GetCustomerInFo(String Id)
         {
-            return Database.CustomerDatabase.CustomerDB.getCustomerInFo(Id);
+            return Database.Customer.CustomerDB.getCustomerInFo(Id);
         }
 
         private List<Models.Customer.AddressModel> GetAddressesFromDB(String Id)
@@ -51,7 +54,7 @@ namespace TricorERP.POS.Cashier
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/Cashier/AddAddress.aspx");
+            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customerID);
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
