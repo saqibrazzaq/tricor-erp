@@ -80,7 +80,7 @@
                                 <asp:HyperLink ID="HyperLink10" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Products<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink11" NavigateUrl="" runat="server">View All Products</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink11" NavigateUrl="~/SCM/ViewProducts.aspx" runat="server">View Products</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>

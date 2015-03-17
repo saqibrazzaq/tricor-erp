@@ -10,7 +10,7 @@ namespace Database.SCM
     
     public class ProductDB
     {
-        public static ProductModel addProduct(String Pname,String Pcode,float Pprice,float perfixPrice,String Pdescription)
+        public static ProductModel addProduct(String Pname,String Pcode,float Pprice,String Pdescription)
         {
             ProductModel userModel = null;
                 
