@@ -33,8 +33,8 @@ namespace TricorERP.POS.Cashier
                 customers = GetFromDatabase(SearchCustomer);
             }
             else
-            { 
-                
+            {
+
             }
             CustomerListview.DataSource = customers;
             CustomerListview.DataBind();

@@ -39,8 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer\AddressModel.cs" />
-    <Compile Include="Customer\CustomerModel.cs" />
     <Compile Include="Login\UserModel.cs" />
     <Compile Include="POS\Customer\AddressModel.cs" />
     <Compile Include="POS\Customer\CustomerModel.cs" />
@@ -48,9 +46,7 @@
     <Compile Include="Samples\CustomerModel.cs" />
     <Compile Include="SCM\ProductModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BranchManager\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

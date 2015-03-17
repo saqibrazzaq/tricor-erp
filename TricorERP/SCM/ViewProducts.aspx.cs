@@ -20,21 +20,21 @@ namespace TricorERP.SCM
             List<Models.SCM.ProductModel> products = null;
             if (searchProduct == null)
             {
-                products = GetFromDatabase(null);
+                //products = GetFromDatabase(null);
             }
             else if (searchProduct != null)
             {
-                products = GetFromDatabase(searchProduct);
+                //products = GetFromDatabase(searchProduct);
             }
             CustomerListview.DataSource = products;
             CustomerListview.DataBind();
         }
 
-        private List<Models.SCM.ProductModel> GetFromDatabase(String x)
-        {
-            //what is CustomerDatabase?
-            return Database.CustomerDatabase.CustomerDB.getCustomersList(x);
-        }
+        //private List<Models.SCM.ProductModel> GetFromDatabase(String x)
+        //{
+        //    //what is CustomerDatabase?
+        //    return Database.SCM.CustomerDB.getCustomersList(x);
+        //}
 
         protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
@@ -49,10 +49,10 @@ namespace TricorERP.SCM
             }
         }
 
-        protected void SearchCustomerButton1_Click(object sender, EventArgs e)
-        {
-            SearchCustomers(SearchCustomer.Text);
-        }
+        //protected void SearchCustomerButton1_Click(object sender, EventArgs e)
+        //{
+        //    SearchCustomers(SearchCustomer.Text);
+        //}
 
     }
 }
