@@ -11,7 +11,6 @@ namespace Models.SCM
         public String ProductName { get; set; }
         public String ProductCode { get; set; }
         public float ProductPrice { get; set; }
-        public float PerfixPrice { get; set; }
         public String ProductDescription { get; set; }
     }
 }

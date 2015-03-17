@@ -64,6 +64,7 @@
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="SCM\home.aspx" />
     <Content Include="SCM\AddNewProduct.aspx" />
+    <Content Include="SCM\ViewProducts.aspx" />
     <Content Include="Tricor.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,6 +190,13 @@
     <Compile Include="SCM\AddNewProduct.aspx.designer.cs">
       <DependentUpon>AddNewProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\ViewProducts.aspx.cs">
+      <DependentUpon>ViewProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewProducts.aspx.designer.cs">
+      <DependentUpon>ViewProducts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tricor.Master.cs">
       <DependentUpon>Tricor.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -207,11 +215,7 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SCM\CEO\" />
-    <Folder Include="SCM\InventorySupervisor\" />
-    <Folder Include="SCM\ProductionIncharge\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -18,8 +18,8 @@ namespace TricorERP.SCM
         protected void AddProductClick(object sender, EventArgs e)
         {
             ProductModel productModel = ProductDB.addProduct(ProductNameText.Text, ProductCodeText.Text,
-                                                                       float.Parse(ProductPriceText.Text), float.Parse(PerFixPriceText.Text),
-                                                                       ProductDiscriptionText.Text);
+                                                             float.Parse(ProductPriceText.Text)        ,
+                                                             ProductDiscriptionText.Text              );
         }
 
     }

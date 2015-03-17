@@ -13,5 +13,46 @@ namespace TricorERP.SCM
         {
 
         }
+        protected void SearchProduct(Object sender, EventArgs e)
+        {
+            String searchProduct = SearchProductText.Text;
+            // Declare list
+            List<Models.SCM.ProductModel> products = null;
+            if (searchProduct == null)
+            {
+                products = GetFromDatabase(null);
+            }
+            else if (searchProduct != null)
+            {
+                products = GetFromDatabase(searchProduct);
+            }
+            CustomerListview.DataSource = products;
+            CustomerListview.DataBind();
+        }
+
+        private List<Models.SCM.ProductModel> GetFromDatabase(String x)
+        {
+            //what is CustomerDatabase?
+            return Database.CustomerDatabase.CustomerDB.getCustomersList(x);
+        }
+
+        protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            // Edit customer command
+            if (e.CommandName == "EditCustomer")
+            {
+                // Customer ID is in argument
+                String customerID = e.CommandArgument.ToString();
+                // Open the edit customer page
+                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
+                Session["CustomerID"] = customerID;
+            }
+        }
+
+        protected void SearchCustomerButton1_Click(object sender, EventArgs e)
+        {
+            SearchCustomers(SearchCustomer.Text);
+        }
+
     }
 }
