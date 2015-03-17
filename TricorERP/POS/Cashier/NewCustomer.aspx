@@ -48,12 +48,10 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <h4 class="h4">
-                <label for="InputName">Address :</label></h4>
-                <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add Address</asp:LinkButton>
+                    <asp:Label ID="ErrorMessageLable" runat="server" ForeColor="#FF3300"></asp:Label>
+                </h4>
             </div>
         </div>
-        
-        <br />
         <br />
         <div class="row container-fluid">
             <div class="col-lg-5">
@@ -61,6 +59,13 @@
                 <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click">Cancel</asp:LinkButton>
             </div>
         </div>
-
+        <br />
+        <div class="row container-fluid">
+            <div class="col-lg-3">
+                <h4 class="h4">
+                <label for="InputName">Address :</label></h4>
+                <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add Address</asp:LinkButton>
+            </div>
+        </div>
     </div>
 </asp:Content>

@@ -23,7 +23,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" method="post" runat="server">
         <div class="container">
 
             <h2><a href="#">

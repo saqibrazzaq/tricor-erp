@@ -49,13 +49,13 @@ namespace TricorERP.POS.Cashier {
         protected global::System.Web.UI.WebControls.DropDownList GenderDropDown;
         
         /// <summary>
-        /// btnAddNewAddress control.
+        /// ErrorMessageLable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
+        protected global::System.Web.UI.WebControls.Label ErrorMessageLable;
         
         /// <summary>
         /// btnSave control.
@@ -74,5 +74,14 @@ namespace TricorERP.POS.Cashier {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
+        
+        /// <summary>
+        /// btnAddNewAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
     }
 }

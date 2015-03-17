@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3 class="h3">Customer New Address :</h3>
+    <h3 class="h3">Customer Address :</h3>
     <div class="row container-fluid">
         <div class="col-lg-4">
             <label for="InputName">City :</label>

@@ -10,14 +10,16 @@ namespace TricorERP.POS.Cashier
 {
     public partial class NewCustomer : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        CustomerModel newcustomer;
+        int customerid;
 
+        public NewCustomer() {
+            newcustomer = new CustomerModel();
         }
 
-        protected void btnAddNewAddress_Click(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-
+            customerid = newcustomer.ID;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -27,17 +29,27 @@ namespace TricorERP.POS.Cashier
 
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            int customertyep = int.Parse( CustomerTyepDropDown.SelectedValue);
-            CustomerModel newcustomer = new CustomerModel();
-            newcustomer.Name = FullNameText.Text;
-            newcustomer.CNIC = CNICText.Text;
-            newcustomer.Gender = GenderDropDown.SelectedValue;
-            newcustomer.Tyep = customertyep;
-            addNewCustomer(newcustomer);
+            CustomerModel customer = new CustomerModel();
+            int customertyep = int.Parse(CustomerTyepDropDown.SelectedValue);
+            customer.Name = FullNameText.Text;
+            customer.CNIC = CNICText.Text;
+            customer.Gender = GenderDropDown.SelectedValue;
+            customer.Tyep = customertyep;
+            newcustomer = addNewCustomer(customer);
+            if (newcustomer != null)
+                ErrorMessageLable.Text = "Data of new customer is save...";
+            customerid = newcustomer.ID;
+            
         }
-        private CustomerModel addNewCustomer( CustomerModel newCustomer )
+        private CustomerModel addNewCustomer(CustomerModel newCustomer)
         {
-            return Database.POS.Customer.CustomerDB.addNewCustomer(newCustomer); 
+            return Database.POS.Customer.CustomerDB.addNewCustomer(newCustomer);
         }
+
+        protected void btnAddNewAddress_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customerid);
+        }
+
     }
 }
