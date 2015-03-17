@@ -10,13 +10,20 @@ namespace Database.POS.Customer
 {
     public class AddressDB
     {
+        private String customerID;
+        public AddressDB() {
+            customerID = null;
+        }
+        public void setCustomerID(String ID) {
+            customerID = ID;
+        }
+        
         //get all address related to an customer from database.
-
         public static List<AddressModel> getCustomerAddresses(String ID)
         {
             List<AddressModel> customerAddresses = new List<AddressModel>();
 
-            String sql = @"select Address.City City, Address.Location Location, Address.PhoneNo Phoneno
+            String sql = @"select Address.City City, Address.Location1 Location1, Address.PhoneNo Phoneno
                           from Customer
                           join CustomerAddress on Customer.Id = CustomerAddress.Customer_ID
                           join Address on CustomerAddress.Address_ID=Address.id
@@ -27,18 +34,29 @@ namespace Database.POS.Customer
             {
                 AddressModel address = new AddressModel();
                 address.City = reader["City"].ToString();
-                address.Location = reader["Location"].ToString();
+                address.Location1 = reader["Location1"].ToString();
                 address.Phonenumber = reader["Phoneno"].ToString();
                 customerAddresses.Add(address);
             }
             return customerAddresses;
         }
 
-        //set address within database
-        public AddressModel addAddress()
+        //set address within database and return id of inserted address.
+        public static AddressModel addAddress(AddressModel newaddress, String customerID)
         {
+            //AddressDB db = new AddressDB();
+            //db.setCustomerID(customerID);
+            
+            String sql = @"insert into Address(City, Location1, PhoneNo, Email, Location2)
+                         output inserted.ID 
+                         values ('"+newaddress.City+"', '"+newaddress.Location1+"', '"+newaddress.Phonenumber+"', '"+newaddress.Email+"', '"+newaddress.Location2+"')";
+            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            newaddress.ID = int.Parse(id.ToString());
 
-            return null;
+            String sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
+                            values('" + customerID + "', '" + newaddress.ID + "')";
+            DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql2, null);
+            return newaddress;
         }
 
     }

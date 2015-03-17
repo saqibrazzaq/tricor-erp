@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="row container-fluid">
-            <div class="col-lg-6">
+            <div class="col-lg-9">
                 <h5 class="h5">
                     <label for="InputName">All Possible Addresses...</label></h5>
                 <div class="panel-body">
@@ -54,7 +54,7 @@
                                     <%# Eval("City") %>
                                 </td>
                                 <td>
-                                    <%# Eval("Location") %>
+                                    <%# Eval("Location1") %>
                                 </td>
                             </tr>
                         </ItemTemplate>
