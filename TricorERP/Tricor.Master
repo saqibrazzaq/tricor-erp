@@ -203,12 +203,14 @@
             $("#PurchaseOrder").addClass("hidden");
             $("#SaleOrder").addClass("hidden");
             $("#Queue").addClass("hidden");
+            $("#Inventory").addClass("hidden");
         } else if ('2' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
             $("#Products").addClass("hidden");
             $("#PurchaseOrder").addClass("hidden");
             $("#SaleOrder").addClass("hidden");
             $("#Queue").addClass("hidden");
+            $("#Inventory").addClass("hidden");
         } else if ('3' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
         } else if ('4' == '<%=roleID%>') {
