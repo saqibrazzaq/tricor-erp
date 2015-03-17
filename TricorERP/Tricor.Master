@@ -83,6 +83,19 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li id="OrderDropdown" class="dropdown">
+                                <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/NewOrder.aspx" runat="server">New-Order</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink30" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
                             <!-- --------------------------------------- -->
                                         <!-- All SCMS Menus -->
 
@@ -204,6 +217,8 @@
             $("#SaleOrder").addClass("hidden");
             $("#Queue").addClass("hidden");
             $("#Inventory").addClass("hidden");
+            $("#OrderDropdown").addClass("hidden");
+
         } else if ('2' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
             $("#Products").addClass("hidden");
@@ -211,10 +226,15 @@
             $("#SaleOrder").addClass("hidden");
             $("#Queue").addClass("hidden");
             $("#Inventory").addClass("hidden");
+
         } else if ('3' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
+            $("#OrderDropdown").addClass("hidden");
+
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
+            $("#OrderDropdown").addClass("hidden");
+
         }
     </script>
 </body>

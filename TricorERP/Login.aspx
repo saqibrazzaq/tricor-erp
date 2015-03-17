@@ -9,7 +9,7 @@
     <title>Home</title>
 </head>
 <body>
-    <h1 class="text-center">Welcome to TRICOR Point Of Sale</h1>
+    <h1 class="text-center">Welcome to TRICOR!</h1>
     <hr />
     <form runat="server" class="form-horizontal">
         <div class="container-f">
