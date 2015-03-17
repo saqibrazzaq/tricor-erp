@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.Customer;
+using Models.POS.Customer;
 using System.Data.SqlClient;
 
-namespace Database.Customer
+namespace Database.POS.Customer
 {
     public class CustomerDB
     {
@@ -34,11 +34,13 @@ namespace Database.Customer
         }
 
         //get all basic information related to the an customer
-        public static CustomerModel getCustomerInFo(String ID) {
+        public static CustomerModel getCustomerInFo(String ID)
+        {
             CustomerModel customer = new CustomerModel();
-            String sql = @"select Customer.Name Name, Customer.CNIC CNIC from Customer where Customer.Id='"+ID+"'";
+            String sql = @"select Customer.Name Name, Customer.CNIC CNIC from Customer where Customer.Id='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-            if (reader.Read()) {
+            if (reader.Read())
+            {
                 customer.Name = reader["Name"].ToString();
                 customer.CNIC = reader["CNIC"].ToString();
             }
@@ -46,16 +48,16 @@ namespace Database.Customer
         }
 
         // save data of new customer in DB
-        public static CustomerModel addNewCustomer(CustomerModel newcustomer) {
+        public static CustomerModel addNewCustomer(CustomerModel newcustomer)
+        {
 
             String sql = @"INSERT INTO [dbo].[Customer]
                         ([Name],[CNIC],[Gender])
 		                output inserted.ID 
-                        VALUES ('"+newcustomer.Name+"','"+newcustomer.CNIC+"','"+newcustomer.Gender+"')";
+                        VALUES ('" + newcustomer.Name + "','" + newcustomer.CNIC + "','" + newcustomer.Gender + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             newcustomer.ID = int.Parse(id.ToString());
             return newcustomer;
         }
-
     }
 }

@@ -42,10 +42,12 @@
     <Compile Include="Customer\AddressDB.cs" />
     <Compile Include="Customer\CustomerDB.cs" />
     <Compile Include="DBUtility.cs" />
+    <Compile Include="POS\Customer\AddressDB.cs" />
+    <Compile Include="POS\Customer\CustomerDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\Customer.cs" />
     <Compile Include="SCM\ProductDB.cs" />
-    <Compile Include="UserLogin\UserLogin.cs" />
+    <Compile Include="POS\Customer\UserLogin\UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
@@ -54,10 +56,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-
-  <ItemGroup>
-    <Folder Include="POS\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

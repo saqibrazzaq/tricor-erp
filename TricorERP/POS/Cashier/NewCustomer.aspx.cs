@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Models.Customer;
+using Models.POS.Customer;
 
 namespace TricorERP.POS.Cashier
 {
@@ -37,7 +37,7 @@ namespace TricorERP.POS.Cashier
         }
         private CustomerModel addNewCustomer( CustomerModel newCustomer )
         {
-            return Database.Customer.CustomerDB.addNewCustomer(newCustomer); 
+            return Database.POS.Customer.CustomerDB.addNewCustomer(newCustomer); 
         }
     }
 }

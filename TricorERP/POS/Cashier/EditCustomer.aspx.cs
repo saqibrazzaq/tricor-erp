@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Models.Customer;
+using Models.POS.Customer;
 
 namespace TricorERP.POS.Cashier
 {
@@ -28,7 +28,7 @@ namespace TricorERP.POS.Cashier
         private void SearchCustomers(String Id)
         {
             CustomerModel customer = null;
-            List<Models.Customer.AddressModel> customerAddresses = null;
+            List<Models.POS.Customer.AddressModel> customerAddresses = null;
 
             customer = GetCustomerInFo(Id);
             customerAddresses = GetAddressesFromDB(Id);
@@ -42,12 +42,12 @@ namespace TricorERP.POS.Cashier
 
         private CustomerModel GetCustomerInFo(String Id)
         {
-            return Database.Customer.CustomerDB.getCustomerInFo(Id);
+            return Database.POS.Customer.CustomerDB.getCustomerInFo(Id);
         }
 
-        private List<Models.Customer.AddressModel> GetAddressesFromDB(String Id)
+        private List<Models.POS.Customer.AddressModel> GetAddressesFromDB(String Id)
         {
-            return Database.Customer.AddressDB.getCustomerAddresses(Id);
+            return Database.POS.Customer.AddressDB.getCustomerAddresses(Id);
         }
         //----------------------------------------------------------
 

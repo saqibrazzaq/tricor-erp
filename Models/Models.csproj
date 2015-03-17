@@ -42,13 +42,14 @@
     <Compile Include="Customer\AddressModel.cs" />
     <Compile Include="Customer\CustomerModel.cs" />
     <Compile Include="Login\UserModel.cs" />
+    <Compile Include="POS\Customer\AddressModel.cs" />
+    <Compile Include="POS\Customer\CustomerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\CustomerModel.cs" />
     <Compile Include="SCM\ProductModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BranchManager\" />
-    <Folder Include="POS\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

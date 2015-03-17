@@ -23,7 +23,7 @@ namespace TricorERP.POS.Cashier
         private void SearchCustomers(String SearchCustomer)
         {
             // Declare list
-            List<Models.Customer.CustomerModel> customers = null;
+            List<Models.POS.Customer.CustomerModel> customers = null;
             if (SearchCustomer == null)
             {
                 customers = GetFromDatabase(null);
@@ -40,10 +40,10 @@ namespace TricorERP.POS.Cashier
             CustomerListview.DataBind();
         }
 
-        private List<Models.Customer.CustomerModel> GetFromDatabase(String x)
+        private List<Models.POS.Customer.CustomerModel> GetFromDatabase(String x)
         {
             //what is CustomerDatabase?
-            return Database.Customer.CustomerDB.getCustomersList(x);
+            return Database.POS.Customer.CustomerDB.getCustomersList(x);
         }
 
         protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
