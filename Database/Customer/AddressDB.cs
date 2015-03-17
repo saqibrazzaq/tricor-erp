@@ -14,7 +14,7 @@ namespace Database.Customer
 
         public static List<AddressModel> getCustomerAddresses(String ID)
         {
-            List<AddressModel> customers = new List<AddressModel>();
+            List<AddressModel> customerAddresses = new List<AddressModel>();
 
             String sql = @"select Address.City City, Address.Location Location, Address.PhoneNo Phoneno
                           from Customer
@@ -25,19 +25,19 @@ namespace Database.Customer
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
-                AddressModel customer = new AddressModel();
-                customer.City = reader["City"].ToString();
-                customer.Location = reader["Location"].ToString();
-                customer.Phonenumber = reader["Phoneno"].ToString();
-                customers.Add(customer);
+                AddressModel address = new AddressModel();
+                address.City = reader["City"].ToString();
+                address.Location = reader["Location"].ToString();
+                address.Phonenumber = reader["Phoneno"].ToString();
+                customerAddresses.Add(address);
             }
-            return customers;
+            return customerAddresses;
         }
 
         //set address within database
-        public Boolean addAddress() {
+        public AddressModel addAddress() {
             
-            return true;
+            return null;
         }
 
     }

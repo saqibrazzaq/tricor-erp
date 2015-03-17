@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Models.Customer;
 
 namespace TricorERP.POS.Cashier
 {
@@ -21,12 +22,22 @@ namespace TricorERP.POS.Cashier
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Home.aspx");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-
+            int customertyep = int.Parse( CustomerTyepDropDown.SelectedValue);
+            CustomerModel newcustomer = new CustomerModel();
+            newcustomer.Name = FullNameText.Text;
+            newcustomer.CNIC = CNICText.Text;
+            newcustomer.Gender = GenderDropDown.SelectedValue;
+            newcustomer.Tyep = customertyep;
+            addNewCustomer(newcustomer);
+        }
+        private CustomerModel addNewCustomer( CustomerModel newCustomer )
+        {
+            return Database.Customer.CustomerDB.addNewCustomer(newCustomer); 
         }
     }
 }

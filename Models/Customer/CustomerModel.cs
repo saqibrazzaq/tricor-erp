@@ -12,5 +12,7 @@ namespace Models.Customer
         public String Name { get; set; }
         public String Phonenumber { get; set; }
         public String CNIC { get; set; }
+        public String Gender { get; set; }
+        public int Tyep { get; set; }
     }
 }
