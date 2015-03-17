@@ -106,7 +106,13 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li id="Inventory" class="dropdown">
+                              <asp:HyperLink ID="HyperLink28" NavigateUrl="" runat="server">Inventory</asp:HyperLink>                           
+
+                            </li>
+                            
                             <li id="PurchaseOrder" class="dropdown">
+
                                 <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
