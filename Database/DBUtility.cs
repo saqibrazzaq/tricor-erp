@@ -18,7 +18,7 @@ namespace Database
     public abstract class SqlHelper {
 
         //Database connection strings
-        public static readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=TRICOR;Trusted_Connection=True;";
+        public static readonly string connectionString = @"Server=MAMOON;Database=TRICOR;Trusted_Connection=True;";
 
         // Hashtable to store cached parameters
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());
