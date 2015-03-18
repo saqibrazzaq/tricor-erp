@@ -34,23 +34,7 @@
                                     <asp:TextBox ID="PasswordTextBox" CssClass="form-control" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
                                 </div>
                             </div>
-
-                            <%--<div class="input-group">
-                                <div class="control-group">
-                                    <div class="controls">
-                                        <div class="radio">
-                                            <label>
-                                                <asp:RadioButton ID="BranchManagerRadio" GroupName="worker" Text="BranchManager" runat="server" />
-                                            </label>
-                                            <label>
-                                                <asp:RadioButton ID="CashierRadio" GroupName="worker" Text="Cashier" runat="server" />
-                                            </label>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>--%>
-                            <br />
+                            
                             <br />
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">

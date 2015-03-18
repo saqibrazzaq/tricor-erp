@@ -10,15 +10,13 @@
             <div class="col-lg-3">
                 <label for="InputName">Full Name :</label>
                 <div class="input-group">
-                    <asp:Label ID="CustomerNameLab" Font-Names="InputName" CssClass="form-control" runat="server" Text="Name is"></asp:Label>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    <asp:TextBox ID="CustomerNameLab" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col-lg-3">
                 <label for="InputName">CNIC Number :</label>
                 <div class="input-group">
-                    <asp:Label ID="CNICpLab" Font-Names="InputName" CssClass="form-control" runat="server" Text="Type is.."></asp:Label>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    <asp:TextBox ID="CNICpLab" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -34,7 +32,7 @@
                 <h5 class="h5">
                     <label for="InputName">All Possible Addresses...</label></h5>
                 <div class="panel-body">
-                    <asp:ListView ID="CustomerAddressesview" runat="server" >
+                    <asp:ListView ID="CustomerAddressesview" runat="server">
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">

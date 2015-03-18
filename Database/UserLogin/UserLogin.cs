@@ -8,18 +8,15 @@ using System.Threading.Tasks;
 
 namespace Database.UserLogin
 {
-
-    // Make it public
     public class UserLogin
     {
         public static UserModel loginCheck(String username, String password)
         {
             UserModel userModel = null;
-                
             try
             {
                 String sql = "select * from [User] where UserName = '" + username + "'and Password='" + password + "'";
-                SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql , null);
+                SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
                 if (reader.Read()) // Read() gets first record
                 {
                     userModel = new UserModel()
@@ -37,5 +34,6 @@ namespace Database.UserLogin
             }
             return userModel;
         }
+
     }
 }

@@ -13,5 +13,10 @@ namespace TricorERP.POS.Order
         {
 
         }
+
+        protected void SearchOrderDataButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

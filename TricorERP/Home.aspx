@@ -3,5 +3,5 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    THis is Home page <% = Session["Username"] + " - " + Session["RoleID"] %>
+    THis is Home page <% = Session["Username"] + " - " + Session["RoleID"] +"----"+ Session["CustomerID"] %>
 </asp:Content>

@@ -39,7 +39,7 @@ namespace TricorERP.POS.Cashier
             if (newcustomer != null)
                 ErrorMessageLable.Text = "Data of new customer is save...";
             customerid = newcustomer.ID;
-            
+            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?ID=" + customerid);
         }
         private CustomerModel addNewCustomer(CustomerModel newCustomer)
         {

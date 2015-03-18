@@ -46,16 +46,38 @@ namespace Database.POS.Customer
         {
             //AddressDB db = new AddressDB();
             //db.setCustomerID(customerID);
-            
-            String sql = @"insert into Address(City, Location1, PhoneNo, Email, Location2)
-                         output inserted.ID 
-                         values ('"+newaddress.City+"', '"+newaddress.Location1+"', '"+newaddress.Phonenumber+"', '"+newaddress.Email+"', '"+newaddress.Location2+"')";
-            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            newaddress.ID = int.Parse(id.ToString());
 
-            String sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
+            SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
+            con.Open();
+            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            try
+            {
+                //trans. = System.Data.IsolationLevel.ReadUncommitted;
+
+                String sql = @"insert into Address(City, Location1, PhoneNo, Email, Location2)
+                         output inserted.ID 
+                         values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "', '" + newaddress.Location2 + "')";
+                object id = DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql, null);
+                newaddress.ID = int.Parse(id.ToString());
+
+                String sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
                             values('" + customerID + "', '" + newaddress.ID + "')";
-            DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql2, null);
+                DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql2, null);
+
+                trans.Commit();
+            }
+            catch(Exception ex)
+            {
+                trans.Rollback();
+            }
+            finally
+            {
+                con.Close();
+            }
+            // End
+            
+            
+
             return newaddress;
         }
 

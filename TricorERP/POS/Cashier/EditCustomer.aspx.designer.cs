@@ -19,7 +19,7 @@ namespace TricorERP.POS.Cashier {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CustomerNameLab;
+        protected global::System.Web.UI.WebControls.TextBox CustomerNameLab;
         
         /// <summary>
         /// CNICpLab control.
@@ -28,7 +28,7 @@ namespace TricorERP.POS.Cashier {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CNICpLab;
+        protected global::System.Web.UI.WebControls.TextBox CNICpLab;
         
         /// <summary>
         /// btnAddNewAddress control.

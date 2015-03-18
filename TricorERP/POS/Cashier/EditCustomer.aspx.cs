@@ -59,7 +59,25 @@ namespace TricorERP.POS.Cashier
 
         protected void Savebtn_Click(object sender, EventArgs e)
         {
+            if (customerID == "0")
+                AddNewCustomer();
+            else
+                UpdateCustomer();
+        }
 
+        private void UpdateCustomer()
+        {
+            // Create new Model from the textfields
+            // Model will have ID = customerID
+            // Method call: Database.CustomerDB.UpdateCustomer(model)
+        }
+
+        private void AddNewCustomer()
+        {
+            // Create new model from the textfields
+            // Model will NOT have ID
+            // Method call : insert
+            // Return model: ID - response.redirect("ID=" + model.ID)
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
