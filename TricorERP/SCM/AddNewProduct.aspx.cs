@@ -11,16 +11,25 @@ namespace TricorERP.SCM
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+       
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
-        protected void AddProductClick(object sender, EventArgs e)
+        protected ProductModel addNewProduct(ProductModel pModel)
         {
-            ProductModel productModel = ProductDB.ProductList(ProductNameText.Text, ProductCodeText.Text,
-                                                             float.Parse(ProductPriceText.Text)        ,
-                                                             ProductDiscriptionText.Text              );
+            return Database.SCM.ProductDB.addProduct(pModel);
         }
-
+        protected void Savebtn_Click(object sender, EventArgs e)
+        {
+            ProductModel product = new ProductModel();
+            product.ProductName = ProductNameText.Text;
+            product.ProductCode = ProductCodeText.Text;
+            product.ProductPrice = float.Parse(ProductPriceText.Text);
+            product.ProductDescription = ProductDiscriptionText.Text;
+            ProductModel newProduct = addNewProduct(product);
+            if (newProduct != null)
+                ErrorMessageLable.Text = "Data of new Product is saved.";
+        }
     }
 }

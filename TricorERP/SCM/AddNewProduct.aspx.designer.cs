@@ -40,15 +40,6 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.TextBox ProductPriceText;
         
         /// <summary>
-        /// PerFixPriceText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PerFixPriceText;
-        
-        /// <summary>
         /// ProductDiscriptionText control.
         /// </summary>
         /// <remarks>
@@ -74,5 +65,14 @@ namespace TricorERP.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
+        
+        /// <summary>
+        /// ErrorMessageLable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMessageLable;
     }
 }

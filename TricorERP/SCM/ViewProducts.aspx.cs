@@ -16,7 +16,6 @@ namespace TricorERP.SCM
         protected void SearchProduct(Object sender, EventArgs e)
         {
             String searchProduct = SearchProductText.Text;
-            // Declare list
             List<Models.SCM.ProductModel> products = null;
             if (searchProduct == null)
             {
