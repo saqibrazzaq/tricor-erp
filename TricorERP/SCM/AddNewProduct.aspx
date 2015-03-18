@@ -32,7 +32,7 @@
             <div class="col-lg-3">
                 <div class="input-group">
                 <label for="InputName">Product Discription</label>
-                <asp:TextBox ID="ProductDiscriptionText" CssClass="form-control" Font-Names="InputName"  width="430px" Height="55px" wrap="true" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="ProductDescriptionText" CssClass="form-control" Font-Names="InputName"  width="430px" Height="55px" wrap="true" runat="server" TextMode="MultiLine"></asp:TextBox>
              </div>
             </div>
         </div>

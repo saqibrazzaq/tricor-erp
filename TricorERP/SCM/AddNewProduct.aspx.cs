@@ -15,6 +15,10 @@ namespace TricorERP.SCM
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            ProductNameText.Text = "" ;
+            ProductPriceText.Text = "";
+            ProductCodeText.Text = "";
+            ProductDescriptionText.Text = "";
         }
         protected ProductModel addNewProduct(ProductModel pModel)
         {
@@ -26,7 +30,7 @@ namespace TricorERP.SCM
             product.ProductName = ProductNameText.Text;
             product.ProductCode = ProductCodeText.Text;
             product.ProductPrice = float.Parse(ProductPriceText.Text);
-            product.ProductDescription = ProductDiscriptionText.Text;
+            product.ProductDescription = ProductDescriptionText.Text;
             ProductModel newProduct = addNewProduct(product);
             if (newProduct != null)
                 ErrorMessageLable.Text = "Data of new Product is saved.";
