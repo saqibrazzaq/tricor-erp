@@ -227,7 +227,7 @@
             $("#Queue").addClass("hidden");
             $("#Inventory").addClass("hidden");
 
-        } else if ('3' == '<%=roleID%>') {
+        } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#OrderDropdown").addClass("hidden");
 

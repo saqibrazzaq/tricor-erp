@@ -8,6 +8,7 @@ namespace Models.SCM
 {
      public class ProductModel
     {
+        public int ProductID { get; set; }
         public String ProductName { get; set; }
         public String ProductCode { get; set; }
         public float ProductPrice { get; set; }
