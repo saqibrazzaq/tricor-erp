@@ -15,10 +15,11 @@ namespace TricorERP.SCM
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductNameText.Text = "" ;
-            ProductPriceText.Text = "";
-            ProductCodeText.Text = "";
-            ProductDescriptionText.Text = "";
+            //ProductNameText.Text = "" ;
+            //ProductPriceText.Text = "";
+            //ProductCodeText.Text = "";
+            //ProductDescriptionText.Text = "";
+            //ErrorMessageLable.Text = "";
         }
         protected ProductModel addNewProduct(ProductModel pModel)
         {

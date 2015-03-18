@@ -9,7 +9,7 @@
             <div class="input-group">
                 <asp:TextBox ID="SearchProductText" CssClass="form-control" placeholder="Search Product by Code/Name" runat="server"></asp:TextBox>
                 <span class="input-group-btn">
-                    <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search"  />
+                    <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search"  OnClick="SearchProduct"/>
                 </span>
             </div>
         </div>
@@ -17,7 +17,7 @@
 
     <div class="panel-body">
         <%-- error on that point --%>
-        <asp:ListView ID="CustomerListview" runat="server" >
+        <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="ProductListview_ItemCommand" >
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="productTable">
                     <tr class="active">
@@ -31,17 +31,18 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr id="Tr1" runat="server">
+                    
                     <td>
-                        <%# Eval("ID") %>
+                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductID") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <%# Eval("Code") %>
+                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductCode") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <%# Eval("Name") %>
+                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductName") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <%# Eval("Price") %>
+                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductDescription") %>'></asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>

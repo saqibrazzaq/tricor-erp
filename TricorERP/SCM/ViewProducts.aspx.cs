@@ -11,47 +11,49 @@ namespace TricorERP.SCM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack == false)
+            {
+                InitializePageContents();
+            }
         }
-        protected void SearchProduct(Object sender, EventArgs e)
+        private void InitializePageContents()
         {
-            String searchProduct = SearchProductText.Text;
-            List<Models.SCM.ProductModel> products = null;
-            if (searchProduct == null)
+            SearchProduct("");
+        }
+        private void SearchProduct(String SearchProduct)
+        {
+            // Declare list
+            List<Models.SCM.ProductModel> product = null;
+            if (SearchProduct == null)
             {
-                //products = GetFromDatabase(null);
+                product = GetFromDatabase(null);
             }
-            else if (searchProduct != null)
+            else if (SearchProduct != null)
             {
-                //products = GetFromDatabase(searchProduct);
+                product = GetFromDatabase(SearchProduct);
             }
-            CustomerListview.DataSource = products;
+            CustomerListview.DataSource = product;
             CustomerListview.DataBind();
         }
 
-        //private List<Models.SCM.ProductModel> GetFromDatabase(String x)
-        //{
-        //    //what is CustomerDatabase?
-        //    return Database.SCM.CustomerDB.getCustomersList(x);
-        //}
-
-        protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        private List<Models.SCM.ProductModel> GetFromDatabase(String SearchProduct)
         {
-            // Edit customer command
-            if (e.CommandName == "EditCustomer")
+            return Database.SCM.ProductDB.getProductList(SearchProduct);
+        }
+        protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditProduct")
             {
-                // Customer ID is in argument
-                String customerID = e.CommandArgument.ToString();
-                // Open the edit customer page
-                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
-                Session["CustomerID"] = customerID;
+                String ProductID = e.CommandArgument.ToString();
+                Response.Redirect("EditProduct.aspx?ID=" + ProductID);
+                Session["ProductID"] = ProductID;
             }
         }
 
-        //protected void SearchCustomerButton1_Click(object sender, EventArgs e)
-        //{
-        //    SearchCustomers(SearchCustomer.Text);
-        //}
+        protected void SearchProduct(object sender, EventArgs e)
+        {
+            SearchProduct(SearchProductText.Text);
+        }
 
     }
 }
