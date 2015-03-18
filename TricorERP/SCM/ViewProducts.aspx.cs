@@ -24,7 +24,7 @@ namespace TricorERP.SCM
         {
             // Declare list
             List<Models.SCM.ProductModel> product = null;
-            if (SearchProduct == null)
+            if (SearchProduct == "")
             {
                 product = GetFromDatabase(null);
             }
@@ -45,7 +45,7 @@ namespace TricorERP.SCM
             if (e.CommandName == "EditProduct")
             {
                 String ProductID = e.CommandArgument.ToString();
-                Response.Redirect("EditProduct.aspx?ID=" + ProductID);
+                Response.Redirect("~/SCM/EditProduct.aspx?ID=" + ProductID);
                 Session["ProductID"] = ProductID;
             }
         }
