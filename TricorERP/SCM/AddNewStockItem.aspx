@@ -30,7 +30,7 @@
         </div>
          <div class="row container-fluid">
             <div class="col-lg-5">
-                <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary"   >Save</asp:LinkButton>
+                <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary"  OnClick="Savebtn_Click" >Save</asp:LinkButton>
                 <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" >Cancel</asp:LinkButton>
             </div>
         </div>

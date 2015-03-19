@@ -16,18 +16,17 @@ namespace TricorERP.SCM
         }
           protected StockModel addNewStockItem(StockModel sModel)
         {
-            return Database.SCM.ProductDB.addProduct(pModel);
+            return Database.SCM.StockDB.addNewStockItem(sModel);
         }
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            StockModel product = new ProductModel();
-            product.ProductName = ProductNameText.Text;
-            product.ProductCode = ProductCodeText.Text;
-            product.ProductPrice = float.Parse(ProductPriceText.Text);
-            product.ProductDescription = ProductDescriptionText.Text;
-            ProductModel newProduct = addNewStockItem(product);
-            if (newProduct != null)
-                ErrorMessageLable.Text = "Data of new Product is saved.";
+            StockModel sModel = new StockModel();
+            sModel.WareHouseID = int.Parse(WareHouseDropDown.SelectedValue);
+            sModel.ProductID = int.Parse(ProductDropDown.SelectedValue);
+            sModel.Quantity = float.Parse(QuantityText.Text);
+            StockModel SModel = addNewStockItem(sModel);
+            if (SModel != null)
+                ErrorMessageLable.Text = "Data of new Stock is saved...!!!";
         }
     }
     }

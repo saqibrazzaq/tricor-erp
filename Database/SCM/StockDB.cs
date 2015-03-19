@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Database.SCM
 {
-    class StockDB
+    public class StockDB
     {
         public static StockModel addNewStockItem(StockModel sModel)
         {
@@ -41,24 +41,22 @@ namespace Database.SCM
             }
             return stockItemList;
         }
-        public static WareHouseModel getWareHouseInFo(String ID)
+        public static StockModel getStockInFo(String ID)
         {
-            WareHouseModel whModel = null;
+            StockModel sModel = null;
 
-            String sql = @"select  WareHouse.WHName WHName,  WareHouse.WHPhoneNumber WHPhoneNumber ,WareHouse.City WHCity , 
-                                         WareHouse.WHEmail WHEmail , WareHouse.WHLocation1 WHLocation1 , WareHouse.WHLocation2 WHLocation2 from Product where WareHouse.ID = '" + ID + "'";
+            String sql = @"select  Stock.ID SID , Stock.WHID WHID ,  Stock.PID PID , Stock.Quantity Quantity  
+                        from Stock where Stock.ID = '" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
-                whModel = new WareHouseModel();
-                whModel.Name = reader["WHName"].ToString();
-                whModel.City = reader["WHCity"].ToString();
-                whModel.Email = reader["WHEmail"].ToString();
-                whModel.PhoneNumber = reader["WHPhoneNumber"].ToString();
-                whModel.Location1 = reader["WHLocation1"].ToString();
-                whModel.Location2 = reader["WHLocation2"].ToString();
+                sModel = new StockModel();
+                sModel.ID = int.Parse(reader["ID"].ToString());
+                sModel.WareHouseID = int.Parse(reader["WHID"].ToString());
+                sModel.ProductID = int.Parse(reader["PID"].ToString());
+                sModel.Quantity = float.Parse(reader["Quantity"].ToString());
             }
-            return whModel;
+            return sModel;
         }
 
     }
