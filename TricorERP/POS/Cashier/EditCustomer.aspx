@@ -61,6 +61,7 @@
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
+                                    <th>Address ID</th>
                                     <th>Phone Number</th>
                                     <th>City</th>
                                     <th>Location</th>
@@ -70,6 +71,9 @@
                         </LayoutTemplate>
                         <ItemTemplate>
                             <tr runat="server">
+                                <td>
+                                    <%# Eval("ID") %>
+                                </td>
                                 <td>
                                     <%# Eval("Phonenumber") %>
                                 </td>

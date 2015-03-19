@@ -3,7 +3,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3 class="h3">Customer Address :</h3>
+    <h4 class="h4">Customer Info :</h4>
+    <div class="row container-fluid">
+        <div class="col-lg-4">
+            <div class="input-group">
+                <b>Name: </b> <asp:Label ID="customerName" runat="server" Text=""></asp:Label>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <b>CNIC: </b> <asp:Label ID="CustomerCNIC" runat="server" Text=""></asp:Label>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="h4">Customer Address :</h4>
     <div class="row container-fluid">
         <div class="col-lg-4">
             <label for="InputName">City :</label>
@@ -53,6 +67,12 @@
         <div class="col-lg-5">
             <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>
             <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click">Cancel</asp:LinkButton>
+        </div>
+    </div>
+
+    <div class="row container-fluid">
+        <div class="col-lg-5">
+            <asp:Label ID="message" runat="server" Text=""></asp:Label>
         </div>
     </div>
 

@@ -11,12 +11,10 @@ namespace TricorERP.POS.Cashier
     public partial class EditCustomer : System.Web.UI.Page
     {
         String customerID = "0";
-        String AddressID = "0";
+        CustomerModel test = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             customerID = Request.QueryString["CustomerID"];
-            AddressID = Request.QueryString["AddressID"];
-
             if (IsPostBack == false)
             {
                 InitializePageContents(customerID);
@@ -25,9 +23,9 @@ namespace TricorERP.POS.Cashier
 
         private void InitializePageContents(String Id)
         {
-            SearchCustomers(Id);
+            CustomersData(Id);
         }
-        private void SearchCustomers(String Id)
+        private void CustomersData(String Id)
         {
             CustomerModel customer = null;
             List<Models.POS.Customer.AddressModel> customerAddresses = null;
@@ -38,6 +36,10 @@ namespace TricorERP.POS.Cashier
             CustomerNameText.Text = customer.Name;
             CNICText.Text = customer.CNIC;
             GenderDropDown.SelectedValue = customer.Gender;
+            CustomerTyepDropDown.SelectedValue = customer.Type.ToString();
+
+            //for access the customer data on next page. 
+            test = customer;
 
             CustomerAddressesview.DataSource = customerAddresses;
             CustomerAddressesview.DataBind();
@@ -105,8 +107,8 @@ namespace TricorERP.POS.Cashier
         {
             if (e.CommandName == "AddAddress")
             {
-                //String customerID = e.CommandArgument.ToString();
-                Response.Redirect("AddAddress.aspx?CustomerID=" + customerID);
+                String AddressID = e.CommandArgument.ToString();
+                Response.Redirect("AddAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
             }
         }
 
