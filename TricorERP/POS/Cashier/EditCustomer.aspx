@@ -57,7 +57,7 @@
                 <h5 class="h5">
                     <label for="InputName">All Possible Addresses...</label></h5>
                 <div class="panel-body">
-                    <asp:ListView ID="CustomerAddressesview"  OnItemCommand="CustomerListview_ItemCommand" runat="server">
+                    <asp:ListView ID="CustomerAddressesview" OnItemCommand="CustomerListview_ItemCommand" runat="server">
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
@@ -75,7 +75,7 @@
                                 </td>
                                 <td>
                                     <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("City") %>'></asp:LinkButton>
-                                    
+
                                 </td>
                                 <td>
                                     <%# Eval("Location1") %>
@@ -86,7 +86,11 @@
                 </div>
             </div>
         </div>
-        <div class="row"></div>
+        <div class="row">
+            <div class="col-lg-3">
+                <asp:Label ID="message" runat="server"></asp:Label>
+            </div>
+        </div>
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>

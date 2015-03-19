@@ -96,7 +96,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="POS\Cashier\CustomerList.aspx" />
-    <Content Include="POS\Cashier\NewCustomer.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Samples\EditCustomer.aspx" />
     <Content Include="Samples\Samples.css" />
@@ -154,13 +153,6 @@
     </Compile>
     <Compile Include="POS\Cashier\EditCustomer.aspx.designer.cs">
       <DependentUpon>EditCustomer.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="POS\Cashier\NewCustomer.aspx.cs">
-      <DependentUpon>NewCustomer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="POS\Cashier\NewCustomer.aspx.designer.cs">
-      <DependentUpon>NewCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

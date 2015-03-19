@@ -61,11 +61,15 @@ namespace Database.POS.Customer
         }
 
         //update customer data
-        public static CustomerModel updateCustomer(CustomerModel updatecustomer) {
-            String sql = "";
-            //DBUtility.SqlHelper.ExecuteNonQuery();
-
-            return null;
+        public static int updateCustomer(CustomerModel updatecustomer) {
+            String sql = @"UPDATE [dbo].[Customer]
+                         SET [Name] = '"+updatecustomer.Name+"' ,[CNIC] = '"+updatecustomer.CNIC+"',[Gender] = '"+updatecustomer.Gender
+                         +"' WHERE Customer.Id = '"+updatecustomer.ID+"'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check == 1) {
+                return 1;
+            }
+            return 0;
         }
     }
 }

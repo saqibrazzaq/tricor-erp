@@ -87,8 +87,17 @@ namespace TricorERP.POS.Cashier
             customer.CNIC = CNICText.Text;
             customer.Gender = GenderDropDown.SelectedValue;
             customer.Tyep = customertyep;
-            Database.POS.Customer.CustomerDB.updateCustomer(customer);
-            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+            int check = Database.POS.Customer.CustomerDB.updateCustomer(customer);
+            if (check == 1)
+            {
+                message.Text = "Data is Updated";
+                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+            }
+            else
+            {
+                message.Text = "Data is not Updated";
+                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+            }
         }
 
         protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
