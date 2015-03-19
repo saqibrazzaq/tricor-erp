@@ -74,12 +74,11 @@ namespace Database.POS.Customer
             {
                 con.Close();
             }
-            // End
-            
-            
-
             return newaddress;
         }
+        public static AddressModel updateAddress(String x) {
 
+            return null;
+        }
     }
 }

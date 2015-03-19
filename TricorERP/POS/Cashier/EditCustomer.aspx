@@ -10,16 +10,41 @@
             <div class="col-lg-3">
                 <label for="InputName">Full Name :</label>
                 <div class="input-group">
-                    <asp:TextBox ID="CustomerNameLab" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="CustomerNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col-lg-3">
-                <label for="InputName">CNIC Number :</label>
+                <label for="InputName">Type :</label>
                 <div class="input-group">
-                    <asp:TextBox ID="CNICpLab" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="CustomerTyepDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
+                        <asp:ListItem>---Select---</asp:ListItem>
+                        <asp:ListItem Value="1">Individual</asp:ListItem>
+                        <asp:ListItem Value="2">Company  </asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
         </div>
+
+        <div class="row container-fluid">
+            <div class="col-lg-3">
+                <label for="InputName">CNIC</label>
+                <div class="input-group">
+                    <asp:TextBox ID="CNICText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label for="InputName">Gender :</label>
+                <div class="input-group">
+                    <asp:DropDownList ID="GenderDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
+                        <asp:ListItem>---Select---</asp:ListItem>
+                        <asp:ListItem Value="M">Male</asp:ListItem>
+                        <asp:ListItem Value="F">Female</asp:ListItem>
+                        <asp:ListItem Value="O">Other</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+        </div>
+
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <h4 class="h4">
@@ -32,7 +57,7 @@
                 <h5 class="h5">
                     <label for="InputName">All Possible Addresses...</label></h5>
                 <div class="panel-body">
-                    <asp:ListView ID="CustomerAddressesview" runat="server">
+                    <asp:ListView ID="CustomerAddressesview"  OnItemCommand="CustomerListview_ItemCommand" runat="server">
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
@@ -49,7 +74,8 @@
                                     <%# Eval("Phonenumber") %>
                                 </td>
                                 <td>
-                                    <%# Eval("City") %>
+                                    <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("City") %>'></asp:LinkButton>
+                                    
                                 </td>
                                 <td>
                                     <%# Eval("Location1") %>

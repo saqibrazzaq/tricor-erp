@@ -13,22 +13,40 @@ namespace TricorERP.POS.Cashier {
     public partial class EditCustomer {
         
         /// <summary>
-        /// CustomerNameLab control.
+        /// CustomerNameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomerNameLab;
+        protected global::System.Web.UI.WebControls.TextBox CustomerNameText;
         
         /// <summary>
-        /// CNICpLab control.
+        /// CustomerTyepDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CNICpLab;
+        protected global::System.Web.UI.WebControls.DropDownList CustomerTyepDropDown;
+        
+        /// <summary>
+        /// CNICText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CNICText;
+        
+        /// <summary>
+        /// GenderDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList GenderDropDown;
         
         /// <summary>
         /// btnAddNewAddress control.

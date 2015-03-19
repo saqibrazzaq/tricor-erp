@@ -11,10 +11,12 @@ namespace TricorERP.POS.Cashier
     public partial class EditCustomer : System.Web.UI.Page
     {
         String customerID = "0";
+        String AddressID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
-            customerID = Request.QueryString["Id"];
-            
+            customerID = Request.QueryString["ID"];
+            AddressID = Request.QueryString["AddressID"];
+
             if (IsPostBack == false)
             {
                 InitializePageContents(customerID);
@@ -32,10 +34,11 @@ namespace TricorERP.POS.Cashier
 
             customer = GetCustomerInFo(Id);
             customerAddresses = GetAddressesFromDB(Id);
-            
-            CustomerNameLab.Text = customer.Name;
-            CNICpLab.Text = customer.CNIC;
-            
+
+            CustomerNameText.Text = customer.Name;
+            CNICText.Text = customer.CNIC;
+            GenderDropDown.SelectedValue = customer.Gender;
+
             CustomerAddressesview.DataSource = customerAddresses;
             CustomerAddressesview.DataBind();
         }
@@ -49,12 +52,10 @@ namespace TricorERP.POS.Cashier
         {
             return Database.POS.Customer.AddressDB.getCustomerAddresses(Id);
         }
-        //----------------------------------------------------------
-
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customerID);
+            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customerID + "&AddressID=0");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
@@ -64,20 +65,39 @@ namespace TricorERP.POS.Cashier
             else
                 UpdateCustomer();
         }
-
-        private void UpdateCustomer()
-        {
-            // Create new Model from the textfields
-            // Model will have ID = customerID
-            // Method call: Database.CustomerDB.UpdateCustomer(model)
-        }
-
+        // method for add new customer
         private void AddNewCustomer()
         {
-            // Create new model from the textfields
-            // Model will NOT have ID
-            // Method call : insert
-            // Return model: ID - response.redirect("ID=" + model.ID)
+            CustomerModel customer = new CustomerModel();
+            int customertyep = int.Parse(CustomerTyepDropDown.SelectedValue);
+            customer.Name = CustomerNameText.Text;
+            customer.CNIC = CNICText.Text;
+            customer.Gender = GenderDropDown.SelectedValue;
+            customer.Tyep = customertyep;
+            customer = Database.POS.Customer.CustomerDB.addNewCustomer(customer);
+            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+        }
+
+        // method for update customers
+        private void UpdateCustomer()
+        {
+            CustomerModel customer = new CustomerModel();
+            int customertyep = int.Parse(CustomerTyepDropDown.SelectedValue);
+            customer.Name = CustomerNameText.Text;
+            customer.CNIC = CNICText.Text;
+            customer.Gender = GenderDropDown.SelectedValue;
+            customer.Tyep = customertyep;
+            Database.POS.Customer.CustomerDB.updateCustomer(customer);
+            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+        }
+
+        protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AddAddress")
+            {
+                //String customerID = e.CommandArgument.ToString();
+                Response.Redirect("AddAddress.aspx?CustomerID=" + customerID);
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
