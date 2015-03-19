@@ -12,7 +12,7 @@
                     <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search"  OnClick="SearchProduct"/>
                 </span>
             </div>
-        </div>
+        </div> 
     </div>
 
     <div class="panel-body">
