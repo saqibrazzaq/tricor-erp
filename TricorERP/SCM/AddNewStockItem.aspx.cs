@@ -14,7 +14,6 @@ namespace TricorERP.SCM
         {
             loadDropDownLists();
         }
-
         private void loadDropDownLists()
         {
             //WareHouseDropDown.DataSource = ;
@@ -45,4 +44,3 @@ namespace TricorERP.SCM
         }
     }
     }
-}

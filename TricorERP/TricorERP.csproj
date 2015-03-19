@@ -66,7 +66,6 @@
     <Content Include="POS\Order\NewOrder.aspx" />
     <Content Include="POS\Order\OrderList.aspx" />
     <Content Include="SCM\AddNewStockItem.aspx" />
-    <Content Include="SCM\AddStockItem.aspx" />
     <Content Include="SCM\EditProduct.aspx" />
     <Content Include="SCM\AddNewProduct.aspx" />
     <Content Include="SCM\EditWareHouse.aspx" />
@@ -204,13 +203,6 @@
     </Compile>
     <Compile Include="SCM\AddNewStockItem.aspx.designer.cs">
       <DependentUpon>AddNewStockItem.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SCM\AddStockItem.aspx.cs">
-      <DependentUpon>AddStockItem.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SCM\AddStockItem.aspx.designer.cs">
-      <DependentUpon>AddStockItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\EditProduct.aspx.cs">
       <DependentUpon>EditProduct.aspx</DependentUpon>
