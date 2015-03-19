@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TricorERP.SCM
 {
-    public partial class ViewProducts : System.Web.UI.Page
+    public partial class SearchWH : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,31 +18,31 @@ namespace TricorERP.SCM
         }
         private void InitializePageContents()
         {
-            SearchProduct("");
+            SearchWareHouse("");
         }
-        private void SearchProduct(String SearchProduct)
+        private void SearchWareHouse(String searchWareHouse)
         {
             // Declare list
-            List<Models.SCM.ProductModel> product = null;
-            if (SearchProduct == "")
+            List<Models.SCM.WareHouseModel> warehouse = null;
+            if (searchWareHouse == "")
             {
-                product = GetFromDatabase(null);
+                warehouse = GetFromDatabase(null);
             }
-            else if (SearchProduct != null)
+            else if (searchWareHouse != null)
             {
-                product = GetFromDatabase(SearchProduct);
+                warehouse = GetFromDatabase(searchWareHouse);
             }
-            ProductListview.DataSource = product;
-            ProductListview.DataBind();
+            WareHouseListview.DataSource = warehouse;
+            WareHouseListview.DataBind();
         }
 
-        private List<Models.SCM.ProductModel> GetFromDatabase(String SearchProduct)
+        private List<Models.SCM.WareHouseModel> GetFromDatabase(String searchWareHouse)
         {
-            return Database.SCM.ProductDB.getProductList(SearchProduct);
+            return Database.SCM.WareHouseDB.getWareHouseList(searchWareHouse);
         }
-        protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        protected void WareHouseListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            if (e.CommandName == "EditProduct")
+            if (e.CommandName == "EditWareHouse")
             {
                 String ProductID = e.CommandArgument.ToString();
                 Response.Redirect("~/SCM/EditProduct.aspx?ID=" + ProductID);
@@ -52,7 +52,7 @@ namespace TricorERP.SCM
 
         protected void SearchProduct(object sender, EventArgs e)
         {
-            SearchProduct(SearchProductText.Text);
+            SearchWareHouse(SearchProductText.Text);
         }
 
     }

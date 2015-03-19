@@ -11,7 +11,7 @@ namespace TricorERP.SCM
 {
 
 
-    public partial class home
+    public partial class addStockItem
     {
     }
 }
