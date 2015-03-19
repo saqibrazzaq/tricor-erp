@@ -10,14 +10,6 @@ namespace Database.POS.Customer
 {
     public class AddressDB
     {
-        private String customerID;
-        public AddressDB() {
-            customerID = null;
-        }
-        public void setCustomerID(String ID) {
-            customerID = ID;
-        }
-        
         //get all address related to an customer from database.
         public static List<AddressModel> getCustomerAddresses(String ID)
         {
@@ -45,9 +37,6 @@ namespace Database.POS.Customer
         //set address within database and return id of inserted address.
         public static AddressModel addAddress(AddressModel newaddress, String customerID)
         {
-            //AddressDB db = new AddressDB();
-            //db.setCustomerID(customerID);
-
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
             con.Open();
             SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);

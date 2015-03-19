@@ -72,5 +72,20 @@ namespace Database.POS.Customer
             }
             return 0;
         }
+
+        public static List<CustomerModel> getallCustomer() {
+            List<CustomerModel> customers = new List<CustomerModel>();
+            String sql = @"";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                CustomerModel customer = new CustomerModel();
+                customer.ID = int.Parse(reader["ID"].ToString());
+                customer.Name = reader["Name"].ToString();
+                customers.Add(customer);
+            }
+            return customers;
+        }
+
     }
 }
