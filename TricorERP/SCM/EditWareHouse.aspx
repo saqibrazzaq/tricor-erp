@@ -6,5 +6,5 @@
     Mubark ho... Mubark ho... :D
     </br> </br>
 
-    But EditProduct page Not implemented yet... :p
+    But Edit WareHouse page Not implemented yet... :p
 </asp:Content>

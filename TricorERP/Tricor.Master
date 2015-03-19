@@ -96,7 +96,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <!-- --------------------------------------- -->
+                            <!-- ----------------------------------------->
                                         <!-- All SCMS Menus -->
 
                             <li id="Products" class="dropdown">
@@ -132,9 +132,20 @@
                                     <li class="divider"></li>
                                     </ul>
                             </li>
-                            
+                            <li id="Stock" class="dropdown">
+                            <asp:HyperLink ID="HyperLink33" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink34" NavigateUrl="~/SCM/SearchStock.aspx" runat="server">View Stock</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink35" NavigateUrl="~/SCM/AddNewStockItem.aspx" runat="server">Add new Stock item</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    </ul>
+                            </li>
                             <li id="PurchaseOrder" class="dropdown">
-
                                 <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
