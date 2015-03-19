@@ -37,7 +37,7 @@ namespace TricorERP.POS.Cashier
             newaddress.Phonenumber = PhoneNumberText.Text;
             newaddress.Email = email.Text;
             newaddress = Database.POS.Customer.AddressDB.addAddress(newaddress, customerID);
-            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?ID=" + customerID+"& AddressID="+newaddress.ID);
+            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
         }
 
         //for update the address 
@@ -51,7 +51,7 @@ namespace TricorERP.POS.Cashier
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             //how to set previous page without effecting the values of previous page?
-            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?ID=" + customerID + "& AddressID=0");
+            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=0");
         }
     }
 }

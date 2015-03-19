@@ -14,7 +14,7 @@ namespace TricorERP.POS.Cashier
         String AddressID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
-            customerID = Request.QueryString["ID"];
+            customerID = Request.QueryString["CustomerID"];
             AddressID = Request.QueryString["AddressID"];
 
             if (IsPostBack == false)
@@ -69,11 +69,10 @@ namespace TricorERP.POS.Cashier
         private void AddNewCustomer()
         {
             CustomerModel customer = new CustomerModel();
-            int customertyep = int.Parse(CustomerTyepDropDown.SelectedValue);
             customer.Name = CustomerNameText.Text;
             customer.CNIC = CNICText.Text;
             customer.Gender = GenderDropDown.SelectedValue;
-            customer.Tyep = customertyep;
+            customer.Type = int.Parse(CustomerTyepDropDown.SelectedValue);
             customer = Database.POS.Customer.CustomerDB.addNewCustomer(customer);
             Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
         }
@@ -82,11 +81,13 @@ namespace TricorERP.POS.Cashier
         private void UpdateCustomer()
         {
             CustomerModel customer = new CustomerModel();
-            int customertyep = int.Parse(CustomerTyepDropDown.SelectedValue);
+            
+            customer.ID = int.Parse(customerID.ToString());
             customer.Name = CustomerNameText.Text;
             customer.CNIC = CNICText.Text;
             customer.Gender = GenderDropDown.SelectedValue;
-            customer.Tyep = customertyep;
+            customer.Type = int.Parse(CustomerTyepDropDown.SelectedValue);
+
             int check = Database.POS.Customer.CustomerDB.updateCustomer(customer);
             if (check == 1)
             {

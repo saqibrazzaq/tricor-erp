@@ -13,6 +13,6 @@ namespace Models.POS.Customer
         public String Phonenumber { get; set; }
         public String CNIC { get; set; }
         public String Gender { get; set; }
-        public int Tyep { get; set; }
+        public int Type { get; set; }
     }
 }

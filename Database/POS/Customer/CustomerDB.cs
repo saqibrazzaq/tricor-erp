@@ -37,13 +37,15 @@ namespace Database.POS.Customer
         public static CustomerModel getCustomerInFo(String ID)
         {
             CustomerModel customer = new CustomerModel();
-            String sql = @"select Customer.Name Name, Customer.CNIC CNIC, Customer.Gender Gender from Customer where Customer.Id='" + ID + "'";
+            String sql = @"SELECT [Id] ID ,[Name] Name ,[CNIC] CNIC ,[Gender] Gender ,[Type] Type FROM [dbo].[Customer] where Id = '"+ID+"'";
+            //String sql = @"select Customer.Name Name, Customer.CNIC CNIC, Customer.Gender Gender from Customer where Customer.Id='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
                 customer.Name = reader["Name"].ToString();
                 customer.CNIC = reader["CNIC"].ToString();
                 customer.Gender = reader["Gender"].ToString();
+                customer.Type = int.Parse(reader["Type"].ToString());
             }
             return customer;
         }
@@ -51,10 +53,9 @@ namespace Database.POS.Customer
         // save data of new customer in DB
         public static CustomerModel addNewCustomer(CustomerModel newcustomer)
         {
-            String sql = @"INSERT INTO [dbo].[Customer]
-                        ([Name],[CNIC],[Gender])
-		                output inserted.ID 
-                        VALUES ('" + newcustomer.Name + "','" + newcustomer.CNIC + "','" + newcustomer.Gender + "')";
+            String sql = @"INSERT INTO [dbo].[Customer] ([Name],[CNIC],[Gender],[Type])
+            output inserted.ID 
+            VALUES('"+newcustomer.Name+"','"+newcustomer.CNIC+"','"+newcustomer.Gender+"','"+newcustomer.Type+"')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             newcustomer.ID = int.Parse(id.ToString());
             return newcustomer;

@@ -54,7 +54,7 @@ namespace TricorERP.POS.Cashier
                 // Customer ID is in argument
                 String customerID = e.CommandArgument.ToString();
                 // Open the edit customer page
-                Response.Redirect("EditCustomer.aspx?ID=" + customerID + "&AddressID=0");
+                Response.Redirect("EditCustomer.aspx?CustomerID=" + customerID + "&AddressID=0");
                 Session["CustomerID"] = customerID;
             }
         }
