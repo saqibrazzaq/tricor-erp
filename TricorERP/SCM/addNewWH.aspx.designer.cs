@@ -58,13 +58,13 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.TextBox WHLocation1Text;
         
         /// <summary>
-        /// WHLcation2Text control.
+        /// WHLocation2Text control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHLcation2Text;
+        protected global::System.Web.UI.WebControls.TextBox WHLocation2Text;
         
         /// <summary>
         /// Savebtn control.
