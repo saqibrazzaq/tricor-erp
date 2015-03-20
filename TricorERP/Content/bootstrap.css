@@ -3718,8 +3718,7 @@ tbody.collapse.in {
   z-index: 2;
   float: left;
   width: 100%;
-  margin-bottom: 0;
-}
+  }
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {

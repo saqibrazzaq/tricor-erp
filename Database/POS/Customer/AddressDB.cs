@@ -10,14 +10,6 @@ namespace Database.POS.Customer
 {
     public class AddressDB
     {
-        private String customerID;
-        public AddressDB() {
-            customerID = null;
-        }
-        public void setCustomerID(String ID) {
-            customerID = ID;
-        }
-        
         //get all address related to an customer from database.
         public static List<AddressModel> getCustomerAddresses(String ID)
         {
@@ -45,9 +37,6 @@ namespace Database.POS.Customer
         //set address within database and return id of inserted address.
         public static AddressModel addAddress(AddressModel newaddress, String customerID)
         {
-            //AddressDB db = new AddressDB();
-            //db.setCustomerID(customerID);
-
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
             con.Open();
             SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
@@ -105,6 +94,22 @@ namespace Database.POS.Customer
                          +updateaddress.Location2+"' WHERE Address.Id='"+updateaddress.ID+"'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+
+        //Q. how to delete an address from database?
+        public static int deleteAddress(AddressModel deleteaddress, String customeraddressid)
+        {
+            String sql = @"";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+
+            String sql2 = @"";
+            int check2 = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql2, null);
+            if (check == 1 && check2 == 1)
             {
                 return 1;
             }

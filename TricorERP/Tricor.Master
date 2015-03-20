@@ -88,7 +88,7 @@
                                 <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/NewOrder.aspx" runat="server">New-Order</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/Order.aspx" runat="server">New-Order</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -96,6 +96,8 @@
                                     </li>
                                 </ul>
                             </li>
+
+                             
                             <!-- ----------------------------------------->
                                         <!-- All SCMS Menus -->
 
@@ -239,6 +241,8 @@
             $("#Inventory").addClass("hidden");
             $("#OrderDropdown").addClass("hidden");
             $("#WareHouse").addClass("hidden");
+            $("#Stock").addClass("hidden");
+            
 
         } else if ('2' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
@@ -248,6 +252,7 @@
             $("#Queue").addClass("hidden");
             $("#Inventory").addClass("hidden");
             $("#WareHouse").addClass("hidden");
+            $("#Stock").addClass("hidden");
 
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");

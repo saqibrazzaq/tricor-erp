@@ -18,17 +18,17 @@ namespace TricorERP.SCM
         {
             //WareHouseDropDown.DataSource = ;
         }
-          protected StockModel addNewStockItem(StockModel sModel)
+        protected StockModel addNewStockItem(StockModel sModel)
         {
             return Database.SCM.StockDB.addNewStockItem(sModel);
         }
         // getting products list..
-          private List<Models.SCM.ProductModel> GetProductsFromDatabase()
+        private List<Models.SCM.ProductModel> GetProductsFromDatabase()
         {
             return Database.SCM.ProductDB.getProductList("");
         }
         // getting WareHouses list..
-         private List<Models.SCM.WareHouseModel> GetWareHouseFromDatabase()
+        private List<Models.SCM.WareHouseModel> GetWareHouseFromDatabase()
         {
             return Database.SCM.WareHouseDB.getWareHouseList("");
         }
@@ -44,3 +44,4 @@ namespace TricorERP.SCM
         }
     }
     }
+

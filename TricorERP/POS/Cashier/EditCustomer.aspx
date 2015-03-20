@@ -78,11 +78,17 @@
                                     <%# Eval("Phonenumber") %>
                                 </td>
                                 <td>
-                                    <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("City") %>'></asp:LinkButton>
+                                    <%# Eval("City") %>
 
                                 </td>
                                 <td>
                                     <%# Eval("Location1") %>
+                                </td>
+                                <td>
+                                    <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                </td>
+                                <td>
+                                    <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
                                 </td>
                             </tr>
                         </ItemTemplate>
