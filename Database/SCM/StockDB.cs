@@ -21,23 +21,26 @@ namespace Database.SCM
             return sModel;
         }
 
-        public static List<StockModel> geStockItemList(String searchtext)
+        public static List<ProductModel> geStockItemList(String searchtext)
         {
-            List<StockModel> stockItemList = new List<StockModel>();
-            String sql = @"select top 10 Stock.ID SID , Stock.WHID WHID ,  Stock.PID PID , Stock.Quantity Quantity  
-                        from Stock
+            List<ProductModel> stockItemList = new List<ProductModel>();
+            String sql = @"select top 10 Product.PName PName, Product.PCode PCode, Product.PPrice PPrice ,Product.PThreshHoldValue PthreshHold, Product.PReOrderValue pReOrder
+                        from product
+                        join Stock on Product.id = Stock.PID
                         where 1=1
                         and 
 	                    (Stock.ID like '%" + searchtext + "%' or Stock.WHID like '%" + searchtext + "%' or Stock.PID like '%" + searchtext + "%' or Stock.Quantity like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
-                StockModel sModel = new StockModel();
-                sModel.ID = int.Parse(reader["ID"].ToString());
-                sModel.WareHouseID = int.Parse(reader["WHID"].ToString());
-                sModel.ProductID = int.Parse(reader["PID"].ToString());
-                sModel.Quantity = float.Parse(reader["Quantity"].ToString());
-                stockItemList.Add(sModel);
+                ProductModel product = new ProductModel();
+               // product.ProductID = int.Parse(reader["PID"].ToString());
+                product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
+                product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
+                product.ProductName = reader["PName"].ToString();
+                product.ProductCode = reader["PCode"].ToString();
+                product.ProductPrice = float.Parse(reader["PPrice"].ToString());
+                stockItemList.Add(product);
             }
             return stockItemList;
         }

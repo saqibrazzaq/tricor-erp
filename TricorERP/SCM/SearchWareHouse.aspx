@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-     <h2 class="h2">View Product</h2>
+     <h2 class="h2">Search WareHouses</h2>
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
