@@ -23,7 +23,11 @@ namespace TricorERP.SCM
 
         private void LoadWarehouseList()
         {
-            //throw new NotImplementedException();
+            List<WareHouseModel> wareHouses = GetWareHouseFromDatabase();
+            WareHouseDropDown.DataTextField = "Name";
+            WareHouseDropDown.DataValueField = "ID";
+            WareHouseDropDown.DataSource = wareHouses;
+            WareHouseDropDown.DataBind();
         }
 
         private void LoadProductList()
@@ -32,9 +36,9 @@ namespace TricorERP.SCM
             ProductDropDown.DataTextField = "ProductName";
             ProductDropDown.DataValueField = "ProductID";
             ProductDropDown.DataSource = products;
-
-            
+            ProductDropDown.DataBind();  
         }
+        //adding new Stock item...
         protected StockModel addNewStockItem(StockModel sModel)
         {
             return Database.SCM.StockDB.addNewStockItem(sModel);
@@ -49,6 +53,7 @@ namespace TricorERP.SCM
         {
             return Database.SCM.WareHouseDB.getWareHouseList("");
         }
+        // Save button click...
         protected void Savebtn_Click(object sender, EventArgs e)
         {
             StockModel sModel = new StockModel();
