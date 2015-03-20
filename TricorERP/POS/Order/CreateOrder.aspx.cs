@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TricorERP.POS.Order
 {
-    public partial class Order : System.Web.UI.Page
+    public partial class CreateOrder : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

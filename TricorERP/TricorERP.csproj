@@ -62,8 +62,8 @@
     <Content Include="POS\BranchManager\BranchManagerMaster.Master" />
     <Content Include="POS\Cashier\AddAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
+    <Content Include="POS\Order\CreateOrder.aspx" />
     <Content Include="POS\Order\EditOrder.aspx" />
-    <Content Include="POS\Order\new.aspx" />
     <Content Include="POS\Order\Order.aspx" />
     <Content Include="POS\Order\OrderList.aspx" />
     <Content Include="SCM\AddNewStockItem.aspx" />
@@ -162,19 +162,19 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="POS\Order\CreateOrder.aspx.cs">
+      <DependentUpon>CreateOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Order\CreateOrder.aspx.designer.cs">
+      <DependentUpon>CreateOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="POS\Order\EditOrder.aspx.cs">
       <DependentUpon>EditOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="POS\Order\EditOrder.aspx.designer.cs">
       <DependentUpon>EditOrder.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="POS\Order\new.aspx.cs">
-      <DependentUpon>new.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="POS\Order\new.aspx.designer.cs">
-      <DependentUpon>new.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\Order\Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
