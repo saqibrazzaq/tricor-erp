@@ -17,6 +17,23 @@ namespace TricorERP.SCM
         private void loadDropDownLists()
         {
             //WareHouseDropDown.DataSource = ;
+            LoadProductList();
+            LoadWarehouseList();
+        }
+
+        private void LoadWarehouseList()
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void LoadProductList()
+        {
+            List<ProductModel> products = GetProductsFromDatabase();
+            ProductDropDown.DataTextField = "ProductName";
+            ProductDropDown.DataValueField = "ProductID";
+            ProductDropDown.DataSource = products;
+
+            
         }
         protected StockModel addNewStockItem(StockModel sModel)
         {
