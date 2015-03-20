@@ -119,9 +119,18 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="Inventory" class="dropdown">
-                              <asp:HyperLink ID="HyperLink28" NavigateUrl="" runat="server">Inventory</asp:HyperLink>                           
-
+                            <li id="WareHouse" class="dropdown">
+                            <asp:HyperLink ID="HyperLink28" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">WareHouse<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink31" NavigateUrl="~/SCM/SearchWareHouse.aspx" runat="server">View WareHouses</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink32" NavigateUrl="~/SCM/AddNewWareHouse.aspx" runat="server">Add new WareHouse</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    </ul>
                             </li>
                             
                             <li id="PurchaseOrder" class="dropdown">

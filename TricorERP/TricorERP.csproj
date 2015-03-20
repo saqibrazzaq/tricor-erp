@@ -65,10 +65,14 @@
     <Content Include="POS\Order\EditOrder.aspx" />
     <Content Include="POS\Order\NewOrder.aspx" />
     <Content Include="POS\Order\OrderList.aspx" />
+    <Content Include="SCM\AddStockItem.aspx" />
     <Content Include="SCM\EditProduct.aspx" />
-    <Content Include="SCM\home.aspx" />
     <Content Include="SCM\AddNewProduct.aspx" />
+    <Content Include="SCM\EditWareHouse.aspx" />
+    <Content Include="SCM\SearchStockItem.aspx" />
+    <Content Include="SCM\SearchWareHouse.aspx" />
     <Content Include="SCM\ViewProducts.aspx" />
+    <Content Include="SCM\AddNewWareHouse.aspx" />
     <Content Include="Tricor.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -201,19 +205,19 @@
     <Compile Include="Samples\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\AddStockItem.aspx.cs">
+      <DependentUpon>AddStockItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\AddStockItem.aspx.designer.cs">
+      <DependentUpon>AddStockItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\EditProduct.aspx.cs">
       <DependentUpon>EditProduct.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SCM\EditProduct.aspx.designer.cs">
       <DependentUpon>EditProduct.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SCM\home.aspx.cs">
-      <DependentUpon>home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SCM\home.aspx.designer.cs">
-      <DependentUpon>home.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\AddNewProduct.aspx.cs">
       <DependentUpon>AddNewProduct.aspx</DependentUpon>
@@ -222,12 +226,40 @@
     <Compile Include="SCM\AddNewProduct.aspx.designer.cs">
       <DependentUpon>AddNewProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\EditWareHouse.aspx.cs">
+      <DependentUpon>EditWareHouse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\EditWareHouse.aspx.designer.cs">
+      <DependentUpon>EditWareHouse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SearchStockItem.aspx.cs">
+      <DependentUpon>SearchStockItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SearchStockItem.aspx.designer.cs">
+      <DependentUpon>SearchStockItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SearchWareHouse.aspx.cs">
+      <DependentUpon>SearchWareHouse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SearchWareHouse.aspx.designer.cs">
+      <DependentUpon>SearchWareHouse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ViewProducts.aspx.cs">
       <DependentUpon>ViewProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SCM\ViewProducts.aspx.designer.cs">
       <DependentUpon>ViewProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\AddNewWareHouse.aspx.cs">
+      <DependentUpon>AddNewWareHouse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\AddNewWareHouse.aspx.designer.cs">
+      <DependentUpon>AddNewWareHouse.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tricor.Master.cs">
       <DependentUpon>Tricor.Master</DependentUpon>

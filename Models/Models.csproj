@@ -46,6 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\CustomerModel.cs" />
     <Compile Include="SCM\ProductModel.cs" />
+    <Compile Include="SCM\WareHouseModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

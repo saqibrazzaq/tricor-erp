@@ -17,4 +17,4 @@ namespace Models.SCM
             public String Email { set; get; }
         }
     }
-}
+

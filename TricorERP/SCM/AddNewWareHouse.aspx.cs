@@ -14,7 +14,7 @@ namespace TricorERP.SCM
         {
 
         }   
-        protected WareHouseModel addNewWH(WareHouseModel warehouseModel)
+        protected WareHouseModel addNewWareHouse(WareHouseModel warehouseModel)
         {
             return Database.SCM.WareHouseDB.addNewWareHouse(warehouseModel);
         }
@@ -33,4 +33,3 @@ namespace TricorERP.SCM
         }
     }
     }
-}

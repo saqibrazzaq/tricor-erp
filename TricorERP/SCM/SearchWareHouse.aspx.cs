@@ -35,7 +35,6 @@ namespace TricorERP.SCM
             WareHouseListview.DataSource = warehouse;
             WareHouseListview.DataBind();
         }
-
         private List<Models.SCM.WareHouseModel> GetFromDatabase(String searchWareHouse)
         {
             return Database.SCM.WareHouseDB.getWareHouseList(searchWareHouse);
@@ -44,15 +43,14 @@ namespace TricorERP.SCM
         {
             if (e.CommandName == "EditWareHouse")
             {
-                String ProductID = e.CommandArgument.ToString();
-                Response.Redirect("~/SCM/EditProduct.aspx?ID=" + ProductID);
-                Session["ProductID"] = ProductID;
+                String WareHouseID = e.CommandArgument.ToString();
+                Session["WareHouseID"] = WareHouseID;
+                Response.Redirect("~/SCM/EditWareHouse.aspx?ID=" + WareHouseID);
             }
         }
-
-        protected void SearchProduct(object sender, EventArgs e)
+        protected void SearchWareHouse(object sender, EventArgs e)
         {
-            SearchWareHouse(SearchProductText.Text);
+            SearchWareHouse(SearchWareHouseText.Text);
         }
 
     }

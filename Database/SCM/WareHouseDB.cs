@@ -24,7 +24,7 @@ namespace Database.SCM
         public static List<WareHouseModel> getWareHouseList(String searchtext)
         {
             List<WareHouseModel> wareHouseList = new List<WareHouseModel>();
-            String sql = @"select top 10 WareHouse.WHID WHID , WareHouse.WHName WHName,  WareHouse.WHPhoneNumber WHPhoneNumber ,WareHouse.City WHCity , 
+            String sql = @"select top 10 WareHouse.ID WHID , WareHouse.WHName WHName,  WareHouse.WHPhoneNumber WHPhoneNumber ,WareHouse.WHCity WHCity , 
                                          WareHouse.WHEmail WHEmail , WareHouse.WHLocation1 WHLocation1 , WareHouse.WHLocation2 WHLocation2 
                         from WareHouse
                         where 1=1
