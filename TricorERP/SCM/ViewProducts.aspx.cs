@@ -32,8 +32,8 @@ namespace TricorERP.SCM
             {
                 product = GetFromDatabase(SearchProduct);
             }
-            CustomerListview.DataSource = product;
-            CustomerListview.DataBind();
+            ProductListview.DataSource = product;
+            ProductListview.DataBind();
         }
 
         private List<Models.SCM.ProductModel> GetFromDatabase(String SearchProduct)

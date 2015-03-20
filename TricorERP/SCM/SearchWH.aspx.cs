@@ -11,7 +11,49 @@ namespace TricorERP.SCM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack == false)
+            {
+                InitializePageContents();
+            }
         }
+        private void InitializePageContents()
+        {
+            SearchWareHouse("");
+        }
+        private void SearchWareHouse(String searchWareHouse)
+        {
+            // Declare list
+            List<Models.SCM.WareHouseModel> warehouse = null;
+            if (searchWareHouse == "")
+            {
+                warehouse = GetFromDatabase(null);
+            }
+            else if (searchWareHouse != null)
+            {
+                warehouse = GetFromDatabase(searchWareHouse);
+            }
+            WareHouseListview.DataSource = warehouse;
+            WareHouseListview.DataBind();
+        }
+
+        private List<Models.SCM.WareHouseModel> GetFromDatabase(String searchWareHouse)
+        {
+            return Database.SCM.WareHouseDB.getWareHouseList(searchWareHouse);
+        }
+        protected void WareHouseListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditWareHouse")
+            {
+                String ProductID = e.CommandArgument.ToString();
+                Response.Redirect("~/SCM/EditProduct.aspx?ID=" + ProductID);
+                Session["ProductID"] = ProductID;
+            }
+        }
+
+        protected void SearchProduct(object sender, EventArgs e)
+        {
+            SearchWareHouse(SearchProductText.Text);
+        }
+
     }
 }

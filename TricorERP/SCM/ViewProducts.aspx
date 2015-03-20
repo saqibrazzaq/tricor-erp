@@ -17,7 +17,7 @@
 
     <div class="panel-body">
         <%-- error on that point --%>
-        <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="ProductListview_ItemCommand" >
+        <asp:ListView ID="ProductListview" runat="server" OnItemCommand="ProductListview_ItemCommand" >
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="productTable">
                     <tr class="active">

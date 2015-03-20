@@ -47,15 +47,21 @@ namespace Database.SCM
         }
         public static WareHouseModel getWareHouseInFo(String ID)
         {
-            WareHouseModel whModel = new WareHouseModel();
-            String sql = @"select  WareHouse.WHName WHName,  WareHouse.WHPhoneNumber WHPhoneNumber ,WareHouse.City WHCity , 
-                                         WareHouse.WHEmail WHEmail , WareHouse.WHLocation1 WHLocation1 , WareHouse.WHLocation2 WHLocation2 from Product where Product.id='" + ID + "'";
+            WareHouseModel whModel= null;
+                  
+           String sql = @"select  WareHouse.WHName WHName,  WareHouse.WHPhoneNumber WHPhoneNumber ,WareHouse.City WHCity , 
+                                         WareHouse.WHEmail WHEmail , WareHouse.WHLocation1 WHLocation1 , WareHouse.WHLocation2 WHLocation2 from Product where WareHouse.ID = '" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
-                whModel.ProductName = reader["Name"].ToString();
-                whModel.ProductCode = reader["PCode"].ToString();
-            }
+                    whModel = new WareHouseModel();
+                    whModel.Name = reader["WHName"].ToString();
+                    whModel.City = reader["WHCity"].ToString();
+                    whModel.Email = reader["WHEmail"].ToString();
+                    whModel.PhoneNumber = reader["WHPhoneNumber"].ToString();
+                    whModel.Location1 = reader["WHLocation1"].ToString();
+                    whModel.Location2 = reader["WHLocation2"].ToString();
+                }
             return whModel;
         }
 
