@@ -7,7 +7,7 @@
     <title>
         <% 
             String role = Session["RoleID"].ToString();
-            String title=null;
+            String title = null;
             if (role == "1")
                 title = "Branch Manager";
             else if (role == "2")
@@ -88,7 +88,7 @@
                                 <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/Order.aspx" runat="server">New-Order</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/CreateOrder.aspx" runat="server">New-Order</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -96,10 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
+                            
 
-                             
                             <!-- ----------------------------------------->
-                                        <!-- All SCMS Menus -->
+                            <!-- All SCMS Menus -->
 
                             <li id="Products" class="dropdown">
                                 <asp:HyperLink ID="HyperLink10" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Products<span class="caret"></span></asp:HyperLink>
@@ -122,7 +122,7 @@
                                 </ul>
                             </li>
                             <li id="WareHouse" class="dropdown">
-                            <asp:HyperLink ID="HyperLink28" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">WareHouse<span class="caret"></span></asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink28" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">WareHouse<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <asp:HyperLink ID="HyperLink31" NavigateUrl="~/SCM/SearchWareHouse.aspx" runat="server">View WareHouses</asp:HyperLink>
@@ -132,10 +132,10 @@
                                         <asp:HyperLink ID="HyperLink32" NavigateUrl="~/SCM/AddNewWareHouse.aspx" runat="server">Add new WareHouse</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
-                                    </ul>
+                                </ul>
                             </li>
                             <li id="Stock" class="dropdown">
-                            <asp:HyperLink ID="HyperLink33" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink33" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <asp:HyperLink ID="HyperLink34" NavigateUrl="~/SCM/SearchStock.aspx" runat="server">View Stock</asp:HyperLink>
@@ -145,7 +145,7 @@
                                         <asp:HyperLink ID="HyperLink35" NavigateUrl="~/SCM/AddNewStockItem.aspx" runat="server">Add new Stock item</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
-                                    </ul>
+                                </ul>
                             </li>
                             <li id="PurchaseOrder" class="dropdown">
                                 <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
@@ -222,7 +222,7 @@
             </div>
         </div>
     </form>
-    
+
 
     <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
     <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
@@ -242,7 +242,7 @@
             $("#OrderDropdown").addClass("hidden");
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
-            
+
 
         } else if ('2' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
