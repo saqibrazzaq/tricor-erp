@@ -11,7 +11,7 @@ namespace TricorERP.POS.Order
 {
 
 
-    public partial class CreateOrder
+    public partial class Order
     {
     }
 }
