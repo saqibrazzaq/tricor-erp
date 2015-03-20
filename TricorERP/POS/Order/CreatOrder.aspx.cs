@@ -7,14 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace TricorERP.POS.Order
 {
-    public partial class NewOrder : System.Web.UI.Page
+    public partial class CreatOrder : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Search_Click(object sender, EventArgs e)
         {
 
         }

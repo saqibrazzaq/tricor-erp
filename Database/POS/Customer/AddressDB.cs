@@ -99,5 +99,21 @@ namespace Database.POS.Customer
             }
             return 0;
         }
+
+
+        //Q. how to delete an address from database?
+        public static int deleteAddress(AddressModel deleteaddress, String customeraddressid)
+        {
+            String sql = @"";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+
+            String sql2 = @"";
+            int check2 = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql2, null);
+            if (check == 1 && check2 == 1)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }
