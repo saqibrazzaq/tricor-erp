@@ -110,6 +110,10 @@ namespace TricorERP.POS.Cashier
                 String AddressID = e.CommandArgument.ToString();
                 Response.Redirect("AddAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
             }
+            else if (e.CommandName == "DeleteAddress")
+            {
+               //Database.POS.Customer.AddressDB.deleteAddress();
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
