@@ -101,15 +101,14 @@ namespace Database.POS.Customer
         }
 
 
-        //Q. how to delete an address from database?
-        public static int deleteAddress(AddressModel deleteaddress, String customeraddressid)
+        //delete address of an customer from CustomerAddress table. 
+        public static int deleteAddress(String AddressID, String CustomerID)
         {
-            String sql = @"";
+            //, SqlTransaction tran)
+            String sql = @"DELETE FROM CustomerAddress
+                         WHERE Customer_ID='"+CustomerID+"' and Address_ID='"+AddressID+"'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
-
-            String sql2 = @"";
-            int check2 = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql2, null);
-            if (check == 1 && check2 == 1)
+            if (check == 1)
             {
                 return 1;
             }

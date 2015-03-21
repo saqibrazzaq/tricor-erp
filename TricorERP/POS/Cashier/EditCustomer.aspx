@@ -52,6 +52,11 @@
                 <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add New</asp:LinkButton>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <asp:Label ID="message" runat="server"></asp:Label>
+            </div>
+        </div>
         <div class="row container-fluid">
             <div class="col-lg-9">
                 <h5 class="h5">
@@ -96,11 +101,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <asp:Label ID="message" runat="server"></asp:Label>
-            </div>
-        </div>
+        
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>

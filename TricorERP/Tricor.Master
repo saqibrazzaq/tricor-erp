@@ -88,7 +88,7 @@
                                 <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/CreateOrder.aspx" runat="server">New-Order</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/EditOrder.aspx" runat="server">New-Order</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>

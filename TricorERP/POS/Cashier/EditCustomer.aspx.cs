@@ -11,6 +11,7 @@ namespace TricorERP.POS.Cashier
     public partial class EditCustomer : System.Web.UI.Page
     {
         String customerID = "0";
+        
         CustomerModel test = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -105,17 +106,27 @@ namespace TricorERP.POS.Cashier
 
         protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            String AddressID = e.CommandArgument.ToString();
             if (e.CommandName == "AddAddress")
-            {
-                String AddressID = e.CommandArgument.ToString();
+            {   
                 Response.Redirect("AddAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
             }
             else if (e.CommandName == "DeleteAddress")
             {
-               //Database.POS.Customer.AddressDB.deleteAddress();
+                deleteCustomerAddress(AddressID);
             }
         }
-
+        private void deleteCustomerAddress(String AddressID)
+        {
+            int check = Database.POS.Customer.CustomerDB.deleteAddress(customerID, AddressID);
+            if (check == 1)
+            {
+                message.Text = "Address is Deleted";
+            }
+            else {
+                message.Text = "Due to Some error Data is not Deleted";
+            }
+        }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/POS/Cashier/CustomerList.aspx");

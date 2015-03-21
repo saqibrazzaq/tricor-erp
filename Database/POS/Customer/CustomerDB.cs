@@ -37,7 +37,7 @@ namespace Database.POS.Customer
         public static CustomerModel getCustomerInFo(String ID)
         {
             CustomerModel customer = new CustomerModel();
-            String sql = @"SELECT [Id] ID ,[Name] Name ,[CNIC] CNIC ,[Gender] Gender ,[Type] Type FROM [dbo].[Customer] where Id = '"+ID+"'";
+            String sql = @"SELECT [Id] ID ,[Name] Name ,[CNIC] CNIC ,[Gender] Gender ,[Type] Type FROM [dbo].[Customer] where Id = '" + ID + "'";
             //String sql = @"select Customer.Name Name, Customer.CNIC CNIC, Customer.Gender Gender from Customer where Customer.Id='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
@@ -55,25 +55,28 @@ namespace Database.POS.Customer
         {
             String sql = @"INSERT INTO [dbo].[Customer] ([Name],[CNIC],[Gender],[Type])
             output inserted.ID 
-            VALUES('"+newcustomer.Name+"','"+newcustomer.CNIC+"','"+newcustomer.Gender+"','"+newcustomer.Type+"')";
+            VALUES('" + newcustomer.Name + "','" + newcustomer.CNIC + "','" + newcustomer.Gender + "','" + newcustomer.Type + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             newcustomer.ID = int.Parse(id.ToString());
             return newcustomer;
         }
 
         //update customer data
-        public static int updateCustomer(CustomerModel updatecustomer) {
+        public static int updateCustomer(CustomerModel updatecustomer)
+        {
             String sql = @"UPDATE [dbo].[Customer]
-                         SET [Name] = '"+updatecustomer.Name+"' ,[CNIC] = '"+updatecustomer.CNIC+"',[Gender] = '"+updatecustomer.Gender
-                         +"' WHERE Customer.Id = '"+updatecustomer.ID+"'";
+                         SET [Name] = '" + updatecustomer.Name + "' ,[CNIC] = '" + updatecustomer.CNIC + "',[Gender] = '" + updatecustomer.Gender
+                         + "' WHERE Customer.Id = '" + updatecustomer.ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
-            if (check == 1) {
+            if (check == 1)
+            {
                 return 1;
             }
             return 0;
         }
 
-        public static List<CustomerModel> getallCustomer() {
+        public static List<CustomerModel> getallCustomer()
+        {
             List<CustomerModel> customers = new List<CustomerModel>();
             String sql = @"";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
@@ -85,6 +88,37 @@ namespace Database.POS.Customer
                 customers.Add(customer);
             }
             return customers;
+        }
+
+        public static int deleteAddress(String CustomerID, String AddressID)
+        {
+            //SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
+            //con.Open();
+            //SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            try
+            {
+                int check = Database.POS.Customer.AddressDB.deleteAddress(CustomerID, AddressID);
+                if (check == 1)
+                {
+                    String sql2 = @"DELETE FROM Address
+                                  WHERE Id ='"+AddressID+"'";
+                    int check2 = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql2, null);
+                    //trans.Commit();
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception e)
+            {
+                //trans.Rollback();
+            }
+            finally
+            {
+                //con.Close();
+            }
+            return 1;
         }
 
     }
