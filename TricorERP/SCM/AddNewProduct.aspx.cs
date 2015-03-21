@@ -21,12 +21,10 @@ namespace TricorERP.SCM
                 {
                 ProductModel product = new ProductModel();
                 product = Database.SCM.ProductDB.getProductInFo(id);
-
                 ProductNameText.Text = product.ProductName;
                 ProductPriceText.Text = product.ProductPrice.ToString();
                 ProductCodeText.Text = product.ProductCode;
                 ProductDescriptionText.Text = product.ProductDescription;
-            
                 }
             else
             {
