@@ -104,10 +104,9 @@ namespace Database.POS.Customer
 
 
         //delete address of an customer from CustomerAddress table. 
-        public static int deleteAddress(String AddressID, String CustomerID)
-        {
-            //, SqlTransaction tran)
-            String sql = @"DELETE FROM [CustomerAddress] WHERE Customer_ID='"+CustomerID+"' and Address_ID='"+AddressID+"'";
+        public static int deleteAddress(String CustomerID, String AddressID, SqlTransaction tran)
+        {   
+            String sql = @"DELETE FROM [CustomerAddress] WHERE Customer_ID='"+CustomerID+"' and Address_ID='"+AddressID+"';";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {

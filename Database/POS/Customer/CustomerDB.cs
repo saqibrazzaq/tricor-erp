@@ -92,18 +92,17 @@ namespace Database.POS.Customer
 
         public static int deleteAddress(String CustomerID, String AddressID)
         {
-            //SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
-            //con.Open();
-            //SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
+            con.Open();
+            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
             try
             {
-                int check = Database.POS.Customer.AddressDB.deleteAddress(CustomerID, AddressID);
+                int check = Database.POS.Customer.AddressDB.deleteAddress(CustomerID, AddressID, trans);
                 if (check == 1)
                 {
-                    String sql2 = @"DELETE FROM Address
-                                  WHERE Id ='"+AddressID+"'";
-                    int check2 = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql2, null);
-                    //trans.Commit();
+                    String sql2 = @"DELETE FROM Address WHERE Id ='"+AddressID+"';";
+                    int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql2, null);
+                    trans.Commit();
                 }
                 else
                 {
@@ -112,11 +111,11 @@ namespace Database.POS.Customer
             }
             catch (Exception e)
             {
-                //trans.Rollback();
+                trans.Rollback();
             }
             finally
             {
-                //con.Close();
+                con.Close();
             }
             return 1;
         }

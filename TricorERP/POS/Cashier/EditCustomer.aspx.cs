@@ -114,6 +114,7 @@ namespace TricorERP.POS.Cashier
             else if (e.CommandName == "DeleteAddress")
             {
                 deleteCustomerAddress(AddressID);
+                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID="+customerID);
             }
         }
         private void deleteCustomerAddress(String AddressID)
