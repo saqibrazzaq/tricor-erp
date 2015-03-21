@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Models.POS.Customer;
 
+// for get the products
+using Models.SCM;
+
 namespace TricorERP.POS.Order
 {
     public partial class EditOrder : System.Web.UI.Page
@@ -25,7 +28,7 @@ namespace TricorERP.POS.Order
 
         private void loadDropDownLists()
         {
-            //LoadProductList();
+            LoadProductList();
             LoadCustomerList();
         }
 
@@ -45,7 +48,16 @@ namespace TricorERP.POS.Order
 
         private void LoadProductList()
         {
-           
+            List<ProductModel> products = GetProductsFromDatabase();
+            ProductsDropDown.DataTextField = "ProductName";
+            ProductsDropDown.DataValueField = "ProductID";
+            ProductsDropDown.DataSource = products;
+            ProductsDropDown.DataBind();
+        }
+
+        private List<ProductModel> GetProductsFromDatabase()
+        {
+            return Database.SCM.ProductDB.getProductList("");
         }
 
         protected void AddProducts_Click(object sender, EventArgs e)

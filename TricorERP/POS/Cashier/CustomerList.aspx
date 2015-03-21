@@ -42,4 +42,11 @@
             </ItemTemplate>
         </asp:ListView>
     </div>
+    
+
+    <div class="row">
+        <div class="col-lg-6">
+          <asp:Label ID="Message" runat="server" Text=""></asp:Label>
+        </div>
+    </div>
 </asp:Content>

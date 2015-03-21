@@ -34,7 +34,7 @@ namespace TricorERP.POS.Cashier
             }
             else
             {
-
+                Message.Text = "Your Required Customer is not in Database..";
             }
             CustomerListview.DataSource = customers;
             CustomerListview.DataBind();

@@ -63,6 +63,8 @@ namespace TricorERP.POS.Cashier
             newaddress.Phonenumber = PhoneNumberText.Text;
             newaddress.Email = email.Text;
             newaddress = Database.POS.Customer.AddressDB.addAddress(newaddress, customerID);
+            
+            // create an alert on that point
             Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
         }
 

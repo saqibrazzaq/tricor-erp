@@ -87,6 +87,7 @@ namespace Database.POS.Customer
             return address;
         }
 
+        //update address of an customer
         public static int updateAddress(AddressModel updateaddress)
         {
             String sql = @"UPDATE [dbo].[Address]
@@ -113,5 +114,7 @@ namespace Database.POS.Customer
             }
             return 0;
         }
+
+
     }
 }
