@@ -49,12 +49,21 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.LinkButton AddProducts;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// CustomerListview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.ListView CustomerListview;
+        
+        /// <summary>
+        /// SaveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton SaveButton;
     }
 }

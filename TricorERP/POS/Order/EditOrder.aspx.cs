@@ -15,6 +15,9 @@ namespace TricorERP.POS.Order
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DateTime dt = DateTime.Now;
+            String sDate = dt.ToShortDateString();
+            DateLab.Text = sDate.ToString();
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -62,10 +65,10 @@ namespace TricorERP.POS.Order
 
         protected void AddProducts_Click(object sender, EventArgs e)
         {
-
+            //CustomerDropDown.SelectedValue = 
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
+        protected void SaveButton_Click(object sender, EventArgs e)
         {
 
         }

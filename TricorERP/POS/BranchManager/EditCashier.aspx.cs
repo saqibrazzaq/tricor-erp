@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TricorERP.POS.BranchManager
 {
-    public partial class BranchManagerHome : System.Web.UI.Page
+    public partial class EditCashier : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

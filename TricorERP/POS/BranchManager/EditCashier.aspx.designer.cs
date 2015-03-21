@@ -11,7 +11,7 @@ namespace TricorERP.POS.BranchManager
 {
 
 
-    public partial class BranchManagerHome
+    public partial class EditCashier
     {
     }
 }

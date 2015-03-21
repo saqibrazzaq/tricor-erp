@@ -8,7 +8,8 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                    <b>Customer :</b><asp:DropDownList ID="CustomerDropDown" Font-Names="InputName" CssClass="form-control" runat="server"></asp:DropDownList>
+                    <b>Customer :</b><asp:DropDownList ID="CustomerDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
+                    </asp:DropDownList>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -21,26 +22,52 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                    <b>Products :</b><asp:DropDownList ID="ProductsDropDown" Font-Names="InputName" CssClass="form-control" runat="server"></asp:DropDownList>
+                    <b>Products :</b><asp:DropDownList ID="ProductsDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
+                    </asp:DropDownList>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="input-group">
-                    <asp:LinkButton ID="AddProducts" runat="server" CssClass="btn btn-primary" OnClick="AddProducts_Click" >Add</asp:LinkButton>
+                    <asp:LinkButton ID="AddProducts" runat="server" CssClass="btn btn-primary" OnClick="AddProducts_Click">Add</asp:LinkButton>
                 </div>
             </div>
         </div>
         <br />
         <div class="row container-fluid">
             <div class="col-lg-8">
-                <%-- greed view --%>
+
+                <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" >
+                    <LayoutTemplate>
+                        <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
+                            <tr class="active">
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr runat="server" id="itemPlaceholder"></tr>
+                        </table>
+                    </LayoutTemplate>
+                    <ItemTemplate>
+                        <tr runat="server">
+                            <td>
+                                <%# Eval("ProductName") %>
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:ListView>
             </div>
         </div>
         <br />
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" OnClick="LinkButton1_Click">Save</asp:LinkButton>
+                    <asp:LinkButton ID="SaveButton" runat="server" CssClass="btn btn-primary" OnClick="SaveButton_Click">Save</asp:LinkButton>
                 </div>
             </div>
         </div>
