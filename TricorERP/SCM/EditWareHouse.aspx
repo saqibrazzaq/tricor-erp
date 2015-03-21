@@ -43,7 +43,8 @@
                                     <th>Address ID</th>
                                     <th>Phone Number</th>
                                     <th>City</th>
-                                    <th>Location</th>
+                                    <th>Location 1</th>
+                                    <th>Location 2</th>
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
                             </table>
@@ -54,14 +55,16 @@
                                     <%# Eval("ID") %>
                                 </td>
                                 <td>
-                                    <%# Eval("Phonenumber") %>
+                                    <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("PhoneNumber") %>'></asp:LinkButton>
                                 </td>
                                 <td>
-                                    <%# Eval("City") %>
-
+                                    <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("City") %>'></asp:LinkButton>
                                 </td>
                                 <td>
-                                        <asp:LinkButton runat="server" CommandName=" <%# Eval("Location1") %> " CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                    <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Location1") %>'></asp:LinkButton>
+                                  </td>
+                                <td>
+                                    <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Location2") %>'></asp:LinkButton>
                                 </td>
                                 <td>
                                     <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>

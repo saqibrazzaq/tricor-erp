@@ -22,11 +22,7 @@
                 <table class="table table-bordered table-hover" runat="server" id="WareHouseTable">
                     <tr class="active">
                         <th>Name</th>
-                        <th>City</th>
-                        <th>PhoneNumber</th>
-                        <th>Email</th>
-                        <th>Location1</th>
-                        <th>Location2</th>
+                        <th>Description</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -38,20 +34,9 @@
                         <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("City") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Description") %>'></asp:LinkButton>
                     </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Phonenumber") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Email") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Location1") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Location2") %>'></asp:LinkButton>
-                    </td>
+                
                 </tr>
             </ItemTemplate>
         </asp:ListView>
