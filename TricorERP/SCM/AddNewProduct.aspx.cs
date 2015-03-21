@@ -30,6 +30,8 @@ namespace TricorERP.SCM
             ProductModel product = new ProductModel();
             product.ProductName = ProductNameText.Text;
             product.ProductCode = ProductCodeText.Text;
+            product.ProductThresholdValue = int.Parse(ThresholdValueText.Text);
+            product.ProductReOderValue = int.Parse(ReOrderValueText.Text);
             product.ProductPrice = float.Parse(ProductPriceText.Text);
             product.ProductDescription = ProductDescriptionText.Text;
             ProductModel newProduct = addNewProduct(product);

@@ -25,6 +25,21 @@
                  <asp:TextBox ID="ProductPriceText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
+              <div class="col-lg-3">
+                <div class="input-group">
+                 <label for="InputName">Threshold Value</label>
+                 <asp:TextBox ID="ThresholdValueText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+         <br />
+            <div class="row container-fluid">
+              <div class="col-lg-3">
+                <div class="input-group">
+                 <label for="InputName">ReOrder Value</label>
+                 <asp:TextBox ID="ReOrderValueText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
         </div>
          
         <br />
