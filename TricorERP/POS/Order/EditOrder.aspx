@@ -8,7 +8,7 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                    <b>Customer :</b><asp:DropDownList ID="CustomerDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
+                    <b>Customer :</b><asp:DropDownList ID="CustomerDropDown" Font-Names="InputName" CssClass="form-control" runat="server" AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
             </div>
@@ -22,7 +22,7 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                    <b>Products :</b><asp:DropDownList ID="ProductsDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
+                    <b>Products :</b><asp:DropDownList ID="ProductsDropDown" Font-Names="InputName" CssClass="form-control" runat="server" AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
             </div>
@@ -36,7 +36,7 @@
         <div class="row container-fluid">
             <div class="col-lg-8">
 
-                <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" >
+               <%-- <asp:ListView ID="CustomerListview" runat="server">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                             <tr class="active">
@@ -50,17 +50,17 @@
                     <ItemTemplate>
                         <tr runat="server">
                             <td>
-                                <%# Eval("ProductName") %>
+                                <asp:Label ID="ProductName" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox runat="server"></asp:TextBox>
+                                <asp:TextBox ID="Quantity" runat="server"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:TextBox runat="server"></asp:TextBox>
+                                <asp:TextBox ID="Price" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                     </ItemTemplate>
-                </asp:ListView>
+                </asp:ListView>--%>
             </div>
         </div>
         <br />
@@ -71,7 +71,13 @@
                 </div>
             </div>
         </div>
-
+        <div class="row container-fluid">
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <asp:Label ID="Message" runat="server" Text="Label"></asp:Label>
+                </div>
+            </div>
+        </div>
 
     </div>
 </asp:Content>

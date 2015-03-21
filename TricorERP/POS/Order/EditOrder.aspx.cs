@@ -65,7 +65,15 @@ namespace TricorERP.POS.Order
 
         protected void AddProducts_Click(object sender, EventArgs e)
         {
-            //CustomerDropDown.SelectedValue = 
+            Message.Text = CustomerDropDown.SelectedItem.ToString();
+            
+            //ProductName.Text = CustomerDropDown.SelectedItem.ToString();
+            //CustomerDropDown.sele
+        }
+
+        protected void CustomerListview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         protected void SaveButton_Click(object sender, EventArgs e)

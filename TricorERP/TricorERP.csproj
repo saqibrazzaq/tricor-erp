@@ -58,8 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Home.aspx" />
-    <Content Include="POS\BranchManager\BranchManagerHome.aspx" />
-    <Content Include="POS\BranchManager\BranchManagerMaster.Master" />
+    <Content Include="POS\BranchManager\CashierList.aspx" />
+    <Content Include="POS\BranchManager\EditCashier.aspx" />
     <Content Include="POS\Cashier\AddAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="POS\Order\EditOrder.aspx" />
@@ -119,19 +119,19 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="POS\BranchManager\BranchManagerHome.aspx.cs">
-      <DependentUpon>BranchManagerHome.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\CashierList.aspx.cs">
+      <DependentUpon>CashierList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="POS\BranchManager\BranchManagerHome.aspx.designer.cs">
-      <DependentUpon>BranchManagerHome.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\CashierList.aspx.designer.cs">
+      <DependentUpon>CashierList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="POS\BranchManager\BranchManagerMaster.Master.cs">
-      <DependentUpon>BranchManagerMaster.Master</DependentUpon>
+    <Compile Include="POS\BranchManager\EditCashier.aspx.cs">
+      <DependentUpon>EditCashier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="POS\BranchManager\BranchManagerMaster.Master.designer.cs">
-      <DependentUpon>BranchManagerMaster.Master</DependentUpon>
+    <Compile Include="POS\BranchManager\EditCashier.aspx.designer.cs">
+      <DependentUpon>EditCashier.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\Cashier\AddAddress.aspx.cs">
       <DependentUpon>AddAddress.aspx</DependentUpon>
