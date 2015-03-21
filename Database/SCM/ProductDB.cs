@@ -53,7 +53,6 @@ namespace Database.SCM
             if (reader.Read())
             {
                 product = new ProductModel();
-                product.ProductReOderValue = int.Parse(reader["PID"].ToString());
                 product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
                 product.ProductName = reader["PName"].ToString();
@@ -61,6 +60,19 @@ namespace Database.SCM
                 product.ProductPrice = float.Parse(reader["PPrice"].ToString());
             }
             return product;
+        }
+
+        public static int updateProduct(ProductModel pModel)
+        {
+            String sql = @"UPDATE [dbo].[Product]
+                         SET [PName] = '" + pModel.ProductName + "' ,[pCode] = '" + pModel.ProductCode + "', [PPrice] = '" + pModel.ProductPrice + "' ,[PThreshHoldValue] = '" + pModel.ProductThresholdValue + "',[PReOrderValue] = '" + pModel.ProductReOderValue
+                        + "' WHERE Product.id = '" + pModel.ProductID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check == 1)
+            {
+                return 1;
+            }
+            return 0;
         }
     }
 }

@@ -45,8 +45,9 @@ namespace TricorERP.SCM
             if (e.CommandName == "EditProduct")
             {
                 String ProductID = e.CommandArgument.ToString();
+                // not really need to save in session...
                 Session["ProductID"] = ProductID;
-                Response.Redirect("~/SCM/EditProduct.aspx?ID=" + ProductID);
+                Response.Redirect("~/SCM/AddNewProduct.aspx?ProductID=" + ProductID + "&update=1");
             }
         }
 
