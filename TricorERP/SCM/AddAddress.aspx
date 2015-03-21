@@ -14,7 +14,7 @@
             </div>
             <div class="col-lg-3">
                 <label for="InputName">Description</label>
-                <asp:TextBox ID="WHDescription" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="WHDescriptionText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
         <br />
@@ -67,11 +67,13 @@
         </div>
     </div>
 
-    <div class="row container-fluid">
-        <div class="col-lg-5">
-            <asp:Label ID="message" runat="server" Text=""></asp:Label>
+     <div class="row container-fluid">
+            <div class="col-lg-5">
+             <h4 class="h4">
+                    <asp:Label ID="ErrorMessageLable" runat="server" ForeColor="#FF3300"></asp:Label>
+                </h4>
+            </div>
         </div>
-    </div>
 
 </asp:Content>
 

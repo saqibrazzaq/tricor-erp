@@ -22,13 +22,13 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.TextBox WHNameText;
         
         /// <summary>
-        /// WHDescription control.
+        /// WHDescriptionText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHDescription;
+        protected global::System.Web.UI.WebControls.TextBox WHDescriptionText;
         
         /// <summary>
         /// CityText control.
@@ -94,12 +94,12 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
         
         /// <summary>
-        /// message control.
+        /// ErrorMessageLable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label message;
+        protected global::System.Web.UI.WebControls.Label ErrorMessageLable;
     }
 }
