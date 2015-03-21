@@ -15,5 +15,6 @@ namespace Models.POS.Customer
         public String Phonenumber { set; get; }
         public String City { set; get; }
         public String Email { set; get; }
+        public String Name { set; get; }
     }
 }

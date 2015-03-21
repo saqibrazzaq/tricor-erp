@@ -15,7 +15,7 @@ namespace Database.POS.Customer
         {
             List<AddressModel> customerAddresses = new List<AddressModel>();
 
-            String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno
+            String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno, Customer.Name Name
                           from Customer
                           join CustomerAddress on Customer.Id = CustomerAddress.Customer_ID
                           join Address on CustomerAddress.Address_ID=Address.id
@@ -25,10 +25,12 @@ namespace Database.POS.Customer
             while (reader.Read())
             {
                 AddressModel address = new AddressModel();
+                address.ID = int.Parse(reader["ID"].ToString());
                 address.City = reader["City"].ToString();
                 address.Location1 = reader["Location1"].ToString();
                 address.Phonenumber = reader["Phoneno"].ToString();
                 address.ID = int.Parse(reader["ID"].ToString());
+                address.Name = reader["Name"].ToString();
                 customerAddresses.Add(address);
             }
             return customerAddresses;
@@ -105,8 +107,7 @@ namespace Database.POS.Customer
         public static int deleteAddress(String AddressID, String CustomerID)
         {
             //, SqlTransaction tran)
-            String sql = @"DELETE FROM CustomerAddress
-                         WHERE Customer_ID='"+CustomerID+"' and Address_ID='"+AddressID+"'";
+            String sql = @"DELETE FROM [CustomerAddress] WHERE Customer_ID='"+CustomerID+"' and Address_ID='"+AddressID+"'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
