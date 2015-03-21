@@ -13,58 +13,67 @@ namespace TricorERP.SCM {
     public partial class AddAddress {
         
         /// <summary>
-        /// ProductNameText control.
+        /// WHNameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductNameText;
+        protected global::System.Web.UI.WebControls.TextBox WHNameText;
         
         /// <summary>
-        /// ProductCodeText control.
+        /// WHDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductCodeText;
+        protected global::System.Web.UI.WebControls.TextBox WHDescription;
         
         /// <summary>
-        /// ProductPriceText control.
+        /// CityText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductPriceText;
+        protected global::System.Web.UI.WebControls.TextBox CityText;
         
         /// <summary>
-        /// ThresholdValueText control.
+        /// Location1Text control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ThresholdValueText;
+        protected global::System.Web.UI.WebControls.TextBox Location1Text;
         
         /// <summary>
-        /// ReOrderValueText control.
+        /// Location2Text control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ReOrderValueText;
+        protected global::System.Web.UI.WebControls.TextBox Location2Text;
         
         /// <summary>
-        /// ProductDescriptionText control.
+        /// PhoneNumberText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductDescriptionText;
+        protected global::System.Web.UI.WebControls.TextBox PhoneNumberText;
+        
+        /// <summary>
+        /// EmailText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EmailText;
         
         /// <summary>
         /// Savebtn control.

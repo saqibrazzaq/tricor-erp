@@ -8,27 +8,28 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                 <label for="InputName"></label>
-                 <asp:TextBox ID="ProductNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                 <label for="InputName">Name</label>
+                 <asp:TextBox ID="WHNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col-lg-3">
-                <label for="InputName">Product Code</label>
-                <asp:TextBox ID="ProductCodeText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                <label for="InputName">Description</label>
+                <asp:TextBox ID="WHDescription" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
         <br />
+         <h4 class="h4">WareHouse Address :</h4>
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                 <label for="InputName">Product Price</label>
-                 <asp:TextBox ID="ProductPriceText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                 <label for="InputName">City</label>
+                 <asp:TextBox ID="CityText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
               <div class="col-lg-3">
                 <div class="input-group">
-                 <label for="InputName">Threshold Value</label>
-                 <asp:TextBox ID="ThresholdValueText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                 <label for="InputName">Location 1</label>
+                 <asp:TextBox ID="Location1Text" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -36,8 +37,14 @@
             <div class="row container-fluid">
               <div class="col-lg-3">
                 <div class="input-group">
-                 <label for="InputName">ReOrder Value</label>
-                 <asp:TextBox ID="ReOrderValueText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                 <label for="InputName">Location 2</label>
+                 <asp:TextBox ID="Location2Text" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+                <div class="col-lg-3">
+                <div class="input-group">
+                 <label for="InputName">Phone Number</label>
+                 <asp:TextBox ID="PhoneNumberText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -46,8 +53,8 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                <label for="InputName">Product Discription</label>
-                <asp:TextBox ID="ProductDescriptionText" CssClass="form-control" Font-Names="InputName"  width="430px" Height="55px" wrap="true" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <label for="InputName">Email</label>
+                <asp:TextBox ID="EmailText" CssClass="form-control" Font-Names="InputName"  wrap="true" runat="server" ></asp:TextBox>
              </div>
             </div>
         </div>
