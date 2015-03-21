@@ -13,37 +13,12 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <label for="InputName">City</label>
-                <asp:TextBox ID="WHCityText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                <label for="InputName">Description</label>
+                <asp:TextBox ID="WHDescriptionText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
         <br />
-        <div class="row container-fluid">
-            <div class="col-lg-3">
-                <div class="input-group">
-                 <label for="InputName">Email</label>
-                 <asp:TextBox ID="WHEmailText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <label for="InputName">Phone Number</label>
-                <asp:TextBox ID="WHPhonenumberText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
-            </div>
-        </div>
-        <br />
-        <div class="row container-fluid">
-            <div class="col-lg-3">
-                <div class="input-group">
-                 <label for="InputName">Location1</label>
-                 <asp:TextBox ID="WHLocation1Text" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <label for="InputName">Location2</label>
-                <asp:TextBox ID="WHLocation2Text" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
-            </div>
-        </div>
-         </br>
+      
          <div class="row container-fluid">
             <div class="col-lg-5">
                 <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary"  OnClick="Savebtn_Click" >Save</asp:LinkButton>

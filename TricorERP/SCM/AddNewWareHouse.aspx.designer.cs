@@ -22,49 +22,13 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.TextBox WHNameText;
         
         /// <summary>
-        /// WHCityText control.
+        /// WHDescriptionText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHCityText;
-        
-        /// <summary>
-        /// WHEmailText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHEmailText;
-        
-        /// <summary>
-        /// WHPhonenumberText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHPhonenumberText;
-        
-        /// <summary>
-        /// WHLocation1Text control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHLocation1Text;
-        
-        /// <summary>
-        /// WHLocation2Text control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHLocation2Text;
+        protected global::System.Web.UI.WebControls.TextBox WHDescriptionText;
         
         /// <summary>
         /// Savebtn control.

@@ -22,11 +22,7 @@ namespace TricorERP.SCM
         {
             WareHouseModel warehouse = new WareHouseModel();
             warehouse.Name = WHNameText.Text;
-            warehouse.City = WHCityText.Text;
-            warehouse.Email = WHEmailText.Text;
-            warehouse.PhoneNumber = WHPhonenumberText.Text;
-            warehouse.Location1 = WHLocation1Text.Text;
-            warehouse.Location2 = WHLocation2Text.Text;
+            warehouse.Description = WHDescriptionText.Text;
             WareHouseModel newWareHouse = addNewWareHouse(warehouse);
             if (newWareHouse != null)
                 ErrorMessageLable.Text = "Data of new Product is saved.";
