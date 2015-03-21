@@ -45,7 +45,7 @@ namespace TricorERP.POS.Order
 
         private void LoadProductList()
         {
-           // throw new NotImplementedException();
+           
         }
 
         protected void AddProducts_Click(object sender, EventArgs e)

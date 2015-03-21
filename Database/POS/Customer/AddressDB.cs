@@ -15,7 +15,7 @@ namespace Database.POS.Customer
         {
             List<AddressModel> customerAddresses = new List<AddressModel>();
 
-            String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno, Customer.Name Name
+            String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno
                           from Customer
                           join CustomerAddress on Customer.Id = CustomerAddress.Customer_ID
                           join Address on CustomerAddress.Address_ID=Address.id
@@ -30,7 +30,6 @@ namespace Database.POS.Customer
                 address.Location1 = reader["Location1"].ToString();
                 address.Phonenumber = reader["Phoneno"].ToString();
                 address.ID = int.Parse(reader["ID"].ToString());
-                address.Name = reader["Name"].ToString();
                 customerAddresses.Add(address);
             }
             return customerAddresses;
