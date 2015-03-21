@@ -41,9 +41,8 @@
                         <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("City") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("PhoneNumber") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Phonenumber") %>'></asp:LinkButton>
                     </td>
-                    
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditWareHouse" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Email") %>'></asp:LinkButton>
                     </td>
