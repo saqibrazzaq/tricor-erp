@@ -44,13 +44,14 @@
                 <h5 class="h5">
                     <label for="InputName">All Possible Addresses...</label></h5>
                 <div class="panel-body">
-                    <%--<asp:ListView ID="CashierAddressesview" OnItemCommand="CashierListview_ItemCommand" runat="server" OnSelectedIndexChanged="CashierAddressesview_SelectedIndexChanged">
+                     <asp:ListView ID="CashierAddressesview" OnItemCommand="CashierListview_ItemCommand" runat="server">
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
-                                    <th> ID</th>
+                                    <th>Address ID</th>
                                     <th>Phone Number</th>
-                                    <th>Name</th>
+                                    <th>City</th>
+                                    <th>Location</th>
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
                             </table>
@@ -64,7 +65,11 @@
                                     <%# Eval("Phonenumber") %>
                                 </td>
                                 <td>
-                                    <%# Eval("Name") %>
+                                    <%# Eval("City") %>
+
+                                </td>
+                                <td>
+                                    <%# Eval("Location1") %>
                                 </td>
                                 <td>
                                     <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
@@ -74,7 +79,7 @@
                                 </td>
                             </tr>
                         </ItemTemplate>
-                    </asp:ListView>--%>
+                    </asp:ListView>
                 </div>
             </div>
         </div>

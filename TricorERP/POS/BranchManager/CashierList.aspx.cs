@@ -53,7 +53,7 @@ namespace TricorERP.POS.BranchManager
                 // Customer ID is in argument
                 String cashierID = e.CommandArgument.ToString();
                 // Open the edit customer page
-                Response.Redirect("EditCashier.aspx?CustomerID=" + cashierID);
+                Response.Redirect("EditCashier.aspx?cashierID=" + cashierID);
             }
         }
     }

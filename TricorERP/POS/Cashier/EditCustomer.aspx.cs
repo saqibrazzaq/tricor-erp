@@ -12,7 +12,6 @@ namespace TricorERP.POS.Cashier
     {
         String customerID = "0";
 
-        CustomerModel test = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             customerID = Request.QueryString["CustomerID"];
@@ -38,9 +37,6 @@ namespace TricorERP.POS.Cashier
             CNICText.Text = customer.CNIC;
             GenderDropDown.SelectedValue = customer.Gender;
             CustomerTyepDropDown.SelectedValue = customer.Type.ToString();
-
-            //for access the customer data on next page. 
-            test = customer;
 
             CustomerAddressesview.DataSource = customerAddresses;
             CustomerAddressesview.DataBind();

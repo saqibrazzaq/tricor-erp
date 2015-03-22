@@ -11,9 +11,11 @@ namespace TricorERP.POS.BranchManager
     public partial class EditCashier : System.Web.UI.Page
     {
         String CashierID = "0";
+        string AddressID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             CashierID = Request.QueryString["CashierID"];
+            AddressID = Request.QueryString["AddressID"];
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -27,17 +29,32 @@ namespace TricorERP.POS.BranchManager
 
         private void CashierData()
         {
-            
+            CashierModel cashier = null;
+            List<Models.POS.Customer.AddressModel> cashierAddresses = null;
+
+            cashier = GetCahierInFo();
+            cashierAddresses = GetAddressesFromDB();
+
+            CashierNameText.Text = cashier.Name;
+            CashierPasswordText.Text = cashier.Password;
+            CNIC.Text = cashier.CNIC;
+
+            CashierAddressesview.DataSource = cashierAddresses;
+            CashierAddressesview.DataBind();
         }
 
-        protected void CashierAddressesview_SelectedIndexChanged(object sender, EventArgs e)
+        private CashierModel GetCahierInFo()
         {
-
+            return Database.POS.CashierDB.getCashierInFo(CashierID);
+        }
+        private List<Models.POS.Customer.AddressModel> GetAddressesFromDB()
+        {
+            return Database.POS.Customer.AddressDB.getCustomerAddresses(CashierID);
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CashierID=" + CashierID + "&AddressID=0");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
@@ -60,9 +77,43 @@ namespace TricorERP.POS.BranchManager
 
         private void updateCashier()
         {
-            
+            CashierModel updatecashier = new CashierModel();
+            updatecashier.ID = int.Parse(CashierID.ToString());
+            updatecashier.CNIC = CNIC.Text;
+            updatecashier.Name = CashierNameText.Text;
+            updatecashier.Password = CashierPasswordText.Text;
+
+            int check = Database.POS.CashierDB.updateCashier(updatecashier);
+            if (check == 1)
+            {
+                message.Text = "Data is Updated";
+                Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + updatecashier.ID + "&AddressID=0");
+            }
+            else
+            {
+                message.Text = "Data is not Updated";
+                Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + updatecashier.ID + "&AddressID=0");
+            }
         }
 
+        protected void CashierListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            String AddressID = e.CommandArgument.ToString();
+            if (e.CommandName == "AddAddress")
+            {
+                Response.Redirect("AddAddress.aspx?CashierID=" + CashierID + "&AddressID=" + AddressID);
+            }
+            else if (e.CommandName == "DeleteAddress")
+            {
+                deleteCustomerAddress(AddressID);
+                Response.Redirect("~/POS/Cashier/EditCashier.aspx?CashierID=" + CashierID);
+            }
+        }
+
+        private void deleteCustomerAddress(string AddressID)
+        {
+            //throw new NotImplementedException();
+        }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
 

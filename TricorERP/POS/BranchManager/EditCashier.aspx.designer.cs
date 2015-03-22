@@ -58,6 +58,15 @@ namespace TricorERP.POS.BranchManager {
         protected global::System.Web.UI.WebControls.Label message;
         
         /// <summary>
+        /// CashierAddressesview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView CashierAddressesview;
+        
+        /// <summary>
         /// Savebtn control.
         /// </summary>
         /// <remarks>

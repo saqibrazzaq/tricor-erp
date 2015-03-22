@@ -85,7 +85,7 @@ namespace TricorERP.POS.Cashier
 
                 if (newaddress != null)
                 {
-                    if (CashierID == "0")
+                    if (customerID != "0")
                     {
                         Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
                     }
@@ -110,8 +110,10 @@ namespace TricorERP.POS.Cashier
             int check = Database.POS.Customer.AddressDB.updateAddress(updateaddress);
             if (check == 1)
             {
-                //condition 
-                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
+                if (customerID != null) 
+                    Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
+                else if (CashierID != null)
+                    Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "&AddressID=" + AddressID);
                 message.Text = "Data is Updated";
             }
             else if (check != 1)

@@ -15,6 +15,8 @@ namespace Database.POS.Customer
         {
             List<AddressModel> customerAddresses = new List<AddressModel>();
 
+            // discuss with sir ?
+
             String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno
                           from Customer
                           join CustomerAddress on Customer.Id = CustomerAddress.Customer_ID
