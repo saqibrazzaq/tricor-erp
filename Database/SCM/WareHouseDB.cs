@@ -20,6 +20,18 @@ namespace Database.SCM
             whModel.ID = int.Parse(id.ToString());
             return whModel;
         }
+           public static int updateWareHouse( WareHouseModel whModel)
+        {
+              String sql = @"Update [dbo].[WareHouse]
+                         SET [WHName] = '" + whModel.Name + "' , [WHDescription]= '"+ whModel.Description
+                         +"' where ID='" +whModel.ID+ "' ";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check == 1)
+            {
+                return 1;
+            }
+            return 0;
+        }
         
         public static List<WareHouseModel> getWareHouseList(String searchtext)
         {
@@ -44,7 +56,8 @@ namespace Database.SCM
         {
             WareHouseModel whModel= null;
 
-            String sql = @"select  WareHouse.WHName WHName,  WareHouse.WHPhoneNumber WHPhoneNumber ,WareHouse.WHDescription WHDescription 
+            String sql = @"select  WareHouse.WHName WHName,  WareHouse.WHDescription WHDescription 
+                           from WareHouse
                         where WareHouse.ID = '" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
@@ -55,7 +68,38 @@ namespace Database.SCM
             }
             return whModel;
         }
-
-
+        public static int deleteAddress(string WHID, string AddressID)
+        {
+            SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
+            con.Open();
+            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            try
+            {
+                //Query 1.
+                int check = Database.SCM.AddressDB.deleteAddress(WHID, AddressID, trans);
+                
+                if (check == 1)
+                {
+                    //Query 2
+                    String sql2 = @"DELETE FROM Address WHERE Id ='" + AddressID + "';";
+                    int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql2, null);
+                    trans.Commit();
+                }
+                else
+                {
+                    con.Close();
+                    return 0;
+                }
+            }
+            catch (Exception e)
+            {
+                trans.Rollback();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return 1;
+        }
     }
 }

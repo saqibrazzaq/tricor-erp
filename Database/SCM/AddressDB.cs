@@ -14,11 +14,11 @@ namespace Database.SCM
         {
             List<AddressModel> wareHouseAddresses = new List<AddressModel>();
 
-            String sql = @"select Address.Id ID , Address.City City ,  Address.Location1 Location1,Address.Location2 Location2, Address.PhoneNo Phoneno , Address.Email Email
-                          from Address
-                          join WareHouseAddress on Address.Id = WareHouseAddress.Address_ID
-                          join WareHouse on WareHouseAddress.AddressID=WH.id
-                          where WareHouse.Id='" + ID + "';";
+            String sql = @"select Address.City City ,  Address.Location1 Location1,Address.Location2 Location2, Address.PhoneNo Phoneno , Address.Email Email
+                          from WareHouse
+                          join WareHouseAddress on WareHouse.Id = WareHouseAddress.AddressID
+                          join Address on WareHouseAddress.AddressID = Address.id
+                          where WareHouse.Id='" + ID + "' ";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())

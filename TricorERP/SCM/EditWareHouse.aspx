@@ -22,14 +22,11 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <h4 class="h4">
-                    <label for="InputName">Address :</label></h4>
-                <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add New</asp:LinkButton>
+                <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add New Address</asp:LinkButton>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
-                <asp:Label ID="message" runat="server">---label---</asp:Label>
-            </div>
+            
         </div>
         <div class="row container-fluid">
             <div class="col-lg-9">
@@ -83,6 +80,13 @@
             <div class="col-lg-5">
                 <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>
                 <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click">Cancel</asp:LinkButton>
+            </div>
+        </div>
+        <div class="row container-fluid">
+            <div class="col-lg-5">
+             <h4 class="h4">
+                    <asp:Label ID="message" runat="server" ForeColor="#FF3300"></asp:Label>
+                </h4>
             </div>
         </div>
     </div>

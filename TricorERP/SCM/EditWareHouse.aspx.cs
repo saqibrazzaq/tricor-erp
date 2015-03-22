@@ -10,7 +10,7 @@ namespace TricorERP.SCM
 {
     public partial class EditWareHouse : System.Web.UI.Page
     {
-        String WHID = "0";
+        String WHID = "-1";
         WareHouseModel WareHouseModel = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,63 +53,57 @@ namespace TricorERP.SCM
 
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (WHID == "0")
-                AddNewCustomer();
+            if (WHID == "-1")
+                AddNewWareHouse();
             else
-                UpdateCustomer();
+                UpdateWareHouse();
         }
-        // method for add new customer
-        private void AddNewCustomer()
+        // method for add new WareHouse
+        private void AddNewWareHouse()
         {
-            CustomerModel customer = new CustomerModel();
-            customer.Name = CustomerNameText.Text;
-            customer.CNIC = CNICText.Text;
-            customer.Gender = GenderDropDown.SelectedValue;
-            customer.Type = int.Parse(CustomerTyepDropDown.SelectedValue);
-            customer = Database.POS.Customer.CustomerDB.addNewCustomer(customer);
-            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+            WareHouseModel wareHouse = new WareHouseModel();
+            wareHouse.Name = WHNameText.Text;
+            wareHouse.Description = WHDescriptionText.Text;
+            wareHouse = Database.SCM.WareHouseDB.addNewWareHouse(wareHouse);
+            Response.Redirect("~/SCM/AddAddress.aspx?WHID=" + wareHouse.ID + "&AddressID=0");
         }
-
         // method for update customers
-        private void UpdateCustomer()
+        private void UpdateWareHouse()
         {
-            CustomerModel customer = new CustomerModel();
+            WareHouseModel wareHouse = new WareHouseModel();
 
-            customer.ID = int.Parse(WHID.ToString());
-            customer.Name = CustomerNameText.Text;
-            customer.CNIC = CNICText.Text;
-            customer.Gender = GenderDropDown.SelectedValue;
-            customer.Type = int.Parse(CustomerTyepDropDown.SelectedValue);
-
-            int check = Database.POS.Customer.CustomerDB.updateCustomer(customer);
+            wareHouse.ID = int.Parse(WHID.ToString());
+            wareHouse.Name = WHNameText.Text;
+            wareHouse.Description = WHDescriptionText.Text;
+            int check = Database.SCM.WareHouseDB.updateWareHouse(wareHouse);
             if (check == 1)
             {
                 message.Text = "Data is Updated";
-                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+              //  Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + wareHouse.ID + "&AddressID=0");
             }
             else
             {
                 message.Text = "Data is not Updated";
-                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+                //Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + wareHouse.ID + "&AddressID=0");
             }
         }
 
-        protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        protected void WareHouseListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             String AddressID = e.CommandArgument.ToString();
             if (e.CommandName == "AddAddress")
             {
-                Response.Redirect("AddAddress.aspx?CustomerID=" + WHID + "&AddressID=" + AddressID);
+              //  Response.Redirect("AddAddress.aspx?CustomerID=" + WHID + "&AddressID=" + AddressID);
             }
             else if (e.CommandName == "DeleteAddress")
             {
-                deleteCustomerAddress(AddressID);
-                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + WHID);
+                deleteWareHouseAddress(AddressID);
+              //Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + WHID);
             }
         }
-        private void deleteCustomerAddress(String AddressID)
+        private void deleteWareHouseAddress(String AddressID)
         {
-            int check = Database.POS.Customer.CustomerDB.deleteAddress(WHID, AddressID);
+            int check = Database.SCM.WareHouseDB.deleteAddress(WHID, AddressID);
             if (check == 1)
             {
                 message.Text = "Address is Deleted";
@@ -121,7 +115,6 @@ namespace TricorERP.SCM
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/Cashier/CustomerList.aspx");
         }
     }
 }

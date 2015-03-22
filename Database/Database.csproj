@@ -46,6 +46,7 @@
     <Compile Include="POS\Order\OrderDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\Customer.cs" />
+    <Compile Include="SCM\AddressDB.cs" />
     <Compile Include="SCM\ProductDB.cs" />
     <Compile Include="SCM\StockDB.cs" />
     <Compile Include="SCM\WareHouseDB.cs" />
