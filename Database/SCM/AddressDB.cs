@@ -44,10 +44,12 @@ namespace Database.SCM
             try
             {
 
-                String sql = @"insert into Address(City, Location1, Location2 , PhoneNo, Email)
+                String sql = @"insert into [dbo].[Address] 
+                            ([City], [Location1] , [Location2] , [PhoneNo] , [Email] )
                          output inserted.ID 
                          values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Location2 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "')";
                
+                //error on this point... i think query is wrong.. :(
                 object id = DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql, null);
                 newaddress.ID = int.Parse(id.ToString());
 

@@ -16,7 +16,9 @@ namespace Database.SCM
               String sql = @"INSERT INTO [dbo].[Product]
                         ([PName],[PCode],[PPrice],[PDescription],[PThreshHoldValue],[PReOrderValue])
 		                output inserted.ID 
-                        VALUES ('" + productModel.ProductName + "','" + productModel.ProductCode + "','" + productModel.ProductPrice + "','" + productModel.ProductDescription + "','" + productModel.ProductThresholdValue + "','" + productModel.ProductReOderValue + "')";
+                        VALUES ('" + productModel.ProductName + "','" + productModel.ProductCode + "','" +
+                                   productModel.ProductPrice + "','" + productModel.ProductDescription   +
+                                   "','" + productModel.ProductThresholdValue + "','" + productModel.ProductReOderValue + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             productModel.ProductReOderValue = int.Parse(id.ToString());
             return productModel;
