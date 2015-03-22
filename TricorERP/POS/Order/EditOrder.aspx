@@ -36,7 +36,7 @@
         <div class="row container-fluid">
             <div class="col-lg-8">
 
-               <%-- <asp:ListView ID="OrderListview" runat="server">
+                <%--<asp:ListView ID="OrderListview" runat="server" OnSelectedIndexChanged="OrderListview_SelectedIndexChanged">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                             <tr class="active">
@@ -50,17 +50,18 @@
                     <ItemTemplate>
                         <tr runat="server">
                             <td>
-                                <asp:Label ID="ProductName" runat="server" Text="Label"></asp:Label>
+                                 <%# Eval("ProductName") %>
                             </td>
                             <td>
                                 <asp:TextBox ID="Quantity" runat="server"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:TextBox ID="Price" runat="server"></asp:TextBox>
+                                <%# Eval("ProductPrice") %>
                             </td>
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>--%>
+
             </div>
         </div>
         <br />

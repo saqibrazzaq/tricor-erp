@@ -8,6 +8,10 @@ namespace Models.POS.Cashier
 {
     public class CashierModel
     {
-
+        public int ID { get; set; }
+        public String Name { get; set; }
+        public String Password { get; set; }
+        public String Role { get; set; }
     }
+
 }

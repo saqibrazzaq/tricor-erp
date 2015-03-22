@@ -97,8 +97,25 @@
                                 </ul>
                             </li>
                             
+                            <!-- ----------------------------------------->
+                            
+                            <!-- Branch manager for POS -->
+                            <li id="CashierDropdown" class="dropdown">
+                                <asp:HyperLink ID="HyperLink36" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Cashier<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink37" NavigateUrl="~/POS/BranchManager/EditCashier.aspx?CashierID=0" runat="server">New-Cashier</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink38" NavigateUrl="~/POS/BranchManager/CashierList.aspx" runat="server">Cashier-List</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+                            
 
                             <!-- ----------------------------------------->
+                            
                             <!-- All SCMS Menus -->
 
                             <li id="Products" class="dropdown">
@@ -253,14 +270,17 @@
             $("#Inventory").addClass("hidden");
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
-
+            $("#CashierDropdown").addClass("hidden");
+            
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#OrderDropdown").addClass("hidden");
+            $("#CashierDropdown").addClass("hidden");
 
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#OrderDropdown").addClass("hidden");
+            $("#CashierDropdown").addClass("hidden");
 
         }
     </script>

@@ -8,5 +8,10 @@ namespace Models.POS.Order
 {
     public class OrderModel
     {
+        public int ID { set; get; }
+        public String ProductName { set; get; }
+        public int Quantity { set; get; }
+        public float Price { set; get; }
+
     }
 }

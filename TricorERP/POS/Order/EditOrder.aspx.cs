@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Models.POS.Customer;
+using Models.POS.Order;
 
 // for get the products
 using Models.SCM;
@@ -65,10 +66,13 @@ namespace TricorERP.POS.Order
 
         protected void AddProducts_Click(object sender, EventArgs e)
         {
-            Message.Text = CustomerDropDown.SelectedItem.ToString();
+            Message.Text = ProductsDropDown.SelectedItem.ToString();
+            //OrderModel order = new OrderModel();
+            //order.ProductName = ProductsDropDown.SelectedItem.ToString();
+            //OrderListview.DataSource = order;
+            //OrderListview.DataBind();
+
             
-            //ProductName.Text = CustomerDropDown.SelectedItem.ToString();
-            //CustomerDropDown.sele
         }
 
         protected void CustomerListview_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,6 +81,11 @@ namespace TricorERP.POS.Order
         }
 
         protected void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void OrderListview_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

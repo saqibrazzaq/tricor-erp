@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBUtility.cs" />
+    <Compile Include="POS\CashierDB.cs" />
     <Compile Include="POS\Customer\AddressDB.cs" />
     <Compile Include="POS\Customer\CustomerDB.cs" />
     <Compile Include="POS\Order\OrderDB.cs" />
