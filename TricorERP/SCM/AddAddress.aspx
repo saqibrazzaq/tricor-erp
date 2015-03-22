@@ -4,21 +4,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
   
      <div class="container-fluid">
-        <h2 class="h2">Add Address</h2>
+        <h2 class="h2">Ware House</h2>
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
                  <label for="InputName">Name</label>
-                 <asp:TextBox ID="WHNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                 <asp:TextBox ID="WHNameText" Font-Names="InputName" ReadOnly="true" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col-lg-3">
                 <label for="InputName">Description</label>
-                <asp:TextBox ID="WHDescriptionText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="WHDescriptionText" Font-Names="InputName" ReadOnly="true" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
         <br />
-         <h4 class="h4">WareHouse Address :</h4>
+         <h3 class="h3">WareHouse Address </h3>
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">

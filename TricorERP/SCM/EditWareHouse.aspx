@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    <div class="container-fluid">
-        <h2 class="h2">Ware House</h2>
+        <h2 class="h2">Edit Ware House</h2>
 
         <div class="row container-fluid">
             <div class="col-lg-3">
@@ -30,8 +30,7 @@
         </div>
         <div class="row container-fluid">
             <div class="col-lg-9">
-                <h5 class="h5">
-                    <label for="InputName">All Possible Addresses.</label></h5>
+                <h2 class="h2">All Possible Addresses.</h2>
                 <div class="panel-body">
                     <asp:ListView ID="WareHouseAddressesview" OnItemCommand="WareHouseListview_ItemCommand" runat="server">
                         <LayoutTemplate>
@@ -42,6 +41,8 @@
                                     <th>City</th>
                                     <th>Location 1</th>
                                     <th>Location 2</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
                             </table>
@@ -64,7 +65,7 @@
                                     <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Location2") %>'></asp:LinkButton>
                                 </td>
                                 <td>
-                                    <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                    <asp:LinkButton runat="server" CommandName="EditAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                                 </td>
                                 <td>
                                     <asp:LinkButton runat="server" CommandName="DeleteAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>

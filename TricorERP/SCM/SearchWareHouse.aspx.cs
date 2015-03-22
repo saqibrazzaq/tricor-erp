@@ -43,9 +43,9 @@ namespace TricorERP.SCM
         {
             if (e.CommandName == "EditWareHouse")
             {
-                String WareHouseID = e.CommandArgument.ToString();
-                Session["WareHouseID"] = WareHouseID;
-                Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WareHouseID);
+                String WHID = e.CommandArgument.ToString();
+                Session["WareHouseID"] = WHID;
+                Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
             }
         }
         protected void SearchWareHouse(object sender, EventArgs e)

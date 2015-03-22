@@ -182,7 +182,6 @@ namespace Database
         {
 
             SqlCommand cmd = new SqlCommand();
-
             PrepareCommand(cmd, connection, tran, cmdType, cmdText, commandParameters);
             object val = cmd.ExecuteScalar();
             cmd.Parameters.Clear();

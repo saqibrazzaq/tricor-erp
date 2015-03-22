@@ -14,11 +14,15 @@ namespace Database.SCM
         {
             List<AddressModel> wareHouseAddresses = new List<AddressModel>();
 
-            String sql = @"select Address.City City ,  Address.Location1 Location1,Address.Location2 Location2, Address.PhoneNo Phoneno , Address.Email Email
-                          from WareHouse
-                          join WareHouseAddress on WareHouse.Id = WareHouseAddress.AddressID
-                          join Address on WareHouseAddress.AddressID = Address.id
-                          where WareHouse.Id='" + ID + "' ";
+            String sql = @"select top 10 Address.ID ID , Address.City City ,  Address.Location1 Location1,Address.Location2 Location2, Address.PhoneNo Phoneno , Address.Email Email
+                          from Address
+                          join WareHouseAddress on Address.ID = WareHouseAddress.AddressID
+                          join Warehouse on WareHouseAddress.WHID = Warehouse.ID
+                         where WareHouse.Id='" + ID + "' ";
+
+//                String sql = @"    SELECT Address.City ,Address.Location1 , Address.Location2 , Address.PhoneNo, Address.Email
+//                     FROM tutorials_tbl a, tcount_tbl b
+//                     WHERE a.tutorial_author = b.tutorial_author ";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
@@ -49,7 +53,7 @@ namespace Database.SCM
                          output inserted.ID 
                          values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Location2 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "')";
                
-                //error on this point... i think query is wrong.. :(
+                //error on this point... Execute Scaler not working properly :(
                 object id = DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql, null);
                 newaddress.ID = int.Parse(id.ToString());
 

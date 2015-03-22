@@ -12,11 +12,11 @@ namespace TricorERP.SCM
     public partial class AddAddress : System.Web.UI.Page
     {
         String AddressID = "0";
-        String WareHouseID = "0";
+        String WHID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             AddressID = Request.QueryString["AddressID"];
-            WareHouseID = Request.QueryString["WHID"];
+            WHID = Request.QueryString["WHID"];
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -39,7 +39,7 @@ namespace TricorERP.SCM
 
             //set WareHouse personal information.
             WareHouseModel WareHouse = new WareHouseModel();
-            WareHouse = Database.SCM.WareHouseDB.getWareHouseInFo(WareHouseID);
+            WareHouse = Database.SCM.WareHouseDB.getWareHouseInFo(WHID);
             WHNameText.Text = WareHouse.Name;
             WHDescriptionText.Text = WareHouse.Description;
         }
@@ -54,17 +54,19 @@ namespace TricorERP.SCM
         private void saveNewAddress()
         {
             AddressModel newaddress = new AddressModel();
-            newaddress.ID = int.Parse(WareHouseID.ToString());
+            newaddress.ID = int.Parse(WHID.ToString());
             newaddress.City = CityText.Text;
             newaddress.Location1 = Location1Text.Text;
             newaddress.Location2 = Location2Text.Text;
             newaddress.Phonenumber = PhoneNumberText.Text;
             newaddress.Email = EmailText.Text;
-            newaddress = Database.SCM.AddressDB.addAddress(newaddress, WareHouseID);
-            if (newaddress  != null)
+            newaddress = Database.SCM.AddressDB.addAddress(newaddress, WHID);
+            if (newaddress != null)
+            {
                 ErrorMessageLable.Text = "New Address is saved.";
-           
-            //Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
+            }
+            Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
+          
         }
 
         //for update the address 
@@ -80,8 +82,8 @@ namespace TricorERP.SCM
             int check = Database.SCM.AddressDB.updateAddress(updateaddress);
             if (check == 1)
             {
-                //Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
                 ErrorMessageLable.Text = "Data is Updated";
+                Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
             }
             else if (check != 1)
             {
@@ -91,6 +93,7 @@ namespace TricorERP.SCM
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
         }
     }
 }

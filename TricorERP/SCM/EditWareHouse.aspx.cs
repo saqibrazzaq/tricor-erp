@@ -91,14 +91,14 @@ namespace TricorERP.SCM
         protected void WareHouseListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             String AddressID = e.CommandArgument.ToString();
-            if (e.CommandName == "AddAddress")
+            if (e.CommandName == "EditAddress")
             {
-              //  Response.Redirect("AddAddress.aspx?CustomerID=" + WHID + "&AddressID=" + AddressID);
+               Response.Redirect("AddAddress.aspx?WHID=" + WHID + "&AddressID=" + AddressID);
             }
             else if (e.CommandName == "DeleteAddress")
             {
                 deleteWareHouseAddress(AddressID);
-              //Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + WHID);
+                Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
             }
         }
         private void deleteWareHouseAddress(String AddressID)
