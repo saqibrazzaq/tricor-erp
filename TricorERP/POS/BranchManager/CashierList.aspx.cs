@@ -25,17 +25,36 @@ namespace TricorERP.POS.BranchManager
         private void SearchCashier(string searchcashier)
         {
             List<Models.POS.Cashier.CashierModel> cashier = null;
-            cashier = GetFromDatabase("");
+            if (searchcashier == null)
+                cashier = GetFromDatabase("");
+            else if (searchcashier != null)
+                cashier = GetFromDatabase(searchcashier);
+            else
+                Message.Text = "Your Required Customer is not in Database..";
+            CashierListview.DataSource = cashier;
+            CashierListview.DataBind();
         }
 
         private List<Models.POS.Cashier.CashierModel> GetFromDatabase(string p)
         {
-            return Database.POS.CashierDB.
+            return Database.POS.CashierDB.getCashierList(p);
         }
 
         protected void SearchCustomerButton1_Click(object sender, EventArgs e)
         {
+            SearchCashier(SearchCustomer.Text);
+        }
 
+        protected void CashierListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            // Edit customer command
+            if (e.CommandName == "EditCashier")
+            {
+                // Customer ID is in argument
+                String cashierID = e.CommandArgument.ToString();
+                // Open the edit customer page
+                Response.Redirect("EditCashier.aspx?CustomerID=" + cashierID);
+            }
         }
     }
 }

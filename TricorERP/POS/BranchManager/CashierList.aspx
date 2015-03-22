@@ -15,7 +15,7 @@
     </div>
 
     <div class="panel-body">
-       <%-- <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand">
+        <asp:ListView ID="CashierListview" runat="server" OnItemCommand="CashierListview_ItemCommand" >
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                     <tr class="active">
@@ -32,14 +32,14 @@
                         <%# Eval("ID") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditCashier" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <%# Eval("Phonenumber") %>
+                        <%# Eval("PhoneNo") %>
                     </td>
                 </tr>
             </ItemTemplate>
-        </asp:ListView>--%>
+        </asp:ListView>
     </div>
     
 

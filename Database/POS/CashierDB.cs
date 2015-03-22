@@ -38,23 +38,23 @@ namespace Database.POS
         }
 
         //get all data of cashier and return an list.
-        public static List<CashierModel> getCustomersList(String searchtext)
+        public static List<CashierModel> getCashierList(String searchtext)
         {
             List<CashierModel> cashiers = new List<CashierModel>();
-            String sql = @"select top 10 Customer.Id ID, Customer.Name Name, Address.PhoneNo Phoneno
-                        from Customer
-                        join CustomerAddress on Customer.Id=CustomerAddress.Customer_ID
-                        join Address on Address.Id=CustomerAddress.Address_ID
-                        where 1=1
-                        and 
-	                    (Customer.Name like '%" + searchtext + "%' or Address.PhoneNo like '%" + searchtext + "%')";
+            String sql = @"select top 10 Users.ID ID, Users.Username Name, Address.PhoneNo PhoneNo, Address.City 
+                           from Users 
+                           join CashierAddress on Users.ID = CashierAddress.UserID
+                           join Address on Address.Id = CashierAddress.AddressID
+                           where 1=1 
+                           and
+                           (Users.Username like '%"+searchtext+"%' or Address.PhoneNo like '%"+searchtext+"%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
                 CashierModel cashier = new CashierModel();
                 cashier.ID = int.Parse(reader["ID"].ToString());
                 cashier.Name = reader["Name"].ToString();
-                //cashier.Phonenumber = reader["Phoneno"].ToString();
+                cashier.PhoneNo = reader["PhoneNo"].ToString();
                 cashiers.Add(cashier);
             }
             return cashiers;
