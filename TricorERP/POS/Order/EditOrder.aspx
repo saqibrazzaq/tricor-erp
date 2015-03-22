@@ -36,7 +36,7 @@
         <div class="row container-fluid">
             <div class="col-lg-8">
 
-               <%-- <asp:ListView ID="CustomerListview" runat="server">
+               <%-- <asp:ListView ID="OrderListview" runat="server">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                             <tr class="active">

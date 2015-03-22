@@ -8,5 +8,6 @@ namespace Models.POS.Cashier
 {
     public class CashierModel
     {
+
     }
 }
