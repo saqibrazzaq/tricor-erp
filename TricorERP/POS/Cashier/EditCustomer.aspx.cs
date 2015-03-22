@@ -11,7 +11,7 @@ namespace TricorERP.POS.Cashier
     public partial class EditCustomer : System.Web.UI.Page
     {
         String customerID = "0";
-        
+
         CustomerModel test = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,14 +77,15 @@ namespace TricorERP.POS.Cashier
             customer.Gender = GenderDropDown.SelectedValue;
             customer.Type = int.Parse(CustomerTyepDropDown.SelectedValue);
             customer = Database.POS.Customer.CustomerDB.addNewCustomer(customer);
-            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+            if (customer != null)
+                Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
         }
 
         // method for update customers
         private void UpdateCustomer()
         {
             CustomerModel customer = new CustomerModel();
-            
+
             customer.ID = int.Parse(customerID.ToString());
             customer.Name = CustomerNameText.Text;
             customer.CNIC = CNICText.Text;
@@ -108,13 +109,13 @@ namespace TricorERP.POS.Cashier
         {
             String AddressID = e.CommandArgument.ToString();
             if (e.CommandName == "AddAddress")
-            {   
+            {
                 Response.Redirect("AddAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
             }
             else if (e.CommandName == "DeleteAddress")
             {
                 deleteCustomerAddress(AddressID);
-                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID="+customerID);
+                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID);
             }
         }
         private void deleteCustomerAddress(String AddressID)
@@ -124,7 +125,8 @@ namespace TricorERP.POS.Cashier
             {
                 message.Text = "Address is Deleted";
             }
-            else {
+            else
+            {
                 message.Text = "Due to Some error Data is not Deleted";
             }
         }

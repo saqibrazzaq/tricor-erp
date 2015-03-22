@@ -12,6 +12,7 @@ namespace Models.POS.Cashier
         public String Name { get; set; }
         public String Password { get; set; }
         public String Role { get; set; }
+        public String CNIC { get; set; }
     }
 
 }

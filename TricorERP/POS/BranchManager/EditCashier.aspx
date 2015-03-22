@@ -19,7 +19,14 @@
                 </div>
             </div>
         </div>
-
+         <div class="row container-fluid">
+            <div class="col-lg-3">
+                <label for="InputName">CNIC :</label>
+                <div class="input-group">
+                    <asp:TextBox ID="CNIC" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+        </div>
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <h4 class="h4">

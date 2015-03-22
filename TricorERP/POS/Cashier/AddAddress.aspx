@@ -12,7 +12,8 @@
         </div>
         <div class="col-lg-4">
             <div class="input-group">
-                <b>CNIC: </b> <asp:Label ID="CustomerCNIC" runat="server" Text=""></asp:Label>
+                <b>CNIC :</b> 
+                <asp:Label ID="CustomerCNIC" runat="server" Text=""></asp:Label>
             </div>
         </div>
     </div>

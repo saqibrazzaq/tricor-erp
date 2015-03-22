@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Models.POS.Cashier;
 
 namespace TricorERP.POS.BranchManager
 {
@@ -26,7 +27,7 @@ namespace TricorERP.POS.BranchManager
 
         private void CashierData()
         {
-            //throw new NotImplementedException();
+            
         }
 
         protected void CashierAddressesview_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,11 +44,23 @@ namespace TricorERP.POS.BranchManager
         {
             if (CashierID == "0")
                 addNewCashier();
+            else
+                updateCashier();
         }
-
         private void addNewCashier()
         {
-            //throw new NotImplementedException();
+            CashierModel newcasier = new CashierModel();
+            newcasier.Name = CashierNameText.Text;
+            newcasier.Password = CashierPasswordText.Text;
+            newcasier.CNIC = CNIC.Text;
+            newcasier = Database.POS.CashierDB.addNewCashier(newcasier);
+            if (newcasier != null)
+                Response.Redirect("~/POS/Cashier/AddAddress.aspx?CashierID="+newcasier.ID+"&AddressID=0");
+        }
+
+        private void updateCashier()
+        {
+            
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

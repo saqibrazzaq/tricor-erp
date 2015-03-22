@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Models.POS.Customer;
+using Models.POS.Cashier;
 
 namespace TricorERP.POS.Cashier
 {
@@ -12,10 +13,12 @@ namespace TricorERP.POS.Cashier
     {
         String customerID = "0";
         String AddressID = "0";
+        String CashierID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             customerID = Request.QueryString["CustomerID"];
             AddressID = Request.QueryString["AddressID"];
+            CashierID = Request.QueryString["CashierID"];
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -37,17 +40,27 @@ namespace TricorERP.POS.Cashier
             PhoneNumberText.Text = customeraddress.Phonenumber;
             CityNameText.Text = customeraddress.City;
 
-            //set customer personal information.
-            CustomerModel customer = new CustomerModel();
-            customer = Database.POS.Customer.CustomerDB.getCustomerInFo(customerID);
-            customerName.Text = customer.Name;
-            CustomerCNIC.Text = customer.CNIC;
+            if (customerID != null)
+            {
+                //set customer personal information.
+                CustomerModel customer = new CustomerModel();
+                customer = Database.POS.Customer.CustomerDB.getCustomerInFo(customerID);
+                customerName.Text = customer.Name;
+                CustomerCNIC.Text = customer.CNIC;
+            }
+            else if (CashierID != null)
+            {
+                CashierModel cashier = new CashierModel();
+                cashier = Database.POS.CashierDB.getCashierInFo(CashierID);
+                customerName.Text = cashier.Name;
+                CustomerCNIC.Text = cashier.CNIC;
+            }
         }
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (AddressID == "0")
+            if (AddressID == "0" || CashierID == "0")
                 saveNewAddress();
-            else //if (customerID != "0")
+            else if (customerID != "0" || CashierID != "0")
                 updateAddress();
 
         }
@@ -56,16 +69,32 @@ namespace TricorERP.POS.Cashier
         private void saveNewAddress()
         {
             AddressModel newaddress = new AddressModel();
-            newaddress.ID = int.Parse(customerID.ToString());
+            if (customerID != null)
+            {
+                newaddress.ID = int.Parse(customerID.ToString());
+            }
+            else if (CashierID != null) { 
+                newaddress.ID = int.Parse(CashierID.ToString());
+            }
             newaddress.City = CityNameText.Text;
             newaddress.Location1 = Location1Text.Text;
             newaddress.Location2 = Location2Text.Text;
             newaddress.Phonenumber = PhoneNumberText.Text;
             newaddress.Email = email.Text;
-            newaddress = Database.POS.Customer.AddressDB.addAddress(newaddress, customerID);
+            newaddress = Database.POS.Customer.AddressDB.addAddress(newaddress, customerID, CashierID);
+
+                if (newaddress != null)
+                {
+                    if (CashierID == "0")
+                    {
+                        Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
+                    }
+                    else if (CashierID != "0")
+                    {
+                        Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "& AddressID=" + newaddress.ID);
+                    }
+                }
             
-            // create an alert on that point
-            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
         }
 
         //for update the address 
@@ -81,6 +110,7 @@ namespace TricorERP.POS.Cashier
             int check = Database.POS.Customer.AddressDB.updateAddress(updateaddress);
             if (check == 1)
             {
+                //condition 
                 Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
                 message.Text = "Data is Updated";
             }
@@ -92,8 +122,10 @@ namespace TricorERP.POS.Cashier
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            //how to set previous page without effecting the values of previous page?
-            Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=0");
+            if (customerID != null)
+                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=0");
+            else if (CashierID != null)
+                Response.Redirect("~/POS/BranchManager/EditCustomer.aspx?CashierID=" + CashierID + "& AddressID=0");
         }
     }
 }

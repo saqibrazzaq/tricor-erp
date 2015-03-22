@@ -15,7 +15,7 @@ namespace Database.UserLogin
             UserModel userModel = null;
             try
             {
-                String sql = "select * from [User] where UserName = '" + username + "'and Password='" + password + "'";
+                String sql = "select * from Users where UserName = '" + username + "'and Password='" + password + "'";
                 SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
                 if (reader.Read()) // Read() gets first record
                 {

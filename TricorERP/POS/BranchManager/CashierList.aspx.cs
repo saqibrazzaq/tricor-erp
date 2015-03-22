@@ -11,6 +11,30 @@ namespace TricorERP.POS.BranchManager
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack == false)
+            {
+                InitializePageContents();
+            }
+        }
+
+        private void InitializePageContents()
+        {
+            SearchCashier("");
+        }
+
+        private void SearchCashier(string searchcashier)
+        {
+            List<Models.POS.Cashier.CashierModel> cashier = null;
+            cashier = GetFromDatabase("");
+        }
+
+        private List<Models.POS.Cashier.CashierModel> GetFromDatabase(string p)
+        {
+            return Database.POS.CashierDB.
+        }
+
+        protected void SearchCustomerButton1_Click(object sender, EventArgs e)
+        {
 
         }
     }

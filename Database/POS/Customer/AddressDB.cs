@@ -36,7 +36,7 @@ namespace Database.POS.Customer
         }
 
         //set address within database and return id of inserted address.
-        public static AddressModel addAddress(AddressModel newaddress, String customerID)
+        public static AddressModel addAddress(AddressModel newaddress, String customerID, String cashierID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
             con.Open();
@@ -50,14 +50,22 @@ namespace Database.POS.Customer
                          values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "', '" + newaddress.Location2 + "')";
                 object id = DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql, null);
                 newaddress.ID = int.Parse(id.ToString());
-
-                String sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
+                String sql2 = "";
+                if (customerID != null)
+                {
+                    sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
                             values('" + customerID + "', '" + newaddress.ID + "')";
+                }
+                else if (cashierID != null)
+                {
+                    sql2 = @"INSERT INTO [dbo].[CashierAddress] ([UserID] ,[AddressID])
+                     VALUES ('" + cashierID + "', '" + newaddress.ID + "')";
+                }
                 DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql2, null);
 
                 trans.Commit();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 trans.Rollback();
             }
@@ -69,10 +77,11 @@ namespace Database.POS.Customer
         }
 
         //Get individually address base on address id  
-        public static AddressModel getAddress(String id) {
+        public static AddressModel getAddress(String id)
+        {
             String sql = @"SELECT [Id] ID ,[City] City,[Location1] Location1,[PhoneNo] PhoneNo,[Email] Email,[Location2] Location2
                            FROM [dbo].[Address]
-                           where Address.Id = '" +id+"'";
+                           where Address.Id = '" + id + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             AddressModel address = new AddressModel();
             if (reader.Read())
@@ -91,9 +100,9 @@ namespace Database.POS.Customer
         public static int updateAddress(AddressModel updateaddress)
         {
             String sql = @"UPDATE [dbo].[Address]
-                         SET [City] = '"+updateaddress.City+"' ,[Location1] = '"+updateaddress.Location1+"' ,[PhoneNo] = '"
-                         +updateaddress.Phonenumber+"' ,[Email] = '"+updateaddress.Email+"' ,[Location2] = '"
-                         +updateaddress.Location2+"' WHERE Address.Id='"+updateaddress.ID+"'";
+                         SET [City] = '" + updateaddress.City + "' ,[Location1] = '" + updateaddress.Location1 + "' ,[PhoneNo] = '"
+                         + updateaddress.Phonenumber + "' ,[Email] = '" + updateaddress.Email + "' ,[Location2] = '"
+                         + updateaddress.Location2 + "' WHERE Address.Id='" + updateaddress.ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -105,8 +114,8 @@ namespace Database.POS.Customer
 
         //delete address of an customer from CustomerAddress table. 
         public static int deleteAddress(String CustomerID, String AddressID, SqlTransaction tran)
-        {   
-            String sql = @"DELETE FROM [CustomerAddress] WHERE Customer_ID='"+CustomerID+"' and Address_ID='"+AddressID+"';";
+        {
+            String sql = @"DELETE FROM [CustomerAddress] WHERE Customer_ID='" + CustomerID + "' and Address_ID='" + AddressID + "';";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
