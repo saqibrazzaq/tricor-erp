@@ -49,12 +49,12 @@ namespace TricorERP.POS.BranchManager
         }
         private List<Models.POS.Customer.AddressModel> GetAddressesFromDB()
         {
-            return Database.POS.Customer.AddressDB.getCustomerAddresses(CashierID);
+            return Database.POS.CashierDB.getCashierAddresses(CashierID);
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CashierID=" + CashierID + "&AddressID=0");
+            Response.Redirect("~/POS/BranchManager/AddAddress.aspx?CashierID=" + CashierID + "&AddressID=0");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace TricorERP.POS.BranchManager
             newcasier.CNIC = CNIC.Text;
             newcasier = Database.POS.CashierDB.addNewCashier(newcasier);
             if (newcasier != null)
-                Response.Redirect("~/POS/Cashier/AddAddress.aspx?CashierID="+newcasier.ID+"&AddressID=0");
+                Response.Redirect("~/POS/BranchManager/AddAddress.aspx?CashierID=" + newcasier.ID + "&AddressID=0");
         }
 
         private void updateCashier()
@@ -106,17 +106,25 @@ namespace TricorERP.POS.BranchManager
             else if (e.CommandName == "DeleteAddress")
             {
                 deleteCustomerAddress(AddressID);
-                Response.Redirect("~/POS/Cashier/EditCashier.aspx?CashierID=" + CashierID);
+                Response.Redirect("EditCashier.aspx?CashierID=" + CashierID);
             }
         }
 
-        private void deleteCustomerAddress(string AddressID)
+        private void deleteCustomerAddress(String AddressID)
         {
-            //throw new NotImplementedException();
+            int check = Database.POS.Customer.CustomerDB.deleteAddress(CashierID, AddressID);
+            if (check == 1)
+            {
+                message.Text = "Address is Deleted";
+            }
+            else
+            {
+                message.Text = "Due to Some error Data is not Deleted";
+            }
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/POS/BranchManager/CashierList.aspx");
         }
     }
 }

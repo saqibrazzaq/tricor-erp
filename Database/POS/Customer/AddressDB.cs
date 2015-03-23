@@ -15,8 +15,6 @@ namespace Database.POS.Customer
         {
             List<AddressModel> customerAddresses = new List<AddressModel>();
 
-            // discuss with sir ?
-
             String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno
                           from Customer
                           join CustomerAddress on Customer.Id = CustomerAddress.Customer_ID
@@ -38,45 +36,45 @@ namespace Database.POS.Customer
         }
 
         //set address within database and return id of inserted address.
-        public static AddressModel addAddress(AddressModel newaddress, String customerID, String cashierID)
+        public static AddressModel addAddress(AddressModel newaddress)//, String customerID)
         {
-            SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
-            con.Open();
-            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
-            try
-            {
-                //trans. = System.Data.IsolationLevel.ReadUncommitted;
+            //SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
+            //con.Open();
+            //SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            //try
+            //{
+            //trans. = System.Data.IsolationLevel.ReadUncommitted;
 
-                String sql = @"insert into Address(City, Location1, PhoneNo, Email, Location2)
+            String sql = @"insert into Address(City, Location1, PhoneNo, Email, Location2)
                          output inserted.ID 
                          values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "', '" + newaddress.Location2 + "')";
-                object id = DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql, null);
-                newaddress.ID = int.Parse(id.ToString());
-                String sql2 = "";
+            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            newaddress.ID = int.Parse(id.ToString());
+            //                String sql2 = "";
 
-                // alln other query2 are implemented on other hand. 
-                if (customerID != null)
-                {
-                    sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
-                            values('" + customerID + "', '" + newaddress.ID + "')";
-                }
-                else if (cashierID != null)
-                {
-                    sql2 = @"INSERT INTO [dbo].[UserAddress] ([UserID] ,[AddressID])
-                     VALUES ('" + cashierID + "', '" + newaddress.ID + "')";
-                }
-                DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql2, null);
+            //                // alln other query2 are implemented on other hand. 
+            //                if (customerID != null)
+            //                {
+            //                    sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
+            //                            values('" + customerID + "', '" + newaddress.ID + "')";
+            //                }
+            //                else if (cashierID != null)
+            //                {
+            //                    sql2 = @"INSERT INTO [dbo].[UserAddress] ([UserID] ,[AddressID])
+            //                     VALUES ('" + cashierID + "', '" + newaddress.ID + "')";
+            //                }
+            //                DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql2, null);
 
-                trans.Commit();
-            }
-            catch (Exception ex)
-            {
-                trans.Rollback();
-            }
-            finally
-            {
-                con.Close();
-            }
+            //    trans.Commit();
+            //}
+            //catch (Exception ex)
+            //{
+            //    trans.Rollback();
+            //}
+            //finally
+            //{
+            //    con.Close();
+            //}
             return newaddress;
         }
 

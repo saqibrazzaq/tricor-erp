@@ -66,6 +66,14 @@ namespace TricorERP.POS.Order
 
         protected void AddProducts_Click(object sender, EventArgs e)
         {
+            // 1. OrderItemModel item = new OrderItemModel()
+            // item.productiD = dropdown.id
+            // item.saleOrderID = orderID (querystring)
+            // OrderItemDB.Add(item)
+
+            // 2. Bind list view
+            // List<OrderItem> orderItems = OrderDB.GetOrderItems(orderID)
+            
             Message.Text = ProductsDropDown.SelectedItem.ToString();
             OrderModel order = new OrderModel();
             order.ProductName = ProductsDropDown.SelectedItem.ToString();

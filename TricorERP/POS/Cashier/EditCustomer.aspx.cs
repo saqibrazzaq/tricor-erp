@@ -54,7 +54,7 @@ namespace TricorERP.POS.Cashier
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customerID + "&AddressID=0");
+            Response.Redirect("~/POS/Cashier/EditAddress.aspx?CustomerID=" + customerID + "&AddressID=0");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace TricorERP.POS.Cashier
             customer.Type = int.Parse(CustomerTyepDropDown.SelectedValue);
             customer = Database.POS.Customer.CustomerDB.addNewCustomer(customer);
             if (customer != null)
-                Response.Redirect("~/POS/Cashier/AddAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+                Response.Redirect("~/POS/Cashier/EditAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
         }
 
         // method for update customers
@@ -106,7 +106,7 @@ namespace TricorERP.POS.Cashier
             String AddressID = e.CommandArgument.ToString();
             if (e.CommandName == "AddAddress")
             {
-                Response.Redirect("AddAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
+                Response.Redirect("EditAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
             }
             else if (e.CommandName == "DeleteAddress")
             {

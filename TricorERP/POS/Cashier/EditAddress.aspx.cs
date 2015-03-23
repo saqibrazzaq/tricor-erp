@@ -13,12 +13,10 @@ namespace TricorERP.POS.Cashier
     {
         String customerID = "0";
         String AddressID = "0";
-        String CashierID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             customerID = Request.QueryString["CustomerID"];
             AddressID = Request.QueryString["AddressID"];
-            CashierID = Request.QueryString["CashierID"];
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -48,19 +46,12 @@ namespace TricorERP.POS.Cashier
                 customerName.Text = customer.Name;
                 CustomerCNIC.Text = customer.CNIC;
             }
-            else if (CashierID != null)
-            {
-                CashierModel cashier = new CashierModel();
-                cashier = Database.POS.CashierDB.getCashierInFo(CashierID);
-                customerName.Text = cashier.Name;
-                CustomerCNIC.Text = cashier.CNIC;
-            }
         }
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (AddressID == "0" || CashierID == "0")
+            if (AddressID == "0")
                 saveNewAddress();
-            else if (customerID != "0" || CashierID != "0")
+            else if (customerID != "0")
                 updateAddress();
 
         }
@@ -73,28 +64,26 @@ namespace TricorERP.POS.Cashier
             {
                 newaddress.ID = int.Parse(customerID.ToString());
             }
-            else if (CashierID != null) { 
-                newaddress.ID = int.Parse(CashierID.ToString());
-            }
             newaddress.City = CityNameText.Text;
             newaddress.Location1 = Location1Text.Text;
             newaddress.Location2 = Location2Text.Text;
             newaddress.Phonenumber = PhoneNumberText.Text;
             newaddress.Email = email.Text;
-            newaddress = Database.POS.Customer.AddressDB.addAddress(newaddress, customerID, CashierID);
+            newaddress = Database.POS.Customer.AddressDB.addAddress(newaddress);//, customerID, CashierID);
 
+            int check = Database.POS.Customer.CustomerDB.addAddress(customerID, newaddress.ID);
+            if (check == 1)
+            {
                 if (newaddress != null)
                 {
-                    if (customerID != "0")
-                    {
-                        Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
-                    }
-                    else if (CashierID != "0")
-                    {
-                        Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "& AddressID=" + newaddress.ID);
-                    }
+                    Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
                 }
+            }
+            else 
+            { 
             
+            }
+
         }
 
         //for update the address 
@@ -110,10 +99,8 @@ namespace TricorERP.POS.Cashier
             int check = Database.POS.Customer.AddressDB.updateAddress(updateaddress);
             if (check == 1)
             {
-                if (customerID != null) 
+                if (customerID != null)
                     Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
-                else if (CashierID != null)
-                    Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "&AddressID=" + AddressID);
                 message.Text = "Data is Updated";
             }
             else if (check != 1)
@@ -126,8 +113,7 @@ namespace TricorERP.POS.Cashier
         {
             if (customerID != null)
                 Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=0");
-            else if (CashierID != null)
-                Response.Redirect("~/POS/BranchManager/EditCustomer.aspx?CashierID=" + CashierID + "& AddressID=0");
+
         }
     }
 }

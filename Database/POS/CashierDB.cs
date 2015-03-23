@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.POS.Cashier;
 using System.Data.SqlClient;
+using Models.POS.Customer;
 
 namespace Database.POS
 {
@@ -47,7 +48,7 @@ namespace Database.POS
                            join Address on Address.Id = UserAddress.AddressID
                            where 1=1 
                            and
-                           (Users.Username like '%" +searchtext+"%' or Address.PhoneNo like '%"+searchtext+"%')";
+                           ([User].Username like '%" +searchtext+"%' or Address.PhoneNo like '%"+searchtext+"%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -74,7 +75,42 @@ namespace Database.POS
             return 0;
         }
 
+        // add address into useraddress table of cashier 
+        public static int addAddress(string UserID, int CashierAddressID)
+        {
+            String sql = @"INSERT INTO [dbo].[UserAddress] ([UserID] ,[AddressID])
+                             output inserted.ID
+                                 VALUES ('" + UserID + "', '" + CashierAddressID + "')";
 
+            Object check = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            if (int.Parse(check.ToString()) > 0)
+                return 1;
+            else
+                return 0;
+        }
 
+        public static List<AddressModel> getCashierAddresses(String ID)
+        {
+            List<AddressModel> customerAddresses = new List<AddressModel>();
+
+            String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno, Address.Email, Address.PhoneNo
+                          from [User]
+                          join UserAddress on [User].ID = UserAddress.UserID
+                          join Address on UserAddress.AddressID=Address.id
+                          where [User].ID='" + ID + "';";
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                AddressModel address = new AddressModel();
+                address.ID = int.Parse(reader["ID"].ToString());
+                address.City = reader["City"].ToString();
+                address.Location1 = reader["Location1"].ToString();
+                address.Phonenumber = reader["Phoneno"].ToString();
+                address.ID = int.Parse(reader["ID"].ToString());
+                customerAddresses.Add(address);
+            }
+            return customerAddresses;
+        }
     }
 }

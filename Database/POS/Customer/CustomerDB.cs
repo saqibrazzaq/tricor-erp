@@ -75,6 +75,7 @@ namespace Database.POS.Customer
             return 0;
         }
 
+        // get all data of customer and return a list of customer. 
         public static List<CustomerModel> getallCustomer()
         {
             List<CustomerModel> customers = new List<CustomerModel>();
@@ -88,6 +89,19 @@ namespace Database.POS.Customer
                 customers.Add(customer);
             }
             return customers;
+        }
+
+        public static int addAddress(string customerID, int CustomerAddressID)
+        {
+            String sql = @"insert into CustomerAddress(Customer_ID, Address_ID)
+                            output inserted.ID 
+                                        values('" + customerID + "', '" + CustomerAddressID + "')";
+
+            Object check = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            if (int.Parse(check.ToString()) > 0)
+                return 1;
+            else
+                return 0;
         }
 
         public static int deleteAddress(String CustomerID, String AddressID)
