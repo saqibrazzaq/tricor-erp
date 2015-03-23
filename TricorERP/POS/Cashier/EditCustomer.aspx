@@ -70,6 +70,8 @@
                                     <th>Phone Number</th>
                                     <th>City</th>
                                     <th>Location</th>
+                                     <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
                             </table>

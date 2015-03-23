@@ -109,14 +109,14 @@ namespace TricorERP.POS.BranchManager
             }
             else if (e.CommandName == "DeleteAddress")
             {
-                deleteCustomerAddress(AddressID);
+                deleteCashierAddress(AddressID);
                 Response.Redirect("EditCashier.aspx?CashierID=" + CashierID);
             }
         }
 
-        private void deleteCustomerAddress(String AddressID)
+        private void deleteCashierAddress(String AddressID)
         {
-            int check = Database.POS.Customer.CustomerDB.deleteAddress(CashierID, AddressID);
+            int check = Database.POS.CashierDB.deleteAddress(CashierID, AddressID);
             if (check == 1)
             {
                 message.Text = "Address is Deleted";

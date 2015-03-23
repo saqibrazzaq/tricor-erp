@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="CashierList.aspx.cs" Inherits="TricorERP.POS.BranchManager.CashierList" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -15,13 +16,14 @@
     </div>
 
     <div class="panel-body">
-        <asp:ListView ID="CashierListview" runat="server" OnItemCommand="CashierListview_ItemCommand" >
+        <asp:ListView ID="CashierListview" runat="server" OnItemCommand="CashierListview_ItemCommand">
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                     <tr class="active">
                         <th>ID</th>
                         <th>Full Name</th>
                         <th>Phone Number</th>
+                        <th>Delete</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -37,15 +39,18 @@
                     <td>
                         <%# Eval("PhoneNo") %>
                     </td>
+                    <td>
+                        <asp:LinkButton runat="server" CommandName="DeleteCashier" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
     </div>
-    
+
 
     <div class="row">
         <div class="col-lg-6">
-          <asp:Label ID="Message" runat="server" Text=""></asp:Label>
+            <asp:Label ID="Message" runat="server" Text=""></asp:Label>
         </div>
     </div>
 </asp:Content>

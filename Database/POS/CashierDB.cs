@@ -116,35 +116,35 @@ namespace Database.POS
             return customerAddresses;
         }
 
-        //public static int deleteAddress(String CashierID, String AddressID)
-        //{
-        //    SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
-        //    con.Open();
-        //    SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
-        //    try
-        //    {
-        //        String sql = @"DELETE FROM [CustomerAddress] WHERE Customer_ID='" + CashierID + "' and Address_ID='" + AddressID + "';";
-        //        int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
-        //        if (check == 1)
-        //        {
-        //            int check2 = Database.Common.AddressDB.deleteAddress(AddressID, trans);
+        public static int deleteAddress(String CashierID, String AddressID)
+        {
+            SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
+            con.Open();
+            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            try
+            {
+                String sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + CashierID + "' and [UserAddress].AddressID ='" + AddressID + "';";
+                int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
+                if (check == 1)
+                {
+                    int check2 = Database.Common.AddressDB.deleteAddress(AddressID, trans);
 
-        //            trans.Commit();
-        //        }
-        //        else
-        //        {
-        //            return 0;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        trans.Rollback();
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //    return 1;
-        //}
+                    trans.Commit();
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception e)
+            {
+                trans.Rollback();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return 1;
+        }
     }
 }

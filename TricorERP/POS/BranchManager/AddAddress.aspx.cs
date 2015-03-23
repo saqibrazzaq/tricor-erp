@@ -103,7 +103,7 @@ namespace TricorERP.POS.BranchManager
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/BranchManager/EditCustomer.aspx?CashierID=" + CashierID + "& AddressID=0");
+            Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "& AddressID=0");
         }
     }
 }
