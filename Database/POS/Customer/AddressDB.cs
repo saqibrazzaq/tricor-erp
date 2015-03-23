@@ -53,6 +53,8 @@ namespace Database.POS.Customer
                 object id = DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql, null);
                 newaddress.ID = int.Parse(id.ToString());
                 String sql2 = "";
+
+                // alln other query2 are implemented on other hand. 
                 if (customerID != null)
                 {
                     sql2 = @"insert into CustomerAddress(Customer_ID, Address_ID)
@@ -60,7 +62,7 @@ namespace Database.POS.Customer
                 }
                 else if (cashierID != null)
                 {
-                    sql2 = @"INSERT INTO [dbo].[CashierAddress] ([UserID] ,[AddressID])
+                    sql2 = @"INSERT INTO [dbo].[UserAddress] ([UserID] ,[AddressID])
                      VALUES ('" + cashierID + "', '" + newaddress.ID + "')";
                 }
                 DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql2, null);

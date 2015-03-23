@@ -36,7 +36,7 @@
         <div class="row container-fluid">
             <div class="col-lg-8">
 
-                <%--<asp:ListView ID="OrderListview" runat="server" OnSelectedIndexChanged="OrderListview_SelectedIndexChanged">
+                <asp:ListView ID="OrderListview" runat="server" OnSelectedIndexChanged="OrderListview_SelectedIndexChanged">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                             <tr class="active">
@@ -60,7 +60,7 @@
                             </td>
                         </tr>
                     </ItemTemplate>
-                </asp:ListView>--%>
+                </asp:ListView>
 
             </div>
         </div>

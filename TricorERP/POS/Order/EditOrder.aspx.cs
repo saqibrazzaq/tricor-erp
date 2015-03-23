@@ -67,10 +67,10 @@ namespace TricorERP.POS.Order
         protected void AddProducts_Click(object sender, EventArgs e)
         {
             Message.Text = ProductsDropDown.SelectedItem.ToString();
-            //OrderModel order = new OrderModel();
-            //order.ProductName = ProductsDropDown.SelectedItem.ToString();
-            //OrderListview.DataSource = order;
-            //OrderListview.DataBind();
+            OrderModel order = new OrderModel();
+            order.ProductName = ProductsDropDown.SelectedItem.ToString();
+            OrderListview.DataSource = order;
+            OrderListview.DataBind();
 
             
         }
