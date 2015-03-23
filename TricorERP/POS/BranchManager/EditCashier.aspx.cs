@@ -16,6 +16,10 @@ namespace TricorERP.POS.BranchManager
         {
             CashierID = Request.QueryString["CashierID"];
             AddressID = Request.QueryString["AddressID"];
+            if (CashierID != "0")
+                Head.Text = "Cashier Information.";
+            else if(CashierID == "0")
+                Head.Text = "New Cashier";
             if (IsPostBack == false)
             {
                 InitializePageContents();

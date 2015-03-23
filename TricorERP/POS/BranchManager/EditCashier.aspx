@@ -4,7 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
-        <h2 class="h2">New Cashier</h2>
+        <h2 class="h2">
+            <asp:Label ID="Head" runat="server" Text=""></asp:Label>
+        </h2>
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <label for="InputName">Full Name :</label>

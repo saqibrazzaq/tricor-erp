@@ -91,6 +91,7 @@ namespace Database.POS.Customer
             return customers;
         }
 
+        // add new address in Customer Address and return an integer value for it
         public static int addAddress(string customerID, int CustomerAddressID)
         {
             String sql = @"insert into CustomerAddress(Customer_ID, Address_ID)
@@ -111,11 +112,12 @@ namespace Database.POS.Customer
             SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
             try
             {
-                int check = Database.POS.Customer.AddressDB.deleteAddress(CustomerID, AddressID, trans);
+                String sql = @"DELETE FROM [CustomerAddress] WHERE Customer_ID='" + CustomerID + "' and Address_ID='" + AddressID + "';";
+                int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
                 if (check == 1)
                 {
-                    String sql2 = @"DELETE FROM Address WHERE Id ='"+AddressID+"';";
-                    int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql2, null);
+                    int check2 = Database.POS.Customer.AddressDB.deleteAddress(AddressID, trans);
+
                     trans.Commit();
                 }
                 else

@@ -22,6 +22,8 @@ namespace Database.POS
             newcustomer.ID = int.Parse(id.ToString());
             return newcustomer;
         }
+
+        // get cashier information and return an object of CashierModel
         public static CashierModel getCashierInFo(String CashierID)
         {
             CashierModel cashier = new CashierModel();
@@ -89,6 +91,7 @@ namespace Database.POS
                 return 0;
         }
 
+        //get address of cashier from database and return an list of Cashiers.
         public static List<AddressModel> getCashierAddresses(String ID)
         {
             List<AddressModel> customerAddresses = new List<AddressModel>();

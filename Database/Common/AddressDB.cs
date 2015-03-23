@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Models.POS.Customer;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.POS.Customer;
-using System.Data.SqlClient;
 
-namespace Database.POS.Customer
+namespace Database.Common
 {
     public class AddressDB
     {
@@ -125,7 +125,5 @@ namespace Database.POS.Customer
             }
             return 0;
         }
-
-
     }
 }

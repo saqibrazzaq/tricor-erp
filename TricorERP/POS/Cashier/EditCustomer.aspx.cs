@@ -119,7 +119,7 @@ namespace TricorERP.POS.Cashier
             int check = Database.POS.Customer.CustomerDB.deleteAddress(customerID, AddressID);
             if (check == 1)
             {
-                message.Text = "Address is Deleted";
+               message.Text = "Address is Deleted";
             }
             else
             {
