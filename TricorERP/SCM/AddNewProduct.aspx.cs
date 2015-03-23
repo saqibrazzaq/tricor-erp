@@ -28,11 +28,11 @@ namespace TricorERP.SCM
                 }
             else
             {
-                ProductNameText.Text = "";
-                ProductPriceText.Text = "";
-                ProductCodeText.Text = "";
-                ProductDescriptionText.Text = "";
-                ErrorMessageLable.Text = "";
+                //ProductNameText.Text = "";
+                //ProductPriceText.Text = "";
+                //ProductCodeText.Text = "";
+                //ProductDescriptionText.Text = "";
+                //ErrorMessageLable.Text = "";
             }
         }
         public int updateProduct(ProductModel pModel)
