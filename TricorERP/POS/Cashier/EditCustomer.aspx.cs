@@ -49,7 +49,7 @@ namespace TricorERP.POS.Cashier
 
         private List<Models.POS.Customer.AddressModel> GetAddressesFromDB(String Id)
         {
-            return Database.POS.Customer.AddressDB.getCustomerAddresses(Id);
+            return Database.Common.AddressDB.getCustomerAddresses(Id);
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)

@@ -116,7 +116,7 @@ namespace Database.POS.Customer
                 int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
                 if (check == 1)
                 {
-                    int check2 = Database.POS.Customer.AddressDB.deleteAddress(AddressID, trans);
+                    int check2 = Database.Common.AddressDB.deleteAddress(AddressID, trans);
 
                     trans.Commit();
                 }

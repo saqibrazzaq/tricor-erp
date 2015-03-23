@@ -31,7 +31,7 @@ namespace TricorERP.POS.BranchManager
         {
             //set address of an customer.
             AddressModel customeraddress = new AddressModel();
-            customeraddress = Database.POS.Customer.AddressDB.getAddress(AddressID);
+            customeraddress = Database.Common.AddressDB.getAddress(AddressID);
             Location1Text.Text = customeraddress.Location1;
             Location2Text.Text = customeraddress.Location2;
             email.Text = customeraddress.Email;
@@ -65,7 +65,7 @@ namespace TricorERP.POS.BranchManager
             newaddress.Phonenumber = PhoneNumberText.Text;
             newaddress.Email = email.Text;
 
-            newaddress = Database.POS.Customer.AddressDB.addAddress(newaddress);// customerID, CashierID);
+            newaddress = Database.Common.AddressDB.addAddress(newaddress);// customerID, CashierID);
             int check = Database.POS.CashierDB.addAddress(CashierID, newaddress.ID);
 
             if (check == 1)
@@ -89,7 +89,7 @@ namespace TricorERP.POS.BranchManager
             updateaddress.Location2 = Location2Text.Text;
             updateaddress.Phonenumber = PhoneNumberText.Text;
             updateaddress.Email = email.Text;
-            int check = Database.POS.Customer.AddressDB.updateAddress(updateaddress);
+            int check = Database.Common.AddressDB.updateAddress(updateaddress);
             if (check == 1)
             {
                 Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "&AddressID=" + AddressID);
