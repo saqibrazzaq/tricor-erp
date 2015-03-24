@@ -20,10 +20,6 @@ namespace Database.SCM
                           join Warehouse on WareHouseAddress.WHID = Warehouse.ID
                          where WareHouse.Id='" + ID + "' ";
 
-//                String sql = @"    SELECT Address.City ,Address.Location1 , Address.Location2 , Address.PhoneNo, Address.Email
-//                     FROM tutorials_tbl a, tcount_tbl b
-//                     WHERE a.tutorial_author = b.tutorial_author ";
-
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -40,40 +36,17 @@ namespace Database.SCM
         }
 
         //set address within database and return id of inserted address.
-        public static AddressModel addAddress(AddressModel newaddress, String wareHouseID)
+        public static AddressModel addAddress(AddressModel newaddress, SqlTransaction trans)
         {
-            SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
-            con.Open();
-            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
-            try
-            {
-
-                String sql = @"insert into [dbo].[Address] 
+            String sql = @"insert into [dbo].[Address] 
                             ([City], [Location1] , [Location2] , [PhoneNo] , [Email] )
                          output inserted.ID 
                          values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Location2 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "')";
-               
-                //error on this point... Execute Scaler not working properly :(
-                object id = DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql, null);
-                newaddress.ID = int.Parse(id.ToString());
-
-                String sql2 = @"insert into WareHouseAddress(WHID, AddressID)
-                            values('" + wareHouseID + "', '" + newaddress.ID + "')";
-                DBUtility.SqlHelper.ExecuteScalar(trans, con, System.Data.CommandType.Text, sql2, null);
-
-                trans.Commit();
-            }
-            catch (Exception ex)
-            {
-                trans.Rollback();
-            }
-            finally
-            {
-                con.Close();
-            }
+            int check1 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
+            newaddress.ID = check1;
             return newaddress;
+           
         }
-
         //Get individual address base on address id  
         public static AddressModel getAddress(String id)
         {
@@ -111,15 +84,15 @@ namespace Database.SCM
 
 
         //delete address of an customer from CustomerAddress table. 
-        public static int deleteAddress(String WareHouseID, String AddressID, SqlTransaction tran)
+        public static int deleteAddress( String AddressID, SqlTransaction trans)
         {
-            String sql = @"DELETE FROM [WareHouseAddress] WHERE WHID='" + WareHouseID + "' and AddressID='" + AddressID + "';";
-            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
-            if (check == 1)
-            {
+            String sql = @"DELETE FROM Address WHERE Id ='" + AddressID + "'";
+              int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
+                if (check > 0)
+                {
                 return 1;
-            }
-            return 0;
+               }
+                return 0;
         }
 
 

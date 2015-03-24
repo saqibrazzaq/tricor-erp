@@ -1,4 +1,5 @@
-﻿using Models.SCM;
+﻿using Models.Global;
+using Models.SCM;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -68,6 +69,43 @@ namespace Database.SCM
             }
             return whModel;
         }
+        public static int addAddress(AddressModel newaddress, string WHID)
+        {
+            
+            SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
+            con.Open();
+            SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            try
+            {
+                //Query1
+                newaddress = Database.SCM.AddressDB.addAddress(newaddress,trans);
+              
+                if (newaddress.ID > 0)
+                {
+                    //Query 2
+                    String sql = @"INSERT INTO [dbo].[WareHouseAddress] ([WHID] ,[AddressID])
+                             output inserted.ID
+                                 VALUES ('" + WHID + "', '" + newaddress.ID + "')";
+                int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
+                    trans.Commit();
+                }
+                else
+                {
+                    con.Close();
+                    return 0;
+                }
+            }
+            catch (Exception e)
+            {
+                trans.Rollback();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return 1;
+        }
+        }
         public static int deleteAddress(string WHID, string AddressID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
@@ -76,13 +114,13 @@ namespace Database.SCM
             try
             {
                 //Query 1.
-                int check = Database.SCM.AddressDB.deleteAddress(WHID, AddressID, trans);
-                
-                if (check == 1)
+                String sql1 = @"DELETE FROM [dbo].[WareHouseAddress] WHERE [WareHouseAddress].WHID='" + WHID + "' and [WareHouseAddress].AddressID ='" + AddressID + "';";
+                int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql1, null);
+              
+                if (check2 == 1)
                 {
                     //Query 2
-                    String sql2 = @"DELETE FROM Address WHERE Id ='" + AddressID + "';";
-                    int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql2, null);
+                    int check = Database.SCM.AddressDB.deleteAddress(AddressID, trans);   
                     trans.Commit();
                 }
                 else
