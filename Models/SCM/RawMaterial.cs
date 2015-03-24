@@ -10,10 +10,10 @@ namespace Models.SCM
     {
         public int ReOderValue { get; set; }
         public int ThresholdValue { get; set; }
-        public int ID { get; set; }
+        public int ID  { get; set; }
         public String Name { get; set; }
-        public String Code { get; set; }
-        public float Price { get; set; }
+       // public String Code { get; set; }
+        public float Price { get; set; } 
         public String Description { get; set; }
     }
 }
