@@ -9,14 +9,14 @@ using System.Web.UI.WebControls;
 
 namespace TricorERP.SCM
 {
-    public partial class AddAddress : System.Web.UI.Page
+    public partial class AddSupplierAddress : System.Web.UI.Page
     {
         String AddressID = "0";
-        String WHID = "0";
+        String SID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             AddressID = Request.QueryString["AddressID"];
-            WHID = Request.QueryString["WHID"];
+            SID = Request.QueryString["SID"];
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -24,10 +24,10 @@ namespace TricorERP.SCM
         }
         private void InitializePageContents()
         {
-            LoadwareHouseAddress();
+            LoadSupplierAddress();
         }
         //Initializing PageContents
-        private void LoadwareHouseAddress()
+        private void LoadSupplierAddress()
         {
             AddressModel addressModel = new AddressModel();
             addressModel = Database.SCM.AddressDB.getAddress(AddressID);
@@ -36,12 +36,11 @@ namespace TricorERP.SCM
             EmailText.Text = addressModel.Email;
             PhoneNumberText.Text = addressModel.Phonenumber;
             CityText.Text = addressModel.City;
-
-            //set WareHouse personal information.
-            WareHouseModel WareHouse = new WareHouseModel();
-            WareHouse = Database.SCM.WareHouseDB.getWareHouseInFo(WHID);
-            WHNameText.Text = WareHouse.Name;
-            WHDescriptionText.Text = WareHouse.Description;
+            
+            SupplierModel supplier = new SupplierModel();
+            supplier = Database.SCM.SupplierDB.getSupplierInFo(SID);
+            SupplierNameText.Text = supplier.Name;
+            SupplierCNICText.Text = supplier.CNIC;
         }
         protected void Savebtn_Click(object sender, EventArgs e)
         {
@@ -54,19 +53,19 @@ namespace TricorERP.SCM
         private void saveNewAddress()
         {
             AddressModel newaddress = new AddressModel();
-            newaddress.ID = int.Parse(WHID.ToString());
+            newaddress.ID = int.Parse(SID.ToString());
             newaddress.City = CityText.Text;
             newaddress.Location1 = Location1Text.Text;
             newaddress.Location2 = Location2Text.Text;
             newaddress.Phonenumber = PhoneNumberText.Text;
             newaddress.Email = EmailText.Text;
-            newaddress = Database.SCM.AddressDB.addAddress(newaddress, WHID);
-            if (newaddress != null)
+            int result = Database.SCM.SupplierDB.addSupplierAddress(newaddress, SID);
+            if (result > 0)
             {
                 ErrorMessageLable.Text = "New Address is saved.";
             }
-            Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
-          
+            Response.Redirect("~/SCM/EditSupplier.aspx?SID=" + SID);
+
         }
 
         //for update the address 
@@ -83,7 +82,7 @@ namespace TricorERP.SCM
             if (check == 1)
             {
                 ErrorMessageLable.Text = "Data is Updated";
-                Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
+                Response.Redirect("~/SCM/EditSupplier.aspx?SID=" + SID);
             }
             else if (check != 1)
             {
@@ -93,7 +92,7 @@ namespace TricorERP.SCM
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/SCM/EditWareHouse.aspx?WHID=" + WHID);
+            Response.Redirect("~/SCM/EditSupplier.aspx?SID=" + SID);
         }
     }
 }

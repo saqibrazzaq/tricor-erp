@@ -44,12 +44,12 @@
     <Compile Include="POS\CashierDB.cs" />
     <Compile Include="POS\Customer\CustomerDB.cs" />
     <Compile Include="POS\Order\OrderDB.cs" />
-    <Compile Include="POS\POSStock\POSStockDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\Customer.cs" />
     <Compile Include="SCM\AddressDB.cs" />
     <Compile Include="SCM\ProductDB.cs" />
     <Compile Include="SCM\StockDB.cs" />
+    <Compile Include="SCM\SupplierDB.cs" />
     <Compile Include="SCM\WareHouseDB.cs" />
     <Compile Include="UserLogin\UserLogin.cs" />
   </ItemGroup>

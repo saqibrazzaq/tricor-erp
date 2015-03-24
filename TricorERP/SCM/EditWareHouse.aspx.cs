@@ -32,7 +32,7 @@ namespace TricorERP.SCM
             wareHouseAddresses = GetAddressesFromDB(Id);
             WHNameText.Text = WHModel.Name;
             WHDescriptionText.Text = WHModel.Description;
-            //for access the WareHouse data on next page. 
+
             WareHouseModel = WHModel;
             WareHouseAddressesview.DataSource = wareHouseAddresses;
             WareHouseAddressesview.DataBind();
@@ -48,7 +48,7 @@ namespace TricorERP.SCM
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/SCM/AddAddress.aspx?WHID=" + WHID + "&AddressID=0");
+            Response.Redirect("~/SCM/AddWareHouseAddress.aspx?WHID=" + WHID + "&AddressID=0");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
@@ -58,16 +58,14 @@ namespace TricorERP.SCM
             else
                 UpdateWareHouse();
         }
-        // method for add new WareHouse
         private void AddNewWareHouse()
         {
             WareHouseModel wareHouse = new WareHouseModel();
             wareHouse.Name = WHNameText.Text;
             wareHouse.Description = WHDescriptionText.Text;
             wareHouse = Database.SCM.WareHouseDB.addNewWareHouse(wareHouse);
-            Response.Redirect("~/SCM/AddAddress.aspx?WHID=" + wareHouse.ID + "&AddressID=0");
+            Response.Redirect("~/SCM/AddWareHouseAddress.aspx?WHID=" + wareHouse.ID + "&AddressID=0");
         }
-        // method for update customers
         private void UpdateWareHouse()
         {
             WareHouseModel wareHouse = new WareHouseModel();
@@ -79,12 +77,10 @@ namespace TricorERP.SCM
             if (check == 1)
             {
                 message.Text = "Data is Updated";
-              //  Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + wareHouse.ID + "&AddressID=0");
             }
             else
             {
                 message.Text = "Data is not Updated";
-                //Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + wareHouse.ID + "&AddressID=0");
             }
         }
 
@@ -93,7 +89,7 @@ namespace TricorERP.SCM
             String AddressID = e.CommandArgument.ToString();
             if (e.CommandName == "EditAddress")
             {
-               Response.Redirect("AddAddress.aspx?WHID=" + WHID + "&AddressID=" + AddressID);
+               Response.Redirect("AddWareHouseAddress.aspx?WHID=" + WHID + "&AddressID=" + AddressID);
             }
             else if (e.CommandName == "DeleteAddress")
             {

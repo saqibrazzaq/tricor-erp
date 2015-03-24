@@ -69,9 +69,8 @@ namespace Database.SCM
             }
             return whModel;
         }
-        public static int addAddress(AddressModel newaddress, string WHID)
+        public static int addAddress(AddressModel newaddress, String WHID)
         {
-            
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
             con.Open();
             SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
@@ -105,8 +104,8 @@ namespace Database.SCM
             }
             return 1;
         }
-        }
-        public static int deleteAddress(string WHID, string AddressID)
+        
+        public static int deleteAddress(String WHID, String AddressID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
             con.Open();

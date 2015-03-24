@@ -65,12 +65,16 @@
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="POS\Order\EditOrder.aspx" />
     <Content Include="POS\Order\OrderList.aspx" />
-    <Content Include="SCM\AddAddress.aspx" />
+    <Content Include="SCM\AddSupplierAddress.aspx" />
+    <Content Include="SCM\AddWareHouseAddress.aspx" />
     <Content Include="SCM\AddNewStockItem.aspx" />
     <Content Include="SCM\AddNewProduct.aspx" />
+    <Content Include="SCM\AddNewSupplier.aspx" />
+    <Content Include="SCM\EditSupplier.aspx" />
     <Content Include="SCM\EditWareHouse.aspx" />
     <Content Include="SCM\SearchAddress.aspx" />
     <Content Include="SCM\SearchStockItem.aspx" />
+    <Content Include="SCM\SearchSupplier.aspx" />
     <Content Include="SCM\SearchWareHouse.aspx" />
     <Content Include="SCM\ViewProducts.aspx" />
     <Content Include="SCM\AddNewWareHouse.aspx" />
@@ -198,12 +202,19 @@
     <Compile Include="Samples\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SCM\AddAddress.aspx.cs">
-      <DependentUpon>AddAddress.aspx</DependentUpon>
+    <Compile Include="SCM\AddSupplierAddress.aspx.cs">
+      <DependentUpon>AddSupplierAddress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SCM\AddAddress.aspx.designer.cs">
-      <DependentUpon>AddAddress.aspx</DependentUpon>
+    <Compile Include="SCM\AddSupplierAddress.aspx.designer.cs">
+      <DependentUpon>AddSupplierAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\AddWareHouseAddress.aspx.cs">
+      <DependentUpon>AddWareHouseAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\AddWareHouseAddress.aspx.designer.cs">
+      <DependentUpon>AddWareHouseAddress.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\AddNewStockItem.aspx.cs">
       <DependentUpon>AddNewStockItem.aspx</DependentUpon>
@@ -218,6 +229,20 @@
     </Compile>
     <Compile Include="SCM\AddNewProduct.aspx.designer.cs">
       <DependentUpon>AddNewProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\AddNewSupplier.aspx.cs">
+      <DependentUpon>AddNewSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\AddNewSupplier.aspx.designer.cs">
+      <DependentUpon>AddNewSupplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\EditSupplier.aspx.cs">
+      <DependentUpon>EditSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\EditSupplier.aspx.designer.cs">
+      <DependentUpon>EditSupplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\EditWareHouse.aspx.cs">
       <DependentUpon>EditWareHouse.aspx</DependentUpon>
@@ -239,6 +264,13 @@
     </Compile>
     <Compile Include="SCM\SearchStockItem.aspx.designer.cs">
       <DependentUpon>SearchStockItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SearchSupplier.aspx.cs">
+      <DependentUpon>SearchSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SearchSupplier.aspx.designer.cs">
+      <DependentUpon>SearchSupplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SearchWareHouse.aspx.cs">
       <DependentUpon>SearchWareHouse.aspx</DependentUpon>
