@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Database.POS.POSStock
 {
-    public class POSStock
+    public class POSStockDB
     {
 
     }
