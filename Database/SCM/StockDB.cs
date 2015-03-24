@@ -24,7 +24,9 @@ namespace Database.SCM
         public static List<ProductModel> geStockItemList(String searchtext)
         {
             List<ProductModel> stockItemList = new List<ProductModel>();
-            String sql = @"select top 10 Product.PName PName, Product.PCode PCode, Product.PPrice PPrice ,Product.PThreshHoldValue PthreshHold, Product.PReOrderValue pReOrder
+            String sql = @"select top 10 Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
+                        Product.PThreshHoldValue PthreshHold , Product.PReOrderValue pReOrder , Product.PurchasePrice purchasePrice , 
+                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
                         from product
                         join Stock on Product.id = Stock.PID
                         where 1=1
@@ -37,9 +39,12 @@ namespace Database.SCM
                // product.ProductID = int.Parse(reader["PID"].ToString());
                 product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
+                product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
+                product.UnitTypeID = int.Parse(reader["UnitTypeID"].ToString());
                 product.ProductName = reader["PName"].ToString();
                 product.ProductCode = reader["PCode"].ToString();
-                product.ProductPrice = float.Parse(reader["PPrice"].ToString());
+                product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
+                product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
                 stockItemList.Add(product);
             }
             return stockItemList;

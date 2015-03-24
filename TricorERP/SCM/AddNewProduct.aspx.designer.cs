@@ -31,13 +31,40 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.TextBox ProductCodeText;
         
         /// <summary>
-        /// ProductPriceText control.
+        /// ProductTypeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductPriceText;
+        protected global::System.Web.UI.WebControls.DropDownList ProductTypeID;
+        
+        /// <summary>
+        /// UnitTypeID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList UnitTypeID;
+        
+        /// <summary>
+        /// SalePriceText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SalePriceText;
+        
+        /// <summary>
+        /// PurchasePriceText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PurchasePriceText;
         
         /// <summary>
         /// ThresholdValueText control.
@@ -65,24 +92,6 @@ namespace TricorERP.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ProductDescriptionText;
-        
-        /// <summary>
-        /// btnAddRM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddRM;
-        
-        /// <summary>
-        /// RMItemsview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView RMItemsview;
         
         /// <summary>
         /// Savebtn control.

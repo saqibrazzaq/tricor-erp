@@ -16,10 +16,40 @@
                 <label for="InputName">Product Code</label>
                 <asp:TextBox ID="ProductCodeText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
+            </div>
+             <br />
+            <div class="row container-fluid">
+             <div class="col-lg-3">
+                <label for="InputName">Product Type</label>
+                <div class="input-group">
+                    <asp:DropDownList ID="ProductTypeID" Font-Names="InputName" width="200px" CssClass="form-control" runat="server">
+                        <asp:ListItem Value="1">Finished Product</asp:ListItem>
+                        <asp:ListItem Value="2">General</asp:ListItem>
+                        <asp:ListItem Value="3">Manufacture</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+             <div class="col-lg-3">
+                <label for="InputName">Unit Type</label>
+                <div class="input-group">
+                    <asp:DropDownList ID="UnitTypeID" Font-Names="InputName"  width="200px" CssClass="form-control" runat="server">
+                        <asp:ListItem Value="1">Quantity</asp:ListItem>
+                        <asp:ListItem Value="2">Weight In Grams</asp:ListItem>
+                        <asp:ListItem Value="3">Volume in Litters</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+                 </div>
+         <br />
+             <div class="row container-fluid">
+            <div class="col-lg-3">
+                <label for="InputName">Sale Price</label>
+                <asp:TextBox ID="SalePriceText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
        <div class="col-lg-3">
                 <div class="input-group">
-                 <label for="InputName">Product Price</label>
-                 <asp:TextBox ID="ProductPriceText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                 <label for="InputName">Purchase Price</label>
+                 <asp:TextBox ID="PurchasePriceText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
          </div>
@@ -37,64 +67,18 @@
                  <asp:TextBox ID="ReOrderValueText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
-        <div class="col-lg-3">
+            </div>
+         <br />
+               <div class="row container-fluid">
+                <div class="col-lg-3">
                 <div class="input-group">
                 <label for="InputName">Product Discription</label>
-                <asp:TextBox ID="ProductDescriptionText" CssClass="form-control" Font-Names="InputName"  width="230px" Height="50px" wrap="true" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="ProductDescriptionText" CssClass="form-control" Font-Names="InputName"  width="430px" Height="50px" wrap="true" runat="server" TextMode="MultiLine"></asp:TextBox>
              </div>
             </div>
           </div>
         <br />
-      <div class="row container-fluid">
-            <div class="col-lg-3">
-                <asp:LinkButton ID="btnAddRM" runat="server" CssClass="btn btn-primary" OnClick="btnAddItem_Click">Add RawMaterial Items</asp:LinkButton>
-            </div>
-        </div>
-        
-        <div class="row container-fluid">
-            <div class="col-lg-9">
-                <h2 class="h2">Products Composition.</h2>
-                <div class="panel-body">
-                    <asp:ListView ID="RMItemsview" OnItemCommand="RMItems_ItemCommand" runat="server">
-                        <LayoutTemplate>
-                            <table class="table table-bordered table-hover" runat="server" id="ProductComposition">
-                                <tr class="active">
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Code</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Delete</th>
-                                </tr>
-                                <tr runat="server" id="itemPlaceholder"></tr>
-                            </table>
-                        </LayoutTemplate>
-                        <ItemTemplate>
-                            <tr runat="server">
-                                <td>
-                                    <%# Eval("ID") %>
-                                </td>
-                                <td>
-                                    <asp:LinkButton runat="server" CommandName="EditProductComposition" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
-                                </td>
-                                <td>
-                                    <asp:LinkButton runat="server" CommandName="EditProductComposition" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Code") %>'></asp:LinkButton>
-                                </td>
-                                <td>
-                                    <asp:LinkButton runat="server" CommandName="EditProductComposition" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Price") %>'></asp:LinkButton>
-                                  </td>
-                                <td>
-                                    <asp:LinkButton runat="server" CommandName="EditProductComposition" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Quantity") %>'></asp:LinkButton>
-                                </td>
-                                <td>
-                                    <asp:LinkButton runat="server" CommandName="DeleteProductComposition" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:ListView>
-                </div>
-            </div>
-        </div>
+     
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary"  OnClick="Savebtn_Click" >Save</asp:LinkButton>

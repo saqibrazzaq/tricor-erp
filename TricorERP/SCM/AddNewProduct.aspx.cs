@@ -17,12 +17,16 @@ namespace TricorERP.SCM
         {
             check = Request.QueryString["update"];
              id = Request.QueryString["ProductID"];
-            if (check == "1")
+            if (check == "1" && IsPostBack == false)
                 {
                 ProductModel product = new ProductModel();
                 product = Database.SCM.ProductDB.getProductInFo(id);
                 ProductNameText.Text = product.ProductName;
-                ProductPriceText.Text = product.ProductPrice.ToString();
+                SalePriceText.Text = product.SalesPrice.ToString();
+                PurchasePriceText.Text = product.PurchasePrice.ToString();
+                ProductTypeID.Text = product.ProductTypeID.ToString();
+                UnitTypeID.Text = product.UnitTypeID.ToString();
+                PurchasePriceText.Text = product.PurchasePrice.ToString();
                 ProductCodeText.Text = product.ProductCode;
                 ProductDescriptionText.Text = product.ProductDescription;
                 ThresholdValueText.Text = product.ProductThresholdValue.ToString();
@@ -49,11 +53,14 @@ namespace TricorERP.SCM
         protected void Savebtn_Click(object sender, EventArgs e)
         {
             ProductModel product = new ProductModel();
+            product.ProductTypeID = int.Parse(ProductTypeID.SelectedValue);
+            product.UnitTypeID = int.Parse(UnitTypeID.SelectedValue);
             product.ProductName = ProductNameText.Text;
             product.ProductCode = ProductCodeText.Text;
             product.ProductThresholdValue = int.Parse(ThresholdValueText.Text);
             product.ProductReOderValue = int.Parse(ReOrderValueText.Text);
-            product.ProductPrice = float.Parse(ProductPriceText.Text);
+            product.SalesPrice = float.Parse(SalePriceText.Text);
+            product.PurchasePrice = float.Parse(PurchasePriceText.Text);
             product.ProductDescription = ProductDescriptionText.Text;
             int updated = 0;
              ProductModel newProduct = null;

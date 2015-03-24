@@ -14,20 +14,24 @@ namespace Database.SCM
         public static ProductModel addProduct( ProductModel productModel)
         {
               String sql = @"INSERT INTO [dbo].[Product]
-                        ([PName],[PCode],[PPrice],[PDescription],[PThreshHoldValue],[PReOrderValue])
+                        ([PName],[PCode],[SalePrice],[PDescription],[PThreshHoldValue],[PReOrderValue],[PurchasePrice],
+                        [UnitTypeID],[ProductTypeID])
 		                output inserted.ID 
                         VALUES ('" + productModel.ProductName + "','" + productModel.ProductCode + "','" +
-                                   productModel.ProductPrice + "','" + productModel.ProductDescription   +
-                                   "','" + productModel.ProductThresholdValue + "','" + productModel.ProductReOderValue + "')";
+                                   productModel.SalesPrice + "','" + productModel.ProductDescription   +
+                                   "','" + productModel.ProductThresholdValue + "','" + productModel.ProductReOderValue + "','" +
+                                   productModel.PurchasePrice + "','" + productModel.UnitTypeID + "','" + productModel.ProductTypeID + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            productModel.ProductReOderValue = int.Parse(id.ToString());
+            productModel.ProductID = int.Parse(id.ToString());
             return productModel;
         }
         
         public static List<ProductModel> getProductList(String searchtext)
         {
             List<ProductModel> productList = new List<ProductModel>();
-            String sql = @"select top 10 Product.Id PID, Product.PName PName, Product.PCode PCode, Product.PPrice PPrice ,Product.PThreshHoldValue PthreshHold, Product.PReOrderValue pReOrder
+            String sql = @"select top 10 Product.Id PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
+                        Product.PThreshHoldValue PthreshHold,Product.PReOrderValue pReOrder,Product.PurchasePrice purchasePrice,
+                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
                         from Product
                         where 1=1
                         and 
@@ -39,9 +43,12 @@ namespace Database.SCM
                 product.ProductID = int.Parse(reader["PID"].ToString());
                 product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
+                product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
+                product.UnitTypeID = int.Parse(reader["UnitTypeID"].ToString());
                 product.ProductName = reader["PName"].ToString();
                 product.ProductCode = reader["PCode"].ToString();
-                product.ProductPrice = float.Parse(reader["PPrice"].ToString());
+                product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
+                product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
                 productList.Add(product);
             }
             return productList;
@@ -49,18 +56,23 @@ namespace Database.SCM
         public static ProductModel getProductInFo(String ID)
         {
             ProductModel product =null;
-            String sql = @"select Product.PName pName, Product.PCode pCode, Product.PPrice pPrice ,Product.PThreshHoldValue pthreshHold, Product.PReOrderValue pReOrder , Product.PDescription pDescription
-                         from Product where Product.id='" + ID + "'";
+            String sql = @"select Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,Product.PDescription PDescription ,
+                        Product.PThreshHoldValue PthreshHold,Product.PReOrderValue pReOrder,Product.PurchasePrice purchasePrice,
+                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
+                        from Product where Product.id='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
                 product = new ProductModel();
-                product.ProductThresholdValue = int.Parse(reader["pthreshHold"].ToString());
+                product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
-                product.ProductName = reader["pName"].ToString();
-                product.ProductCode = reader["pCode"].ToString();
-                product.ProductDescription = reader["pDescription"].ToString();
-                product.ProductPrice = float.Parse(reader["PPrice"].ToString());
+                product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
+                product.UnitTypeID = int.Parse(reader["UnitTypeID"].ToString());
+                product.ProductName = reader["PName"].ToString();
+                product.ProductCode = reader["PCode"].ToString();
+                product.ProductDescription = reader["PDescription"].ToString();
+                product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
+                product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
             }
             return product;
         }
@@ -68,7 +80,11 @@ namespace Database.SCM
         public static int updateProduct(ProductModel pModel)
         {
             String sql = @"UPDATE [dbo].[Product]
-                         SET [PName] = '" + pModel.ProductName + "' ,[pCode] = '" + pModel.ProductCode + "', [PPrice] = '" + pModel.ProductPrice + "' ,[PThreshHoldValue] = '" + pModel.ProductThresholdValue + "',[PReOrderValue] = '" + pModel.ProductReOderValue
+                         SET [PName] = '" + pModel.ProductName + "' ,[pCode] = '" + pModel.ProductCode 
+                        +"', [SalePrice]='" + pModel.SalesPrice+ "' , [PDescription] = '" + pModel.ProductDescription 
+                        + "' , [PThreshHoldValue] = '" + pModel.ProductThresholdValue 
+                        + "',[PReOrderValue] = '" +pModel.ProductReOderValue + "' , [PurchasePrice] = '" + pModel.PurchasePrice 
+                        + "' , [UnitTypeID] = '" +pModel.UnitTypeID + "' , [ProductTypeID] = '" + pModel.ProductTypeID
                         + "' WHERE Product.id = '" + pModel.ProductID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
