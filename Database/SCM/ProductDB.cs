@@ -49,16 +49,17 @@ namespace Database.SCM
         public static ProductModel getProductInFo(String ID)
         {
             ProductModel product =null;
-            String sql = @"select Product.PName PName, Product.PCode PCode, Product.PPrice PPrice ,Product.PThreshHoldValue PthreshHold, Product.PReOrderValue pReOrder
+            String sql = @"select Product.PName pName, Product.PCode pCode, Product.PPrice pPrice ,Product.PThreshHoldValue pthreshHold, Product.PReOrderValue pReOrder , Product.PDescription pDescription
                          from Product where Product.id='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
                 product = new ProductModel();
-                product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
+                product.ProductThresholdValue = int.Parse(reader["pthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
-                product.ProductName = reader["PName"].ToString();
-                product.ProductCode = reader["PCode"].ToString();
+                product.ProductName = reader["pName"].ToString();
+                product.ProductCode = reader["pCode"].ToString();
+                product.ProductDescription = reader["pDescription"].ToString();
                 product.ProductPrice = float.Parse(reader["PPrice"].ToString());
             }
             return product;

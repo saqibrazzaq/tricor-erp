@@ -25,6 +25,8 @@ namespace TricorERP.SCM
                 ProductPriceText.Text = product.ProductPrice.ToString();
                 ProductCodeText.Text = product.ProductCode;
                 ProductDescriptionText.Text = product.ProductDescription;
+                ThresholdValueText.Text = product.ProductThresholdValue.ToString();
+                ReOrderValueText.Text = product.ProductReOderValue.ToString();
                 }
             else
             {
