@@ -212,6 +212,18 @@
                                     </li>
                                 </ul>
                             </li>
+                             <li id="Supplier" class="dropdown">
+                                <asp:HyperLink ID="HyperLink39" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Supplier<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink40" NavigateUrl="~/SCM/SearchSupplier.aspx" runat="server">View Suppliers</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink41" NavigateUrl="~/SCM/AddNewSupplier.aspx" runat="server">Add new Supplier</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -259,6 +271,7 @@
             $("#OrderDropdown").addClass("hidden");
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
+            $("#Supplier").addClass("hidden");
 
 
         } else if ('2' == '<%=roleID%>') {
@@ -271,6 +284,7 @@
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
+            $("#Supplier").addClass("hidden");
             
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
