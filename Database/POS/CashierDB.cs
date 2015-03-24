@@ -12,24 +12,60 @@ namespace Database.POS
     public class CashierDB
     {
         // addition of new customer in database and return an id of User 
-        public static CashierModel addNewCashier(CashierModel newcustomer)
+        public static CashierModel addNewCashier(CashierModel newcashier)
         {
-            String sql = @"INSERT INTO [dbo].[User]
-           ([Username] ,[Password] ,[RoleID] ,[CNIC])
-            output inserted.ID 
-            VALUES ('"+newcustomer.Name+"','"+newcustomer.Password+"','2','"+newcustomer.CNIC+"')";
-            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            newcustomer.ID = int.Parse(id.ToString());
-            return newcustomer;
+            String sql = null;
+            CashierModel cashier = new CashierModel();
+            Boolean namecheck = checkCashierName(newcashier.Name);
+            Boolean cniccheck = checkCashierCNIC(newcashier.Name);
+            if (namecheck && cniccheck)
+            {
+                sql = @"INSERT INTO [dbo].[User] ([Username] ,[Password] ,[RoleID] ,[CNIC])
+                  output inserted.ID 
+                  VALUES ('" + newcashier.Name + "','" + newcashier.Password + "','2','" + newcashier.CNIC + "')";
+                object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+                newcashier.ID = int.Parse(id.ToString());
+                return newcashier;
+            }
+            else
+            {
+                return null;
+            }
         }
+        public static Boolean checkCashierName(String name)
+        {
+            String sql = @"SELECT [Username] Name FROM [dbo].[User]
+                    where [User].Username = '" + name + "';";
+            String UserName = null;
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            if (reader.Read())
+                UserName = reader["Name"].ToString();
+            if (UserName == name)
+                return false;
+            return true;
+        }
+
+        public static Boolean checkCashierCNIC(String name)
+        {
+            String sql = @"SELECT [CNIC] CNIC FROM [dbo].[User]
+                         where [User].Username = '" + name + "';";
+            String CNIC = null;
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            if (reader.Read())
+                CNIC = reader["CNIC"].ToString();
+            if (CNIC == name)
+                return false;
+            return true;
+        }
+
 
         // get cashier information and return an object of CashierModel
         public static CashierModel getCashierInFo(String CashierID)
         {
             CashierModel cashier = new CashierModel();
             String sql = @"SELECT [ID],[Username] Name,[Password] Password,[RoleID],[CNIC] CNIC FROM [dbo].[User]
-                           where ID = '" +CashierID+"'";
-                    //SELECT [Username] Name ,[Password] Password FROM [dbo].[User], [CNIC] CNIC where ID = '" + CashierID + "'";
+                           where ID = '" + CashierID + "'";
+            //SELECT [Username] Name ,[Password] Password FROM [dbo].[User], [CNIC] CNIC where ID = '" + CashierID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
@@ -44,13 +80,13 @@ namespace Database.POS
         public static List<CashierModel> getCashierList(String searchtext)
         {
             List<CashierModel> cashiers = new List<CashierModel>();
-            String sql = @"select top 10 [User].ID ID, [User].Username Name, Address.PhoneNo PhoneNo, Address.City 
+            String sql = @"select top 10 [User].ID ID, [User].Username Name, Address.PhoneNo PhoneNo
                            from [User] 
                            join UserAddress on [User].ID = UserAddress.UserID
                            join Address on Address.Id = UserAddress.AddressID
                            where 1=1 
                            and
-                           ([User].Username like '%" +searchtext+"%' or Address.PhoneNo like '%"+searchtext+"%')";
+                           ([User].Username like '%" + searchtext + "%' or Address.PhoneNo like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -66,9 +102,9 @@ namespace Database.POS
         // update the cashier data 
         public static int updateCashier(CashierModel updatecashier)
         {
-            String sql = @"UPDATE [dbo].[User] SET [Username] = '"+updatecashier.Name
-                        +"',[Password] = '"+updatecashier.Password+"',[CNIC] = '"+updatecashier.CNIC
-                        +"' WHERE [ID]="+updatecashier.ID;
+            String sql = @"UPDATE [dbo].[User] SET [Username] = '" + updatecashier.Name
+                        + "',[Password] = '" + updatecashier.Password + "',[CNIC] = '" + updatecashier.CNIC
+                        + "' WHERE [ID]=" + updatecashier.ID;
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -116,19 +152,24 @@ namespace Database.POS
             return customerAddresses;
         }
 
-        public static int deleteAddress(String CashierID, String AddressID)
+        public static int deleteAddress(String UserID, String AddressID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
             con.Open();
             SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
             try
             {
-                String sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + CashierID + "' and [UserAddress].AddressID ='" + AddressID + "';";
+                String sql = null;
+                if(AddressID != null)
+                    sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + UserID + "' and [UserAddress].AddressID ='" + AddressID + "';";
+                else
+                    sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + UserID + "';";
                 int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
-                if (check == 1)
+                if (check > 0)
                 {
-                    int check2 = Database.Common.AddressDB.deleteAddress(AddressID, trans);
-
+                    Database.UserLogin.UserLogin.deleteUser(UserID, trans);
+                    if(AddressID != null)
+                        Database.Common.AddressDB.deleteAddress(AddressID, trans);
                     trans.Commit();
                 }
                 else

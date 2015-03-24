@@ -35,5 +35,18 @@ namespace Database.UserLogin
             return userModel;
         }
 
+
+        public static int deleteUser(string UserID, SqlTransaction trans)
+        {
+            String sql = @"DELETE FROM [dbo].[User]
+                         WHERE [User].ID='" + UserID + "';";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
+            if (check == 1)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
     }
 }

@@ -47,6 +47,7 @@ namespace TricorERP.POS.BranchManager
 
         protected void CashierListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            String UserID = e.CommandArgument.ToString();
             // Edit customer command
             if (e.CommandName == "EditCashier")
             {
@@ -56,9 +57,23 @@ namespace TricorERP.POS.BranchManager
                 Response.Redirect("EditCashier.aspx?cashierID=" + cashierID);
             }
             else if (e.CommandName == "DeleteCashier") {
-                //deleteCashierAddress(AddressID);
-                //Response.Redirect("EditCashier.aspx?CashierID=" + CashierID);
+                deleteCashierAddress(UserID);
+                Response.Redirect("CashierList.aspx");
             }
         }
+        private void deleteCashierAddress(String UserID)
+        {
+            // set the value of parameter as null because it can be delete the data from database according to the user id.
+            int check = Database.POS.CashierDB.deleteAddress(UserID, null);
+            if (check == 1)
+            {
+                Message.Text = "Address is Deleted";
+            }
+            else
+            {
+                Message.Text = "Due to Some error Data is not Deleted";
+            }
+        }
+
     }
 }

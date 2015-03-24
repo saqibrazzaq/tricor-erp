@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="EditAddress.aspx.cs" Inherits="TricorERP.POS.Cashier.AddAddress" %>
+﻿<%@ Page Title="EditAddress" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="EditAddress.aspx.cs" Inherits="TricorERP.POS.Cashier.AddAddress" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

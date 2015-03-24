@@ -15,6 +15,8 @@ namespace TricorERP.POS.Cashier
         protected void Page_Load(object sender, EventArgs e)
         {
             customerID = Request.QueryString["CustomerID"];
+            if (customerID == "0")
+                btnAddNewAddress.Enabled = false;
             if (IsPostBack == false)
             {
                 InitializePageContents(customerID);
@@ -128,7 +130,7 @@ namespace TricorERP.POS.Cashier
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/Cashier/CustomerList.aspx");
+            Response.Redirect("~/POS/Cashier/Home.aspx");
         }
     }
 }

@@ -31,6 +31,15 @@ namespace TricorERP.POS.BranchManager {
         protected global::System.Web.UI.WebControls.TextBox CashierNameText;
         
         /// <summary>
+        /// message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label message;
+        
+        /// <summary>
         /// CashierPasswordText control.
         /// </summary>
         /// <remarks>
@@ -56,15 +65,6 @@ namespace TricorERP.POS.BranchManager {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
-        
-        /// <summary>
-        /// message control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label message;
         
         /// <summary>
         /// CashierAddressesview control.

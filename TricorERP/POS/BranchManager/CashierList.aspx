@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="CashierList.aspx.cs" Inherits="TricorERP.POS.BranchManager.CashierList" %>
+﻿<%@ Page Title="CashierList" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="CashierList.aspx.cs" Inherits="TricorERP.POS.BranchManager.CashierList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="h2">Customer's List</h2>
+   
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">

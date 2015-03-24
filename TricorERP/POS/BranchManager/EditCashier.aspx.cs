@@ -16,6 +16,11 @@ namespace TricorERP.POS.BranchManager
         {
             CashierID = Request.QueryString["CashierID"];
             AddressID = Request.QueryString["AddressID"];
+
+            if (CashierID == "0") { 
+                btnAddNewAddress.Enabled = false;
+            }
+
             if (CashierID != "0")
                 Head.Text = "Cashier Information.";
             else if(CashierID == "0")
@@ -25,7 +30,6 @@ namespace TricorERP.POS.BranchManager
                 InitializePageContents();
             }
         }
-
         private void InitializePageContents()
         {
             CashierData();
@@ -75,8 +79,11 @@ namespace TricorERP.POS.BranchManager
             newcasier.Password = CashierPasswordText.Text;
             newcasier.CNIC = CNIC.Text;
             newcasier = Database.POS.CashierDB.addNewCashier(newcasier);
+
             if (newcasier != null)
                 Response.Redirect("~/POS/BranchManager/AddAddress.aspx?CashierID=" + newcasier.ID + "&AddressID=0");
+            else
+                message.Text = "UserName/CNIC is already exist.";
         }
 
         private void updateCashier()
@@ -130,5 +137,7 @@ namespace TricorERP.POS.BranchManager
         {
             Response.Redirect("~/POS/BranchManager/CashierList.aspx");
         }
+
+        
     }
 }
