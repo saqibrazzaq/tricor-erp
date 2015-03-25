@@ -31,16 +31,20 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>Testing SQL Server Working</h2>
-                <asp:Button CssClass="btn btn-primary" runat="server" OnClick="Unnamed1_Click" Text="New Customer" />
+                
+                <asp:DropDownList runat="server" ID="ProductsList"></asp:DropDownList>
+                &nbsp;&nbsp;
+                <asp:Button CssClass="btn btn-primary" runat="server" OnClick="Unnamed1_Click" Text=" Add " />
             </div>
             <div class="panel-body">
-                <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" OnSelectedIndexChanged="CustomerListview_SelectedIndexChanged">
+                <asp:ListView ID="OrderListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" OnSelectedIndexChanged="CustomerListview_SelectedIndexChanged">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                             <tr>
                                 <th>ID</th>
-                                <th>Full Name</th>
-                                <th>Customer Type</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
                             </tr>
                             <tr runat="server" id="itemPlaceholder"></tr>
                         </table>
@@ -51,9 +55,13 @@
                                 <%# Eval("ID") %>
                             </td>
                             <td>
-                                <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("FullName") %>'></asp:LinkButton>
+                                <%# Eval("ProductID") %>
                             </td>
-                            <td><%# Database.Samples.Customer.GetCustomerType(int.Parse(Eval("CustomerType").ToString())) %></td>
+                            
+                            <td>
+                                <%# Eval("Quantity") %>
+                            </td>
+                            <td><%# Eval("Price") %></td>
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>

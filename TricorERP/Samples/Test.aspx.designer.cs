@@ -40,12 +40,21 @@ namespace TricorERP.Samples {
         protected global::System.Web.UI.WebControls.Button btnHideJumbotron;
         
         /// <summary>
-        /// CustomerListview control.
+        /// ProductsList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView CustomerListview;
+        protected global::System.Web.UI.WebControls.DropDownList ProductsList;
+        
+        /// <summary>
+        /// OrderListview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView OrderListview;
     }
 }
