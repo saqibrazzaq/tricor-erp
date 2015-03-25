@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.POS.Order
 {
-    class SaleOrderItem
+    class SaleOrderModel
     {
     }
 }
