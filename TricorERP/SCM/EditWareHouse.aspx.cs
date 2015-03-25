@@ -43,7 +43,7 @@ namespace TricorERP.SCM
         }
         private List<Models.Global.AddressModel> GetAddressesFromDB(String Id)
         {
-            return Database.SCM.AddressDB.getWareHouseAddresses(Id);
+            return Database.SCM.WareHouseDB.getWareHouseAddresses(Id);
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)

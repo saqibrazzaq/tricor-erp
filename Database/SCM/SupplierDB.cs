@@ -46,7 +46,7 @@ namespace Database.SCM
             while (reader.Read())
             {
                 SupplierModel sModel = new SupplierModel();
-                sModel.ID = int.Parse(reader["ID"].ToString());
+                sModel.ID = int.Parse(reader["sID"].ToString());
                 sModel.Name = reader["Name"].ToString();
                 sModel.CNIC = reader["CNIC"].ToString();
                 supplierList.Add(sModel);
@@ -59,7 +59,7 @@ namespace Database.SCM
 
             String sql = @"select Supplier.ID sID , Supplier.Name Name, Supplier.CNIC CNIC
                         from Supplier
-                        where WareHouse.ID = '" + ID + "'";
+                        where Supplier.ID = '" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
@@ -68,6 +68,30 @@ namespace Database.SCM
                     sModel.CNIC = reader["CNIC"].ToString();
             }
             return sModel;
+        }
+        public static List<AddressModel> getSupplierAddresses(String ID)
+        {
+            List<AddressModel> SupplierAddresses = new List<AddressModel>();
+
+            String sql = @"select top 10  Address.ID ID , Address.City City ,  Address.Location1 Location1,Address.Location2 Location2, Address.PhoneNo Phoneno , Address.Email Email
+                          from Address
+                          join SupplierAddress on Address.ID = SupplierAddress.AddressID
+                          join Supplier on SupplierAddress.SID = Supplier.ID
+                         where Supplier.ID='" + ID + "' ";
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                AddressModel address = new AddressModel();
+                address.ID = int.Parse(reader["ID"].ToString());
+                address.City = reader["City"].ToString();
+                address.Location1 = reader["Location1"].ToString();
+                address.Location2 = reader["Location2"].ToString();
+                address.Phonenumber = reader["Phoneno"].ToString();
+                address.Email = reader["Email"].ToString();
+                SupplierAddresses.Add(address);
+            }
+            return SupplierAddresses;
         }
         public static int addSupplierAddress(AddressModel newaddress, String sID)
         {

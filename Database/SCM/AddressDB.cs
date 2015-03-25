@@ -10,30 +10,7 @@ namespace Database.SCM
 {
     public class AddressDB
     {
-        public static List<AddressModel> getWareHouseAddresses(String ID)
-        {
-            List<AddressModel> wareHouseAddresses = new List<AddressModel>();
 
-            String sql = @"select top 10 Address.ID ID , Address.City City ,  Address.Location1 Location1,Address.Location2 Location2, Address.PhoneNo Phoneno , Address.Email Email
-                          from Address
-                          join WareHouseAddress on Address.ID = WareHouseAddress.AddressID
-                          join Warehouse on WareHouseAddress.WHID = Warehouse.ID
-                         where WareHouse.Id='" + ID + "' ";
-
-            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-            while (reader.Read())
-            {
-                AddressModel address = new AddressModel();
-                address.ID = int.Parse(reader["ID"].ToString());
-                address.City = reader["City"].ToString();
-                address.Location1 = reader["Location1"].ToString();
-                address.Location2 = reader["Location2"].ToString();
-                address.Phonenumber = reader["Phoneno"].ToString();
-                address.Email = reader["Email"].ToString();
-                wareHouseAddresses.Add(address);
-            }
-            return wareHouseAddresses;
-        }
 
         //set address within database and return id of inserted address.
         public static AddressModel addAddress(AddressModel newaddress, SqlTransaction trans)
@@ -42,8 +19,8 @@ namespace Database.SCM
                             ([City], [Location1] , [Location2] , [PhoneNo] , [Email] )
                          output inserted.ID 
                          values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Location2 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "')";
-            int check1 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
-            newaddress.ID = check1;
+            Object check = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            newaddress.ID = int.Parse(check.ToString());
             return newaddress;
            
         }
@@ -81,6 +58,7 @@ namespace Database.SCM
             }
             return 0;
         }
+
 
 
         //delete address of an customer from CustomerAddress table. 

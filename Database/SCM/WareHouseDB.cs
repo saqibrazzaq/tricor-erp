@@ -69,6 +69,30 @@ namespace Database.SCM
             }
             return whModel;
         }
+        public static List<AddressModel> getWareHouseAddresses(String ID)
+        {
+            List<AddressModel> wareHouseAddresses = new List<AddressModel>();
+
+            String sql = @"select top 10 Address.ID ID , Address.City City ,  Address.Location1 Location1,Address.Location2 Location2, Address.PhoneNo Phoneno , Address.Email Email
+                          from Address
+                          join WareHouseAddress on Address.ID = WareHouseAddress.AddressID
+                          join Warehouse on WareHouseAddress.WHID = Warehouse.ID
+                         where WareHouse.Id='" + ID + "' ";
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                AddressModel address = new AddressModel();
+                address.ID = int.Parse(reader["ID"].ToString());
+                address.City = reader["City"].ToString();
+                address.Location1 = reader["Location1"].ToString();
+                address.Location2 = reader["Location2"].ToString();
+                address.Phonenumber = reader["Phoneno"].ToString();
+                address.Email = reader["Email"].ToString();
+                wareHouseAddresses.Add(address);
+            }
+            return wareHouseAddresses;
+        }
         public static int addAddress(AddressModel newaddress, String WHID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);

@@ -34,7 +34,7 @@ namespace TricorERP.SCM
             SupplierCNICText.Text = sModel.CNIC;
  
             supplierModel = sModel;
-            SupplierAddressesview.DataSource = supplierModel;
+            SupplierAddressesview.DataSource = supplierAddresses;
             SupplierAddressesview.DataBind();
         }
         private SupplierModel GetSupplierInFo(String Id)
@@ -43,7 +43,7 @@ namespace TricorERP.SCM
         }
         private List<Models.Global.AddressModel> GetAddressesFromDB(String Id)
         {
-            return Database.SCM.AddressDB.getWareHouseAddresses(Id);
+            return Database.SCM.SupplierDB.getSupplierAddresses(Id);
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
