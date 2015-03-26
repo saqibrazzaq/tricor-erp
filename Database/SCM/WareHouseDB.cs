@@ -11,21 +11,21 @@ namespace Database.SCM
 {
     public class WareHouseDB
     {
-         public static WareHouseModel addNewWareHouse( WareHouseModel whModel)
+        public static WareHouseModel addNewWareHouse(WareHouseModel whModel)
         {
-              String sql = @"INSERT INTO [dbo].[WareHouse]
+            String sql = @"INSERT INTO [dbo].[WareHouse]
                         ([WHName],[WHDescription])
 		                output inserted.ID 
-                        VALUES ('" + whModel.Name + "','" + whModel.Description+ "')";
+                        VALUES ('" + whModel.Name + "','" + whModel.Description + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             whModel.ID = int.Parse(id.ToString());
             return whModel;
         }
-           public static int updateWareHouse( WareHouseModel whModel)
+        public static int updateWareHouse(WareHouseModel whModel)
         {
-              String sql = @"Update [dbo].[WareHouse]
-                         SET [WHName] = '" + whModel.Name + "' , [WHDescription]= '"+ whModel.Description
-                         +"' where ID='" +whModel.ID+ "' ";
+            String sql = @"Update [dbo].[WareHouse]
+                         SET [WHName] = '" + whModel.Name + "' , [WHDescription]= '" + whModel.Description
+                       + "' where ID='" + whModel.ID + "' ";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -33,7 +33,7 @@ namespace Database.SCM
             }
             return 0;
         }
-        
+
         public static List<WareHouseModel> getWareHouseList(String searchtext)
         {
             List<WareHouseModel> wareHouseList = new List<WareHouseModel>();
@@ -55,7 +55,7 @@ namespace Database.SCM
         }
         public static WareHouseModel getWareHouseInFo(String ID)
         {
-            WareHouseModel whModel= null;
+            WareHouseModel whModel = null;
 
             String sql = @"select  WareHouse.WHName WHName,  WareHouse.WHDescription WHDescription 
                            from WareHouse
@@ -63,30 +63,30 @@ namespace Database.SCM
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
-                    whModel = new WareHouseModel();
-                    whModel.Name = reader["WHName"].ToString();
-                    whModel.Description = reader["WHDescription"].ToString();
+                whModel = new WareHouseModel();
+                whModel.Name = reader["WHName"].ToString();
+                whModel.Description = reader["WHDescription"].ToString();
             }
             return whModel;
         }
         public static int addAddress(AddressModel newaddress, string WHID)
         {
-            
+
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
             con.Open();
             SqlTransaction trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
             try
             {
                 //Query1
-                newaddress = Database.SCM.AddressDB.addAddress(newaddress,trans);
-              
+                newaddress = Database.SCM.AddressDB.addAddress(newaddress, trans);
+
                 if (newaddress.ID > 0)
                 {
                     //Query 2
                     String sql = @"INSERT INTO [dbo].[WareHouseAddress] ([WHID] ,[AddressID])
                              output inserted.ID
                                  VALUES ('" + WHID + "', '" + newaddress.ID + "')";
-                int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
+                    int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
                     trans.Commit();
                 }
                 else
@@ -105,7 +105,7 @@ namespace Database.SCM
             }
             return 1;
         }
-        }
+    }
         public static int deleteAddress(string WHID, string AddressID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
@@ -116,11 +116,11 @@ namespace Database.SCM
                 //Query 1.
                 String sql1 = @"DELETE FROM [dbo].[WareHouseAddress] WHERE [WareHouseAddress].WHID='" + WHID + "' and [WareHouseAddress].AddressID ='" + AddressID + "';";
                 int check2 = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql1, null);
-              
+
                 if (check2 == 1)
                 {
                     //Query 2
-                    int check = Database.SCM.AddressDB.deleteAddress(AddressID, trans);   
+                    int check = Database.SCM.AddressDB.deleteAddress(AddressID, trans);
                     trans.Commit();
                 }
                 else
