@@ -7,8 +7,22 @@ using System.Web.UI.WebControls;
 
 namespace TricorERP.Samples
 {
+    public class OrderItem
+    {
+        public int ID { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
+    }
+
     public partial class Test : System.Web.UI.Page
     {
+        
+
+        // Add the order item list as member
+        List<OrderItem> orderItemList = new List<OrderItem>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -22,27 +36,63 @@ namespace TricorERP.Samples
         /// </summary>
         private void InitializePageContents()
         {
-            SearchCustomers();
+            LoadProductsListInDropdown();
+        }
+
+        private void LoadProductsListInDropdown()
+        {
+            // Get products list
+            List<Product> products = GetProductsDummy();
+            // Bind list to the dropdown
+            ProductsList.DataSource = products;
+            ProductsList.DataTextField = "Name";
+            ProductsList.DataValueField = "ID";
+            ProductsList.DataBind();
+        }
+
+        private List<Product> GetProductsDummy()
+        {
+            // Initialize new List
+            List<Product> products = new List<Product>();
+
+            // Create the products
+            Product p1 = new Product() { ID = 1, Name = "Door", Price = 3000 };
+            Product p2 = new Product() { ID = 2, Name = "Window", Price = 2000 };
+            Product p3 = new Product() { ID = 3, Name = "Tile", Price = 100 };
+
+            // Add the products to the list
+            products.Add(p1);
+            products.Add(p2);
+            products.Add(p3);
+
+            // Return the list
+            return products;
+        }
+
+        class Product
+        {
+            public int ID { get; set; }
+            public String Name { get; set; }
+            public float Price { get; set; }
         }
 
         /// <summary>
-        /// Search customers
+        /// Add product to the order
         /// </summary>
-        private void SearchCustomers()
+        private void AddProductToOrder()
         {
-            // Declare list
-            List<Models.Samples.CustomerModel> customers = null;
-            // Get from dummy
-            customers = TryDummyData();
-            //customers = GetFromDatabase();
-            // Bind it to the listview
-            CustomerListview.DataSource = customers;
-            CustomerListview.DataBind();
-        }
+            // Get the product from dropdown, which we are going to add
+            int productID = int.Parse(ProductsList.SelectedValue);
+            
+            // Create a new order item
+            OrderItem orderItem = new OrderItem() { ID = 1, OrderID = 0, ProductID = productID, Price = 3000, Quantity = 1 };
 
-        private List<Models.Samples.CustomerModel> GetFromDatabase()
-        {
-            return Database.Samples.Customer.SearchCustomers("");
+            // Add this item to the list
+            orderItemList.Add(orderItem);
+
+            // Now bind with the listview
+            OrderListview.DataSource = orderItemList;
+            OrderListview.DataBind();
         }
 
         /// <summary>
@@ -95,8 +145,7 @@ namespace TricorERP.Samples
 
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
-            // Open the edit customer page, without any query string
-            Response.Redirect("EditCustomer.aspx");
+            AddProductToOrder();
         }
 
         protected void btnShowJumbotron_Click(object sender, EventArgs e)
