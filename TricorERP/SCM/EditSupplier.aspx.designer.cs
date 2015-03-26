@@ -10,70 +10,43 @@
 namespace TricorERP.SCM {
     
     
-    public partial class AddAddress {
+    public partial class EditSupplier {
         
         /// <summary>
-        /// WHNameText control.
+        /// SupplierNameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHNameText;
+        protected global::System.Web.UI.WebControls.TextBox SupplierNameText;
         
         /// <summary>
-        /// WHDescriptionText control.
+        /// SupplierCNICText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox WHDescriptionText;
+        protected global::System.Web.UI.WebControls.TextBox SupplierCNICText;
         
         /// <summary>
-        /// CityText control.
+        /// btnAddNewAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CityText;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
         
         /// <summary>
-        /// Location1Text control.
+        /// SupplierAddressesview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Location1Text;
-        
-        /// <summary>
-        /// Location2Text control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Location2Text;
-        
-        /// <summary>
-        /// PhoneNumberText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PhoneNumberText;
-        
-        /// <summary>
-        /// EmailText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EmailText;
+        protected global::System.Web.UI.WebControls.ListView SupplierAddressesview;
         
         /// <summary>
         /// Savebtn control.
@@ -94,12 +67,12 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
         
         /// <summary>
-        /// ErrorMessageLable control.
+        /// message control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorMessageLable;
+        protected global::System.Web.UI.WebControls.Label message;
     }
 }

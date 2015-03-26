@@ -14,18 +14,18 @@ namespace TricorERP.SCM
         {
 
         }
-        protected SupplierModel addNewWareHouse(SupplierModel supplierModel)
+        protected SupplierModel addNewSupplier(SupplierModel supplierModel)
         {
-            return Database.SCM.WareHouseDB.addNewWareHouse(supplierModel);
+            return Database.SCM.SupplierDB.addNewSupplier(supplierModel);
         }
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            WareHouseModel warehouse = new WareHouseModel();
-            warehouse.Name = WHNameText.Text;
-            warehouse.Description = WHDescriptionText.Text;
-            WareHouseModel newWareHouse = addNewWareHouse(warehouse);
-            if (newWareHouse != null)
-                ErrorMessageLable.Text = "Data of new Product is saved.";
+            SupplierModel sMOdel = new SupplierModel();
+            sMOdel.Name = SupplierNameText.Text;
+            sMOdel.CNIC = SupplierCNICText.Text;
+            SupplierModel newSupplier = addNewSupplier(sMOdel);
+            if (newSupplier != null)
+                ErrorMessageLable.Text = "Data of new Supplier is saved.";
         }
     }
 }
