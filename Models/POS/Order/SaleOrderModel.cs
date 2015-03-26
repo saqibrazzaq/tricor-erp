@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Models.POS.Order
 {
-    class SaleOrderModel
+    public class SaleOrderModel
     {
+        public int ID { set; get; }
+        public int CustomerID { set; get; }
+        public DateTime OrderDate { set; get; }
+        public DateTime DeliveryDate { set; get; } 
     }
 }

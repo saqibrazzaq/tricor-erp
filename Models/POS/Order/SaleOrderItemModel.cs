@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Models.POS.Order
 {
-    class SaleOrderItemModel
+    public class SaleOrderItemModel
     {
+        public int ID { set; get; }
+        public int SaleOrderID { set; get; }
+        public int ProductID { set; get; }
+        public int Quantity { set; get; }
+        public float UnitPrice { set; get; }
+
     }
 }
