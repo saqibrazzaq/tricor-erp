@@ -8,7 +8,7 @@ using Models.POS.Customer;
 using Models.POS.Order;
 
 // for get the products
-using Models.SCM;
+using Models.POS;
 
 
 
