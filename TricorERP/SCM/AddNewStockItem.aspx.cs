@@ -16,7 +16,7 @@ namespace TricorERP.SCM
         }
         private void loadDropDownLists()
         {
-            //WareHouseDropDown.DataSource = ;
+            //WareHouseDropDown.DataSource = ;as
             if(IsPostBack == false)
             {
             LoadProductList();
