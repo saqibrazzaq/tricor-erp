@@ -8,7 +8,10 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                    <b>Customer :</b><asp:DropDownList ID="CustomerDropDown" Font-Names="InputName" CssClass="form-control" runat="server" AutoPostBack="True">
+                    <b>Customer :</b>
+                    <asp:DropDownList ID="CustomerDropDown" Font-Names="InputName" CssClass="form-control" runat="server" AutoPostBack="True">
+                        <asp:ListItem>Select Customer</asp:ListItem>
+                        
                     </asp:DropDownList>
                 </div>
             </div>
@@ -22,7 +25,9 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                    <b>Products :</b><asp:DropDownList ID="ProductsDropDown" Font-Names="InputName" CssClass="form-control" runat="server" AutoPostBack="True">
+                    <b>Products :</b>
+                    <asp:DropDownList ID="ProductsDropDown" Font-Names="InputName" CssClass="form-control" runat="server" AutoPostBack="True">
+                        <asp:ListItem>Select Product</asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>

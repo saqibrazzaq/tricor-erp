@@ -55,8 +55,7 @@ namespace TricorERP.POS.BranchManager
                 String cashierID = e.CommandArgument.ToString();
                 // Open the edit customer page
                 Response.Redirect("EditCashier.aspx?cashierID=" + cashierID);
-            }
-            else if (e.CommandName == "DeleteCashier") {
+            } else if (e.CommandName == "DeleteCashier") {
                 deleteCashierAddress(UserID);
                 Response.Redirect("CashierList.aspx");
             }

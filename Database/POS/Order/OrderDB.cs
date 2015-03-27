@@ -8,5 +8,6 @@ namespace Database.POS.Order
 {
     public class OrderDB
     {
+
     }
 }
