@@ -8,11 +8,11 @@ namespace Models.POS.Order
 {
     public class SaleOrderItemModel
     {
-        public int ID { set; get; }
-        public int SaleOrderID { set; get; }
-        public int ProductID { set; get; }
-        public int Quantity { set; get; }
-        public float UnitPrice { set; get; }
+        public int ID { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
 
     }
 }

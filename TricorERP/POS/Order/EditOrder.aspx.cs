@@ -16,142 +16,67 @@ namespace TricorERP.POS.Order
 {
     public partial class EditOrder : System.Web.UI.Page
     {
-        String CustomerID = "0";
-        String productID = "0";
-        String OrderDate = "0";
-        List<ProductModel> products;
-        List<CustomerModel> customer;
+        List<SaleOrderItemModel> orderitemlist = new List<SaleOrderItemModel>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CustomerID = Request.QueryString["CustomerID"];
-            
-            // current date when we create an order then we can use it.
-            DateTime dt = DateTime.Now;
-            OrderDate = dt.ToShortDateString();
-            DateLab.Text = OrderDate.ToString();
-
             if (IsPostBack == false)
             {
                 InitializePageContents();
             }
-
         }
+
+
+        protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            // Edit customer command
+            if (e.CommandName == "EditCustomer")
+            {
+                // Customer ID is in argument
+                String customerID = e.CommandArgument.ToString();
+                // Open the edit customer page
+                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
+            }
+        }
+
 
         private void InitializePageContents()
         {
-            loadDropDownLists();
+            LoadProductsListInDropdown();
         }
 
-        private void loadDropDownLists()
+        // load all the data of products in the drop down list and that list is get from database 
+        private void LoadProductsListInDropdown()
         {
-            LoadCustomerList();
-            LoadProductList();
-        }
-
-        private void LoadCustomerList()
-        {
-            customer = GetCustomerFromDatabase();
-            
-            CustomerDropDown.DataTextField = "Name";
-            CustomerDropDown.DataValueField = "ID";
-            
-            CustomerDropDown.DataSource = customer;
-            
-            CustomerDropDown.DataBind();
-
-            //Response.Redirect("~/POS/Order/EditOrder.aspx?CustomerID=");//" + CustomerID + "&ProductID=" + productID);
-            
-        }
-
-        private List<CustomerModel> GetCustomerFromDatabase()
-        {
-            return Database.POS.Customer.CustomerDB.getCustomersList("");
-        }
-
-        private void LoadProductList()
-        {
-            products = GetProductsFromDatabase();
-
-            ProductsDropDown.DataTextField = "ProductName";
-            ProductsDropDown.DataValueField = "ProductID";
-            ProductsDropDown.DataSource = products;
-            
-
-            for (int i = 0; i < products.Count; i++)
-            {
-                productID = products[i].ProductID.ToString();
-            }
-
+            List<ProductModel> productlist = GetProductsList();
+            ProductsDropDown.DataTextField = "Name";
+            ProductsDropDown.DataValueField = "ID";
             ProductsDropDown.DataBind();
-
-            //Response.Redirect("~/POS/Order/EditOrder.aspx?CustomerID=");// + CustomerID + "&ProductID=" + productID);
         }
-
-        private List<ProductModel> GetProductsFromDatabase()
+        // return all the product list that is save in the database
+        private List<ProductModel> GetProductsList()
         {
             return Database.SCM.ProductDB.getProductList("");
         }
 
         protected void AddProducts_Click(object sender, EventArgs e)
         {
-
-            // 1. OrderItemModel item = new OrderItemModel()
-            // item.productiD = dropdown.id
-            // item.saleOrderID = orderID (querystring)
-            // OrderItemDB.Add(item)
-
-            // 2. Bind list view
-            // List<OrderItem> orderItems = OrderDB.GetOrderItems(orderID)
-            
-            Message.Text = ProductsDropDown.SelectedItem.ToString();
-            OrderModel order = new OrderModel();
-            order.ProductName = ProductsDropDown.SelectedItem.ToString();
-            //OrderListview.DataSource = order;
-            //OrderListview.DataBind();
-
-            
+            AddProductToOrder();
         }
 
-        protected void CustomerListview_SelectedIndexChanged(object sender, EventArgs e)
+        // addition of products in Product list.
+        private void AddProductToOrder()
         {
+            int productID = int.Parse(ProductsDropDown.SelectedValue);
+            SaleOrderItemModel orderItem = new SaleOrderItemModel();
 
         }
 
         protected void SaveButton_Click(object sender, EventArgs e)
         {
-            // for get the id og specific customer.
-            for (int i = 0; i < customer.Count; i++)
-            {
-                CustomerID = customer[i].ID.ToString();
-            }
-
-
-
-            if (CustomerID != "0")
-            {
-                updateCustomerOrder();
-            }
-            else
-            {
-                newCustomerOrder();
-            }
-        }
-
-        private void newCustomerOrder()
-        {
-            SaleOrderModel newsale = new SaleOrderModel();
 
         }
 
-        private void updateCustomerOrder()
-        {
-            //throw new NotImplementedException();
-        }
 
-        protected void OrderListview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

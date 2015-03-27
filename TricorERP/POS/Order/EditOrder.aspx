@@ -11,7 +11,7 @@
                     <b>Customer :</b>
                     <asp:DropDownList ID="CustomerDropDown" Font-Names="InputName" CssClass="form-control" runat="server" AutoPostBack="True">
                         <asp:ListItem>Select Customer</asp:ListItem>
-                        
+
                     </asp:DropDownList>
                 </div>
             </div>
@@ -40,11 +40,11 @@
         <br />
         <div class="row container-fluid">
             <div class="col-lg-8">
-
-                <asp:ListView ID="OrderListview" runat="server" OnSelectedIndexChanged="OrderListview_SelectedIndexChanged">
+                <asp:ListView ID="OrderListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" OnSelectedIndexChanged="CustomerListview_SelectedIndexChanged">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
-                            <tr class="active">
+                            <tr>
+                                <th>ID</th>
                                 <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
@@ -55,14 +55,16 @@
                     <ItemTemplate>
                         <tr runat="server">
                             <td>
-                                 <%# Eval("ProductName") %>
+                                <%# Eval("ID") %>
                             </td>
                             <td>
-                                <asp:TextBox ID="Quantity" runat="server"></asp:TextBox>
+                                <%# Eval("ProductID") %>
                             </td>
+
                             <td>
-                                <%# Eval("ProductPrice") %>
+                                <%# Eval("Quantity") %>
                             </td>
+                            <td><%# Eval("Price") %></td>
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>
