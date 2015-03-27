@@ -167,9 +167,11 @@ namespace Database.POS
                 int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
                 if (check > 0)
                 {
-                    Database.UserLogin.UserLogin.deleteUser(UserID, trans);
-                    if(AddressID != null)
+                    if (AddressID != null)
                         Database.Common.AddressDB.deleteAddress(AddressID, trans);
+                    else
+                        Database.UserLogin.UserLogin.deleteUser(UserID, trans);
+                    
                     trans.Commit();
                 }
                 else
