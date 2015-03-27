@@ -46,11 +46,16 @@
     <Compile Include="POS\Customer\CustomerModel.cs" />
     <Compile Include="POS\Order\OrderModel.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <Compile Include="POS\Order\SaleOrderModel.cs" />
     <Compile Include="POS\Order\SaleOrderItemModel.cs" />
     <Compile Include="POS\Stock\POSStock.cs" />
 >>>>>>> origin/master
+=======
+    <Compile Include="POS\Order\SaleOrder.cs" />
+    <Compile Include="POS\Order\SaleOrderItem.cs" />
+>>>>>>> parent of 59aee01... refresh
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\CustomerModel.cs" />
     <Compile Include="SCM\ProductModel.cs" />

@@ -72,7 +72,6 @@
     <Content Include="SCM\AddNewSupplier.aspx" />
     <Content Include="SCM\EditSupplier.aspx" />
     <Content Include="SCM\EditWareHouse.aspx" />
-    <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\SearchAddress.aspx" />
     <Content Include="SCM\SearchStockItem.aspx" />
     <Content Include="SCM\SearchSupplier.aspx" />
@@ -251,13 +250,6 @@
     </Compile>
     <Compile Include="SCM\EditWareHouse.aspx.designer.cs">
       <DependentUpon>EditWareHouse.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SCM\PurchaseOrder.aspx.cs">
-      <DependentUpon>PurchaseOrder.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SCM\PurchaseOrder.aspx.designer.cs">
-      <DependentUpon>PurchaseOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SearchAddress.aspx.cs">
       <DependentUpon>SearchAddress.aspx</DependentUpon>

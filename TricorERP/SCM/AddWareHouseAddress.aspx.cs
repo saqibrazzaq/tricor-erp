@@ -69,7 +69,7 @@ namespace TricorERP.SCM
           
         }
 
-        //for update the addressjj 
+        //for update the address 
         private void updateAddress()
         {
             AddressModel updateaddress = new AddressModel();
@@ -77,7 +77,7 @@ namespace TricorERP.SCM
             updateaddress.City = CityText.Text;
             updateaddress.Location1 = Location1Text.Text;
             updateaddress.Location2 = Location2Text.Text;
-            updateaddress.Phonenumber = PhoneNumberText.Text;  
+            updateaddress.Phonenumber = PhoneNumberText.Text;
             updateaddress.Email = EmailText.Text;
             int check = Database.SCM.AddressDB.updateAddress(updateaddress);
             if (check == 1)
