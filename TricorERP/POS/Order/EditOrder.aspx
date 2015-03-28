@@ -43,11 +43,12 @@
                 <asp:ListView ID="OrderListview" runat="server" OnItemCommand="CustomerListview_ItemCommand" OnSelectedIndexChanged="CustomerListview_SelectedIndexChanged">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
-                            <tr>
+                            <tr class="active">
                                 <th>ID</th>
                                 <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Delete</th>
                             </tr>
                             <tr runat="server" id="itemPlaceholder"></tr>
                         </table>
@@ -64,7 +65,12 @@
                             <td>
                                 <%# Eval("Quantity") %>
                             </td>
-                            <td><%# Eval("Price") %></td>
+                            <td>
+                                <%# Eval("Price") %>
+                            </td>
+                            <td>
+                                <asp:LinkButton runat="server" CommandName="DeleteAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                            </td>
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>

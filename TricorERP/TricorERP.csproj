@@ -64,6 +64,7 @@
     <Content Include="POS\Cashier\EditAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="POS\Order\EditOrder.aspx" />
+    <Content Include="POS\Order\EditOrderItem.aspx" />
     <Content Include="POS\Order\OrderList.aspx" />
     <Content Include="SCM\AddSupplierAddress.aspx" />
     <Content Include="SCM\AddWareHouseAddress.aspx" />
@@ -179,6 +180,13 @@
     </Compile>
     <Compile Include="POS\Order\EditOrder.aspx.designer.cs">
       <DependentUpon>EditOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Order\EditOrderItem.aspx.cs">
+      <DependentUpon>EditOrderItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Order\EditOrderItem.aspx.designer.cs">
+      <DependentUpon>EditOrderItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\Order\OrderList.aspx.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
