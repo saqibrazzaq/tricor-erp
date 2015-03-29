@@ -168,11 +168,11 @@
                                 <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink23" NavigateUrl="" runat="server">Add new Order</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink23" NavigateUrl="~/SCM/PurchaseOrder.aspx" runat="server">Add new Order</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink24" NavigateUrl="" runat="server">View previous Orders</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink24" NavigateUrl="~/SCM/SearchPurchaseOrder.aspx" runat="server">View previous Orders</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>

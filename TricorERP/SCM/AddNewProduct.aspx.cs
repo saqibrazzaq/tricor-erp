@@ -11,16 +11,16 @@ namespace TricorERP.SCM
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        String check = null;
-        String id = null;
+        String UpdateCheck = null;
+        String Productid = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            check = Request.QueryString["update"];
-             id = Request.QueryString["ProductID"];
-            if (check == "1" && IsPostBack == false)
+            UpdateCheck = Request.QueryString["update"];
+             Productid = Request.QueryString["ProductID"];
+            if (UpdateCheck == "1" && IsPostBack == false)
                 {
                 ProductModel product = new ProductModel();
-                product = Database.SCM.ProductDB.getProductInFo(id);
+                product = Database.SCM.ProductDB.getProductInFo(Productid);
                 ProductNameText.Text = product.ProductName;
                 SalePriceText.Text = product.SalesPrice.ToString();
                 PurchasePriceText.Text = product.PurchasePrice.ToString();
@@ -64,9 +64,9 @@ namespace TricorERP.SCM
             product.ProductDescription = ProductDescriptionText.Text;
             int updated = 0;
              ProductModel newProduct = null;
-            if(check != null)
+            if(UpdateCheck != null)
             {
-                product.ProductID = int.Parse(id);
+                product.ProductID = int.Parse(Productid);
                 updated = updateProduct(product);
             }
             else
