@@ -11,7 +11,7 @@ namespace TricorERP.POS.Cashier
     public partial class EditCustomer : System.Web.UI.Page
     {
         String customerID = "0";
-
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             customerID = Request.QueryString["CustomerID"];

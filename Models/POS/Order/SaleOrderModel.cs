@@ -10,7 +10,7 @@ namespace Models.POS.Order
     {
         public int ID { set; get; }
         public int CustomerID { set; get; }
-        public DateTime OrderDate { set; get; }
-        public DateTime DeliveryDate { set; get; } 
+        public String OrderDate { set; get; }
+        public String DeliveryDate { set; get; } 
     }
 }

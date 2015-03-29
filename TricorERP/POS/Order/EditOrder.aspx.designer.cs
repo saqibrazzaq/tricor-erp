@@ -22,31 +22,31 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.DropDownList CustomerDropDown;
         
         /// <summary>
-        /// DateLab control.
+        /// DateText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DateLab;
+        protected global::System.Web.UI.WebControls.TextBox DateText;
         
         /// <summary>
-        /// ProductsDropDown control.
+        /// DeliveryDateText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ProductsDropDown;
+        protected global::System.Web.UI.WebControls.TextBox DeliveryDateText;
         
         /// <summary>
-        /// AddProducts control.
+        /// AddProductsButten control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton AddProducts;
+        protected global::System.Web.UI.WebControls.LinkButton AddProductsButten;
         
         /// <summary>
         /// OrderListview control.
@@ -58,6 +58,15 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.ListView OrderListview;
         
         /// <summary>
+        /// Message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Message;
+        
+        /// <summary>
         /// SaveButton control.
         /// </summary>
         /// <remarks>
@@ -67,12 +76,12 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.LinkButton SaveButton;
         
         /// <summary>
-        /// Message control.
+        /// CancelButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Message;
+        protected global::System.Web.UI.WebControls.LinkButton CancelButton;
     }
 }
