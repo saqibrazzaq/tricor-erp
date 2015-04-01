@@ -49,7 +49,7 @@
     <Compile Include="Samples\Customer.cs" />
     <Compile Include="SCM\AddressDB.cs" />
     <Compile Include="SCM\ProductDB.cs" />
-    <Compile Include="SCM\PurchaseProductDB.cs" />
+    <Compile Include="SCM\PurchaseOrderDB.cs" />
     <Compile Include="SCM\StockDB.cs" />
     <Compile Include="SCM\SupplierDB.cs" />
     <Compile Include="SCM\WareHouseDB.cs" />

@@ -8,13 +8,13 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                 <label for="InputName">Product Code</label>
+                 <label for="InputName">Product</label>
                 <asp:DropDownList ID="ProductDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
                 </asp:DropDownList>
                 </div>
             </div>
             <div class="col-lg-3">
-                <label for="InputName">WareHouse ID</label>
+                <label for="InputName">WareHouse</label>
                <asp:DropDownList ID="WareHouseDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
                 </asp:DropDownList>
             </div>

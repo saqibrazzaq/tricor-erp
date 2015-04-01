@@ -9,9 +9,10 @@ namespace Models.SCM
     public class PurchaseOrderModel
     {
         public int ID { set; get; }
-        public int WareHouseID { set; get; }
-        public int SupplierID { set; get; }
+        public int WHID { set; get; }
+        public int SID { set; get; }
         public String OrderDate { set; get; }
+        public String OrderType { set; get; }
         public List<PurchaseOrderItemsModel> PurchaseOrderItems { set; get; }
     }
 }

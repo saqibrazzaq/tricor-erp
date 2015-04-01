@@ -24,7 +24,7 @@ namespace Database.SCM
         public static List<ProductModel> geStockItemList(String searchtext)
         {
             List<ProductModel> stockItemList = new List<ProductModel>();
-            String sql = @"select top 10 Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
+            String sql = @"select Product.ID PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
                         Product.PThreshHoldValue PthreshHold , Product.PReOrderValue pReOrder , Product.PurchasePrice purchasePrice , 
                         Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
                         from product
@@ -36,7 +36,7 @@ namespace Database.SCM
             while (reader.Read())
             {
                 ProductModel product = new ProductModel();
-               // product.ProductID = int.Parse(reader["PID"].ToString());
+                product.ProductID = int.Parse(reader["PID"].ToString());
                 product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
                 product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
