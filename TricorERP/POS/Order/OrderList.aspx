@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
+                <asp:TextBox ID="SearchOrderData" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
                 <span class="input-group-btn">
                     <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchOrderDataButton1_Click" />
                 </span>
@@ -14,14 +14,17 @@
         </div>
     </div>
 
-   <%-- <div class="panel-body">
-        <asp:ListView ID="CustomerListview" runat="server" OnItemCommand="CustomerListview_ItemCommand">
+    <div class="panel-body">
+        <asp:ListView ID="OrderListview" runat="server" OnItemCommand="OrderListview_ItemCommand">
             <LayoutTemplate>
-                <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
+                <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                     <tr class="active">
                         <th>ID</th>
+                        <th>Customer ID</th>
                         <th>Full Name</th>
-                        <th>Phone Number</th>
+                        <th>Order Date</th>
+                        <th>Delivery Date</th>
+                        <th>Edit</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -32,13 +35,32 @@
                         <%# Eval("ID") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
+                        <%# Eval("CustomerID") %>
                     </td>
                     <td>
-                        <%# Eval("Phonenumber") %>
+                        <%# Eval("CName") %>
+                    </td>
+                    <td>
+                        <%# Eval("OrderDate") %>
+                    </td>
+                    <td>
+                        <%# Eval("DeliveryDate") %>
+                    </td>
+                    <td>
+                        <asp:LinkButton runat="server" CommandName="EditSaleOrder" CommandArgument='<%# Eval("ID")%>' >
+                            <span class="glyphicon glyphicon-edit">
+                        </asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
-    </div>--%>
+    </div>
+    <br />
+    <div>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <asp:Label ID="ErrorMessage" CssClass="alert-danger" runat="server"></asp:Label>
+            </div>
+        </div>
+    </div>
 </asp:Content>

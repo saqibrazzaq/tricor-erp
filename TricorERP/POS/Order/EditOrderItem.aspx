@@ -19,18 +19,16 @@
         </div>
 
     </div>
+    
+    <br />
+    <h3 class="h3">Product InFo</h3>
     <div class="row container-fluid">
-    <div class="col-lg-4">
+        <div class="col-lg-4">
             <label for="InputName">Order Date :</label>
             <div class="input-group">
                 <asp:TextBox ID="OrderDate" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
-    </div>
-
-    <br />
-    <h3 class="h3">Product InFo</h3>
-    <div class="row container-fluid">
         <div class="col-lg-4">
             <label for="InputName">Product Name :</label>
             <div class="input-group">
@@ -39,6 +37,10 @@
                 </asp:DropDownList>
             </div>
         </div>
+    </div>
+
+    <br />
+    <div class="row container-fluid">
         <div class="col-lg-4">
             <label for="InputName">Quantity :</label>
             <div class="input-group">
@@ -57,10 +59,6 @@
                 </asp:DropDownList>
             </div>
         </div>
-    </div>
-
-    <br />
-    <div class="row container-fluid">
         <div class="col-lg-4">
             <label for="InputName">Product Price :</label>
             <div class="input-group">
@@ -74,6 +72,11 @@
         <div class="col-lg-5">
             <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>
             <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click">Cancel</asp:LinkButton>
+        </div>
+    </div>
+    <div class="row container-fluid">
+        <div class="col-lg-5">
+            <asp:Label ID="ErrorMessage" runat="server" CssClass="alert-info"></asp:Label>
         </div>
     </div>
 

@@ -23,6 +23,7 @@
                         <th>ID</th>
                         <th>Full Name</th>
                         <th>Phone Number</th>
+                        <th>Edit</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -38,15 +39,18 @@
                     <td>
                         <%# Eval("Phonenumber") %>
                     </td>
+                    <td>
+                        <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
     </div>
-    
+
 
     <div class="row">
         <div class="col-lg-6">
-          <asp:Label ID="Message" runat="server" Text=""></asp:Label>
+            <asp:Label ID="Message" runat="server" Text=""></asp:Label>
         </div>
     </div>
 </asp:Content>

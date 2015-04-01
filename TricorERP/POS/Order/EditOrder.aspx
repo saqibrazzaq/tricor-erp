@@ -65,23 +65,23 @@
                 <ItemTemplate>
                     <tr runat="server">
                         <td>
-                            <%# Eval("ID") %>
+                            <%# Eval("ProductID") %>
                         </td>
                         <td>
-                            <%# Eval("ProductID") %>
+                            <%# Eval("ProductName") %>
                         </td>
 
                         <td>
                             <%# Eval("Quantity") %>
                         </td>
                         <td>
-                            <%# Eval("Price") %>
+                            <%# Eval("SalesPrice") %>
                         </td>
                         <td>
-                            <asp:LinkButton runat="server" CommandName="EditOrderItem" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>
+                            <asp:LinkButton runat="server" CommandName="EditOrderItem" CommandArgument='<%# Eval("ProductID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>
                         </td>
                         <td>
-                            <asp:LinkButton runat="server" CommandName="DeleteOrderItem" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                            <asp:LinkButton runat="server" CommandName="DeleteOrderItem" CommandArgument='<%# Eval("ProductID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
                         </td>
                     </tr>
                 </ItemTemplate>

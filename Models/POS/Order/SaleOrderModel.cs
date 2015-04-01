@@ -11,6 +11,7 @@ namespace Models.POS.Order
         public int ID { set; get; }
         public int CustomerID { set; get; }
         public String OrderDate { set; get; }
-        public String DeliveryDate { set; get; } 
+        public String DeliveryDate { set; get; }
+        public String CName { set; get; }
     }
 }
