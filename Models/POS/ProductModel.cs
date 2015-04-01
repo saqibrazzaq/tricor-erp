@@ -18,5 +18,6 @@ namespace Models.POS
         public float SalesPrice { get; set; }
         public String ProductDescription { get; set; }
         public float PurchasePrice { get; set; }
+        public int Quantity { get; set; }
     }
 }

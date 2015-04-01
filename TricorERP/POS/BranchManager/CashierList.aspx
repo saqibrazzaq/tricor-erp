@@ -24,6 +24,7 @@
                         <th>ID</th>
                         <th>Full Name</th>
                         <th>Phone Number</th>
+                        <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
@@ -39,6 +40,9 @@
                     </td>
                     <td>
                         <%# Eval("PhoneNo") %>
+                    </td>
+                    <td>
+                            <asp:LinkButton runat="server" CommandName="EditCashier" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>    
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="DeleteCashier" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>

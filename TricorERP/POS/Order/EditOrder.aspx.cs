@@ -16,12 +16,27 @@ namespace TricorERP.POS.Order
 {
     public partial class EditOrder : System.Web.UI.Page
     {
-        List<SaleOrderItemModel> orderitemlist = new List<SaleOrderItemModel>();
-        List<ProductModel> productlist=null;
+        String SaleOrderID = "0";
+        String CustoemrID = "0";
         List<CustomerModel> customerlist = null;
+        DateTime dt = DateTime.Now;
+        SaleOrderModel newsaleorder = null;
+        SaleOrderItemModel saleorderitem = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            DateText.Text = dt.ToShortDateString().ToString();
+            SaleOrderID = Request.QueryString["SaleOrderID"];
+            CustoemrID = Request.QueryString["CustomerID"];
+
+            if (SaleOrderID == "0" && CustoemrID == "0") {
+                AddProductsButten.Enabled = false;
+            }
+            
+            if (CustoemrID != "0") {
+                CustomerDropDown.Enabled = false;            
+            }
+
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -30,84 +45,71 @@ namespace TricorERP.POS.Order
 
         private void InitializePageContents()
         {
-            LoadProductsListInDropdown();
-            LoadCustomerListInDropdown();
+            //if (CustoemrID == "0")
+                LoadCustomerListInDropdown();
+            //else { }
+                //CustomerDropDown.Items.FindByValue(CustoemrID).Selected = true;
+            if(SaleOrderID!="0")
+                LoadSalesOrderItemData();
         }
 
-       
-        // load all the data of products in the drop down list and that list is get from database 
-        private void LoadProductsListInDropdown()
+        // that function load the data of items that are buy by a customer
+        private void LoadSalesOrderItemData()
         {
-            // product list is an list type reference that contain the list of products.
-            productlist = GetProductsList();
-            ProductsDropDown.DataSource = productlist;
-            ProductsDropDown.DataTextField = "ProductName";
-            ProductsDropDown.DataValueField = "ProductID";
-            ProductsDropDown.DataBind();
+            List<ProductModel> selecteditem = null;
+            selecteditem = GetSaleOrderItemList();
+            OrderListview.DataSource = selecteditem;
+            OrderListview.DataBind();
         }
-        // return all the product list that is save in the database
-        private List<ProductModel> GetProductsList()
+
+        /* that function return a list of items from database that list is 
+           related to the a customer purchases*/
+        private List<ProductModel> GetSaleOrderItemList()
         {
-            return Database.POS.ProductDB.getProductList("");
+            return Database.POS.Order.OrderDB.getSaleOrderItemList(SaleOrderID);
         }
 
         // load all the customer these are singe an proper agreement of create customer. 
         private void LoadCustomerListInDropdown()
         {
-            //customerlist is an list type object that can save all the customer list
+            //customer list is an list type object that can bind all the customer list
             customerlist = GetCustomerList();
             CustomerDropDown.DataSource = customerlist;
             CustomerDropDown.DataTextField = "Name";
             CustomerDropDown.DataValueField = "ID";
             CustomerDropDown.DataBind();
-
-            if (Request.QueryString["CustomerID"] != null)
-                CustomerDropDown.Items.FindByValue(Request.QueryString["CustomerID"]).Selected = true;
+            if(CustoemrID != "0")
+                CustomerDropDown.Items.FindByValue(CustoemrID).Selected = true;
         }
 
+        // that function get the data of customer and bind that data with a drop-down list.
         private List<CustomerModel> GetCustomerList()
         {
             return Database.POS.Customer.CustomerDB.getCustomersList("");
         }
 
-        // Method for set different products in an list view.
-        protected void AddProducts_Click(object sender, EventArgs e)
-        {
-            AddProductToOrder();
-        }
-
-        // addition of products in Product list.
-
-        
-        private void AddProductToOrder()
-        {
-            int productID = int.Parse(ProductsDropDown.SelectedValue);
-            SaleOrderItemModel orderItem = new SaleOrderItemModel();
-            
-            orderItem.ID = 1;
-            orderItem.OrderID = 0;
-            orderItem.Price = 3000;
-            orderItem.Quantity = 1;
-            orderItem.ProductID = productID;
-            
-
-
-            orderitemlist.Add(orderItem);
-            OrderListview.DataSource = orderitemlist;
-            // Now bind with the list view
-            OrderListview.DataBind();
-        
-        }
-
         protected void CustomerListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            String ProductID = e.CommandArgument.ToString();
+
+            // these function can get the data of newsaleorer and sales order item 
+            newsaleorder = Database.POS.Order.OrderDB.SaleOrderInFo(SaleOrderID);
+            saleorderitem = Database.POS.Order.OrderDB.getSaleOrderItem(newsaleorder.ID, ProductID);
+
             // Edit customer command
-            if (e.CommandName == "EditCustomer")
+            if (e.CommandName == "DeleteOrderItem")
             {
-                // Customer ID is in argument
-                String customerID = e.CommandArgument.ToString();
-                // Open the edit customer page
-                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
+                // if data is deleted in the data base then also increment the quantity of that product
+                int check = Database.POS.Order.OrderDB.deleteSaleOrderItem(saleorderitem.ID);
+                if(check > 0)
+                        Response.Redirect("EditOrder.aspx?SaleOrderID=" + newsaleorder.ID 
+                                         + "&CustomerID=" + CustomerDropDown.SelectedValue);
+            }
+            else if (e.CommandName == "EditOrderItem")
+            {
+                //when new sale-order is added in the database then also decreases the product quantity 
+                Response.Redirect("EditOrderItem.aspx?SaleOrderID="+newsaleorder.ID+"&CustomerID="+CustomerDropDown.SelectedValue
+                    +"&SaleOrderItemID="+saleorderitem.ID+"&ProductID="+ProductID);
             }
         }
 
@@ -116,11 +118,33 @@ namespace TricorERP.POS.Order
 
         }
 
-        protected void SaveButton_Click(object sender, EventArgs e)
+        protected void AddProductsButten_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/POS/Order/EditOrderItem.aspx?SaleOrderID=" + SaleOrderID + "&CustomerID=" 
+                + CustomerDropDown.SelectedValue + "&SaleOrderItemID=0");
         }
 
+        protected void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (SaleOrderID == "0")
+                newSaleOrder();
+            
+        }
 
+        // function for save the new sale order into database.
+        private void newSaleOrder()
+        {
+            newsaleorder = new SaleOrderModel();
+            newsaleorder.OrderDate = dt.ToShortDateString();
+            newsaleorder.CustomerID = int.Parse(CustomerDropDown.SelectedValue);
+            newsaleorder = Database.POS.Order.OrderDB.assNewSaleOrder(newsaleorder);
+            // if (newsaleorder.ID != 0)
+                Response.Redirect("~/POS/Order/EditOrderItem.aspx?SaleOrderID=" + newsaleorder.ID + "&CustomerID=" + newsaleorder.CustomerID + "&SaleOrderItemID=0");
+        }
+
+        protected void CancelButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
+        }
     }
 }

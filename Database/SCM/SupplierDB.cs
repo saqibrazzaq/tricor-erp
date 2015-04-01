@@ -37,7 +37,7 @@ namespace Database.SCM
         public static List<SupplierModel> getSupplierList(String searchtext)
         {
             List<SupplierModel> supplierList = new List<SupplierModel>();
-            String sql = @"select top 10 Supplier.ID sID , Supplier.Name Name, Supplier.CNIC CNIC
+            String sql = @"select Supplier.ID sID , Supplier.Name Name, Supplier.CNIC CNIC
                         from Supplier
                         where 1=1
                         and 

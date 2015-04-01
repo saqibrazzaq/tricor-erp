@@ -29,7 +29,7 @@ namespace Database.SCM
         public static List<ProductModel> getProductList(String searchtext)
         {
             List<ProductModel> productList = new List<ProductModel>();
-            String sql = @"select top 10 Product.Id PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
+            String sql = @"select Product.Id PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
                         Product.PThreshHoldValue PthreshHold,Product.PReOrderValue pReOrder,Product.PurchasePrice purchasePrice,
                         Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
                         from Product

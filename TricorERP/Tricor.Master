@@ -88,7 +88,7 @@
                                 <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/EditOrder.aspx" runat="server">New-Order</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/EditOrder.aspx?SaleOrderID=0&CustomerID=0" runat="server">New-Order</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -168,11 +168,11 @@
                                 <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink23" NavigateUrl="" runat="server">Add new Order</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink23" NavigateUrl="~/SCM/PurchaseOrder.aspx" runat="server">Add new Order</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink24" NavigateUrl="" runat="server">View previous Orders</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink24" NavigateUrl="~/SCM/SearchPurchaseOrder.aspx" runat="server">View previous Orders</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>
@@ -238,7 +238,7 @@
                 <div class="col-lg-2">
                     <ul class="nav nav-list">
                         <li class="nav-header">Main Functions.</li>
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+                        
                         <li><a href="#">About Us</a></li>
                     </ul>
                 </div>
