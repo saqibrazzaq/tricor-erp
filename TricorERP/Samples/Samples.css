@@ -4,3 +4,16 @@
 
 .btnShowJumbotron {}
 .btnHideJumbotron {}
+
+.ItemRow {}
+.ItemRowEdit {}
+.txtPrice {}
+.txtQuantity {}
+.txtSalesOrderItemID {}
+
+.ItemCol_ItemID {}
+.ItemCol_ProductName {}
+.ItemCol_Quantity {}
+.ItemCol_Price {}
+.DeleteSalesOrder {}
+.ItemRowDelete {}

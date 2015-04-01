@@ -79,7 +79,10 @@
     <Content Include="SCM\SearchWareHouse.aspx" />
     <Content Include="SCM\ViewProducts.aspx" />
     <Content Include="SCM\AddNewWareHouse.aspx" />
+    <Content Include="Scripts\jquery.confirm.js" />
+    <Content Include="Scripts\jquery.confirm.min.js" />
     <Content Include="Tricor.Master" />
+    <None Include="Properties\PublishProfiles\Publish to Directory.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
