@@ -80,6 +80,7 @@ namespace Database.POS.Order
                 item.SalesPrice = int.Parse(reader["SP"].ToString());
                 item.Quantity = int.Parse(reader["Qat"].ToString());
                 productitems.Add(item);
+                //perform addition of products and price on that end or not.
             }
             return productitems;
         }

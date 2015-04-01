@@ -77,7 +77,8 @@ namespace TricorERP.POS.Order
         // load data of products in drop-down list and bind with it. 
         private void LoadProductDropdown()
         {
-            //how to get sales price within list?
+            //how to get sales price from list?
+
             productlist = GetProductList();
             ProductDropDown.DataSource = productlist;
             ProductDropDown.DataTextField = "ProductName";
