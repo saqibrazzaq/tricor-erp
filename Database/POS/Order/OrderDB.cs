@@ -62,6 +62,7 @@ namespace Database.POS.Order
         // function that can return the all sales order item list and show that list in the list view. 
         public static List<ProductModel> getSaleOrderItemList(String SaleOrderID)
         {
+            // it will be SaleOrderItemModel? 
             // some points these are discuss with teacher?
             List<ProductModel> productitems = new List<ProductModel>();
             String sql = @"select SalesOrder.ID ID, SaleOrderItem.ProductID PID, 
@@ -109,6 +110,7 @@ namespace Database.POS.Order
             return sales;
         }
 
+        //not correct 
         /* that function is work on the bases of orderid and productid and get the data according to 
            these ids get data from database and return an object of a product*/
         public static SaleOrderItemModel getSaleOrderItem(int orderID, String productID) {
@@ -127,6 +129,7 @@ namespace Database.POS.Order
             }
             return saleorderitem;
         }
+
 
         // that function can update the data when user want to update it
         public static int updateSalesProduct(SaleOrderItemModel updatesaleproduct)

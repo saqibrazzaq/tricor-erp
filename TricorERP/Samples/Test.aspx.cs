@@ -35,7 +35,6 @@ namespace TricorERP.Samples
             InitializeSaveOrderButton();
             LoadCustomerListInDropdown();
             LoadProductListInDropdown();
-
             UpdateSalesOrderUI();
         }
 
