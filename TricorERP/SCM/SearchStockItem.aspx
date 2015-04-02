@@ -23,7 +23,7 @@
                         <th>ID</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
-                        <th>Product Price</th>
+                        <th>Purchase Price</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -41,7 +41,7 @@
                         <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductName") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductPrice") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("PurchasePrice") %>'></asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>

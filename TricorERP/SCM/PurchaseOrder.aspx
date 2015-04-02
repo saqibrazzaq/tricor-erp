@@ -47,11 +47,9 @@
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="productTable">
                     <tr class="active">
-                        <th>ID</th>
                         <th>Product Code</th>
-                        <th>Product Name</th>
-                        <th>Threshold Value</th>
-                        <th>ReOrder Value</th>
+                        <th>Quantity</th>
+                        <th>Purchase Price</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -61,25 +59,19 @@
             <ItemTemplate>
                 <tr id="Tr1" runat="server">
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductID") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditOrderProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ProductID") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductCode") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditOrderProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Quantity") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductName") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="EditOrderProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("PurchasePrice") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductThresholdValue") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductReOderValue") %>'></asp:LinkButton>
+                      <asp:LinkButton runat="server" CommandName="EditOrderProduct" CommandArgument='<%#  Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                      </td>
                      <td>
-                      <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
-                     </td>
-                     <td>
-                     <asp:LinkButton runat="server" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                     <asp:LinkButton runat="server" CommandName="DeleteOrderProduct" CommandArgument='<%#  Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
                      </td>
                 </tr>
             </ItemTemplate>

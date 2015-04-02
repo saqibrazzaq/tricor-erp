@@ -23,14 +23,56 @@ namespace TricorERP.SCM
             POID = Request.QueryString["POID"];
             if (IsPostBack == false)
             {
-               
                 InitializePageContents();
             }
         }
         private void InitializePageContents()
         {
-            LoadSupplierDropDown();
-            LoadwareHouseDropDown();
+            if (POID == null)
+            {
+                LoadSupplierDropDown();
+                LoadwareHouseDropDown();
+            }
+            else
+            {
+                LoadPurchaseOrderItemsList(POID);
+                LoadSupplierDropDown();
+                LoadwareHouseDropDown();
+                LoadPageForUpdate(POID);
+            }
+        }
+        private void LoadPurchaseOrderItemsList(String POID)
+        {
+            List<Models.SCM.PurchaseOrderItemsModel> POIModel = new List<Models.SCM.PurchaseOrderItemsModel>();
+            if (POID != null)
+            {
+                POIModel = GetPurchaseOrderitemsFromDatabase(POID);
+            }
+            ProductListview.DataSource = POIModel;
+            ProductListview.DataBind();
+        }
+        private List<PurchaseOrderItemsModel> GetPurchaseOrderitemsFromDatabase(String POID)
+        {
+            return Database.SCM.PurchaseOrderDB.getAllPurchaseOrderitemsList(POID);
+        }
+        private void LoadPageForUpdate(string POID)
+        {
+            PurchaseOrderModel POModel = GetOrderDataFromDateBase(POID);
+            //ListItem list = WareHouseDropDown.Items.FindByValue(POModel.WHID.ToString());
+            //WareHouseDropDown.SelectedIndex = WareHouseDropDown.Items.IndexOf(list);
+            ////SupplierDropDown.ClearSelection();
+            //SupplierDropDown.Items.FindByValue(POModel.SID.ToString()).Selected = true;
+            ////dropdownlist.ClearSelection(); //making sure the previous selection has been cleared
+            ////dropdownlist.Items.FindByValue(value).Selected = true;
+            OrderDateText.Text = POModel.OrderDate;
+            WareHouseDropDown.SelectedValue = POModel.WHID.ToString();
+            SupplierDropDown.SelectedValue = POModel.SID.ToString();
+            OrderTypeDropDown.SelectedValue = POModel.OrderType;
+        }
+
+        private PurchaseOrderModel GetOrderDataFromDateBase(string POID)
+        {
+            return Database.SCM.PurchaseOrderDB.getPurchaseOrderInFo(POID);
         }
         private void LoadwareHouseDropDown()
         {
@@ -66,23 +108,23 @@ namespace TricorERP.SCM
                 SID = SupplierDropDown.SelectedValue;
                 String PID = e.CommandArgument.ToString();
             
-            if (e.CommandName == "EditProduct")
+            if (e.CommandName == "EditOrderProduct")
             {
-                Response.Redirect("~/SCM/PurchaseOrderItem.aspx?WHID=" + WHID + "&SID=" + SID + "&PID=" + PID);
+               // Response.Redirect("~/SCM/PurchaseOrderItem.aspx?WHID=" + WHID + "&SID=" + SID + "&PID=" + PID + "&POID=" + POID + "&Update=1");
             }
-            else if (e.CommandName == "DeleteProduct")
+            else if (e.CommandName == "DeleteOrderProduct")
             {
 
             }
         }
         private PurchaseOrderModel addNewProduct(PurchaseOrderModel POModel)
         {
-            return Database.SCM.PurchaseProductDB.addPurchaseProduct(POModel);
+            return Database.SCM.PurchaseOrderDB.addPurchaseProduct(POModel);
         }
 
         private int updateProduct(PurchaseOrderModel POModel)
         {
-            return Database.SCM.PurchaseProductDB.updatePurchaseOrder(POModel);
+            return Database.SCM.PurchaseOrderDB.updatePurchaseOrder(POModel);
         }
         protected void Addbtn_Click(object sender, EventArgs e)
         {
@@ -93,9 +135,10 @@ namespace TricorERP.SCM
         protected void Savebtn_Click(object sender, EventArgs e)
         {
             PurchaseOrderModel POModel = new PurchaseOrderModel();
-            POModel.WareHouseID = int.Parse(WareHouseDropDown.SelectedValue);
-            POModel.SupplierID = int.Parse(SupplierDropDown.SelectedValue);
+            POModel.WHID = int.Parse(WareHouseDropDown.SelectedValue);
+            POModel.SID = int.Parse(SupplierDropDown.SelectedValue);
             POModel.OrderDate = OrderDateText.Text;
+            POModel.OrderType = OrderTypeDropDown.SelectedValue;
             int updated = 0;
             PurchaseOrderModel NewPurchaseOrder = null;
             if (UpdateCheck != null)
@@ -116,7 +159,7 @@ namespace TricorERP.SCM
             }
             else if (updated == 1)
             {
-                Response.Redirect("~/SCM/PurchaseOrder.aspx?WHID=" + WHID + "&SID=" + SID  );
+                Response.Redirect("~/SCM/PurchaseOrder.aspx?POID="+ POID);
                 //ErrorMessageLable.Text = "Data is Updated Successfully...";
             }
         }

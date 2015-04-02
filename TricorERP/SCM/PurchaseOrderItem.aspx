@@ -48,49 +48,6 @@
             </div>
          </div>
     <br />
-        <div class="panel-body"> 
-        <asp:ListView ID="ProductListview" runat="server" OnItemCommand="ProductListview_ItemCommand" >
-            <LayoutTemplate>
-                <table class="table table-bordered table-hover" runat="server" id="productTable">
-                    <tr class="active">
-                        <th>ID</th>
-                        <th>Product Code</th>
-                        <th>Product Name</th>
-                        <th>Threshold Value</th>
-                        <th>ReOrder Value</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    <tr runat="server" id="itemPlaceholder"></tr>
-                </table>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr id="Tr1" runat="server">
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductID") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductCode") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductName") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductThresholdValue") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductReOderValue") %>'></asp:LinkButton>
-                     </td>
-                     <td>
-                      <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
-                     </td>
-                     <td>
-                     <asp:LinkButton runat="server" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
-                     </td>
-                </tr>
-            </ItemTemplate>
-        </asp:ListView>
-    </div>
          <br />
          <div class="row container-fluid">
             <div class="col-lg-5">

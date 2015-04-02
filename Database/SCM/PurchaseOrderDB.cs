@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Database.SCM
 {
-    public class PurchaseProductDB
+    public class PurchaseOrderDB
     {
         public static PurchaseOrderModel addPurchaseProduct(PurchaseOrderModel POModel)
         {
             String sql = @"INSERT INTO [dbo].[PurchaseOrder]
-                        ([WHID],[SID],[OrderDate])
+                        ([WHID],[SID],[OrderDate],[OrderType])
 		                output inserted.ID 
-                        VALUES ('" + POModel.WareHouseID + "','" + POModel.SupplierID + "','" +
-                                 POModel.OrderDate + "')";
+                        VALUES ('" + POModel.WHID + "','" + POModel.SID + "','" +
+                                 POModel.OrderDate + "','" + POModel.OrderType + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             POModel.ID = int.Parse(id.ToString());
             return POModel;
@@ -24,19 +24,21 @@ namespace Database.SCM
         public static List<PurchaseOrderModel> getPurchaseOrderList(String searchtext)
         {
             List<PurchaseOrderModel> POList = new List<PurchaseOrderModel>();
-            String sql = @"select PurchaseOrder.ID ID, PurchaseOrder.WHID WHID, PurchaseOrder.SID SID, PurchaseOrder.OrderDate
+            String sql = @"select PurchaseOrder.ID ID, PurchaseOrder.WHID WHID, PurchaseOrder.SID SID,
+                            PurchaseOrder.OrderDate, PurchaseOrder.OrderType OrderType
                         from PurchaseOrder
                         where 1=1
                         and 
-	                    (PurchaseOrder.WHID like '%" + searchtext + "%' or PurchaseOrder.SID like '%" + searchtext + "%' or PurchaseOrder.OrderID like '%" + searchtext + "%')";
+	                    (PurchaseOrder.WHID like '%" + searchtext + "%' or PurchaseOrder.SID like '%" + searchtext + "%' or PurchaseOrder.ID like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
                 PurchaseOrderModel POMOdel = new PurchaseOrderModel();
                 POMOdel.ID = int.Parse(reader["ID"].ToString());
-                POMOdel.WareHouseID = int.Parse(reader["WHID"].ToString());
-                POMOdel.SupplierID = int.Parse(reader["SID"].ToString());
+                POMOdel.WHID = int.Parse(reader["WHID"].ToString());
+                POMOdel.SID = int.Parse(reader["SID"].ToString());
                 POMOdel.OrderDate = reader["OrderDate"].ToString();
+                POMOdel.OrderType = reader["OrderType"].ToString();
                 POList.Add(POMOdel);
             }
             return POList;
@@ -44,15 +46,18 @@ namespace Database.SCM
         public static PurchaseOrderModel getPurchaseOrderInFo(String ID)
         {
             PurchaseOrderModel poModel = null;
-            String sql = @"select  PurchaseOrder.WHID WHID, PurchaseOrder.SID SID, PurchaseOrder.OrderDate
+            String sql = @"select  PurchaseOrder.WHID WHID, PurchaseOrder.SID SID,
+                        PurchaseOrder.OrderDate OrderDate, PurchaseOrder.OrderType OrderType
                         from PurchaseOrder where PurchaseOrder.ID='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
                 poModel = new PurchaseOrderModel();
-                poModel.WareHouseID = int.Parse(reader["WHID"].ToString());
-                poModel.SupplierID = int.Parse(reader["SID"].ToString());
+                poModel.WHID = int.Parse(reader["WHID"].ToString());
+                poModel.SID = int.Parse(reader["SID"].ToString());
                 poModel.OrderDate = reader["OrderDate"].ToString();
+                poModel.OrderType = reader["OrderType"].ToString();
+             
             }
             return poModel;
         }
@@ -60,8 +65,8 @@ namespace Database.SCM
         public static int updatePurchaseOrder(PurchaseOrderModel poModel)
         {
             String sql = @"UPDATE [dbo].[PurchaseOrder]
-                         SET [WHID] = '" + poModel.WareHouseID + "' ,[SID] = '" + poModel.SupplierID
-                        + "', [OrderDate]='" + poModel.OrderDate
+                         SET [WHID] = '" + poModel.WHID + "' ,[SID] = '" + poModel.SID
+                        + "', [OrderDate]='" + poModel.OrderDate + "', [OrderType]='" + poModel.OrderType
                         + "' WHERE PurchaseOrder.ID = '" + poModel.ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
@@ -91,7 +96,7 @@ namespace Database.SCM
                          PurchaseOrderItems.PurchasePrice PPrice from PurchaseOrderItems
                         where 1=1
                         and 
-	                    (PurchaseOrderItems.POID like '%" + searchtext + "%' or PurchaseOrderItems.PurchasePrice like '%" + searchtext + "%' or PurchaseOrder.Quantity like '%" + searchtext + "%')";
+	                    (PurchaseOrderItems.POID like '%" + searchtext + "%' or PurchaseOrderItems.PurchasePrice like '%" + searchtext + "%' or PurchaseOrderItems.Quantity like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {

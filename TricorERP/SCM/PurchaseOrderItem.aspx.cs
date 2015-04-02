@@ -17,7 +17,6 @@ namespace TricorERP.SCM
         public String POID = "-1";
         public String UpdateCheck = null;
 
-        List<Models.SCM.ProductModel> Orderproducts = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             WHID = Request.QueryString["WHID"];
@@ -33,26 +32,12 @@ namespace TricorERP.SCM
         private void InitializePageContents()
         {
             LoadProductDropDown();
-            LoadPurchaseOrderItemsList(POID);
             WHNameText.Text = WHID;
             SupplierText.Text = SID; 
         }
 
-        private void LoadPurchaseOrderItemsList(String POID)
-        {
-            List<Models.SCM.ProductModel> PModel = new List<Models.SCM.ProductModel>();
-            if (POID != null )
-            {
-                PModel = GetPurchaseOrderitemsFromDatabase(POID);
-            }
-            ProductListview.DataSource = PModel;
-            ProductListview.DataBind();
-        }
-
-        private List<ProductModel> GetPurchaseOrderitemsFromDatabase(String POID)
-        {
-            return Database.SCM.PurchaseProductDB.getPurchaseOrderItemsList(POID);
-        }
+     
+       
         private void LoadProductDropDown()
         {
             // Declare list
@@ -93,10 +78,28 @@ namespace TricorERP.SCM
             }
             else if (e.CommandName == "DeleteProduct")
             {
-            
+                //DeleteOrderItem();
             }
         }
+
+        
         protected void Addbtn_Click(object sender, EventArgs e)
+        {
+           
+        }
+        private List<PurchaseOrderItemsModel> GetPurchaseOrderitemsFromDatabase(String POID)
+        {
+            return Database.SCM.PurchaseOrderDB.getAllPurchaseOrderitemsList(POID);
+        }
+        private int updatePurchaseOrderItem(PurchaseOrderItemsModel POIModel)
+        {
+            return Database.SCM.PurchaseOrderDB.updatePurchaseOrderItems(POIModel);
+        }
+        private PurchaseOrderItemsModel addNewPurchaeOrderItem(PurchaseOrderItemsModel POIModel)
+        {
+            return Database.SCM.PurchaseOrderDB.addPurchaseProductItems(POIModel);
+        }
+        protected void Savebtn_Click(object sender, EventArgs e)
         {
             PurchaseOrderItemsModel POIModel = new PurchaseOrderItemsModel();
             POIModel.PurchaseOrderID = int.Parse(POID);
@@ -117,26 +120,14 @@ namespace TricorERP.SCM
 
             if (NewPurchaseOrderItem != null)
             {
-                LoadPurchaseOrderItemsList(POID);
+                Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
                 ErrorMessageLable.Text = "Data of new Purchase Order is saved...";
             }
             else if (updated == 1)
             {
+                Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
                 ErrorMessageLable.Text = "Data is Updated Successfully...";
             }
-        }
-
-        private int updatePurchaseOrderItem(PurchaseOrderItemsModel POIModel)
-        {
-            return Database.SCM.PurchaseProductDB.updatePurchaseOrderItems(POIModel);
-        }
-        private PurchaseOrderItemsModel addNewPurchaeOrderItem(PurchaseOrderItemsModel POIModel)
-        {
-            return Database.SCM.PurchaseProductDB.addPurchaseProductItems(POIModel);
-        }
-        protected void Savebtn_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

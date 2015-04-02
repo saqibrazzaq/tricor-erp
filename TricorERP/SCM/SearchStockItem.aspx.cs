@@ -46,7 +46,7 @@ namespace TricorERP.SCM
             {
                 String ProductID = e.CommandArgument.ToString();
                 Session["ProductID"] = ProductID;
-                Response.Redirect("~/SCM/EditProduct.aspx?ID=" + ProductID);
+                Response.Redirect("~/SCM/AddNewProduct.aspx?ProductID=" + ProductID + "&update=1");
             }
         }
 
