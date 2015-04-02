@@ -42,10 +42,7 @@
                 </asp:DropDownList>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <br />
-                <asp:LinkButton ID="Addbtn" runat="server" CssClass="btn btn-primary"  OnClick="Addbtn_Click" >ADD Order Products</asp:LinkButton>
-            </div>
+          
          </div>
     <br />
          <br />

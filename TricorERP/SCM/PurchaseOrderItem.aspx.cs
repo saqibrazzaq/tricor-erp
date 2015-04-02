@@ -83,10 +83,7 @@ namespace TricorERP.SCM
         }
 
         
-        protected void Addbtn_Click(object sender, EventArgs e)
-        {
-           
-        }
+        
         private List<PurchaseOrderItemsModel> GetPurchaseOrderitemsFromDatabase(String POID)
         {
             return Database.SCM.PurchaseOrderDB.getAllPurchaseOrderitemsList(POID);

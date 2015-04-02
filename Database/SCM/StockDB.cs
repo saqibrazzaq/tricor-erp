@@ -64,14 +64,14 @@ namespace Database.SCM
             }
             return sModel;
         }
-        public static List<StockModel> getStockWareHouseItems(String WHID)
+        public static List<StockModel> getStockItems(String WHID,String SearchText)
         {
             StockModel sModel = null;
             List<StockModel> stockItemList = new List<StockModel>();
             String sql = @"select  Stock.ID ID ,  Stock.PID PID , Stock.Quantity Quantity  
-                        from Stock where 1=1 and ( Stock.WHID like '%" + WHID + "%')"; ;
+                        from Stock where Stock.WHID= '" + WHID + "' and ( Stock.PID like '%" + SearchText + "%' or Stock.Quantity like '%" + SearchText + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-            if (reader.Read())
+            while(reader.Read())
             {
                 sModel = new StockModel();
                 sModel.ID = int.Parse(reader["ID"].ToString());

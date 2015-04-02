@@ -49,9 +49,9 @@ namespace TricorERP.SCM
             }
         }
 
-        protected void SearchProduct(object sender, EventArgs e)
+        protected void SearchPurchaseOrders(object sender, EventArgs e)
         {
-           // SearchPurchaseOrderList(SearchProductText.Text);
+            SearchPurchaseOrderList(SearchPurchaseOrderText.Text);
         }
 
     }

@@ -51,7 +51,7 @@ namespace TricorERP.SCM
         }
         private List<Models.SCM.StockModel> GetFromDatabase(String WHID, String SearchProduct)
         {
-            return Database.SCM.StockDB.getStockWareHouseItems(WHID);
+            return Database.SCM.StockDB.getStockItems(WHID,SearchProduct);
         }
         protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {

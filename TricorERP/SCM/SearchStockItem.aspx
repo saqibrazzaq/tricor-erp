@@ -48,6 +48,12 @@
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditStockItem" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Quantity") %>'></asp:LinkButton>
                     </td>
+                     <td>
+                      <asp:LinkButton runat="server" CommandName="EditStockItem" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                    </td>
+                    <td>
+                    <asp:LinkButton runat="server" CommandName="DeleteStockItem" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>

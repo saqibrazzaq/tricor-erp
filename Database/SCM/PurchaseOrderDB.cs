@@ -29,7 +29,9 @@ namespace Database.SCM
                         from PurchaseOrder
                         where 1=1
                         and 
-	                    (PurchaseOrder.WHID like '%" + searchtext + "%' or PurchaseOrder.SID like '%" + searchtext + "%' or PurchaseOrder.ID like '%" + searchtext + "%')";
+	                    (PurchaseOrder.WHID like '%" + searchtext + "%' or PurchaseOrder.SID like '%" + searchtext + 
+                        "%' or PurchaseOrder.OrderDate like '%" + searchtext + "%' or PurchaseOrder.ID like '%"    +
+                        searchtext + "%' or PurchaseOrder.OrderType like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
