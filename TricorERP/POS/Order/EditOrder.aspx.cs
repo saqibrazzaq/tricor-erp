@@ -137,7 +137,7 @@ namespace TricorERP.POS.Order
             newsaleorder = new SaleOrderModel();
             newsaleorder.OrderDate = dt.ToShortDateString();
             newsaleorder.CustomerID = int.Parse(CustomerDropDown.SelectedValue);
-            newsaleorder = Database.POS.Order.OrderDB.assNewSaleOrder(newsaleorder);
+            newsaleorder = Database.POS.Order.OrderDB.addNewSaleOrder(newsaleorder);
             // if (newsaleorder.ID != 0)
                 Response.Redirect("~/POS/Order/EditOrderItem.aspx?SaleOrderID=" + newsaleorder.ID + "&CustomerID=" + newsaleorder.CustomerID + "&SaleOrderItemID=0");
         }

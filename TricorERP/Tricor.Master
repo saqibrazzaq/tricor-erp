@@ -97,6 +97,20 @@
                                 </ul>
                             </li>
                             
+                            <li id="AddOrder" class="dropdown">
+                                <asp:HyperLink ID="HyperLink42" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink43" NavigateUrl="~/POS/Order/AddOrder.aspx" runat="server">New-Order</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <%--<li>
+                                        <asp:HyperLink ID="HyperLink44" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
+                                    </li>--%>
+                                </ul>
+                            </li>
+                            
+
                             <!-- ----------------------------------------->
                             
                             <!-- Branch manager for POS -->
@@ -272,7 +286,7 @@
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
             $("#Supplier").addClass("hidden");
-
+            $("#AddOrder").addClass("hidden");
 
         } else if ('2' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
@@ -290,12 +304,12 @@
             $("#CustomerDropdown").addClass("hidden");
             $("#OrderDropdown").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
-
+            $("#AddOrder").addClass("hidden");
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#OrderDropdown").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
-
+            $("#AddOrder").addClass("hidden");
         }
     </script>
 </body>

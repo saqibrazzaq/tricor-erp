@@ -79,7 +79,7 @@ namespace Database.POS.Customer
         public static List<CustomerModel> getallCustomer()
         {
             List<CustomerModel> customers = new List<CustomerModel>();
-            String sql = @"";
+            String sql = @"SELECT * FROM Customer";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {

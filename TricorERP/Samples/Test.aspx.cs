@@ -47,6 +47,7 @@ namespace TricorERP.Samples
             public float SalesPrice { get; set; }
         }
 
+        //don 
         private void LoadProductListInDropdown()
         {
             // Load the list from database
@@ -114,6 +115,7 @@ namespace TricorERP.Samples
             }
         }
 
+
         private void loadOrderModel()
         {
             // Load the order information from database
@@ -125,8 +127,6 @@ namespace TricorERP.Samples
                     // Load the order
                     soModel.CustomerID = int.Parse(reader["CustomerID"].ToString());
                     soModel.OrderDate = DateTime.Parse(reader["OrderDate"].ToString());
-
-
                 }
             }
 
@@ -287,36 +287,6 @@ namespace TricorERP.Samples
             return so;
         }
 
-        /// <summary>
-        /// Get dummy list of customers, NOT from database
-        /// </summary>
-        /// <returns>List of customers</returns>
-        private List<Models.Samples.CustomerModel> TryDummyData()
-        {
-            // Create new list
-            List<Models.Samples.CustomerModel> customers = new List<Models.Samples.CustomerModel>();
-
-            // Add first customer to the list
-            Models.Samples.CustomerModel saqib = new Models.Samples.CustomerModel()
-            {
-                ID = 123123,
-                FullName = "Saqib Razzaq",
-                CustomerType = 1
-            };
-            customers.Add(saqib);
-
-            // Add second customer
-            Models.Samples.CustomerModel shaheer = new Models.Samples.CustomerModel()
-            {
-                ID = 123,
-                FullName = "Muhammad Shaheer",
-                CustomerType = 1
-            };
-            customers.Add(shaheer);
-
-            // Return the list
-            return customers;
-        }
 
         /// <summary>
         /// Handle command events from the list view

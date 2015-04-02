@@ -13,5 +13,7 @@ namespace Models.POS.Order
         public String OrderDate { set; get; }
         public String DeliveryDate { set; get; }
         public String CName { set; get; }
+
+        public List<SaleOrderItemModel> items = new List<SaleOrderItemModel>();
     }
 }

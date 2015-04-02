@@ -5,3 +5,4 @@
 /// <reference path="jquery-2.1.3.js" />
 /// <reference path="npm.js" />
 /// <reference path="jquery.confirm.js" />
+/// <reference path="../pos/order/addorder.js" />

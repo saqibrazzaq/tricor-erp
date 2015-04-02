@@ -92,5 +92,26 @@ namespace Database.POS
             }
             return 0;
         }
+
+        public static List<ProductModel> getProductList() {
+            List<ProductModel> products = new List<ProductModel>();
+            string sql = "SELECT * FROM Product ";
+            using (SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null))
+            {
+                while (reader.Read())
+                {
+                    // Create new product model
+                    ProductModel product = new ProductModel();
+                    product.ProductID = int.Parse(reader["Id"].ToString());
+                    product.ProductName = reader["Name"].ToString();
+                    product.Description = reader["Description"].ToString();
+                    product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
+                    product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
+                    // Add to the lsit
+                    products.Add(product);
+                }
+            }
+            return products;
+        }
     }
 }

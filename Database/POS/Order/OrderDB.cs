@@ -14,7 +14,7 @@ namespace Database.POS.Order
     {
 
         //that function save the data of new saleorder into saleorder table and return an object
-        public static SaleOrderModel assNewSaleOrder(SaleOrderModel newsaleorder)
+        public static SaleOrderModel addNewSaleOrder(SaleOrderModel newsaleorder)
         {
              String sql = @"INSERT INTO [dbo].[SalesOrder]
                         ([CustomerID] ,[OrderDate] ,[DeliveryDate])
@@ -131,6 +131,7 @@ namespace Database.POS.Order
         }
 
 
+
         // that function can update the data when user want to update it
         public static int updateSalesProduct(SaleOrderItemModel updatesaleproduct)
         {
@@ -160,5 +161,84 @@ namespace Database.POS.Order
             }
             return 0;
         }
+
+        /*Method that is used for update the customers if we want to change the customer*/
+        public static int updateSaleOrder(SaleOrderModel so)
+        {
+            String sql = @"UPDATE [dbo].[SalesOrder] SET [CustomerID] = "+so.CustomerID
+                         +"WHERE ID="+so.ID;
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+        public static SaleOrderModel loadOrderModel(SaleOrderModel soModel)
+        {
+            string sql = "SELECT * FROM SalesOrder WHERE ID = " + soModel.ID;
+            using (SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null))
+            {
+                if (reader.Read())
+                {
+                    // Load the order
+                    soModel.ID = soModel.ID;
+                    soModel.CustomerID = int.Parse(reader["CustomerID"].ToString());
+                    soModel.OrderDate = reader["OrderDate"].ToString();
+                }
+            }
+
+            // Load the items
+            string sqlItems = @"SELECT item.*, Product.Name AS ProductName
+                    FROM SaleOrderItem item
+                    INNER JOIN Product ON item.ProductID = Product.ID
+                    WHERE item.OrderID = " + soModel.ID;
+            // Empty the list of items before loading from DB
+            soModel.items.Clear();
+            using (SqlDataReader readerItems = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlItems, null))
+            {
+                while (readerItems.Read())
+                {
+                    SaleOrderItemModel soItemModel = new SaleOrderItemModel(){
+                        ID = int.Parse(readerItems["ID"].ToString()),
+                        OrderID = int.Parse(readerItems["OrderID"].ToString()),
+                        ProductID = int.Parse(readerItems["ProductID"].ToString()),
+                        Quantity = int.Parse(readerItems["Quantity"].ToString()),
+                        Price = int.Parse(readerItems["Price"].ToString()),
+                        ProductName = readerItems["ProductName"].ToString()
+                    };
+
+                    soModel.items.Add(soItemModel);
+                }
+            }
+            return soModel;
+        }
+
+
+
+
+        public static SaleOrderItemModel setSaleOrderItems(SaleOrderItemModel soItemModel)
+        {
+            string sqlPrice = "SELECT SalePrice FROM Product WHERE ID = " + soItemModel.ProductID;
+            using (SqlDataReader readerPrice = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlPrice, null))
+            {
+                if (readerPrice.Read())
+                {
+                    soItemModel.Price = int.Parse(readerPrice["SalePrice"].ToString());
+                }
+            }
+            // Add the item to sales order
+            String sqlInsert = @"INSERT INTO SaleOrderItem ([OrderID]
+                               ,[ProductID] ,[Quantity] ,[Price]) 
+                               OUTPUT INSERTED.ID VALUES (" + soItemModel.OrderID + " , " +
+                soItemModel.ProductID + " , " + soItemModel.Quantity + " , '" + soItemModel.Price + "')";
+            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
+            soItemModel.ID = int.Parse(id.ToString());
+            
+            return soItemModel;
+        }
+
+
     }
 }

@@ -12,6 +12,7 @@ namespace Models.POS
         public int ProductThresholdValue { get; set; }
         public int ProductID { get; set; }
         public String ProductName { get; set; }
+        public String Description { get; set; }
         public int ProductTypeID { get; set; }
         public int UnitTypeID { get; set; }
         public String ProductCode { get; set; }
