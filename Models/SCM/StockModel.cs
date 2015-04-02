@@ -11,12 +11,7 @@ namespace Models.SCM
         public int ProductID { get; set; }
         public int WareHouseID { get; set; }
         public int ID { get; set; }
-        public int ProductReOderValue { get; set; }
-        public int ProductThresholdValue { get; set; }
-        public String ProductName { get; set; }
-        public String ProductCode { get; set; }
-        public float ProductPrice { get; set; }
-        public String ProductDescription { get; set; }
+        public List<ProductModel> Puroducts { set; get; }
         public float Quantity { get; set; }
     }
 }

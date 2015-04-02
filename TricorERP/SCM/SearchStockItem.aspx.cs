@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.SCM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,27 +19,39 @@ namespace TricorERP.SCM
         }
         private void InitializePageContents()
         {
-            SearchProduct("");
+            LoadWarehouseList();
+            SearchStockItems(WareHouseDropDown.SelectedValue, "");
         }
-        private void SearchProduct(String SearchProduct)
+        private void SearchStockItems(String WHID,String Items)
         {
             // Declare list
-            List<Models.SCM.ProductModel> product = null;
-            if (SearchProduct == "")
+            List<Models.SCM.StockModel> product = null;
+            if (Items == "")
             {
-                product = GetFromDatabase(null);
+                product = GetFromDatabase(WHID,null);
             }
-            else if (SearchProduct != null)
+            else if (Items != null)
             {
-                product = GetFromDatabase(SearchProduct);
+                product = GetFromDatabase(WHID,Items);
             }
-            ProductListview.DataSource = product;
-            ProductListview.DataBind();
+            StockProductListview.DataSource = product;
+            StockProductListview.DataBind();
         }
-
-        private List<Models.SCM.ProductModel> GetFromDatabase(String SearchProduct)
+        private void LoadWarehouseList()
         {
-            return Database.SCM.StockDB.geStockItemList(SearchProduct);
+            List<WareHouseModel> wareHouses = GetWareHouseFromDatabase();
+            WareHouseDropDown.DataTextField = "Name";
+            WareHouseDropDown.DataValueField = "ID";
+            WareHouseDropDown.DataSource = wareHouses;
+            WareHouseDropDown.DataBind();
+        }
+        private List<Models.SCM.WareHouseModel> GetWareHouseFromDatabase()
+        {
+            return Database.SCM.WareHouseDB.getWareHouseList("");
+        }
+        private List<Models.SCM.StockModel> GetFromDatabase(String WHID, String SearchProduct)
+        {
+            return Database.SCM.StockDB.getStockWareHouseItems(WHID);
         }
         protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
@@ -49,10 +62,9 @@ namespace TricorERP.SCM
                 Response.Redirect("~/SCM/AddNewProduct.aspx?ProductID=" + ProductID + "&update=1");
             }
         }
-
         protected void SearchWareHouse(object sender, EventArgs e)
         {
-            SearchProduct(SearchStockItemText.Text);
+            SearchStockItems(WareHouseDropDown.SelectedValue,SearchStockItemText.Text);
         }
 
     }
