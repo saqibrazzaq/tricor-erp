@@ -124,7 +124,7 @@ namespace Database.POS.Order
                 saleorderitem.ID = int.Parse(reader["id"].ToString());
                 saleorderitem.OrderID = orderID;
                 saleorderitem.Quantity = int.Parse(reader["Qa"].ToString());
-                saleorderitem.Price = int.Parse(reader["pri"].ToString());
+                saleorderitem.Price = float.Parse(reader["pri"].ToString());
                 saleorderitem.ProductID = int.Parse(productID.ToString());
             }
             return saleorderitem;
@@ -133,7 +133,7 @@ namespace Database.POS.Order
 
 
         // that function can update the data when user want to update it
-        public static int updateSalesProduct(SaleOrderItemModel updatesaleproduct)
+        public static int updateSalesItem(SaleOrderItemModel updatesaleproduct)
         {
             String sql = @"UPDATE [dbo].[SaleOrderItem] SET [OrderID] = "+updatesaleproduct.OrderID
                          +",[ProductID] = "+updatesaleproduct.ProductID
@@ -205,7 +205,7 @@ namespace Database.POS.Order
                         OrderID = int.Parse(readerItems["OrderID"].ToString()),
                         ProductID = int.Parse(readerItems["ProductID"].ToString()),
                         Quantity = int.Parse(readerItems["Quantity"].ToString()),
-                        Price = int.Parse(readerItems["Price"].ToString()),
+                        Price = float.Parse(readerItems["Price"].ToString()),
                         ProductName = readerItems["ProductName"].ToString()
                     };
 

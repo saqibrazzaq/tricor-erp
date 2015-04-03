@@ -55,10 +55,10 @@ namespace TricorERP.POS.Order
                 String saleOrderID = e.CommandArgument.ToString();
 
                 //get sale order information from database 
-                SaleOrderModel saleorderdata = GetOrderInFo(saleOrderID);
+                //SaleOrderModel saleorderdata = GetOrderInFo(saleOrderID);
 
                 // Open the edit customer page CustomerID=29&SaleOrderID=62
-                Response.Redirect("EditOrder.aspx?CustomerID=" + saleorderdata.CustomerID + "&SaleOrderID=" + saleOrderID);
+                Response.Redirect("AddOrder.aspx?ID=" + saleOrderID);
             }
         }
 

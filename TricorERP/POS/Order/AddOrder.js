@@ -2,14 +2,16 @@
 $(document).ready(function () {
 
     $(".ItemRowEdit").click(function () {
+       
         ItemRow_onClick($(this));
     });
 
     $(".ItemRowDelete").click(function () {
         ItemRowDelete_onClick($(this));
     });
-
+    
     $(".confirm").confirm({
+
         text: "Are you sure you want to delete?",
         title: "Delete",
         confirm: function (button) {
@@ -27,7 +29,10 @@ $(document).ready(function () {
 });
 
 function ItemRow_onClick(arg) {
+    alert("zzzzzzzz");
     initializeItemModalDialog();
+    alert("zzzzzzzz");
+
 
     // Get the order item details from table
     var row = arg.closest("tr");    // Find the row
@@ -36,22 +41,25 @@ function ItemRow_onClick(arg) {
     var quantity = row.find(".ItemCol_Quantity").text().trim();
     var price = row.find(".ItemCol_Price").text().trim();
 
-    //alert(price);
+    alert(price);
 
-    $("#SalesOrderLabel").text("Update Item (" + productName + ")");
+    $("#SalesOrderLabel").text("Update Items (" + productName + ")");
     $(".txtQuantity").val(quantity);
     $(".txtPrice").val(price);
     $(".txtSalesOrderItemID").val(itemID);
 }
 
 function initializeItemModalDialog() {
+    alert("xxxxxxx");
     $("#SalesOrderLabel").text("Update");
     $(".txtQuantity").val("0");
     $(".txtPrice").val("0");
+    alert("yyyyyyy");
 }
 
 function ItemRowDelete_onClick(arg) {
     // Get the order item details from table
+    alert("m111111");
     var row = arg.closest("tr");    // Find the row
     var itemID = row.find(".ItemCol_ItemID").text();
     $(".txtSalesOrderItemID").val(itemID);

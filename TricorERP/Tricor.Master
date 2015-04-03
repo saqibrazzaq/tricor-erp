@@ -18,18 +18,15 @@
     </title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src='<%=ResolveClientUrl("~/Scripts/ie-emulation-modes-warning.js")%>'></script>
-    <script src='<%=ResolveClientUrl("~/POS/Order/AddOrder.js")%>'></script>
 
+    <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/jquery.confirm.js")%>'></script>
 
-    <script src="Scripts/jquery-2.1.3.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/jquery.confirm.min.js"></script>
-    <script src="POS/Order/AddOrder.js"></script>
-
+    
+    
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    
 </head>
 <body>
     <form id="form1" method="post" runat="server">
@@ -93,7 +90,7 @@
                                 </ul>
                             </li>
 
-                            <li id="OrderDropdown" class="dropdown">
+                            <%--<li id="OrderDropdown" class="dropdown">
                                 <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -104,7 +101,7 @@
                                         <asp:HyperLink ID="HyperLink30" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>--%>
                             
                             <li id="AddOrder" class="dropdown">
                                 <asp:HyperLink ID="HyperLink42" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
@@ -113,9 +110,9 @@
                                         <asp:HyperLink ID="HyperLink43" NavigateUrl="~/POS/Order/AddOrder.aspx" runat="server">New-Order</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
-                                    <%--<li>
+                                    <li>
                                         <asp:HyperLink ID="HyperLink44" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
-                                    </li>--%>
+                                    </li>
                                 </ul>
                             </li>
                             
@@ -276,8 +273,7 @@
     </form>
 
 
-    <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
-    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
+    
 
     <script lang="javascript">
         <%
@@ -291,7 +287,6 @@
             $("#SaleOrder").addClass("hidden");
             $("#Queue").addClass("hidden");
             $("#Inventory").addClass("hidden");
-            $("#OrderDropdown").addClass("hidden");
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
             $("#Supplier").addClass("hidden");
@@ -311,12 +306,10 @@
             
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            $("#OrderDropdown").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            $("#OrderDropdown").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
         }

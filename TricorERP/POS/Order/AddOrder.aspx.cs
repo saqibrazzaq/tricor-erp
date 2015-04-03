@@ -42,7 +42,6 @@ namespace TricorERP.POS.Order
                     soModel.ID = int.Parse(Request.QueryString["ID"]);
                     loadOrderModel();
                 }
-
             }
             catch (Exception ex)
             {
@@ -76,7 +75,7 @@ namespace TricorERP.POS.Order
 
         private List<CustomerModel> GetCustomers()
         {
-           return Database.POS.Customer.CustomerDB.getallCustomer();
+            return Database.POS.Customer.CustomerDB.getallCustomer();
         }
 
         private void LoadProductListInDropdown()
@@ -103,18 +102,6 @@ namespace TricorERP.POS.Order
                 // Bind the items in list view
                 SalesOrderItemListview.DataSource = soModel.items;
                 SalesOrderItemListview.DataBind();
-            }
-        }
-
-        protected void SalesOrderItemListview_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-            // Edit customer command
-            if (e.CommandName == "EditCustomer")
-            {
-                // Customer ID is in argument
-                String customerID = e.CommandArgument.ToString();
-                // Open the edit customer page
-                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
             }
         }
 
@@ -152,9 +139,7 @@ namespace TricorERP.POS.Order
         private void CreateNewSalesOrder()
         {
             SaleOrderModel so = CreateSalesOrderModelFromUI();
-            
             so = Database.POS.Order.OrderDB.addNewSaleOrder(so);
-            
             Response.Redirect("~/POS/Order/AddOrder.aspx?ID=" + so.ID);
         }
 
@@ -162,10 +147,10 @@ namespace TricorERP.POS.Order
         {
             SaleOrderModel so = CreateSalesOrderModelFromUI();
             int check = Database.POS.Order.OrderDB.updateSaleOrder(so);
-            //if(check>0)
-            //{
-            //    ErroMessage.Text = "Customer is updated";
-            //}
+            if (check > 0)
+            {
+                ErroMessage.Text = "Customer is updated";
+            }
         }
 
         private SaleOrderModel CreateSalesOrderModelFromUI()
@@ -178,20 +163,49 @@ namespace TricorERP.POS.Order
             return so;
         }
 
+        protected void SalesOrderItemListview_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            // Edit customer command
+            if (e.CommandName == "EditCustomer")
+            {
+                // Customer ID is in argument
+                String customerID = e.CommandArgument.ToString();
+                // Open the edit customer page
+                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
+            }
+        }
+
         protected void deleteSalesOrderItem_onClick(object sender, EventArgs e)
         {
             int itemID = int.Parse(txtSalesOrderItemID.Text);
             int check = Database.POS.Order.OrderDB.deleteSaleOrderItem(itemID);
-            
             InitializePageContents();
         }
 
         protected void SaveSalesOrderItem_onClick(object sender, EventArgs e)
         {
+            SaleOrderItemModel soItemModel = new SaleOrderItemModel()
+            {
+                ID = int.Parse(txtSalesOrderItemID.Text),
+                Quantity = int.Parse(txtQuantity.Text),
+                Price = float.Parse(txtPrice.Text)
+            };
 
+            //soItemModel.ID = int.Parse(txtSalesOrderItemID.Text);
+            //soItemModel.Quantity = int.Parse(txtQuantity.Text);
+            //soItemModel.Price = int.Parse(txtPrice.Text);
+
+            int check = Database.POS.Order.OrderDB.updateSalesItem(soItemModel);
+            if (check > 0)
+                ErroMessage.Text = "Product is update";
         }
 
-       
+        protected void CustomerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
 
     }
 }

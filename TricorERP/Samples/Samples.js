@@ -57,7 +57,7 @@ function ItemRow_onClick(arg) {
     var quantity = row.find(".ItemCol_Quantity").text().trim();
     var price = row.find(".ItemCol_Price").text().trim();
 
-    //alert(price);
+    alert(price);
     
     $("#SalesOrderLabel").text("Update Item (" + productName + ")");
     $(".txtQuantity").val(quantity);

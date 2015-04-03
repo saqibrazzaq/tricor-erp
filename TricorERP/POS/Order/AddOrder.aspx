@@ -1,18 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="AddOrder.aspx.cs" Inherits="TricorERP.POS.Order.AddOrder" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="AddOrder.js"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+
     <div class="panel panel-default">
-            <div class="panel-heading">
-                Customer:
-                <asp:DropDownList ID="CustomerList" runat="server"></asp:DropDownList>
-                &nbsp;&nbsp;
-                Product: 
+        <div class="panel-heading">
+            <div class="row container-fluid">
+                <label for="InputName">Customer :</label>
+                <asp:DropDownList ID="CustomerList" runat="server" OnSelectedIndexChanged="CustomerList_SelectedIndexChanged"></asp:DropDownList>
+                <label for="InputName">Product:</label>
                 <asp:DropDownList runat="server" ID="ProductList"></asp:DropDownList>
+
                 <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
 
+
+
                 <br />
-                <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server"  Text=" Create Sales Order " OnClick="NewSalesOrder_Click"  />
+                <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
                 <br />
                 <asp:Label ID="ErroMessage" runat="server" Text=""></asp:Label>
 
@@ -33,7 +41,7 @@
                         </table>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <tr class="ItemRow" runat="server" >
+                        <tr class="ItemRow" runat="server">
                             <td class="ItemCol_ItemID">
                                 <%# Eval("ID") %>
                             </td>
@@ -96,9 +104,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:Button runat="server" onclick="SaveSalesOrderItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
+                        <asp:Button runat="server" OnClick="SaveSalesOrderItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </asp:Content>

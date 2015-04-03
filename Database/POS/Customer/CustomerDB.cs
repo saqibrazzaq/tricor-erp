@@ -14,7 +14,7 @@ namespace Database.POS.Customer
         public static List<CustomerModel> getCustomersList(String searchtext)
         {
             List<CustomerModel> customers = new List<CustomerModel>();
-            String sql = @"select top 10 Customer.Id ID, Customer.Name Name, Address.PhoneNo Phoneno
+            String sql = @"select Customer.Id ID, Customer.Name Name, Address.PhoneNo Phoneno
                         from Customer
                         join CustomerAddress on Customer.Id=CustomerAddress.Customer_ID
                         join Address on Address.Id=CustomerAddress.Address_ID
