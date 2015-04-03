@@ -13,6 +13,15 @@ namespace TricorERP.SCM {
     public partial class SearchStockItem {
         
         /// <summary>
+        /// WareHouseDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList WareHouseDropDown;
+        
+        /// <summary>
         /// SearchStockItemText control.
         /// </summary>
         /// <remarks>
@@ -31,12 +40,12 @@ namespace TricorERP.SCM {
         protected global::System.Web.UI.WebControls.Button Search;
         
         /// <summary>
-        /// ProductListview control.
+        /// StockProductListview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ProductListview;
+        protected global::System.Web.UI.WebControls.ListView StockProductListview;
     }
 }

@@ -127,8 +127,7 @@ namespace Database.SCM
                 con.Close();
             }
             return 1;
-        }
-
+        } 
         public static int deleteSupplierAddress(String sID, String AddressID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);

@@ -20,8 +20,7 @@ namespace Database.SCM
             sModel.ID = int.Parse(id.ToString());
             return sModel;
         }
-
-        public static List<ProductModel> geStockItemList(String searchtext)
+        public static List<ProductModel> geStockItemList(String WHID ,String searchtext) 
         {
             List<ProductModel> stockItemList = new List<ProductModel>();
             String sql = @"select Product.ID PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
@@ -29,9 +28,8 @@ namespace Database.SCM
                         Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
                         from product
                         join Stock on Product.id = Stock.PID
-                        where 1=1
-                        and 
-	                    (Stock.ID like '%" + searchtext + "%' or Stock.WHID like '%" + searchtext + "%' or Stock.PID like '%" + searchtext + "%' or Stock.Quantity like '%" + searchtext + "%')";
+                        join WareHouse on WareHouse.id = Stock.WHID
+                        where WareHouse.id ='" + WHID + "' and (Stock.ID like '%" + searchtext + "%' or Stock.WHID like '%" + searchtext + "%' or Stock.PID like '%" + searchtext + "%' or Stock.Quantity like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -53,7 +51,7 @@ namespace Database.SCM
         {
             StockModel sModel = null;
 
-            String sql = @"select  Stock.ID SID , Stock.WHID WHID ,  Stock.PID PID , Stock.Quantity Quantity  
+            String sql = @"select  Stock.WHID WHID ,  Stock.PID PID , Stock.Quantity Quantity  
                         from Stock where Stock.ID = '" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
@@ -66,6 +64,22 @@ namespace Database.SCM
             }
             return sModel;
         }
-
+        public static List<StockModel> getStockItems(String WHID,String SearchText)
+        {
+            StockModel sModel = null;
+            List<StockModel> stockItemList = new List<StockModel>();
+            String sql = @"select  Stock.ID ID ,  Stock.PID PID , Stock.Quantity Quantity  
+                        from Stock where Stock.WHID= '" + WHID + "' and ( Stock.PID like '%" + SearchText + "%' or Stock.Quantity like '%" + SearchText + "%')";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while(reader.Read())
+            {
+                sModel = new StockModel();
+                sModel.ID = int.Parse(reader["ID"].ToString());
+                sModel.ProductID = int.Parse(reader["PID"].ToString());
+                sModel.Quantity = float.Parse(reader["Quantity"].ToString());
+                stockItemList.Add(sModel);
+            }
+            return stockItemList;
+        }
     }
 }
