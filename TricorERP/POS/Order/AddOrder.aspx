@@ -9,24 +9,38 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
+
             <div class="row container-fluid">
                 <label for="InputName">Customer :</label>
-                <asp:DropDownList ID="CustomerList" runat="server" OnSelectedIndexChanged="CustomerList_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList ID="CustomerList" runat="server"></asp:DropDownList>
                 <label for="InputName">Product:</label>
                 <asp:DropDownList runat="server" ID="ProductList"></asp:DropDownList>
-
                 <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
 
-
-
-                <br />
-                <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
-                <br />
-                <asp:Label ID="ErroMessage" runat="server" Text=""></asp:Label>
-
+                <ul id="OrderStatus" class="nav navbar-nav navbar-right">
+                    <li>
+                        <label for="InputName">Order-Status :</label>
+                        <asp:DropDownList ID="OrderStatusList" runat="server">
+                            <asp:ListItem>--Select--</asp:ListItem>
+                            <asp:ListItem Value="1">Appending</asp:ListItem>
+                            <asp:ListItem Value="2">Approved</asp:ListItem>
+                            <asp:ListItem Value="3">In-process</asp:ListItem>
+                            <asp:ListItem Value="4">Delivered</asp:ListItem>
+                            <asp:ListItem Value="5">Complete</asp:ListItem>
+                        </asp:DropDownList>
+                    </li>
+                </ul>
             </div>
+
+
+            <br />
+            <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
+            <br />
+            <asp:Label ID="ErroMessage" runat="server" Text=""></asp:Label>
+
+
             <div class="panel-body">
-                <asp:ListView ID="SalesOrderItemListview" runat="server" OnItemCommand="SalesOrderItemListview_ItemCommand">
+                <asp:ListView ID="SalesOrderItemListview" runat="server">
                     <LayoutTemplate>
                         <table class="table table-bordered table-hover">
                             <tr>
@@ -70,6 +84,22 @@
                     </ItemTemplate>
                 </asp:ListView>
             </div>
+
+            
+            <div class="row container-fluid">
+                <div class="col-lg-5">
+                    <ul id="OrderApproved" class="nav navbar-nav">
+                        <li>
+                            <asp:Button ID="Order" runat="server" CssClass="btn btn-default" Text="Order" OnClick="OrderApproved_Click" />
+                        </li>
+                        <li>
+                            <asp:Button ID="Cancel" runat="server" CssClass="btn btn-default" Text="Cancel" OnClick="Cancel_Click" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
         </div>
 
         <!-- Modal -->

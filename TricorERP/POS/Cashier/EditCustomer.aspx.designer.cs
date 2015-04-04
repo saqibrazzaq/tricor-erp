@@ -76,6 +76,15 @@ namespace TricorERP.POS.Cashier {
         protected global::System.Web.UI.WebControls.ListView CustomerAddressesview;
         
         /// <summary>
+        /// txtAddressID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAddressID;
+        
+        /// <summary>
         /// Savebtn control.
         /// </summary>
         /// <remarks>

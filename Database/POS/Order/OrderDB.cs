@@ -16,10 +16,10 @@ namespace Database.POS.Order
         //that function save the data of new saleorder into saleorder table and return an object
         public static SaleOrderModel addNewSaleOrder(SaleOrderModel newsaleorder)
         {
-             String sql = @"INSERT INTO [dbo].[SalesOrder]
-                        ([CustomerID] ,[OrderDate] ,[DeliveryDate])
+            String sql = @"INSERT INTO [dbo].[SalesOrder]
+                        ([CustomerID] ,[OrderDate] ,[DeliveryDate] ,[OrderStatus])
 		                output inserted.ID
-                        VALUES ("+newsaleorder.CustomerID+" ,'"+newsaleorder.OrderDate+"','"+newsaleorder.DeliveryDate+"')";
+                        VALUES ('" + newsaleorder.CustomerID+"','"+newsaleorder.OrderDate+"','"+newsaleorder.DeliveryDate+"','1');";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             newsaleorder.ID = int.Parse(id.ToString());
             return newsaleorder;
@@ -90,10 +90,12 @@ namespace Database.POS.Order
         public static List<SaleOrderModel> getOrderList(String searchtext)
         {
             List<SaleOrderModel> sales = new List<SaleOrderModel>();
-            String sql = @"select top 10 SalesOrder.ID SID, SalesOrder.CustomerID CID
-                         ,Customer.Name CN, SalesOrder.OrderDate OD, SalesOrder.DeliveryDate DD
+            String sql = @"select SalesOrder.ID SID, SalesOrder.CustomerID CID, Customer.Name CN
+                         , OrderStatus.StatusName SN
+	                     ,SalesOrder.OrderDate OD, SalesOrder.DeliveryDate DD
                          from Customer 
                          join  SalesOrder on SalesOrder.CustomerID = Customer.Id
+	                     join OrderStatus on SalesOrder.OrderStatus = OrderStatus.ID
                          where 1=1
                          and Customer.Name like '%" + searchtext + "%' or SalesOrder.OrderDate like '%" + searchtext + "%'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
@@ -105,6 +107,7 @@ namespace Database.POS.Order
                 sale.OrderDate = reader["OD"].ToString();
                 sale.DeliveryDate = reader["DD"].ToString();
                 sale.CName = reader["CN"].ToString();
+                sale.OrderStatusName = reader["SN"].ToString();
                 sales.Add(sale);
             }
             return sales;
@@ -135,9 +138,7 @@ namespace Database.POS.Order
         // that function can update the data when user want to update it
         public static int updateSalesItem(SaleOrderItemModel updatesaleproduct)
         {
-            String sql = @"UPDATE [dbo].[SaleOrderItem] SET [OrderID] = "+updatesaleproduct.OrderID
-                         +",[ProductID] = "+updatesaleproduct.ProductID
-                         +",[Quantity] = "+updatesaleproduct.Quantity
+            String sql = @"UPDATE [dbo].[SaleOrderItem] SET [Quantity]="+updatesaleproduct.Quantity
                          +",[Price] = "+updatesaleproduct.Price
                          + "WHERE [SaleOrderItem].ID="+updatesaleproduct.ID+";";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
@@ -186,6 +187,7 @@ namespace Database.POS.Order
                     soModel.ID = soModel.ID;
                     soModel.CustomerID = int.Parse(reader["CustomerID"].ToString());
                     soModel.OrderDate = reader["OrderDate"].ToString();
+                    soModel.OrderStatus = int.Parse(reader["OrderStatus"].ToString());
                 }
             }
 
@@ -240,5 +242,18 @@ namespace Database.POS.Order
         }
 
 
+
+        public static int updateOrderStatus(SaleOrderModel soModel)
+        {
+            String sql = @"UPDATE [dbo].[SalesOrder]
+                          SET [OrderStatus] = "+soModel.OrderStatus
+                          +"WHERE [SalesOrder].ID ="+ soModel.ID;
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace TricorERP.POS.Order
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ErroMessage.Text = "";
+            
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -26,6 +26,7 @@ namespace TricorERP.POS.Order
 
         private void InitializePageContents()
         {
+            ErroMessage.Text = "";
             InitializeOrderModel();
             InitializeSaveOrderButton();
             LoadCustomerListInDropdown();
@@ -41,6 +42,10 @@ namespace TricorERP.POS.Order
                 {
                     soModel.ID = int.Parse(Request.QueryString["ID"]);
                     loadOrderModel();
+                }
+                else {
+                    ProductList.Enabled = false;
+                    btnAddProduct.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -100,6 +105,10 @@ namespace TricorERP.POS.Order
                 // Select the customer
                 CustomerList.Items.FindByValue(soModel.CustomerID.ToString()).Selected = true;
                 // Bind the items in list view
+
+                if (Session["RoleID"].ToString() == "1")
+                    OrderStatusList.Items.FindByValue(soModel.OrderStatus.ToString()).Selected = true;
+
                 SalesOrderItemListview.DataSource = soModel.items;
                 SalesOrderItemListview.DataBind();
             }
@@ -163,17 +172,7 @@ namespace TricorERP.POS.Order
             return so;
         }
 
-        protected void SalesOrderItemListview_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-            // Edit customer command
-            if (e.CommandName == "EditCustomer")
-            {
-                // Customer ID is in argument
-                String customerID = e.CommandArgument.ToString();
-                // Open the edit customer page
-                Response.Redirect("EditCustomer.aspx?ID=" + customerID);
-            }
-        }
+        
 
         protected void deleteSalesOrderItem_onClick(object sender, EventArgs e)
         {
@@ -190,22 +189,25 @@ namespace TricorERP.POS.Order
                 Quantity = int.Parse(txtQuantity.Text),
                 Price = float.Parse(txtPrice.Text)
             };
-
-            //soItemModel.ID = int.Parse(txtSalesOrderItemID.Text);
-            //soItemModel.Quantity = int.Parse(txtQuantity.Text);
-            //soItemModel.Price = int.Parse(txtPrice.Text);
-
             int check = Database.POS.Order.OrderDB.updateSalesItem(soItemModel);
             if (check > 0)
                 ErroMessage.Text = "Product is update";
+            InitializePageContents();
         }
 
-        protected void CustomerList_SelectedIndexChanged(object sender, EventArgs e)
+        protected void OrderApproved_Click(object sender, EventArgs e)
         {
-            
+            InitializeOrderModel();
+            soModel.OrderStatus = int.Parse(OrderStatusList.SelectedValue);
+            int check = Database.POS.Order.OrderDB.updateOrderStatus(soModel);
+            if (check > 0)
+                ErroMessage.Text = "UPDATED...";
         }
 
-
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/POS/Order/OrderList.aspx");
+        }
 
     }
 }

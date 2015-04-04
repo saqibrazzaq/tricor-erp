@@ -21,16 +21,17 @@
                     <tr class="active">
                         <th>ID</th>
                         <th>Customer ID</th>
-                        <th>Full Name</th>
+                        <th>Customer Name</th>
                         <th>Order Date</th>
                         <th>Delivery Date</th>
-                        <th>Edit</th>
+                        <th>Order Status</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
             </LayoutTemplate>
             <ItemTemplate>
                 <tr runat="server">
+
                     <td>
                         <%# Eval("ID") %>
                     </td>
@@ -38,7 +39,7 @@
                         <%# Eval("CustomerID") %>
                     </td>
                     <td>
-                        <%# Eval("CName") %>
+                         <asp:LinkButton runat="server" CommandName="EditSaleOrder" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("CName") %>'></asp:LinkButton>
                     </td>
                     <td>
                         <%# Eval("OrderDate") %>
@@ -47,10 +48,9 @@
                         <%# Eval("DeliveryDate") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="EditSaleOrder" CommandArgument='<%# Eval("ID")%>' >
-                            <span class="glyphicon glyphicon-edit">
-                        </asp:LinkButton>
+                        <%# Eval("OrderStatusName") %>
                     </td>
+
                 </tr>
             </ItemTemplate>
         </asp:ListView>

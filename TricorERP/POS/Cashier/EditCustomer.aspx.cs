@@ -19,13 +19,13 @@ namespace TricorERP.POS.Cashier
                 btnAddNewAddress.Enabled = false;
             if (IsPostBack == false)
             {
-                InitializePageContents(customerID);
+                InitializePageContents();
             }
         }
 
-        private void InitializePageContents(String Id)
+        private void InitializePageContents()
         {
-            CustomersData(Id);
+            CustomersData(customerID);
         }
         private void CustomersData(String Id)
         {
@@ -110,27 +110,23 @@ namespace TricorERP.POS.Cashier
             {
                 Response.Redirect("EditAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
             }
-            else if (e.CommandName == "DeleteAddress")
-            {
-                deleteCustomerAddress(AddressID);
-                Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID);
-            }
         }
-        private void deleteCustomerAddress(String AddressID)
-        {
-            int check = Database.POS.Customer.CustomerDB.deleteAddress(customerID, AddressID);
-            if (check == 1)
-            {
-               message.Text = "Address is Deleted";
-            }
-            else
-            {
-                message.Text = "Due to Some error Data is not Deleted";
-            }
-        }
+        
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
+        }
+
+        protected void deleteCustomerAddress_onClick(object sender, EventArgs e)
+        {
+            int AddressID = int.Parse(txtAddressID.Text);
+            deleteCustomerAddress(AddressID.ToString());
+            InitializePageContents();
+        }
+
+        private int deleteCustomerAddress(String AddressID)
+        {
+            return Database.POS.Customer.CustomerDB.deleteAddress(customerID, AddressID);
         }
     }
 }

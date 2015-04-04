@@ -88,20 +88,8 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            <%--<li id="OrderDropdown" class="dropdown">
-                                <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink29" NavigateUrl="~/POS/Order/EditOrder.aspx?SaleOrderID=0&CustomerID=0" runat="server">New-Order</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink30" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>--%>
                             
+
                             <li id="AddOrder" class="dropdown">
                                 <asp:HyperLink ID="HyperLink42" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
@@ -132,7 +120,9 @@
                                 </ul>
                             </li>
                             
-
+                            <li id="OrderStatusOfAnCustomer">
+                                <asp:HyperLink ID="HyperLink27" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
+                            </li>
                             <!-- ----------------------------------------->
                             
                             <!-- All SCMS Menus -->
@@ -302,15 +292,24 @@
             $("#Stock").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
             $("#Supplier").addClass("hidden");
+            $("#OrderStatus").addClass("hidden");
+            $("#OrderStatusOfAnCustomer").addClass("hidden");
+            $("#OrderStatus").addClass("hidden");
+            
+            $("#OrderApproved").addClass("hidden");
             
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
+            $("#OrderStatusOfAnCustomer").addClass("hidden");
+            
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#CashierDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
+            $("#OrderStatusOfAnCustomer").addClass("hidden");
+            
         }
     </script>
 </body>

@@ -40,6 +40,15 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.Button btnAddProduct;
         
         /// <summary>
+        /// OrderStatusList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList OrderStatusList;
+        
+        /// <summary>
         /// NewSalesOrder control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,24 @@ namespace TricorERP.POS.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView SalesOrderItemListview;
+        
+        /// <summary>
+        /// Order control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Order;
+        
+        /// <summary>
+        /// Cancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Cancel;
         
         /// <summary>
         /// txtQuantity control.

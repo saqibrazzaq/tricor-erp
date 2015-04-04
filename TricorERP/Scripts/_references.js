@@ -6,3 +6,4 @@
 /// <reference path="npm.js" />
 /// <reference path="jquery.confirm.js" />
 /// <reference path="../pos/order/addorder.js" />
+/// <reference path="../pos/cashier/editcustomer.js" />

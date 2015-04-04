@@ -29,10 +29,7 @@ $(document).ready(function () {
 });
 
 function ItemRow_onClick(arg) {
-    alert("zzzzzzzz");
     initializeItemModalDialog();
-    alert("zzzzzzzz");
-
 
     // Get the order item details from table
     var row = arg.closest("tr");    // Find the row
@@ -41,8 +38,6 @@ function ItemRow_onClick(arg) {
     var quantity = row.find(".ItemCol_Quantity").text().trim();
     var price = row.find(".ItemCol_Price").text().trim();
 
-    alert(price);
-
     $("#SalesOrderLabel").text("Update Items (" + productName + ")");
     $(".txtQuantity").val(quantity);
     $(".txtPrice").val(price);
@@ -50,16 +45,13 @@ function ItemRow_onClick(arg) {
 }
 
 function initializeItemModalDialog() {
-    alert("xxxxxxx");
     $("#SalesOrderLabel").text("Update");
     $(".txtQuantity").val("0");
     $(".txtPrice").val("0");
-    alert("yyyyyyy");
 }
 
 function ItemRowDelete_onClick(arg) {
     // Get the order item details from table
-    alert("m111111");
     var row = arg.closest("tr");    // Find the row
     var itemID = row.find(".ItemCol_ItemID").text();
     $(".txtSalesOrderItemID").val(itemID);
