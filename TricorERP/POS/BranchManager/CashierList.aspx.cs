@@ -60,18 +60,17 @@ namespace TricorERP.POS.BranchManager
                 Response.Redirect("CashierList.aspx");
             }
         }
-        private void deleteCashierAddress(String UserID)
+        private int deleteCashierAddress(String UserID)
         {
             // set the value of parameter as null because it can be delete the data from database according to the user id.
-            int check = Database.POS.CashierDB.deleteAddress(UserID, null);
-            if (check == 1)
-            {
-                Message.Text = "Address is Deleted";
-            }
-            else
-            {
-                Message.Text = "Due to Some error Data is not Deleted";
-            }
+            return Database.POS.CashierDB.deleteAddress(UserID, null);
+        }
+
+        protected void deleteCashier_onClick(object sender, EventArgs e)
+        {
+            int AddressID = int.Parse(txtAddressID.Text);
+            deleteCashierAddress(AddressID.ToString());
+            InitializePageContents();
         }
 
     }

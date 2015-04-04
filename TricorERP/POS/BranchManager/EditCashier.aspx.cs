@@ -114,25 +114,20 @@ namespace TricorERP.POS.BranchManager
             {
                 Response.Redirect("AddAddress.aspx?CashierID=" + CashierID + "&AddressID=" + AddressID);
             }
-            else if (e.CommandName == "DeleteAddress")
-            {
-                deleteCashierAddress(AddressID);
-                Response.Redirect("EditCashier.aspx?CashierID=" + CashierID);
-            }
+       }
+
+        protected void deleteCashierrAddress_onClick(object sender, EventArgs e)
+        {
+            int AddressID = int.Parse(txtAddressID.Text);
+            deleteCashierAddress(AddressID.ToString());
+            InitializePageContents();
         }
 
-        private void deleteCashierAddress(String AddressID)
+        private int deleteCashierAddress(String AddressID)
         {
-            int check = Database.POS.CashierDB.deleteAddress(CashierID, AddressID);
-            if (check == 1)
-            {
-                message.Text = "Address is Deleted";
-            }
-            else
-            {
-                message.Text = "Due to Some error Data is not Deleted";
-            }
+            return Database.POS.CashierDB.deleteAddress(CashierID, AddressID);
         }
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/POS/BranchManager/CashierList.aspx");
