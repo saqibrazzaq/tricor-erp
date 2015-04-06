@@ -21,12 +21,7 @@
                     <li>
                         <label for="InputName">Order-Status :</label>
                         <asp:DropDownList ID="OrderStatusList" runat="server">
-                            <asp:ListItem>--Select--</asp:ListItem>
-                            <asp:ListItem Value="1">Pending</asp:ListItem>
-                            <asp:ListItem Value="2">Approved</asp:ListItem>
-                            <asp:ListItem Value="3">In-process</asp:ListItem>
-                            <asp:ListItem Value="4">Delivered</asp:ListItem>
-                            <asp:ListItem Value="5">Complete</asp:ListItem>
+                            
                         </asp:DropDownList>
                     </li>
                 </ul>

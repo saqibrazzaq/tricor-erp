@@ -265,16 +265,17 @@ namespace Database.POS.Order
             return 0;
         }
 
-        public static List<OrderModel> getOrderStatusList()
+        public static List<OrderStatusModel> getOrderStatusList()
         {
             List<OrderStatusModel> orderstatus = new List<OrderStatusModel>();
-            String sql = @"";
+            String sql = @"SELECT [ID] ID,[StatusName] SN
+                         FROM [dbo].[OrderStatus]";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read()) {
                 OrderStatusModel status = new OrderStatusModel();
-                status.ID = int.Parse(reader[""].ToString());
-                status.StatusName = reader[""].ToString();
+                status.ID = int.Parse(reader["ID"].ToString());
+                status.StatusName = reader["SN"].ToString();
 
                 orderstatus.Add(status);
             }

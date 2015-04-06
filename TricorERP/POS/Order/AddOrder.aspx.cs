@@ -40,13 +40,14 @@ namespace TricorERP.POS.Order
 
         private void LoadOrderStatusListInDropdown()
         {
-            List<OrderModel> orderstatus = GetOrderStatusList();
+            List<OrderStatusModel> orderstatus = GetOrderStatusList();
+            OrderStatusList.DataSource = orderstatus;
             OrderStatusList.DataTextField = "StatusName";
             OrderStatusList.DataValueField = "ID";
             OrderStatusList.DataBind();
         }
 
-        private List<OrderModel> GetOrderStatusList()
+        private List<OrderStatusModel> GetOrderStatusList()
         {
             return Database.POS.Order.OrderDB.getOrderStatusList();
         }
@@ -124,8 +125,8 @@ namespace TricorERP.POS.Order
                 // Bind the items in list view
 
                 if (Session["RoleID"].ToString() == "1")
-                    OrderStatusList.Items.FindByValue(soModel.OrderStatus.ToString()).Selected = true;
-
+                    OrderStatusList.SelectedValue = soModel.OrderStatus.ToString();
+            
                 SalesOrderItemListview.DataSource = soModel.items;
                 SalesOrderItemListview.DataBind();
             }
@@ -218,9 +219,7 @@ namespace TricorERP.POS.Order
         protected void OrderApproved_Click(object sender, EventArgs e)
         {
             InitializeOrderModel();
-            ///////////////////////////////////////////////////////////////
             soModel.OrderStatus = int.Parse(OrderStatusList.SelectedValue);
-            
             int check = Database.POS.Order.OrderDB.updateOrderStatus(soModel);
             if (check > 0)
                 ErroMessage.Text = "UPDATED...";
