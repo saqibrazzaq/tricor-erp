@@ -14,5 +14,6 @@ namespace Models.POS.Order
         public int Quantity { get; set; }
         public float Price { get; set; }
         public string ProductName { get; set; }
+
     }
 }

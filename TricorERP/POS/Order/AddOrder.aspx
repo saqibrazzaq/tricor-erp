@@ -22,7 +22,7 @@
                         <label for="InputName">Order-Status :</label>
                         <asp:DropDownList ID="OrderStatusList" runat="server">
                             <asp:ListItem>--Select--</asp:ListItem>
-                            <asp:ListItem Value="1">Appending</asp:ListItem>
+                            <asp:ListItem Value="1">Pending</asp:ListItem>
                             <asp:ListItem Value="2">Approved</asp:ListItem>
                             <asp:ListItem Value="3">In-process</asp:ListItem>
                             <asp:ListItem Value="4">Delivered</asp:ListItem>
@@ -83,6 +83,15 @@
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>
+                <hr />
+                <table class="table">
+                    <tr>
+                        <td>
+                            <b><asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
+                            <asp:Label ID="TotalPrice" runat="server" Text=""></asp:Label>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             
@@ -98,7 +107,6 @@
                     </ul>
                 </div>
             </div>
-
 
         </div>
 
@@ -120,8 +128,6 @@
                                 <asp:TextBox CssClass="hidden txtSalesOrderItemID" runat="server" ID="txtSalesOrderItemID" Text=""></asp:TextBox>
                             </div>
                         </div>
-
-
 
                         <div class="row form-group">
                             <div class="col-lg-2">

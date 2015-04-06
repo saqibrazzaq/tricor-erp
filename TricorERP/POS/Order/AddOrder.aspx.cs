@@ -32,6 +32,15 @@ namespace TricorERP.POS.Order
             LoadCustomerListInDropdown();
             LoadProductListInDropdown();
             UpdateSalesOrderUI();
+
+            LoadOrderStatusListInDropdown();
+            
+            TotalPrice.Text = soModel.TotalPrice.ToString();
+        }
+
+        private void LoadOrderStatusListInDropdown()
+        {
+
         }
 
         private void InitializeOrderModel()
@@ -127,6 +136,9 @@ namespace TricorERP.POS.Order
                 // Set quantity to default 1
                 soItemModel.Quantity = 1;
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
+
+                
+
                 InitializePageContents();
             }
         }
@@ -198,7 +210,9 @@ namespace TricorERP.POS.Order
         protected void OrderApproved_Click(object sender, EventArgs e)
         {
             InitializeOrderModel();
+            ///////////////////////////////////////////////////////////////
             soModel.OrderStatus = int.Parse(OrderStatusList.SelectedValue);
+            
             int check = Database.POS.Order.OrderDB.updateOrderStatus(soModel);
             if (check > 0)
                 ErroMessage.Text = "UPDATED...";

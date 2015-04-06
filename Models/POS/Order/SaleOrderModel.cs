@@ -19,5 +19,7 @@ namespace Models.POS.Order
         public String OrderStatusName { set; get; }
 
         public List<SaleOrderItemModel> items = new List<SaleOrderItemModel>();
+
+        public float TotalPrice { get; set; }
     }
 }

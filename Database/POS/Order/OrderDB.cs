@@ -19,7 +19,7 @@ namespace Database.POS.Order
             String sql = @"INSERT INTO [dbo].[SalesOrder]
                         ([CustomerID] ,[OrderDate] ,[DeliveryDate] ,[OrderStatus])
 		                output inserted.ID
-                        VALUES ('" + newsaleorder.CustomerID+"','"+newsaleorder.OrderDate+"','"+newsaleorder.DeliveryDate+"','1');";
+                        VALUES ('" + newsaleorder.CustomerID + "','" + newsaleorder.OrderDate + "','" + newsaleorder.DeliveryDate + "','1');";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             newsaleorder.ID = int.Parse(id.ToString());
             return newsaleorder;
@@ -32,7 +32,7 @@ namespace Database.POS.Order
                           ,[OrderDate] OrderDate
                           ,[DeliveryDate] DeliveryDate
                           FROM [dbo].[SalesOrder] 
-                          where [SalesOrder].ID = '"+SaleOrderID+"'";
+                          where [SalesOrder].ID = '" + SaleOrderID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             SaleOrderModel saleorder = new SaleOrderModel();
             if (reader.Read())
@@ -51,8 +51,8 @@ namespace Database.POS.Order
             String sql = @"INSERT INTO [dbo].[SaleOrderItem]
                          ([OrderID] ,[ProductID] ,[Quantity] ,[Price])
                          output inserted.ID
-                         VALUES("+newsaleproduct.OrderID+","+newsaleproduct.ProductID+","
-                                 +newsaleproduct.Quantity+","+newsaleproduct.Price+")";
+                         VALUES(" + newsaleproduct.OrderID + "," + newsaleproduct.ProductID + ","
+                                 + newsaleproduct.Quantity + "," + newsaleproduct.Price + ")";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             newsaleproduct.ID = int.Parse(id.ToString());
             return newsaleproduct;
@@ -70,7 +70,7 @@ namespace Database.POS.Order
                          from SalesOrder
                          join SaleOrderItem on SalesOrder.ID = SaleOrderItem.OrderID
                          join Product on Product.ID = SaleOrderItem.ProductID
-                         where SalesOrder.ID = '" + SaleOrderID+"'";
+                         where SalesOrder.ID = '" + SaleOrderID + "'";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
@@ -81,7 +81,6 @@ namespace Database.POS.Order
                 item.SalesPrice = int.Parse(reader["SP"].ToString());
                 item.Quantity = int.Parse(reader["Qat"].ToString());
                 productitems.Add(item);
-                //perform addition of products and price on that end or not.
             }
             return productitems;
         }
@@ -116,10 +115,11 @@ namespace Database.POS.Order
         //not correct 
         /* that function is work on the bases of orderid and productid and get the data according to 
            these ids get data from database and return an object of a product*/
-        public static SaleOrderItemModel getSaleOrderItem(int orderID, String productID) {
+        public static SaleOrderItemModel getSaleOrderItem(int orderID, String productID)
+        {
             String sql = @"select [SaleOrderItem].ID id, [SaleOrderItem].Quantity Qa, [SaleOrderItem].Price pri
                          from [SaleOrderItem]
-                         where [SaleOrderItem].OrderID = "+orderID+" and [SaleOrderItem].ProductID = "+ productID;
+                         where [SaleOrderItem].OrderID = " + orderID + " and [SaleOrderItem].ProductID = " + productID;
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             SaleOrderItemModel saleorderitem = new SaleOrderItemModel();
             if (reader.Read())
@@ -138,9 +138,9 @@ namespace Database.POS.Order
         // that function can update the data when user want to update it
         public static int updateSalesItem(SaleOrderItemModel updatesaleproduct)
         {
-            String sql = @"UPDATE [dbo].[SaleOrderItem] SET [Quantity]="+updatesaleproduct.Quantity
-                         +",[Price] = "+updatesaleproduct.Price
-                         + "WHERE [SaleOrderItem].ID="+updatesaleproduct.ID+";";
+            String sql = @"UPDATE [dbo].[SaleOrderItem] SET [Quantity]=" + updatesaleproduct.Quantity
+                         + ",[Price] = " + updatesaleproduct.Price
+                         + "WHERE [SaleOrderItem].ID=" + updatesaleproduct.ID + ";";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -154,7 +154,7 @@ namespace Database.POS.Order
         public static int deleteSaleOrderItem(int p)
         {
             String sql = @"DELETE FROM [dbo].[SaleOrderItem]
-                         WHERE [SaleOrderItem].ID = '"+p+"'";
+                         WHERE [SaleOrderItem].ID = '" + p + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check > 0)
             {
@@ -166,8 +166,8 @@ namespace Database.POS.Order
         /*Method that is used for update the customers if we want to change the customer*/
         public static int updateSaleOrder(SaleOrderModel so)
         {
-            String sql = @"UPDATE [dbo].[SalesOrder] SET [CustomerID] = "+so.CustomerID
-                         +"WHERE ID="+so.ID;
+            String sql = @"UPDATE [dbo].[SalesOrder] SET [CustomerID] = " + so.CustomerID
+                         + "WHERE ID=" + so.ID;
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check > 0)
             {
@@ -191,6 +191,9 @@ namespace Database.POS.Order
                 }
             }
 
+            //for total price 
+            float totalprice = 0;
+
             // Load the items
             string sqlItems = @"SELECT item.*, Product.Name AS ProductName
                     FROM SaleOrderItem item
@@ -200,20 +203,26 @@ namespace Database.POS.Order
             soModel.items.Clear();
             using (SqlDataReader readerItems = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlItems, null))
             {
+
                 while (readerItems.Read())
                 {
-                    SaleOrderItemModel soItemModel = new SaleOrderItemModel(){
-                        ID = int.Parse(readerItems["ID"].ToString()),
-                        OrderID = int.Parse(readerItems["OrderID"].ToString()),
-                        ProductID = int.Parse(readerItems["ProductID"].ToString()),
-                        Quantity = int.Parse(readerItems["Quantity"].ToString()),
-                        Price = float.Parse(readerItems["Price"].ToString()),
-                        ProductName = readerItems["ProductName"].ToString()
-                    };
+                    SaleOrderItemModel soItemModel = new SaleOrderItemModel();
+                    soItemModel.ID = int.Parse(readerItems["ID"].ToString());
+                    soItemModel.OrderID = int.Parse(readerItems["OrderID"].ToString());
+                    soItemModel.ProductID = int.Parse(readerItems["ProductID"].ToString());
+                    soItemModel.Quantity = int.Parse(readerItems["Quantity"].ToString());
+                    soItemModel.Price = float.Parse(readerItems["Price"].ToString());
+                    soItemModel.ProductName = readerItems["ProductName"].ToString();
+
+                    //total Price according to the product quantity 
+                    totalprice = totalprice + (soItemModel.Price * soItemModel.Quantity);
 
                     soModel.items.Add(soItemModel);
                 }
             }
+
+            soModel.TotalPrice = totalprice;
+
             return soModel;
         }
 
@@ -237,7 +246,7 @@ namespace Database.POS.Order
                 soItemModel.ProductID + " , " + soItemModel.Quantity + " , '" + soItemModel.Price + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
             soItemModel.ID = int.Parse(id.ToString());
-            
+
             return soItemModel;
         }
 
@@ -246,8 +255,8 @@ namespace Database.POS.Order
         public static int updateOrderStatus(SaleOrderModel soModel)
         {
             String sql = @"UPDATE [dbo].[SalesOrder]
-                          SET [OrderStatus] = "+soModel.OrderStatus
-                          +"WHERE [SalesOrder].ID ="+ soModel.ID;
+                          SET [OrderStatus] = " + soModel.OrderStatus
+                          + "WHERE [SalesOrder].ID =" + soModel.ID;
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check > 0)
             {

@@ -269,7 +269,6 @@
         String roleID = Session["RoleID"].ToString();
         %>
         if ('1' == '<%=roleID%>') {
-            $("#CustomerDropdown").addClass("hidden");
             $("#SCMMenu").addClass("hidden");
             $("#Products").addClass("hidden");
             $("#PurchaseOrder").addClass("hidden");
