@@ -264,5 +264,21 @@ namespace Database.POS.Order
             }
             return 0;
         }
+
+        public static List<OrderModel> getOrderStatusList()
+        {
+            List<OrderStatusModel> orderstatus = new List<OrderStatusModel>();
+            String sql = @"";
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read()) {
+                OrderStatusModel status = new OrderStatusModel();
+                status.ID = int.Parse(reader[""].ToString());
+                status.StatusName = reader[""].ToString();
+
+                orderstatus.Add(status);
+            }
+            return orderstatus;
+        }
     }
 }

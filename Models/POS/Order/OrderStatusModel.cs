@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.POS.Order
 {
-    public  class OrderStatus
+    public  class OrderStatusModel
     {
         public int ID { set; get; }
         public String  StatusName{ set; get; }

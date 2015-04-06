@@ -40,7 +40,15 @@ namespace TricorERP.POS.Order
 
         private void LoadOrderStatusListInDropdown()
         {
+            List<OrderModel> orderstatus = GetOrderStatusList();
+            OrderStatusList.DataTextField = "StatusName";
+            OrderStatusList.DataValueField = "ID";
+            OrderStatusList.DataBind();
+        }
 
+        private List<OrderModel> GetOrderStatusList()
+        {
+            return Database.POS.Order.OrderDB.getOrderStatusList();
         }
 
         private void InitializeOrderModel()
