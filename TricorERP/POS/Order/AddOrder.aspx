@@ -39,6 +39,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Sales Order ID</th>
+                                <th>WareHouseID</th>
                                 <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
@@ -55,6 +56,14 @@
                             <td>
                                 <%# Eval("OrderID") %>
                             </td>
+                            <td>
+                                <%#Eval("WareHouseID") %>
+                            </td>
+
+                            <%--<td>
+                                <%#Eval("WareHouseName") %>
+                            </td>--%>
+
                             <td class="ItemCol_ProductName">
                                 <%# Eval("ProductName") %>
                             </td>

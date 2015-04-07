@@ -3,11 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    THis is Home page <% = Session["Username"] + " - " + Session["RoleID"] +"----"+ Session["CustomerID"] %>
+    
 
 
-
-    <div id="PendingSales" class="panel panel-default">
+    <div id="PendingSales" class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">Pending Sales</h3>
         </div>
@@ -27,7 +26,7 @@
         </div>
     </div>
 
-
+    <%-- if some page is not available then show that message --%>
 
     <%--<div class="panel panel-default">
         <div class="panel-body">This page is temporarily disabled by the site administrator for some reason.</div> 

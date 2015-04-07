@@ -160,10 +160,10 @@ namespace TricorERP.POS.Order
                 soItemModel.ProductID = int.Parse(ProductList.SelectedValue);
                 // Set quantity to default 1
                 soItemModel.Quantity = 1;
-                soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
 
+                soItemModel.WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue);
                 
-
+                soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
                 InitializePageContents();
             }
         }
@@ -206,6 +206,8 @@ namespace TricorERP.POS.Order
             so.ID = soModel.ID;
             so.CustomerID = int.Parse(CustomerList.SelectedValue);
             so.OrderDate = DateTime.Now.ToString();
+            
+            //////////////////////////////////////////////
             return so;
         }
 
@@ -220,11 +222,13 @@ namespace TricorERP.POS.Order
 
         protected void SaveSalesOrderItem_onClick(object sender, EventArgs e)
         {
+            // on that point set the weharehouse id 
             SaleOrderItemModel soItemModel = new SaleOrderItemModel()
             {
                 ID = int.Parse(txtSalesOrderItemID.Text),
                 Quantity = int.Parse(txtQuantity.Text),
-                Price = float.Parse(txtPrice.Text)
+                Price = float.Parse(txtPrice.Text),
+                WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue)
             };
             int check = Database.POS.Order.OrderDB.updateSalesItem(soItemModel);
             if (check > 0)
