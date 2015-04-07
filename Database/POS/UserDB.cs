@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.POS.Cashier;
+using Models.POS.User;
 using System.Data.SqlClient;
 using Models.POS.Customer;
 
 namespace Database.POS
 {
-    public class CashierDB
+    public class UserDB
     {
         // addition of new customer in database and return an id of User 
-        public static CashierModel addNewCashier(CashierModel newcashier)
+        public static UserModel addNewCashier(UserModel newcashier)
         {
             String sql = null;
-            CashierModel cashier = new CashierModel();
+            UserModel cashier = new UserModel();
             Boolean namecheck = checkCashierName(newcashier.Name);
             Boolean cniccheck = checkCashierCNIC(newcashier.Name);
             if (namecheck && cniccheck)
@@ -60,9 +60,9 @@ namespace Database.POS
 
 
         // get cashier information and return an object of CashierModel
-        public static CashierModel getCashierInFo(String CashierID)
+        public static UserModel getCashierInFo(String CashierID)
         {
-            CashierModel cashier = new CashierModel();
+            UserModel cashier = new UserModel();
             String sql = @"SELECT [ID],[Username] Name,[Password] Password,[RoleID],[CNIC] CNIC FROM [dbo].[User]
                            where ID = '" + CashierID + "'";
             //SELECT [Username] Name ,[Password] Password FROM [dbo].[User], [CNIC] CNIC where ID = '" + CashierID + "'";
@@ -77,9 +77,9 @@ namespace Database.POS
         }
 
         //get all data of cashier and return an list.
-        public static List<CashierModel> getCashierList(String searchtext)
+        public static List<UserModel> getCashierList(String searchtext)
         {
-            List<CashierModel> cashiers = new List<CashierModel>();
+            List<UserModel> cashiers = new List<UserModel>();
             String sql = @"select top 10 [User].ID ID, [User].Username Name, Address.PhoneNo PhoneNo
                            from [User] 
                            join UserAddress on [User].ID = UserAddress.UserID
@@ -90,7 +90,7 @@ namespace Database.POS
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
-                CashierModel cashier = new CashierModel();
+                UserModel cashier = new UserModel();
                 cashier.ID = int.Parse(reader["ID"].ToString());
                 cashier.Name = reader["Name"].ToString();
                 cashier.PhoneNo = reader["PhoneNo"].ToString();
@@ -100,7 +100,7 @@ namespace Database.POS
         }
 
         // update the cashier data 
-        public static int updateCashier(CashierModel updatecashier)
+        public static int updateCashier(UserModel updatecashier)
         {
             String sql = @"UPDATE [dbo].[User] SET [Username] = '" + updatecashier.Name
                         + "',[Password] = '" + updatecashier.Password + "',[CNIC] = '" + updatecashier.CNIC

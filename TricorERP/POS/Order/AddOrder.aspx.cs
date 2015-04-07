@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Models.POS.Order;
 using Models.POS.Customer;
 using Models.POS;
+using Models.SCM;
 
 namespace TricorERP.POS.Order
 {
@@ -32,10 +33,25 @@ namespace TricorERP.POS.Order
             LoadCustomerListInDropdown();
             LoadProductListInDropdown();
             UpdateSalesOrderUI();
-
             LoadOrderStatusListInDropdown();
-            
+
+            LoadWaherHouseDropDownList();
+
             TotalPrice.Text = soModel.TotalPrice.ToString();
+        }
+
+        private void LoadWaherHouseDropDownList()
+        {
+            List<WareHouseModel> WHModel = GetWareHouseList();
+            WaherHouseDropDownList.DataSource = WHModel;
+            WaherHouseDropDownList.DataTextField = "Name";
+            WaherHouseDropDownList.DataValueField = "ID";
+            WaherHouseDropDownList.DataBind();
+        }
+
+        private List<WareHouseModel> GetWareHouseList()
+        {
+            return Database.POS.Order.OrderDB.getWareHouseList();
         }
 
         private void LoadOrderStatusListInDropdown()
@@ -103,7 +119,7 @@ namespace TricorERP.POS.Order
 
         private void LoadProductListInDropdown()
         {
-            List<ProductModel> products = GetProducts();
+            List<Models.POS.ProductModel> products = GetProducts();
             ProductList.DataSource = products;
             // Set text and value
             ProductList.DataTextField = "ProductName";
@@ -111,7 +127,7 @@ namespace TricorERP.POS.Order
             ProductList.DataBind();
         }
 
-        private List<ProductModel> GetProducts()
+        private List<Models.POS.ProductModel> GetProducts()
         {
             return Database.POS.ProductDB.getProductList();
         }

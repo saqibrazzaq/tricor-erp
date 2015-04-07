@@ -4,27 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Models.POS.Cashier;
+using Models.POS.User;
 
 namespace TricorERP.POS.BranchManager
 {
     public partial class EditCashier : System.Web.UI.Page
     {
-        String CashierID = "0";
+        String UserID = "0";
         string AddressID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
-            CashierID = Request.QueryString["CashierID"];
+            UserID = Request.QueryString["UserID"];
             AddressID = Request.QueryString["AddressID"];
 
-            if (CashierID == "0") { 
+            if (UserID == "0") { 
                 btnAddNewAddress.Enabled = false;
             }
 
-            if (CashierID != "0")
-                Head.Text = "Cashier Information.";
-            else if(CashierID == "0")
-                Head.Text = "New Cashier";
+            if (UserID != "0")
+                Head.Text = "User Information";
+            else if(UserID == "0")
+                Head.Text = "New User";
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -32,78 +32,78 @@ namespace TricorERP.POS.BranchManager
         }
         private void InitializePageContents()
         {
-            CashierData();
+            UserData();
         }
 
-        private void CashierData()
+        private void UserData()
         {
-            CashierModel cashier = null;
-            List<Models.POS.Customer.AddressModel> cashierAddresses = null;
+            UserModel cashier = null;
+            List<Models.POS.Customer.AddressModel> userAddresses = null;
 
             cashier = GetCahierInFo();
-            cashierAddresses = GetAddressesFromDB();
+            userAddresses = GetAddressesFromDB();
 
             CashierNameText.Text = cashier.Name;
             CashierPasswordText.Text = cashier.Password;
             CNIC.Text = cashier.CNIC;
 
-            CashierAddressesview.DataSource = cashierAddresses;
+            CashierAddressesview.DataSource = userAddresses;
             CashierAddressesview.DataBind();
         }
 
-        private CashierModel GetCahierInFo()
+        private UserModel GetCahierInFo()
         {
-            return Database.POS.CashierDB.getCashierInFo(CashierID);
+            return Database.POS.UserDB.getCashierInFo(UserID);
         }
         private List<Models.POS.Customer.AddressModel> GetAddressesFromDB()
         {
-            return Database.POS.CashierDB.getCashierAddresses(CashierID);
+            return Database.POS.UserDB.getCashierAddresses(UserID);
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/BranchManager/AddAddress.aspx?CashierID=" + CashierID + "&AddressID=0");
+            Response.Redirect("~/POS/BranchManager/AddAddress.aspx?UserID=" + UserID + "&AddressID=0");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (CashierID == "0")
+            if (UserID == "0")
                 addNewCashier();
             else
                 updateCashier();
         }
         private void addNewCashier()
         {
-            CashierModel newcasier = new CashierModel();
+            UserModel newcasier = new UserModel();
             newcasier.Name = CashierNameText.Text;
             newcasier.Password = CashierPasswordText.Text;
             newcasier.CNIC = CNIC.Text;
-            newcasier = Database.POS.CashierDB.addNewCashier(newcasier);
+            newcasier = Database.POS.UserDB.addNewCashier(newcasier);
 
             if (newcasier != null)
-                Response.Redirect("~/POS/BranchManager/AddAddress.aspx?CashierID=" + newcasier.ID + "&AddressID=0");
+                Response.Redirect("~/POS/BranchManager/AddAddress.aspx?UserID=" + newcasier.ID + "&AddressID=0");
             else
                 message.Text = "UserName/CNIC is already exist.";
         }
 
         private void updateCashier()
         {
-            CashierModel updatecashier = new CashierModel();
-            updatecashier.ID = int.Parse(CashierID.ToString());
+            UserModel updatecashier = new UserModel();
+            updatecashier.ID = int.Parse(UserID.ToString());
             updatecashier.CNIC = CNIC.Text;
             updatecashier.Name = CashierNameText.Text;
             updatecashier.Password = CashierPasswordText.Text;
 
-            int check = Database.POS.CashierDB.updateCashier(updatecashier);
+            int check = Database.POS.UserDB.updateCashier(updatecashier);
             if (check == 1)
             {
                 message.Text = "Data is Updated";
-                Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + updatecashier.ID + "&AddressID=0");
+                Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + updatecashier.ID + "&AddressID=0");
             }
             else
             {
                 message.Text = "Data is not Updated";
-                Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + updatecashier.ID + "&AddressID=0");
+                Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + updatecashier.ID + "&AddressID=0");
             }
         }
 
@@ -112,7 +112,7 @@ namespace TricorERP.POS.BranchManager
             String AddressID = e.CommandArgument.ToString();
             if (e.CommandName == "AddAddress")
             {
-                Response.Redirect("AddAddress.aspx?CashierID=" + CashierID + "&AddressID=" + AddressID);
+                Response.Redirect("AddAddress.aspx?UserID=" + UserID + "&AddressID=" + AddressID);
             }
        }
 
@@ -125,12 +125,12 @@ namespace TricorERP.POS.BranchManager
 
         private int deleteCashierAddress(String AddressID)
         {
-            return Database.POS.CashierDB.deleteAddress(CashierID, AddressID);
+            return Database.POS.UserDB.deleteAddress(UserID, AddressID);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/BranchManager/CashierList.aspx");
+            Response.Redirect("~/POS/BranchManager/UserList.aspx");
         }
 
         

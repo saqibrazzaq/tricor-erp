@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.POS.Cashier
+namespace Models.POS.User
 {
-    public class CashierModel
+    public class UserModel
     {
         public int ID { get; set; }
         public String Name { get; set; }

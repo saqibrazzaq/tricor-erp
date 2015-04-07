@@ -1,4 +1,4 @@
-﻿using Models.POS.Cashier;
+﻿using Models.POS.User;
 using Models.POS.Customer;
 using System;
 using System.Collections.Generic;
@@ -12,11 +12,11 @@ namespace TricorERP.POS.BranchManager
     public partial class AddAddress : System.Web.UI.Page
     {
         String AddressID = "0";
-        String CashierID = "0";
+        String UserID = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             AddressID = Request.QueryString["AddressID"];
-            CashierID = Request.QueryString["CashierID"];
+            UserID = Request.QueryString["UserID"];
             //if (CashierID != "0")
             //    btnCancel.Enabled = false;
             
@@ -42,8 +42,8 @@ namespace TricorERP.POS.BranchManager
             CityNameText.Text = customeraddress.City;
 
             // set cashier information of customer. 
-            CashierModel cashier = new CashierModel();
-            cashier = Database.POS.CashierDB.getCashierInFo(CashierID);
+            UserModel cashier = new UserModel();
+            cashier = Database.POS.UserDB.getCashierInFo(UserID);
             cashierName.Text = cashier.Name;
             cashierCNIC.Text = cashier.CNIC;
 
@@ -52,7 +52,7 @@ namespace TricorERP.POS.BranchManager
         {
             if (AddressID == "0")
                 saveNewAddress();
-            else if (CashierID != "0")
+            else if (UserID != "0")
                 updateAddress();
 
         }
@@ -61,7 +61,7 @@ namespace TricorERP.POS.BranchManager
         private void saveNewAddress()
         {
             AddressModel newaddress = new AddressModel();
-            newaddress.ID = int.Parse(CashierID.ToString());
+            newaddress.ID = int.Parse(UserID.ToString());
             newaddress.City = CityNameText.Text;
             newaddress.Location1 = Location1Text.Text;
             newaddress.Location2 = Location2Text.Text;
@@ -69,12 +69,12 @@ namespace TricorERP.POS.BranchManager
             newaddress.Email = email.Text;
 
             newaddress = Database.Common.AddressDB.addAddress(newaddress);// customerID, CashierID);
-            int check = Database.POS.CashierDB.addAddress(CashierID, newaddress.ID);
+            int check = Database.POS.UserDB.addAddress(UserID, newaddress.ID);
 
             if (check == 1)
             {
                 if (newaddress != null)
-                    Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "& AddressID=" + newaddress.ID);
+                    Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + UserID + "& AddressID=" + newaddress.ID);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace TricorERP.POS.BranchManager
             int check = Database.Common.AddressDB.updateAddress(updateaddress);
             if (check == 1)
             {
-                Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "&AddressID=" + AddressID);
+                Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + UserID + "&AddressID=" + AddressID);
                 message.Text = "Data is Updated";
             }
             else if (check != 1)
@@ -106,7 +106,7 @@ namespace TricorERP.POS.BranchManager
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/BranchManager/EditCashier.aspx?CashierID=" + CashierID + "& AddressID=0");
+            Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + UserID + "& AddressID=0");
         }
     }
 }

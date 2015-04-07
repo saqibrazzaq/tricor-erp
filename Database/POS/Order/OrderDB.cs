@@ -281,5 +281,23 @@ namespace Database.POS.Order
             }
             return orderstatus;
         }
+
+        // that function can return the list of warehouse list for viewing on the panal
+        public static List<Models.SCM.WareHouseModel> getWareHouseList()
+        {
+            List<Models.SCM.WareHouseModel> WHlists = new List<Models.SCM.WareHouseModel>();
+            String sql = @"SELECT [ID] ID,[WHName] WHN ,[WHDescription] WHD
+                         FROM [dbo].[Warehouse]";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read()) {
+                Models.SCM.WareHouseModel WHList = new Models.SCM.WareHouseModel();
+                WHList.ID = int.Parse(reader["ID"].ToString());
+                WHList.Name = reader["WHN"].ToString();
+                WHList.Description = reader["WHD"].ToString();
+            }
+            return WHlists;
+        }
+
+
     }
 }

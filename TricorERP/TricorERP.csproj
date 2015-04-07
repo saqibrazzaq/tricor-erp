@@ -59,8 +59,8 @@
   <ItemGroup>
     <Content Include="Home.aspx" />
     <Content Include="POS\BranchManager\AddAddress.aspx" />
-    <Content Include="POS\BranchManager\CashierList.aspx" />
-    <Content Include="POS\BranchManager\EditCashier.aspx" />
+    <Content Include="POS\BranchManager\UserList.aspx" />
+    <Content Include="POS\BranchManager\EditUser.aspx" />
     <Content Include="POS\BranchManager\EditCashier.js" />
     <Content Include="POS\Cashier\EditAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
@@ -140,19 +140,19 @@
     <Compile Include="POS\BranchManager\AddAddress.aspx.designer.cs">
       <DependentUpon>AddAddress.aspx</DependentUpon>
     </Compile>
-    <Compile Include="POS\BranchManager\CashierList.aspx.cs">
-      <DependentUpon>CashierList.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="POS\BranchManager\CashierList.aspx.designer.cs">
-      <DependentUpon>CashierList.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="POS\BranchManager\EditCashier.aspx.cs">
-      <DependentUpon>EditCashier.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="POS\BranchManager\EditCashier.aspx.designer.cs">
-      <DependentUpon>EditCashier.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\Cashier\EditAddress.aspx.cs">
       <DependentUpon>EditAddress.aspx</DependentUpon>

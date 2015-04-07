@@ -22,22 +22,22 @@ namespace TricorERP.POS.BranchManager
             SearchCashier("");
         }
 
-        private void SearchCashier(string searchcashier)
+        private void SearchCashier(string searchuser)
         {
-            List<Models.POS.Cashier.CashierModel> cashier = null;
-            if (searchcashier == null)
+            List<Models.POS.User.UserModel> cashier = null;
+            if (searchuser == null)
                 cashier = GetFromDatabase("");
-            else if (searchcashier != null)
-                cashier = GetFromDatabase(searchcashier);
+            else if (searchuser != null)
+                cashier = GetFromDatabase(searchuser);
             else
                 Message.Text = "Your Required Customer is not in Database..";
             CashierListview.DataSource = cashier;
             CashierListview.DataBind();
         }
 
-        private List<Models.POS.Cashier.CashierModel> GetFromDatabase(string p)
+        private List<Models.POS.User.UserModel> GetFromDatabase(string p)
         {
-            return Database.POS.CashierDB.getCashierList(p);
+            return Database.POS.UserDB.getCashierList(p);
         }
 
         protected void SearchCustomerButton1_Click(object sender, EventArgs e)
@@ -51,19 +51,17 @@ namespace TricorERP.POS.BranchManager
             // Edit customer command
             if (e.CommandName == "EditCashier")
             {
-                // Customer ID is in argument
-                String cashierID = e.CommandArgument.ToString();
-                // Open the edit customer page
-                Response.Redirect("EditCashier.aspx?cashierID=" + cashierID);
+                String userID = e.CommandArgument.ToString();
+                Response.Redirect("EditUser.aspx?UserID=" + userID);
             } else if (e.CommandName == "DeleteCashier") {
                 deleteCashierAddress(UserID);
-                Response.Redirect("CashierList.aspx");
+                Response.Redirect("UserList.aspx");
             }
         }
         private int deleteCashierAddress(String UserID)
         {
             // set the value of parameter as null because it can be delete the data from database according to the user id.
-            return Database.POS.CashierDB.deleteAddress(UserID, null);
+            return Database.POS.UserDB.deleteAddress(UserID, null);
         }
 
         protected void deleteCashier_onClick(object sender, EventArgs e)

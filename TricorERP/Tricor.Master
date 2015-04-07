@@ -107,15 +107,15 @@
                             <!-- ----------------------------------------->
                             
                             <!-- Branch manager for POS -->
-                            <li id="CashierDropdown" class="dropdown">
-                                <asp:HyperLink ID="HyperLink36" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Cashier<span class="caret"></span></asp:HyperLink>
+                            <li id="UserDropdown" class="dropdown">
+                                <asp:HyperLink ID="HyperLink36" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">User's<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink37" NavigateUrl="~/POS/BranchManager/EditCashier.aspx?CashierID=0" runat="server">New-Cashier</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink37" NavigateUrl="~/POS/BranchManager/EditUser.aspx?UserID=0" runat="server">New-User</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink38" NavigateUrl="~/POS/BranchManager/CashierList.aspx" runat="server">Cashier-List</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink38" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">User-List</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>
@@ -289,7 +289,7 @@
             $("#Inventory").addClass("hidden");
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
-            $("#CashierDropdown").addClass("hidden");
+            $("#UserDropdown").addClass("hidden");
             $("#Supplier").addClass("hidden");
             $("#OrderStatus").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
@@ -299,13 +299,13 @@
             
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            $("#CashierDropdown").addClass("hidden");
+            $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
             
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
-            $("#CashierDropdown").addClass("hidden");
+            $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
             

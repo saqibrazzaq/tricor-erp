@@ -20,9 +20,7 @@
                 <ul id="OrderStatus" class="nav navbar-nav navbar-right">
                     <li>
                         <label for="InputName">Order-Status :</label>
-                        <asp:DropDownList ID="OrderStatusList" runat="server">
-                            
-                        </asp:DropDownList>
+                        <asp:DropDownList ID="OrderStatusList" runat="server"></asp:DropDownList>
                     </li>
                 </ul>
             </div>
@@ -70,6 +68,8 @@
                                 <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 </button>
+                                <%--<asp:Button ID="Button1" CssClass ="hidden Updatevales" OnClick="updateproduct_onClick" runat="server"  />--%>
+
                                 <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </button>
@@ -121,6 +121,13 @@
                             <div class="col-lg-3">
                                 <asp:TextBox CssClass="form-control txtQuantity" runat="server" ID="txtQuantity" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtSalesOrderItemID" runat="server" ID="txtSalesOrderItemID" Text=""></asp:TextBox>
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="">WaherHouse</label>
+                            </div>
+                            <div class="col-lg-3">
+                                <asp:DropDownList ID="WaherHouseDropDownList" runat="server">
+                                </asp:DropDownList>
                             </div>
                         </div>
 

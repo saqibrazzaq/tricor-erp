@@ -1,4 +1,4 @@
-﻿<%@ Page Title="CashierList" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="CashierList.aspx.cs" Inherits="TricorERP.POS.BranchManager.CashierList" %>
+﻿<%@ Page Title="CashierList" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="UserList.aspx.cs" Inherits="TricorERP.POS.BranchManager.CashierList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="EditCashier.js"></script>

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Models.POS.Customer;
-using Models.POS.Cashier;
+using Models.POS.User;
 
 namespace TricorERP.POS.Cashier
 {

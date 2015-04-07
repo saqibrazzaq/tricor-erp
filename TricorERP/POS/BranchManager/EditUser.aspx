@@ -1,4 +1,4 @@
-﻿<%@ Page Title="EditCashier" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="EditCashier.aspx.cs" Inherits="TricorERP.POS.BranchManager.EditCashier" %>
+﻿<%@ Page Title="EditCashier" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="EditUser.aspx.cs" Inherits="TricorERP.POS.BranchManager.EditCashier" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="EditCashier.js"></script>
@@ -30,6 +30,18 @@
                     <asp:TextBox ID="CNIC" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
+            <div class="col-lg-4">
+                <label for="InputName">User-Type :</label>
+                <div class="input-group">
+                    <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="UserTypeDropDownList" runat="server">
+                        <asp:ListItem>--Select--</asp:ListItem>
+                        <asp:ListItem Value="2">Cashier</asp:ListItem>
+                        <asp:ListItem Value="5">Customer</asp:ListItem>
+
+                    </asp:DropDownList>
+                </div>
+            </div>
+
         </div>
         <div class="row container-fluid">
             <div class="col-lg-4">
