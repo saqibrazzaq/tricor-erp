@@ -8,6 +8,8 @@ using Models.POS.User;
 
 namespace TricorERP.POS.BranchManager
 {
+    // what about the customer username and password  
+
     public partial class EditCashier : System.Web.UI.Page
     {
         String UserID = "0";

@@ -294,10 +294,18 @@ namespace Database.POS.Order
                 WHList.ID = int.Parse(reader["ID"].ToString());
                 WHList.Name = reader["WHN"].ToString();
                 WHList.Description = reader["WHD"].ToString();
+               
+                WHlists.Add(WHList);
             }
             return WHlists;
         }
 
 
+        /*That function can return the count of pending sales order for home page*/
+        public static int getPendingSalesOrder()
+        {
+
+            return 0;
+        }
     }
 }

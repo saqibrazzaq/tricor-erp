@@ -44,7 +44,6 @@
     <Compile Include="POS\User\UserModel.cs" />
     <Compile Include="POS\Customer\AddressModel.cs" />
     <Compile Include="POS\Customer\CustomerModel.cs" />
-    <Compile Include="POS\Order\OrderModel.cs" />
     <Compile Include="POS\Order\OrderStatusModel.cs" />
     <Compile Include="POS\Order\SaleOrderModel.cs" />
     <Compile Include="POS\Order\SaleOrderItemModel.cs" />
