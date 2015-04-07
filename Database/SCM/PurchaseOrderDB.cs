@@ -173,6 +173,16 @@ namespace Database.SCM
             }
             return PModel;
         }
+        public static int deletePurchaseOrderItems(String ID)
+        {
+            String sql = @"DELETE FROM PurchaseOrderItems WHERE ID ='" + ID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery( System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }
 

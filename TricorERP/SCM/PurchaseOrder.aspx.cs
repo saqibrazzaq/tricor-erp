@@ -110,28 +110,44 @@ namespace TricorERP.SCM
             
             if (e.CommandName == "EditOrderProduct")
             {
-               // Response.Redirect("~/SCM/PurchaseOrderItem.aspx?WHID=" + WHID + "&SID=" + SID + "&PID=" + PID + "&POID=" + POID + "&Update=1");
+              
             }
             else if (e.CommandName == "DeleteOrderProduct")
             {
 
             }
         }
-        private PurchaseOrderModel addNewProduct(PurchaseOrderModel POModel)
+        private PurchaseOrderModel addPurchaseProduct(PurchaseOrderModel POModel)
         {
             return Database.SCM.PurchaseOrderDB.addPurchaseProduct(POModel);
         }
 
-        private int updateProduct(PurchaseOrderModel POModel)
+        private int updatePurchaseOrder(PurchaseOrderModel POModel)
         {
             return Database.SCM.PurchaseOrderDB.updatePurchaseOrder(POModel);
         }
-        protected void Addbtn_Click(object sender, EventArgs e)
+        private int deletePurchaseOrderItems(String ID)
+        {
+            return Database.SCM.PurchaseOrderDB.deletePurchaseOrderItems(ID);
+        }
+        protected void AddProductbtn_Click(object sender, EventArgs e)
         {
             WHID = WareHouseDropDown.SelectedValue;
             SID = SupplierDropDown.SelectedValue;
             Response.Redirect("~/SCM/PurchaseOrderItem.aspx?WHID=" + WHID + "&SID=" + SID + "&PID=-1"+"&POID="+POID);
         }
+
+        protected void SavePurchaseOrderItem_onClick(object sender, EventArgs e)
+        {
+
+        }
+        protected void deletePurchaseOrderItem_onClick(object sender, EventArgs e)
+        {
+            deletePurchaseOrderItems(txtPurchaseOrderItemID.Text);
+           
+            Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
+        }
+
         protected void Savebtn_Click(object sender, EventArgs e)
         {
             PurchaseOrderModel POModel = new PurchaseOrderModel();
@@ -144,11 +160,11 @@ namespace TricorERP.SCM
             if (UpdateCheck != null)
             {
                 POModel.ID = int.Parse(POID);
-                updated = updateProduct(POModel);
+                updated = updatePurchaseOrder(POModel);
             }
             else
             {
-                NewPurchaseOrder = addNewProduct(POModel);
+                NewPurchaseOrder = addPurchaseProduct(POModel);
             }
 
             if (NewPurchaseOrder != null)

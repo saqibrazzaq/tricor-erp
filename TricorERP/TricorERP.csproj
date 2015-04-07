@@ -76,6 +76,7 @@
     <Content Include="SCM\EditSupplier.aspx" />
     <Content Include="SCM\EditWareHouse.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
+    <Content Include="SCM\PurchaseOrder.js" />
     <Content Include="SCM\PurchaseOrderItem.aspx" />
     <Content Include="SCM\SearchAddress.aspx" />
     <Content Include="SCM\SearchPurchaseOrder.aspx" />
