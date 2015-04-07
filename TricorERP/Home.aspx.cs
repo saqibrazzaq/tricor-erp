@@ -30,9 +30,10 @@ namespace TricorERP
             UpdateDatabasePanels();
         }
 
+        /*For checking the pending sales order and view the count of pending and
+          view in-progress sales order*/
         private void UpdateDatabasePanels()
         {
-            //String RoleID = Session["RoleID"].ToString();
             if (Session["RoleID"].ToString() == "1" || Session["RoleID"].ToString() == "2")
             {
                 UpdatePOSPanels();
@@ -47,13 +48,24 @@ namespace TricorERP
 
         private void GetPendingSalesOrder()
         {
-            int pendingsaleorder = Database.POS.Order.OrderDB.getPendingSalesOrder();
+            int pendngsalesorder = GetPendingSalesOrderDB();
+            PandingSaleOrderLabel.Text = pendngsalesorder.ToString();
+        }
 
+        private int GetPendingSalesOrderDB()
+        {
+            return Database.POS.Order.OrderDB.getPendingSalesOrderCount();
         }
 
         private void GetInProgressSalesOrder()
         {
-            
+            int inprogresssalesorder = GetInProgressSalesOrderDB();
+            InProgressOrderLabel.Text = inprogresssalesorder.ToString();
+        }
+
+        private int GetInProgressSalesOrderDB()
+        {
+            return Database.POS.Order.OrderDB.getProgressSalesOrderCount();
         }
 
     }

@@ -302,10 +302,22 @@ namespace Database.POS.Order
 
 
         /*That function can return the count of pending sales order for home page*/
-        public static int getPendingSalesOrder()
+        public static int getPendingSalesOrderCount()
         {
+            String sql = @"SELECT COUNT (*) as Pending
+                         FROM [TRICOR].[dbo].[SalesOrder]
+                         where [SalesOrder].OrderStatus = '1'";
+            object PendingOrder = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(PendingOrder.ToString());
+        }
 
-            return 0;
+        public static int getProgressSalesOrderCount()
+        {
+            String sql = @"SELECT COUNT (*) as Pending
+                         FROM [TRICOR].[dbo].[SalesOrder]
+                         where [SalesOrder].OrderStatus = '3'";
+            object inprogressOrders = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(inprogressOrders.ToString());
         }
     }
 }

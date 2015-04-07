@@ -302,13 +302,14 @@
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
-            
+            $("#PendingSales").addClass("hidden");
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
-            
+            $("#PendingSales").addClass("hidden");
+
         }
     </script>
 </body>

@@ -7,7 +7,7 @@
 
 
 
-    <div class="panel panel-default">
+    <div id="PendingSales" class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Pending Sales</h3>
         </div>
