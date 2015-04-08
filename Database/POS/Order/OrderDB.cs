@@ -222,7 +222,7 @@ namespace Database.POS.Order
                     soItemModel.ProductName = readerItems["ProductName"].ToString();
                     soItemModel.WareHouseID = int.Parse(readerItems["WareHouseID"].ToString());
 
-                    //soItemModel.WareHouseName = readerItems["Warehouse.WHName"].ToString();
+                    //soItemModel.WareHouseName = readerItems["WHName"].ToString();
                     
                     //total Price according to the product quantity 
                     totalprice = totalprice + (soItemModel.Price * soItemModel.Quantity);

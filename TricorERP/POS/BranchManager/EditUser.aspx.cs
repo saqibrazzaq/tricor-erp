@@ -35,6 +35,12 @@ namespace TricorERP.POS.BranchManager
         private void InitializePageContents()
         {
             UserData();
+            LoadUserTyepDropDown();
+        }
+
+        private void LoadUserTyepDropDown()
+        {
+            
         }
 
         private void UserData()

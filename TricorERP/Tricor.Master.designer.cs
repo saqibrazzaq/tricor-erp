@@ -175,6 +175,42 @@ namespace TricorERP {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink38;
         
         /// <summary>
+        /// HyperLink29 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink29;
+        
+        /// <summary>
+        /// HyperLink30 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink30;
+        
+        /// <summary>
+        /// HyperLink45 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink45;
+        
+        /// <summary>
+        /// HyperLink46 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink46;
+        
+        /// <summary>
         /// HyperLink27 control.
         /// </summary>
         /// <remarks>

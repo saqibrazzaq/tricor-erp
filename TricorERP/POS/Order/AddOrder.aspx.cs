@@ -222,7 +222,7 @@ namespace TricorERP.POS.Order
 
         protected void SaveSalesOrderItem_onClick(object sender, EventArgs e)
         {
-            // on that point set the weharehouse id 
+            // on that point set the warehouse id 
             SaleOrderItemModel soItemModel = new SaleOrderItemModel()
             {
                 ID = int.Parse(txtSalesOrderItemID.Text),

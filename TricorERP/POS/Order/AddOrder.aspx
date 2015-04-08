@@ -41,6 +41,7 @@
                                 <th>Sales Order ID</th>
                                 <th>WareHouseID</th>
                                 <th>Product Name</th>
+                                <%--<th>WareHouseName</th>--%>
                                 <th>Quantity</th>
                                 <th>Price</th>
                                 <th></th>
@@ -60,7 +61,7 @@
                                 <%#Eval("WareHouseID") %>
                             </td>
 
-                            <%--<td>
+                           <%-- <td>
                                 <%#Eval("WareHouseName") %>
                             </td>--%>
 

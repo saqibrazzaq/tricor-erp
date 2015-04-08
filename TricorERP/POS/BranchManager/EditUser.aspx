@@ -34,9 +34,7 @@
                 <label for="InputName">User-Type :</label>
                 <div class="input-group">
                     <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="UserTypeDropDownList" runat="server">
-                        <asp:ListItem>--Select--</asp:ListItem>
-                        <asp:ListItem Value="2">Cashier</asp:ListItem>
-                        <asp:ListItem Value="5">Customer</asp:ListItem>
+                        
 
                     </asp:DropDownList>
                 </div>

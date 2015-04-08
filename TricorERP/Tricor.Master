@@ -119,7 +119,22 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+                            <li id="ReportsDropdown" class="dropdown">
+                                <asp:HyperLink ID="HyperLink29" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Reports<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink30" NavigateUrl="#" runat="server">Sales-Report</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink45" NavigateUrl="#" runat="server">Stock-Report</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink46" NavigateUrl="#" runat="server">Purchase-Reports</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
                             <li id="OrderStatusOfAnCustomer">
                                 <asp:HyperLink ID="HyperLink27" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
                             </li>
@@ -296,6 +311,7 @@
             $("#OrderStatus").addClass("hidden");
             
             $("#OrderApproved").addClass("hidden");
+            $("#ReportsDropdown").addClass("hidden");
             
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
@@ -303,13 +319,14 @@
             $("#AddOrder").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#PendingSales").addClass("hidden");
+            $("#ReportsDropdown").addClass("hidden");
         } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#PendingSales").addClass("hidden");
-
+            $("#ReportsDropdown").addClass("hidden");
         }
     </script>
 </body>
