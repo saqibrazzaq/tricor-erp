@@ -4,10 +4,20 @@
     <script src="EditCashier.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 class="h2">Customer's List</h2>
+    <h2 class="h2">User's List</h2>
 
     <div class="row">
+
+        <div class="col-lg-3">
+            <div class="input-group">
+                <label for="InputName">User-Type :</label>
+                <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="UserTypeDropDownList" runat="server">
+                </asp:DropDownList>
+            </div>
+        </div>
+
         <div class="col-lg-6">
+            <br />
             <div class="input-group">
                 <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
                 <span class="input-group-btn">

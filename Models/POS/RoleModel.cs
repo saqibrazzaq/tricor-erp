@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Models.POS
 {
-    class RoleModel
+    public class RoleModel
     {
-
+        public int ID { set; get; }
+        public string Name { set; get; }
+        public string Description { set; get; }
     }
 }

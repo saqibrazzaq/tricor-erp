@@ -19,30 +19,45 @@ namespace TricorERP.POS.BranchManager
 
         private void InitializePageContents()
         {
-            SearchCashier("");
+            LoadUserTyepDropDown();
+            SearchUser("",UserTypeDropDownList.SelectedValue);
         }
 
-        private void SearchCashier(string searchuser)
+        private void LoadUserTyepDropDown()
         {
-            List<Models.POS.User.UserModel> cashier = null;
-            if (searchuser == null)
-                cashier = GetFromDatabase("");
-            else if (searchuser != null)
-                cashier = GetFromDatabase(searchuser);
+            List<Models.POS.RoleModel> roles = GetRoleListFromDB();
+            UserTypeDropDownList.DataSource = roles;
+            UserTypeDropDownList.DataTextField = "Name";
+            UserTypeDropDownList.DataValueField = "ID";
+            UserTypeDropDownList.DataBind();
+        }
+
+        private List<Models.POS.RoleModel> GetRoleListFromDB()
+        {
+            return Database.POS.UserDB.getRoleList();
+        }
+
+        private void SearchUser(string searchuser, String roleid)
+        {
+            List<Models.POS.User.UserModel> user = null;
+            if (searchuser == "")
+                user = GetFromDatabase("", UserTypeDropDownList.SelectedValue);
+            else if (searchuser != "")
+                user = GetFromDatabase(searchuser, UserTypeDropDownList.SelectedValue);
             else
                 Message.Text = "Your Required Customer is not in Database..";
-            CashierListview.DataSource = cashier;
+            CashierListview.DataSource = user;
             CashierListview.DataBind();
         }
 
-        private List<Models.POS.User.UserModel> GetFromDatabase(string p)
+        private List<Models.POS.User.UserModel> GetFromDatabase(string searchtext, string roleid)
         {
-            return Database.POS.UserDB.getCashierList(p);
+            return Database.POS.UserDB.getUserList(searchtext, roleid);
         }
 
         protected void SearchCustomerButton1_Click(object sender, EventArgs e)
         {
-            SearchCashier(SearchCustomer.Text);
+            SearchUser(SearchCustomer.Text, UserTypeDropDownList.SelectedValue);
         }
 
         protected void CashierListview_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -51,9 +66,11 @@ namespace TricorERP.POS.BranchManager
             // Edit customer command
             if (e.CommandName == "EditCashier")
             {
-                String userID = e.CommandArgument.ToString();
-                Response.Redirect("EditUser.aspx?UserID=" + userID);
-            } else if (e.CommandName == "DeleteCashier") {
+                //String userID = e.CommandArgument.ToString();
+                Response.Redirect("EditUser.aspx?UserID=" + UserID);
+            }
+            else if (e.CommandName == "DeleteCashier")
+            {
                 deleteCashierAddress(UserID);
                 Response.Redirect("UserList.aspx");
             }

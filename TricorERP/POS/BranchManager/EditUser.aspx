@@ -34,7 +34,6 @@
                 <label for="InputName">User-Type :</label>
                 <div class="input-group">
                     <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="UserTypeDropDownList" runat="server">
-                        
 
                     </asp:DropDownList>
                 </div>
