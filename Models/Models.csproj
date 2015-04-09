@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Global\AddressModel.cs" />
     <Compile Include="Login\UserModel.cs" />
+    <Compile Include="POS\Report\ReportModel.cs" />
     <Compile Include="POS\RoleModel.cs" />
     <Compile Include="POS\User\UserModel.cs" />
     <Compile Include="POS\Customer\AddressModel.cs" />

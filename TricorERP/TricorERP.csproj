@@ -68,6 +68,9 @@
     <Content Include="POS\Order\AddOrder.aspx" />
     <Content Include="POS\Order\AddOrder.js" />
     <Content Include="POS\Order\OrderList.aspx" />
+    <Content Include="POS\Reports\PurchaseReport.aspx" />
+    <Content Include="POS\Reports\SalesReport.aspx" />
+    <Content Include="POS\Reports\StockReport.aspx" />
     <Content Include="SCM\AddSupplierAddress.aspx" />
     <Content Include="SCM\AddWareHouseAddress.aspx" />
     <Content Include="SCM\AddNewStockItem.aspx" />
@@ -196,6 +199,27 @@
     </Compile>
     <Compile Include="POS\Order\OrderList.aspx.designer.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Reports\PurchaseReport.aspx.cs">
+      <DependentUpon>PurchaseReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Reports\PurchaseReport.aspx.designer.cs">
+      <DependentUpon>PurchaseReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Reports\SalesReport.aspx.cs">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Reports\SalesReport.aspx.designer.cs">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Reports\StockReport.aspx.cs">
+      <DependentUpon>StockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Reports\StockReport.aspx.designer.cs">
+      <DependentUpon>StockReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\EditCustomer.aspx.cs">

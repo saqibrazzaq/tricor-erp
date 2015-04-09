@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Database.POS
 {
-    class ReportDB
+    public class ReportDB
     {
+        
     }
 }

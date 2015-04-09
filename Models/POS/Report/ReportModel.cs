@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models.POS.Report
 {
-    class ReportModel
+    public class ReportModel
     {
+
     }
 }
