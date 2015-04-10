@@ -9,8 +9,8 @@ namespace TricorERP.POS.Stock
 {
     public partial class EditStock : System.Web.UI.Page
     {
-        Models.POS.ProductModel product = new Models.POS.ProductModel() { 
-            ProductID = 0
+        Models.POS.Stock.POSStockModel stckModel = new Models.POS.Stock.POSStockModel() { 
+            ID = 0
         };
 
         protected void Page_Load(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace TricorERP.POS.Stock
 
         private void InitializePageContents()
         {
-            InitializeProductModel();
+            InitializeStockModel();
             LoadProductDropDownList();
         }
 
@@ -41,18 +41,18 @@ namespace TricorERP.POS.Stock
             return Database.POS.ProductDB.getProductList();
         }
 
-        private void InitializeProductModel()
+        private void InitializeStockModel()
         {
             try
             {
                 if (Request.QueryString["ID"] != null)
                 {
-                    product.ProductID = int.Parse(Request.QueryString["ID"]);
+                    stckModel.ID = int.Parse(Request.QueryString["ID"]);
                 }
             }
             catch (Exception ex)
             {
-                product.ProductID = 0;
+                stckModel.ID = 0;
                 throw ex;
             }
         }
@@ -64,8 +64,8 @@ namespace TricorERP.POS.Stock
 
         private void SaveProductInStock()
         {
-            InitializeProductModel();
-            if (product.ProductID == null)
+            InitializeStockModel();
+            if (stckModel.ProductID == null)
             {
                 NewStock();
             }
@@ -88,9 +88,10 @@ namespace TricorERP.POS.Stock
         private Models.POS.Stock.POSStockModel CreateStockItemFromUI()
         {
             Models.POS.Stock.POSStockModel productstock = new Models.POS.Stock.POSStockModel();
+            productstock.ProductID = int.Parse(ProductDropDownList.SelectedValue);
+            productstock.Quantity = int.Parse(Quantity.Text);
             
-
-            return null;
+            return productstock;
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
