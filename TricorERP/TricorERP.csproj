@@ -71,6 +71,9 @@
     <Content Include="POS\Reports\PurchaseReport.aspx" />
     <Content Include="POS\Reports\SalesReport.aspx" />
     <Content Include="POS\Reports\StockReport.aspx" />
+    <Content Include="POS\Stock\EditStock.aspx" />
+    <Content Include="POS\Stock\EditStock.js" />
+    <Content Include="POS\Stock\StockList.aspx" />
     <Content Include="SCM\AddSupplierAddress.aspx" />
     <Content Include="SCM\AddWareHouseAddress.aspx" />
     <Content Include="SCM\AddNewStockItem.aspx" />
@@ -220,6 +223,20 @@
     </Compile>
     <Compile Include="POS\Reports\StockReport.aspx.designer.cs">
       <DependentUpon>StockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Stock\EditStock.aspx.cs">
+      <DependentUpon>EditStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Stock\EditStock.aspx.designer.cs">
+      <DependentUpon>EditStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Stock\StockList.aspx.cs">
+      <DependentUpon>StockList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Stock\StockList.aspx.designer.cs">
+      <DependentUpon>StockList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\EditCustomer.aspx.cs">

@@ -88,7 +88,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
 
                             <li id="AddOrder" class="dropdown">
                                 <asp:HyperLink ID="HyperLink42" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
@@ -102,10 +102,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
 
                             <!-- ----------------------------------------->
-                            
+
                             <!-- Branch manager for POS -->
                             <li id="UserDropdown" class="dropdown">
                                 <asp:HyperLink ID="HyperLink36" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">User's<span class="caret"></span></asp:HyperLink>
@@ -119,6 +119,24 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li id="OrderStatusOfAnCustomer">
+                                <asp:HyperLink ID="HyperLink27" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
+                            </li>
+
+                            <li id="StockDropdown" class="dropdown">
+                                <asp:HyperLink ID="HyperLink47" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink48" NavigateUrl="~/POS/Stock/EditStock.aspx" runat="server">Add-Stock</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink49" NavigateUrl="#" runat="server">Stock-List</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+
                             <li id="ReportsDropdown" class="dropdown">
                                 <asp:HyperLink ID="HyperLink29" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Reports<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
@@ -135,11 +153,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="OrderStatusOfAnCustomer">
-                                <asp:HyperLink ID="HyperLink27" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
-                            </li>
+
+
                             <!-- ----------------------------------------->
-                            
+
                             <!-- All SCMS Menus -->
 
                             <li id="Products" class="dropdown">
@@ -236,7 +253,7 @@
                                     </li>
                                 </ul>
                             </li>
-                             <li id="Supplier" class="dropdown">
+                            <li id="Supplier" class="dropdown">
                                 <asp:HyperLink ID="HyperLink39" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Supplier<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -262,7 +279,7 @@
                 <div class="col-lg-2">
                     <ul class="nav nav-list">
                         <li class="nav-header">Main Functions.</li>
-                        
+
                         <li><a href="#">About Us</a></li>
                     </ul>
                 </div>
@@ -277,7 +294,7 @@
     </form>
 
 
-    
+
 
     <script lang="javascript">
         <%
@@ -309,10 +326,10 @@
             $("#OrderStatus").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#OrderStatus").addClass("hidden");
-            
+
             $("#OrderApproved").addClass("hidden");
             $("#ReportsDropdown").addClass("hidden");
-            
+
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");

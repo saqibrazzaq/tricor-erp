@@ -160,9 +160,7 @@ namespace TricorERP.POS.Order
                 soItemModel.ProductID = int.Parse(ProductList.SelectedValue);
                 // Set quantity to default 1
                 soItemModel.Quantity = 1;
-
                 soItemModel.WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue);
-                
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
                 InitializePageContents();
             }
