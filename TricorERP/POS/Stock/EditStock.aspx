@@ -18,6 +18,8 @@
                 </div>
             </div>
         </div>
+        <br />
+        <br />
         <div class="row container-fluid">
             <div class="col-lg-4">
                 <label for="InputName">Quantity</label>
@@ -27,10 +29,18 @@
             </div>
         </div>
         <br />
+        
         <div class="row container-fluid">
             <div class="col-lg-4">
                 <asp:LinkButton ID="btnAddStock" runat="server" CssClass="btn btn-primary" OnClick="btnAddStock_Click">Add Stock</asp:LinkButton>
                 <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary" OnClick="Cancel_Click">Cancel</asp:LinkButton>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row container-fluid">
+            <div class="col-lg-4">
+                <asp:Label ID="MessageLable" CssClass="alert-danger" runat="server" Text=""></asp:Label>
             </div>
         </div>
     </div>

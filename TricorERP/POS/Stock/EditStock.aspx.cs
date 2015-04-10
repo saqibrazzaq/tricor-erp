@@ -65,7 +65,7 @@ namespace TricorERP.POS.Stock
         private void SaveProductInStock()
         {
             InitializeStockModel();
-            if (stckModel.ProductID == null)
+            if (stckModel.ID == 0)
             {
                 NewStock();
             }
@@ -79,11 +79,16 @@ namespace TricorERP.POS.Stock
         private void NewStock()
         {
             Models.POS.Stock.POSStockModel stockItems = CreateStockItemFromUI();
-            
+            stockItems = Database.POS.StockDB.addNewStock(stockItems);
+            stckModel.ID = stockItems.ID;
+            MessageLable.Text = "New Data of stock is saved...";
         }
         private void UpdateStock()
         {
-
+            Models.POS.Stock.POSStockModel updatestockitems = CreateStockItemFromUI();
+            int check = Database.POS.StockDB.updateStock(updatestockitems);
+            if (check > 0)
+                MessageLable.Text = "Data is Updated....";
         }
         private Models.POS.Stock.POSStockModel CreateStockItemFromUI()
         {
@@ -91,6 +96,8 @@ namespace TricorERP.POS.Stock
             productstock.ProductID = int.Parse(ProductDropDownList.SelectedValue);
             productstock.Quantity = int.Parse(Quantity.Text);
             
+            // how to set WHID in stock
+            productstock.WHID = 1;
             return productstock;
         }
 
