@@ -1,15 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="EditWareHouse.aspx.cs" Inherits="TricorERP.SCM.EditWareHouse" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <div class="container-fluid">
+    <div class="container-fluid">
         <h2 class="h2">Edit Ware House</h2>
 
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <div class="input-group">
-                 <label for="InputName">Name</label>
-                 <asp:TextBox ID="WHNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <label for="InputName">Name</label>
+                    <asp:TextBox ID="WHNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -22,11 +23,10 @@
         <div class="row container-fluid">
             <div class="col-lg-3">
                 <h4 class="h4">
-                <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add New Address</asp:LinkButton>
+                    <asp:LinkButton ID="btnAddNewAddress" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewAddress_Click">Add New Address</asp:LinkButton>
             </div>
         </div>
         <div class="row">
-            
         </div>
 
         <div class="row container-fluid">
@@ -61,15 +61,19 @@
                                 </td>
                                 <td>
                                     <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Location1") %>'></asp:LinkButton>
-                                  </td>
+                                </td>
                                 <td>
                                     <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Location2") %>'></asp:LinkButton>
                                 </td>
                                 <td>
-                                    <asp:LinkButton runat="server" CommandName="EditAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                    <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#WareHouseModal">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </button>
                                 </td>
                                 <td>
-                                    <asp:LinkButton runat="server" CommandName="DeleteAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                                    <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -77,7 +81,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>
@@ -86,7 +90,7 @@
         </div>
         <div class="row container-fluid">
             <div class="col-lg-5">
-             <h4 class="h4">
+                <h4 class="h4">
                     <asp:Label ID="message" runat="server" ForeColor="#FF3300"></asp:Label>
                 </h4>
             </div>

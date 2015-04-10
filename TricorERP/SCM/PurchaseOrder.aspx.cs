@@ -126,6 +126,10 @@ namespace TricorERP.SCM
         {
             return Database.SCM.PurchaseOrderDB.updatePurchaseOrder(POModel);
         }
+        private int updatePurchaseOrderItems(PurchaseOrderItemsModel POIModel)
+        {
+            return Database.SCM.PurchaseOrderDB.updatePurchaseOrderItems(POIModel);
+        }
         private int deletePurchaseOrderItems(String ID)
         {
             return Database.SCM.PurchaseOrderDB.deletePurchaseOrderItems(ID);
@@ -137,17 +141,20 @@ namespace TricorERP.SCM
             Response.Redirect("~/SCM/PurchaseOrderItem.aspx?WHID=" + WHID + "&SID=" + SID + "&PID=-1"+"&POID="+POID);
         }
 
-        protected void SavePurchaseOrderItem_onClick(object sender, EventArgs e)
+        protected void UpdatePurchaseOrderItem_onClick(object sender, EventArgs e)
         {
-
+            PurchaseOrderItemsModel POIModel = new PurchaseOrderItemsModel();
+            POIModel.ID = int.Parse(txtPurchaseOrderItemID.Text);
+            POIModel.PurchasePrice = float.Parse(txtPrice.Text);
+            POIModel.Quantity = int.Parse(txtQuantity.Text);
+            updatePurchaseOrderItems(POIModel);
+            Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
         }
         protected void deletePurchaseOrderItem_onClick(object sender, EventArgs e)
         {
             deletePurchaseOrderItems(txtPurchaseOrderItemID.Text);
-           
             Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
         }
-
         protected void Savebtn_Click(object sender, EventArgs e)
         {
             PurchaseOrderModel POModel = new PurchaseOrderModel();
@@ -166,7 +173,6 @@ namespace TricorERP.SCM
             {
                 NewPurchaseOrder = addPurchaseProduct(POModel);
             }
-
             if (NewPurchaseOrder != null)
             {
                 POID =""+NewPurchaseOrder.ID;
@@ -179,8 +185,5 @@ namespace TricorERP.SCM
                 //ErrorMessageLable.Text = "Data is Updated Successfully...";
             }
         }
-
-      
-
     }
 }

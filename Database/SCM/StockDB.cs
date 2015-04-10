@@ -81,5 +81,27 @@ namespace Database.SCM
             }
             return stockItemList;
         }
+        public static int DeleteStockItem(string ID)
+        {
+            String sql = @"DELETE FROM Stock WHERE Id ='" + ID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+        public static int updateStockItem(StockModel SMODEL)
+        {
+            String sql = @"UPDATE [dbo].[Stock]
+                         SET [Quantity] = '" + SMODEL.Quantity + "' WHERE Stock.id = '" + SMODEL.ID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check == 1)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }

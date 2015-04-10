@@ -40,6 +40,10 @@ namespace TricorERP.SCM
         {
             return Database.SCM.ProductDB.getProductList(SearchProduct);
         }
+        private int DeleteProductFromDatabase(String PID)
+        {
+            return Database.SCM.ProductDB.DeleteProduct(PID);
+        }
         protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "EditProduct")
@@ -51,6 +55,11 @@ namespace TricorERP.SCM
             }
         }
 
+        protected void deleteProduct_onClick(object sender, EventArgs e)
+        {
+            DeleteProductFromDatabase(txtProductID.Text);
+            Response.Redirect("~/SCM/ViewProducts.aspx");
+        }
         protected void SearchProduct(object sender, EventArgs e)
         {
             SearchProduct(SearchProductText.Text);

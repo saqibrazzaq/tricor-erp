@@ -14,7 +14,7 @@ $(document).ready(function () {
         text: "Are you sure you want to delete?",
         title: "Delete",
         confirm: function (button) {
-            $(".DeletePurchaseOrder").trigger("click");
+            $(".DeleteStockItem").trigger("click");
         },
         cancel: function (button) {
             // nothing to do
@@ -35,25 +35,21 @@ function ItemRow_onClick(arg) {
     var itemID = row.find(".ItemCol_ItemID").text();
     var ProductID = row.find(".ItemCol_ProductID").text();
     var quantity = row.find(".ItemCol_Quantity").text().trim();
-    var price = row.find(".ItemCol_Price").text().trim();
 
-    $("#PurchaseOrderLabel").text("Update Items of ProductCode# (" + ProductID + ")");
+    $("#StockItemLabel").text("Update Quantity of Product (" + ProductID + ")");
     $(".txtQuantity").val(quantity);
-    $(".txtPrice").val(price);
-    $(".txtPurchaseOrderItemID").val(itemID);
+    $(".txtStockItemID").val(itemID);
 }
 
 function initializeItemModalDialog() {
-    $("#PurchaseOrderLabel").text("Update");
+    $("#StockItemLabel").text("Update");
     $(".txtQuantity").val("0");
-    $(".txtPrice").val("0");
-
-}
+  }
 
 function ItemRowDelete_onClick(arg) {
     // Get the order item details from table
     var row = arg.closest("tr");    // Find the row
     var itemID = row.find(".ItemCol_ItemID").text();
-    $(".txtPurchaseOrderItemID").val(itemID);
+    $(".txtStockItemID").val(itemID);
 }
 

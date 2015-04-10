@@ -33,7 +33,7 @@ function ItemRow_onClick(arg) {
     // Get the order item details from table
     var row = arg.closest("tr");    // Find the row
     var itemID = row.find(".ItemCol_ItemID").text();
-    var ProductID = row.find(".ItemCol_ProductID").text();
+    //var ProductID = row.find(".ItemCol_ProductID").text();
     var quantity = row.find(".ItemCol_Quantity").text().trim();
     var price = row.find(".ItemCol_Price").text().trim();
 

@@ -51,21 +51,40 @@ namespace TricorERP.SCM
         }
         private List<Models.SCM.StockModel> GetFromDatabase(String WHID, String SearchProduct)
         {
-            return Database.SCM.StockDB.getStockItems(WHID,SearchProduct);
+            return Database.SCM.StockDB.getStockItems(WHID, SearchProduct);
+        }
+        private int DeleteStockItemFromDatabase(String ID)
+        {
+            return Database.SCM.StockDB.DeleteStockItem(ID);
+        }
+        private int UpdateStockItemInDatabase(StockModel SMODEL)
+        {
+            return Database.SCM.StockDB.updateStockItem(SMODEL);
         }
         protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "EditProduct")
             {
-                String ProductID = e.CommandArgument.ToString();
-                Session["ProductID"] = ProductID;
-                Response.Redirect("~/SCM/AddNewProduct.aspx?ProductID=" + ProductID + "&update=1");
+              
             }
+        }
+
+        protected void deleteStockItem_onClick(object sender, EventArgs e)
+        {
+            DeleteStockItemFromDatabase(txtStockItemID.Text);
+            Response.Redirect("~/SCM/SearchStockItem.aspx");
+        }
+        protected void UpdateStockItem_onClick(object sender, EventArgs e)
+        {
+            StockModel SModel = new StockModel();
+            SModel.ID = int.Parse(txtStockItemID.Text);
+            SModel.Quantity = int.Parse(txtQuantity.Text);
+            UpdateStockItemInDatabase(SModel);
+            Response.Redirect("~/SCM/SearchStockItem.aspx");
         }
         protected void SearchWareHouse(object sender, EventArgs e)
         {
             SearchStockItems(WareHouseDropDown.SelectedValue,SearchStockItemText.Text);
         }
-
     }
 }

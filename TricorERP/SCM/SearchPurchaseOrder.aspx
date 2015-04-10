@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="SearchPurchaseOrder.aspx.cs" Inherits="TricorERP.SCM.SearchPurchaseOrder" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script src="SearchPurchaseOrder.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
  <h2 class="h2">Search Purchase Order</h2>
     <div class="row">
         <div class="col-lg-6">
@@ -33,9 +33,9 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr id="Tr1" runat="server">
-                    
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="EditPurchaseOrder" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ID") %>'></asp:LinkButton>
+                    <td class="ItemCol_ID">
+                        <%# Eval("ID") %>
+                       <!-- <asp:LinkButton runat="server" CommandName="EditPurchaseOrder" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ID") %>'></asp:LinkButton>  -->
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditPurchaseOrder" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("WHID") %>'></asp:LinkButton>
@@ -53,10 +53,31 @@
                       <asp:LinkButton runat="server" CommandName="EditPurchaseOrder" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                     </td>
                     <td>
-                    <asp:LinkButton runat="server" CommandName="DeletePurchaseOrder" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                    <button type="button" class="PurchaseOrderDelete btn btn-default btn-xs confirm">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
                     </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
     </div>
+
+
+     <div class="modal fade" id="SearchPurchaseOrder" tabindex="-1" role="dialog" aria-labelledby="SearchPurchaseOrderLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="SearchPurchaseOrderLabel">Delete Item</h4>
+                    </div>
+                   
+                    <!-- some hidden values and buttons of dialog box -->
+                    <div class="modal-footer">
+                        <asp:TextBox CssClass="hidden txtPurchaseOrderID" runat="server" ID="txtPurchaseOrderID" Text=""></asp:TextBox>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <asp:Button runat="server" CssClass="hidden DeletePurchaseOrder" OnClick="deletePurchaseOrder_onClick" />
+                    </div>
+                </div>
+            </div>
+        </div>
 </asp:Content>

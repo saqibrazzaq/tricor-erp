@@ -93,6 +93,17 @@ namespace Database.SCM
             }
             return 0;
         }
+
+        public static int DeleteProduct(string PID)
+        {
+            String sql = @"DELETE FROM Product WHERE Id ='" + PID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery( System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }
 

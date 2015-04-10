@@ -79,7 +79,6 @@
                                     <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#PurchaseOrderItemEditModal">
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     </button>
-
                                 </td>
                                 <td>
                                     <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
@@ -109,7 +108,6 @@
 
         <!--  Dialog box   -->
 
-
         <div class="modal fade" id="PurchaseOrderItemEditModal" tabindex="-1" role="dialog" aria-labelledby="PurchaseOrderLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -134,12 +132,12 @@
                                 <asp:TextBox CssClass="form-control txtPrice" runat="server" ID="txtPrice" Text=""></asp:TextBox>
                             </div>
                         </div>
-                        <asp:TextBox CssClass="hidden txtPurchaseOrderItemID" runat="server" ID="txtPurchaseOrderItemID" Text=""></asp:TextBox>
-
                     </div>
+                    <!-- some hidden values and buttons of dialog box -->
                     <div class="modal-footer">
+                        <asp:TextBox CssClass="hidden txtPurchaseOrderItemID" runat="server" ID="txtPurchaseOrderItemID" Text=""></asp:TextBox>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:Button runat="server" OnClick="SavePurchaseOrderItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
+                        <asp:Button runat="server" OnClick="UpdatePurchaseOrderItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
                         <asp:Button runat="server" CssClass="hidden DeletePurchaseOrder" OnClick="deletePurchaseOrderItem_onClick" />
                     </div>
                 </div>
