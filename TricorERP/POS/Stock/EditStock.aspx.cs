@@ -9,7 +9,8 @@ namespace TricorERP.POS.Stock
 {
     public partial class EditStock : System.Web.UI.Page
     {
-        Models.POS.Stock.POSStockModel stckModel = new Models.POS.Stock.POSStockModel() { 
+        Models.POS.Stock.POSStockModel stckModel = new Models.POS.Stock.POSStockModel()
+        {
             ID = 0
         };
 
@@ -69,7 +70,7 @@ namespace TricorERP.POS.Stock
             {
                 NewStock();
             }
-            else 
+            else
             {
                 UpdateStock();
             }
@@ -78,10 +79,23 @@ namespace TricorERP.POS.Stock
 
         private void NewStock()
         {
-            Models.POS.Stock.POSStockModel stockItems = CreateStockItemFromUI();
-            stockItems = Database.POS.StockDB.addNewStock(stockItems);
-            stckModel.ID = stockItems.ID;
-            MessageLable.Text = "New Data of stock is saved...";
+            if (Quantity.Text == "")
+                MessageLable.Text = "Enter Quantity...";
+            else
+            {
+                Models.POS.Stock.POSStockModel stockItems = CreateStockItemFromUI();
+                stockItems = Database.POS.StockDB.addNewStock(stockItems);
+                if (stockItems.ID == 0)
+                {
+                    //If already existing product is inserted it will show error message
+                    MessageLable.Text = @"This product is already exist in stock...";
+                }
+                else
+                {
+                    stckModel.ID = stockItems.ID;
+                    MessageLable.Text = "New Data of stock is saved...";
+                }
+            }
         }
         private void UpdateStock()
         {
@@ -95,7 +109,7 @@ namespace TricorERP.POS.Stock
             Models.POS.Stock.POSStockModel productstock = new Models.POS.Stock.POSStockModel();
             productstock.ProductID = int.Parse(ProductDropDownList.SelectedValue);
             productstock.Quantity = int.Parse(Quantity.Text);
-            
+
             // how to set WHID in stock
             productstock.WHID = 1;
             return productstock;

@@ -24,96 +24,95 @@
                     </li>
                 </ul>
             </div>
+        
+
+        <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
+        </div>
+        <asp:Label ID="ErroMessage" runat="server" Text=""></asp:Label>
 
 
-            <br />
-            <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
-            <br />
-            <asp:Label ID="ErroMessage" runat="server" Text=""></asp:Label>
+        <div class="panel-body">
+            <asp:ListView ID="SalesOrderItemListview" runat="server">
+                <LayoutTemplate>
+                    <table class="table table-bordered table-hover">
+                        <tr class="active">
+                            <th>ID</th>
+                            <th>Sales Order ID</th>
+                            <th>WareHouseID</th>
+                            <th>Product Name</th>
+                            <%--<th>WareHouseName</th>--%>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        <tr runat="server" id="itemPlaceholder"></tr>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr class="ItemRow" runat="server">
+                        <td class="ItemCol_ItemID">
+                            <%# Eval("ID") %>
+                        </td>
+                        <td>
+                            <%# Eval("OrderID") %>
+                        </td>
+                        <td>
+                            <%#Eval("WareHouseID") %>
+                        </td>
 
-
-            <div class="panel-body">
-                <asp:ListView ID="SalesOrderItemListview" runat="server">
-                    <LayoutTemplate>
-                        <table class="table table-bordered table-hover">
-                            <tr>
-                                <th>ID</th>
-                                <th>Sales Order ID</th>
-                                <th>WareHouseID</th>
-                                <th>Product Name</th>
-                                <%--<th>WareHouseName</th>--%>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                            <tr runat="server" id="itemPlaceholder"></tr>
-                        </table>
-                    </LayoutTemplate>
-                    <ItemTemplate>
-                        <tr class="ItemRow" runat="server">
-                            <td class="ItemCol_ItemID">
-                                <%# Eval("ID") %>
-                            </td>
-                            <td>
-                                <%# Eval("OrderID") %>
-                            </td>
-                            <td>
-                                <%#Eval("WareHouseID") %>
-                            </td>
-
-                           <%-- <td>
+                        <%-- <td>
                                 <%#Eval("WareHouseName") %>
                             </td>--%>
 
-                            <td class="ItemCol_ProductName">
-                                <%# Eval("ProductName") %>
-                            </td>
-                            <td class="ItemCol_Quantity">
-                                <%# Eval("Quantity") %>
-                            </td>
-                            <td class="ItemCol_Price">
-                                <%# Eval("Price") %>
-                            </td>
-                            <td>
-                                <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-                                <%--<asp:Button ID="Button1" CssClass ="hidden Updatevales" OnClick="updateproduct_onClick" runat="server"  />--%>
-
-                                <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <asp:Button runat="server" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:ListView>
-                <hr />
-                <table class="table">
-                    <tr>
+                        <td class="ItemCol_ProductName">
+                            <%# Eval("ProductName") %>
+                        </td>
+                        <td class="ItemCol_Quantity">
+                            <%# Eval("Quantity") %>
+                        </td>
+                        <td class="ItemCol_Price">
+                            <%# Eval("Price") %>
+                        </td>
                         <td>
-                            <b><asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
-                            <asp:Label ID="TotalPrice" runat="server" Text=""></asp:Label>
+                            <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                            <%--<asp:Button ID="Button1" CssClass ="hidden Updatevales" OnClick="updateproduct_onClick" runat="server"  />--%>
+
+                            <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                            <asp:Button runat="server" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
                         </td>
                     </tr>
-                </table>
-            </div>
-
-            
-            <div class="row container-fluid">
-                <div class="col-lg-5">
-                    <ul id="OrderApproved" class="nav navbar-nav">
-                        <li>
-                            <asp:Button ID="Order" runat="server" CssClass="btn btn-default" Text="Order" OnClick="OrderApproved_Click" />
-                        </li>
-                        <li>
-                            <asp:Button ID="Cancel" runat="server" CssClass="btn btn-default" Text="Cancel" OnClick="Cancel_Click" />
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
+                </ItemTemplate>
+            </asp:ListView>
+            <hr />
+            <table class="table">
+                <tr>
+                    <td>
+                        <b>
+                            <asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
+                        <asp:Label ID="TotalPrice" runat="server" Text=""></asp:Label>
+                    </td>
+                </tr>
+            </table>
         </div>
+
+
+        <div class="row container-fluid">
+            <div class="col-lg-5">
+                <ul id="OrderApproved" class="nav navbar-nav">
+                    <li>
+                        <asp:Button ID="Order" runat="server" CssClass="btn btn-default" Text="Order" OnClick="OrderApproved_Click" />
+                    </li>
+                    <li>
+                        <asp:Button ID="Cancel" runat="server" CssClass="btn btn-default" Text="Cancel" OnClick="Cancel_Click" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+
 
         <!-- Modal -->
         <div class="modal fade" id="SalesOrderItemEditModal" tabindex="-1" role="dialog" aria-labelledby="SalesOrderLabel" aria-hidden="true">

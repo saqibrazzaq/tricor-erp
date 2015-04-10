@@ -9,8 +9,11 @@ namespace TricorERP.POS.Cashier
 {
     public partial class CustomerList : System.Web.UI.Page
     {
+        // Declare list
+        List<Models.POS.Customer.CustomerModel> customers = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Message.Text = "";
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -22,8 +25,6 @@ namespace TricorERP.POS.Cashier
         }
         private void SearchCustomers(String SearchCustomer)
         {
-            // Declare list
-            List<Models.POS.Customer.CustomerModel> customers = null;
             if (SearchCustomer == null)
             {
                 customers = GetFromDatabase(null);
@@ -62,6 +63,13 @@ namespace TricorERP.POS.Cashier
         protected void SearchCustomerButton1_Click(object sender, EventArgs e)
         {
             SearchCustomers(SearchCustomer.Text);
+            if (customers.Count == 0)
+                Message.Text = "Data is not Founde...";
+        }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

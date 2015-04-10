@@ -40,6 +40,15 @@ namespace TricorERP.POS.Stock {
         protected global::System.Web.UI.WebControls.TextBox Quantity;
         
         /// <summary>
+        /// MessageLable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MessageLable;
+        
+        /// <summary>
         /// btnAddStock control.
         /// </summary>
         /// <remarks>
@@ -56,14 +65,5 @@ namespace TricorERP.POS.Stock {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Cancel;
-        
-        /// <summary>
-        /// MessageLable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageLable;
     }
 }

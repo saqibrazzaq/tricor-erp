@@ -131,7 +131,7 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink49" NavigateUrl="#" runat="server">Stock-List</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink49" NavigateUrl="~/POS/Stock/StockList.aspx" runat="server">Stock-List</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>
@@ -141,15 +141,15 @@
                                 <asp:HyperLink ID="HyperLink29" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Reports<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink30" NavigateUrl="#" runat="server">Sales-Report</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink30" NavigateUrl="~/POS/Reports/SalesReport.aspx" runat="server">Sales-Report</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink45" NavigateUrl="#" runat="server">Stock-Report</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink45" NavigateUrl="~/POS/Reports/StockReport.aspx" runat="server">Stock-Report</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink46" NavigateUrl="#" runat="server">Purchase-Reports</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink46" NavigateUrl="~/POS/Reports/PurchaseReport.aspx" runat="server">Purchase-Reports</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>
@@ -326,9 +326,9 @@
             $("#OrderStatus").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#OrderStatus").addClass("hidden");
-
             $("#OrderApproved").addClass("hidden");
             $("#ReportsDropdown").addClass("hidden");
+
 
         } else if ('8' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");

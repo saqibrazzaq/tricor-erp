@@ -74,8 +74,12 @@ namespace TricorERP.POS.Order
             SearchOrders(SearchOrderData.Text);
             // check if our data that i want o search is not present in database then show an  error message.
             if (saleorderlist.Count == 0)
-                ErrorMessage.Text = @"Data is not found in the DataBase. You can search by using Customer Name 
-                                      or Sale Order Date...";
+                ErrorMessage.Text = @"Data is not found...";
+        }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

@@ -9,8 +9,10 @@ namespace TricorERP.POS.BranchManager
 {
     public partial class CashierList : System.Web.UI.Page
     {
+        List<Models.POS.User.UserModel> user = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Message.Text = "";
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -39,7 +41,6 @@ namespace TricorERP.POS.BranchManager
 
         private void SearchUser(string searchuser, String roleid)
         {
-            List<Models.POS.User.UserModel> user = null;
             if (searchuser == "")
                 user = GetFromDatabase("", UserTypeDropDownList.SelectedValue);
             else if (searchuser != "")
@@ -58,6 +59,8 @@ namespace TricorERP.POS.BranchManager
         protected void SearchCustomerButton1_Click(object sender, EventArgs e)
         {
             SearchUser(SearchCustomer.Text, UserTypeDropDownList.SelectedValue);
+            if (user.Count == 0)
+                Message.Text = "Data is not Found...";
         }
 
         protected void CashierListview_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -86,6 +89,11 @@ namespace TricorERP.POS.BranchManager
             int AddressID = int.Parse(txtAddressID.Text);
             deleteCashierAddress(AddressID.ToString());
             InitializePageContents();
+        }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
 
     }
