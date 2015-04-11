@@ -7,108 +7,81 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TricorERP.POS.Cashier {
+namespace TricorERP.POS.Stock {
     
     
-    public partial class EditCustomer {
+    public partial class StockList {
         
         /// <summary>
-        /// HeadingOfCuatomer control.
+        /// SearchStockData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label HeadingOfCuatomer;
+        protected global::System.Web.UI.WebControls.TextBox SearchStockData;
         
         /// <summary>
-        /// CustomerNameText control.
+        /// SearchStockItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomerNameText;
+        protected global::System.Web.UI.WebControls.Button SearchStockItems;
         
         /// <summary>
-        /// CustomerTyepDropDown control.
+        /// OrderListview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CustomerTyepDropDown;
+        protected global::System.Web.UI.WebControls.ListView OrderListview;
         
         /// <summary>
-        /// CNICText control.
+        /// ErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CNICText;
+        protected global::System.Web.UI.WebControls.Label ErrorMessage;
         
         /// <summary>
-        /// GenderDropDown control.
+        /// Cancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList GenderDropDown;
+        protected global::System.Web.UI.WebControls.LinkButton Cancel;
         
         /// <summary>
-        /// btnAddNewAddress control.
+        /// txtQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddNewAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
         
         /// <summary>
-        /// message control.
+        /// txtStockItemID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label message;
+        protected global::System.Web.UI.WebControls.TextBox txtStockItemID;
         
         /// <summary>
-        /// CustomerAddressesview control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView CustomerAddressesview;
-        
-        /// <summary>
-        /// txtAddressID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddressID;
-        
-        /// <summary>
-        /// Savebtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Savebtn;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancel;
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

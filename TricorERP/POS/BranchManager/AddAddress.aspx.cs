@@ -43,7 +43,7 @@ namespace TricorERP.POS.BranchManager
 
             // set cashier information of customer. 
             UserModel cashier = new UserModel();
-            cashier = Database.POS.UserDB.getCashierInFo(UserID);
+            cashier = Database.POS.UserDB.getUserInFo(UserID);
             cashierName.Text = cashier.Name;
             cashierCNIC.Text = cashier.CNIC;
 

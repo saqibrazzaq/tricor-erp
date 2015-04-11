@@ -160,9 +160,7 @@ namespace TricorERP.POS.Order
                 soItemModel.ProductID = int.Parse(ProductList.SelectedValue);
                 // Set quantity to default 1
                 soItemModel.Quantity = 1;
-
                 soItemModel.WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue);
-                
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
                 InitializePageContents();
             }
@@ -222,7 +220,7 @@ namespace TricorERP.POS.Order
 
         protected void SaveSalesOrderItem_onClick(object sender, EventArgs e)
         {
-            // on that point set the weharehouse id 
+            // on that point set the warehouse id 
             SaleOrderItemModel soItemModel = new SaleOrderItemModel()
             {
                 ID = int.Parse(txtSalesOrderItemID.Text),

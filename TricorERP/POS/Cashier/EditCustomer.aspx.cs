@@ -16,7 +16,13 @@ namespace TricorERP.POS.Cashier
         {
             customerID = Request.QueryString["CustomerID"];
             if (customerID == "0")
+            {
                 btnAddNewAddress.Enabled = false;
+                HeadingOfCuatomer.Text = "New Customer";
+            }
+            else
+                HeadingOfCuatomer.Text = "Customer Data";
+
             if (IsPostBack == false)
             {
                 InitializePageContents();

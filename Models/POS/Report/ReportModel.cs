@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.POS.Stock
+namespace Models.POS.Report
 {
-    public class POSStock
+    public class ReportModel
     {
 
     }

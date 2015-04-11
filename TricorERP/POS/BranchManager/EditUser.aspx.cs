@@ -35,19 +35,35 @@ namespace TricorERP.POS.BranchManager
         private void InitializePageContents()
         {
             UserData();
+            LoadUserTyepDropDown();
+        }
+
+        private void LoadUserTyepDropDown()
+        {
+            List<Models.POS.RoleModel> roles = GetRoleListFromDB();
+            UserTypeDropDownList.DataSource = roles;
+            UserTypeDropDownList.DataTextField = "Name";
+            UserTypeDropDownList.DataValueField = "ID";
+            UserTypeDropDownList.DataBind();
+        }
+
+        private List<Models.POS.RoleModel> GetRoleListFromDB()
+        {
+            return Database.POS.UserDB.getRoleList();
         }
 
         private void UserData()
         {
-            UserModel cashier = null;
+            UserModel user = null;
             List<Models.POS.Customer.AddressModel> userAddresses = null;
 
-            cashier = GetCahierInFo();
+            user = GetCahierInFo();
             userAddresses = GetAddressesFromDB();
 
-            CashierNameText.Text = cashier.Name;
-            CashierPasswordText.Text = cashier.Password;
-            CNIC.Text = cashier.CNIC;
+            CashierNameText.Text = user.Name;
+            CashierPasswordText.Text = user.Password;
+            CNIC.Text = user.CNIC;
+            UserTypeDropDownList.SelectedValue = user.Role;
 
             CashierAddressesview.DataSource = userAddresses;
             CashierAddressesview.DataBind();
@@ -55,11 +71,11 @@ namespace TricorERP.POS.BranchManager
 
         private UserModel GetCahierInFo()
         {
-            return Database.POS.UserDB.getCashierInFo(UserID);
+            return Database.POS.UserDB.getUserInFo(UserID);
         }
         private List<Models.POS.Customer.AddressModel> GetAddressesFromDB()
         {
-            return Database.POS.UserDB.getCashierAddresses(UserID);
+            return Database.POS.UserDB.getUserAddresses(UserID);
         }
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
@@ -70,17 +86,20 @@ namespace TricorERP.POS.BranchManager
         protected void Savebtn_Click(object sender, EventArgs e)
         {
             if (UserID == "0")
-                addNewCashier();
+                addNewUser();
             else
                 updateCashier();
         }
-        private void addNewCashier()
+        private void addNewUser()
         {
             UserModel newcasier = new UserModel();
             newcasier.Name = CashierNameText.Text;
             newcasier.Password = CashierPasswordText.Text;
             newcasier.CNIC = CNIC.Text;
-            newcasier = Database.POS.UserDB.addNewCashier(newcasier);
+            
+            newcasier.Role = UserTypeDropDownList.SelectedValue;
+
+            newcasier = Database.POS.UserDB.addNewUser(newcasier);
 
             if (newcasier != null)
                 Response.Redirect("~/POS/BranchManager/AddAddress.aspx?UserID=" + newcasier.ID + "&AddressID=0");
@@ -96,7 +115,10 @@ namespace TricorERP.POS.BranchManager
             updatecashier.Name = CashierNameText.Text;
             updatecashier.Password = CashierPasswordText.Text;
 
-            int check = Database.POS.UserDB.updateCashier(updatecashier);
+            updatecashier.Role = UserTypeDropDownList.SelectedValue; 
+
+
+            int check = Database.POS.UserDB.updateUser(updatecashier);
             if (check == 1)
             {
                 message.Text = "Data is Updated";

@@ -7,64 +7,55 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TricorERP.POS.BranchManager {
+namespace TricorERP.POS.Stock {
     
     
-    public partial class CashierList {
+    public partial class EditStock {
         
         /// <summary>
-        /// UserTypeDropDownList control.
+        /// Head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList UserTypeDropDownList;
+        protected global::System.Web.UI.WebControls.Label Head;
         
         /// <summary>
-        /// SearchCustomer control.
+        /// ProductDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList ProductDropDownList;
         
         /// <summary>
-        /// Search control.
+        /// Quantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Search;
+        protected global::System.Web.UI.WebControls.TextBox Quantity;
         
         /// <summary>
-        /// CashierListview control.
+        /// MessageLable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView CashierListview;
+        protected global::System.Web.UI.WebControls.Label MessageLable;
         
         /// <summary>
-        /// txtAddressID control.
+        /// btnAddStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddressID;
-        
-        /// <summary>
-        /// Message control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Message;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddStock;
         
         /// <summary>
         /// Cancel control.

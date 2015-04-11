@@ -6,9 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="panel panel-default">
         <div class="panel-heading">
-
-            <h2 class="h2">Customer</h2>
+            <h2 class="h2"><asp:Label runat="server" ID="HeadingOfCuatomer" Text=""></asp:Label></h2>
             <%-- to be continue... --%>
+        </div>
+        <div class="panel-body">
             <div class="row container-fluid">
                 <div class="col-lg-3">
                     <label for="InputName">Full Name :</label>
@@ -65,7 +66,7 @@
                     <h5 class="h5">
                         <label for="InputName">All Possible Addresses...</label></h5>
                     <div class="panel-body">
-                        <asp:ListView ID="CustomerAddressesview" OnItemCommand="CustomerListview_ItemCommand" runat="server" >
+                        <asp:ListView ID="CustomerAddressesview" OnItemCommand="CustomerListview_ItemCommand" runat="server">
                             <LayoutTemplate>
                                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                     <tr class="active">
@@ -97,7 +98,7 @@
                                     <td>
                                         <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>
                                     </td>
-                                    
+
                                     <td>
                                         <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -105,10 +106,9 @@
                                         <asp:Button runat="server" CssClass="hidden DeleteAddress" CommandName="DeleteAddress" OnClick="deleteCustomerAddress_onClick" />
                                     </td>
 
-<%--                                    <td>
+                                    <%--                                    <td>
                                         <asp:LinkButton runat="server" CssClass="hidden DeleteAddress" CommandName="DeleteAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-remove"></span></asp:LinkButton>
                                     </td>--%>
-
                                 </tr>
                             </ItemTemplate>
                         </asp:ListView>
@@ -126,10 +126,5 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </div>
 </asp:Content>

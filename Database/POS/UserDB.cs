@@ -12,27 +12,29 @@ namespace Database.POS
     public class UserDB
     {
         // addition of new customer in database and return an id of User 
-        public static UserModel addNewCashier(UserModel newcashier)
+        public static UserModel addNewUser(UserModel newuser)
         {
             String sql = null;
-            UserModel cashier = new UserModel();
-            Boolean namecheck = checkCashierName(newcashier.Name);
-            Boolean cniccheck = checkCashierCNIC(newcashier.Name);
+            UserModel user = new UserModel();
+            Boolean namecheck = checkUserName(newuser.Name);
+            Boolean cniccheck = checkUserCNIC(newuser.Name);
             if (namecheck && cniccheck)
             {
                 sql = @"INSERT INTO [dbo].[User] ([Username] ,[Password] ,[RoleID] ,[CNIC])
                   output inserted.ID 
-                  VALUES ('" + newcashier.Name + "','" + newcashier.Password + "','2','" + newcashier.CNIC + "')";
+                  VALUES ('" + newuser.Name + "','" + newuser.Password + "','"+newuser.Role+"','" + newuser.CNIC + "')";
                 object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-                newcashier.ID = int.Parse(id.ToString());
-                return newcashier;
+                newuser.ID = int.Parse(id.ToString());
+                return newuser;
             }
             else
             {
                 return null;
             }
         }
-        public static Boolean checkCashierName(String name)
+
+        //
+        public static Boolean checkUserName(String name)
         {
             String sql = @"SELECT [Username] Name FROM [dbo].[User]
                     where [User].Username = '" + name + "';";
@@ -45,7 +47,7 @@ namespace Database.POS
             return true;
         }
 
-        public static Boolean checkCashierCNIC(String name)
+        public static Boolean checkUserCNIC(String name)
         {
             String sql = @"SELECT [CNIC] CNIC FROM [dbo].[User]
                          where [User].Username = '" + name + "';";
@@ -60,11 +62,11 @@ namespace Database.POS
 
 
         // get cashier information and return an object of CashierModel
-        public static UserModel getCashierInFo(String CashierID)
+        public static UserModel getUserInFo(String UserID)
         {
             UserModel cashier = new UserModel();
             String sql = @"SELECT [ID],[Username] Name,[Password] Password,[RoleID],[CNIC] CNIC FROM [dbo].[User]
-                           where ID = '" + CashierID + "'";
+                           where ID = '" + UserID + "'";
             //SELECT [Username] Name ,[Password] Password FROM [dbo].[User], [CNIC] CNIC where ID = '" + CashierID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
@@ -77,34 +79,35 @@ namespace Database.POS
         }
 
         //get all data of cashier and return an list.
-        public static List<UserModel> getCashierList(String searchtext)
+        public static List<UserModel> getUserList(String searchtext, String roleid)
         {
-            List<UserModel> cashiers = new List<UserModel>();
+            List<UserModel> users = new List<UserModel>();
             String sql = @"select top 10 [User].ID ID, [User].Username Name, Address.PhoneNo PhoneNo
                            from [User] 
                            join UserAddress on [User].ID = UserAddress.UserID
                            join Address on Address.Id = UserAddress.AddressID
-                           where 1=1 
-                           and
-                           ([User].Username like '%" + searchtext + "%' or Address.PhoneNo like '%" + searchtext + "%')";
+                           where [User].RoleID="+ roleid
+                           +"and([User].Username like '%" + searchtext 
+                           + "%' or Address.PhoneNo like '%" + searchtext + "%')";
+
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
-                UserModel cashier = new UserModel();
-                cashier.ID = int.Parse(reader["ID"].ToString());
-                cashier.Name = reader["Name"].ToString();
-                cashier.PhoneNo = reader["PhoneNo"].ToString();
-                cashiers.Add(cashier);
+                UserModel user = new UserModel();
+                user.ID = int.Parse(reader["ID"].ToString());
+                user.Name = reader["Name"].ToString();
+                user.PhoneNo = reader["PhoneNo"].ToString();
+                users.Add(user);
             }
-            return cashiers;
+            return users;
         }
 
         // update the cashier data 
-        public static int updateCashier(UserModel updatecashier)
+        public static int updateUser(UserModel updateuser)
         {
-            String sql = @"UPDATE [dbo].[User] SET [Username] = '" + updatecashier.Name
-                        + "',[Password] = '" + updatecashier.Password + "',[CNIC] = '" + updatecashier.CNIC
-                        + "' WHERE [ID]=" + updatecashier.ID;
+            String sql = @"UPDATE [dbo].[User] SET [Username] = '" + updateuser.Name
+                        + "',[Password] = '" + updateuser.Password + "',[CNIC] = '" + updateuser.CNIC + "',[RoleID] ='" + updateuser.Role
+                        + "' WHERE [ID]=" + updateuser.ID;
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -128,9 +131,9 @@ namespace Database.POS
         }
 
         //get address of cashier from database and return an list of Cashiers.
-        public static List<AddressModel> getCashierAddresses(String ID)
+        public static List<AddressModel> getUserAddresses(String ID)
         {
-            List<AddressModel> customerAddresses = new List<AddressModel>();
+            List<AddressModel> useraddresses = new List<AddressModel>();
 
             String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.PhoneNo Phoneno, Address.Email, Address.PhoneNo
                           from [User]
@@ -147,9 +150,9 @@ namespace Database.POS
                 address.Location1 = reader["Location1"].ToString();
                 address.Phonenumber = reader["Phoneno"].ToString();
                 address.ID = int.Parse(reader["ID"].ToString());
-                customerAddresses.Add(address);
+                useraddresses.Add(address);
             }
-            return customerAddresses;
+            return useraddresses;
         }
 
         public static int deleteAddress(String UserID, String AddressID)
@@ -189,5 +192,24 @@ namespace Database.POS
             }
             return 1;
         }
+
+        /*That function is return an list of Roles that is getting from database */
+
+        public static List<Models.POS.RoleModel> getRoleList()
+        {
+            List<Models.POS.RoleModel> roles = new List<Models.POS.RoleModel>();
+            String sql = @"select * from Role where [Role].Name = 'POS Cashier' or [Role].Name='POS Customer'";
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                Models.POS.RoleModel role = new Models.POS.RoleModel();
+                role.ID = int.Parse(reader["ID"].ToString());
+                role.Name = reader["Name"].ToString();
+                roles.Add(role);
+            }
+            return roles;
+        }
+
     }
 }
