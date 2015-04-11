@@ -193,11 +193,11 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink15" NavigateUrl="" runat="server">Pending Orders</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink15" NavigateUrl="~/SCM/ViewManufactureRequests.aspx" runat="server">Pending Orders</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink20" NavigateUrl="" runat="server">Accepted Orders</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SCM/ViewManufactureQueue.aspx" runat="server">Accepted Orders</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>

@@ -37,7 +37,7 @@ namespace TricorERP.SCM
         }
 
         private List<Models.SCM.ProductModel> GetFromDatabase(String SearchProduct)
-        {
+        { 
             return Database.SCM.ProductDB.getProductList(SearchProduct);
         }
         protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -54,6 +54,16 @@ namespace TricorERP.SCM
         protected void SearchProduct(object sender, EventArgs e)
         {
             SearchProduct(SearchProductText.Text);
+        }
+
+        protected void SearchProductText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ProductListview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

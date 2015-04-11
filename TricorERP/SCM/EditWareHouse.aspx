@@ -14,7 +14,7 @@
             </div>
             <div class="col-lg-3">
                 <label for="InputName">Description</label>
-                <asp:TextBox ID="WHDescriptionText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="WHDescriptionText" Font-Names="InputName" CssClass="form-control" runat="server" OnTextChanged="WHDescriptionText_TextChanged"></asp:TextBox>
             </div>
         </div>
         <br />

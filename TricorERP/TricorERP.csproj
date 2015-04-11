@@ -77,11 +77,15 @@
     <Content Include="SCM\EditWareHouse.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseOrderItem.aspx" />
+    <Content Include="SCM\QueuedOrderDetails.aspx" />
     <Content Include="SCM\SearchAddress.aspx" />
     <Content Include="SCM\SearchPurchaseOrder.aspx" />
     <Content Include="SCM\SearchStockItem.aspx" />
     <Content Include="SCM\SearchSupplier.aspx" />
     <Content Include="SCM\SearchWareHouse.aspx" />
+    <Content Include="SCM\ViewManufactureRequests.aspx" />
+    <Content Include="SCM\ViewManufactureQueue.aspx" />
+    <Content Include="SCM\ViewManufactureRequestDetails.aspx" />
     <Content Include="SCM\ViewProducts.aspx" />
     <Content Include="SCM\AddNewWareHouse.aspx" />
     <Content Include="Scripts\jquery.confirm.js" />
@@ -274,6 +278,13 @@
     <Compile Include="SCM\PurchaseOrderItem.aspx.designer.cs">
       <DependentUpon>PurchaseOrderItem.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\QueuedOrderDetails.aspx.cs">
+      <DependentUpon>QueuedOrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\QueuedOrderDetails.aspx.designer.cs">
+      <DependentUpon>QueuedOrderDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\SearchAddress.aspx.cs">
       <DependentUpon>SearchAddress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -308,6 +319,27 @@
     </Compile>
     <Compile Include="SCM\SearchWareHouse.aspx.designer.cs">
       <DependentUpon>SearchWareHouse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ViewManufactureRequests.aspx.cs">
+      <DependentUpon>ViewManufactureRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewManufactureRequests.aspx.designer.cs">
+      <DependentUpon>ViewManufactureRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ViewManufactureQueue.aspx.cs">
+      <DependentUpon>ViewManufactureQueue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewManufactureQueue.aspx.designer.cs">
+      <DependentUpon>ViewManufactureQueue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ViewManufactureRequestDetails.aspx.cs">
+      <DependentUpon>ViewManufactureRequestDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewManufactureRequestDetails.aspx.designer.cs">
+      <DependentUpon>ViewManufactureRequestDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ViewProducts.aspx.cs">
       <DependentUpon>ViewProducts.aspx</DependentUpon>

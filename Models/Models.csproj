@@ -55,6 +55,8 @@
     <Compile Include="SCM\PurchaseOrderItemsModel.cs" />
     <Compile Include="SCM\PurchaseOrderModel.cs" />
     <Compile Include="SCM\RawMaterial.cs" />
+    <Compile Include="SCM\SalesOrderItemModel.cs" />
+    <Compile Include="SCM\SalesOrderModel.cs" />
     <Compile Include="SCM\StockModel.cs" />
     <Compile Include="SCM\SupplierModel.cs" />
     <Compile Include="SCM\WareHouseModel.cs" />

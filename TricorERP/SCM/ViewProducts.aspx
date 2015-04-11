@@ -1,22 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="ViewProducts.aspx.cs" Inherits="TricorERP.SCM.ViewProducts" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
- <h2 class="h2">View Product</h2>
+    <h2 class="h2">View Product</h2>
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <asp:TextBox ID="SearchProductText" CssClass="form-control" placeholder="Search Product by Code/Name" runat="server"></asp:TextBox>
+                <asp:TextBox ID="SearchProductText" CssClass="form-control" placeholder="Search Product by Code/Name" runat="server" OnTextChanged="SearchProductText_TextChanged"></asp:TextBox>
                 <span class="input-group-btn">
-                    <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search"  OnClick="SearchProduct"/>
+                    <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchProduct" />
                 </span>
             </div>
-        </div> 
+        </div>
     </div>
 
-    <div class="panel-body"> 
-        <asp:ListView ID="ProductListview" runat="server" OnItemCommand="ProductListview_ItemCommand" >
+    <div class="panel-body">
+        <asp:ListView ID="ProductListview" runat="server" OnItemCommand="ProductListview_ItemCommand" OnSelectedIndexChanged="ProductListview_SelectedIndexChanged">
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="productTable">
                     <tr class="active">
@@ -33,7 +34,7 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr id="Tr1" runat="server">
-                    
+
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductID") %>'></asp:LinkButton>
                     </td>
