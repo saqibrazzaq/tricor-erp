@@ -62,11 +62,14 @@ namespace TricorERP.SCM
             product.SalesPrice = float.Parse(SalePriceText.Text);
             product.PurchasePrice = float.Parse(PurchasePriceText.Text);
             product.ProductDescription = ProductDescriptionText.Text;
+            product.CreatedBy = int.Parse(Session["RoleID"].ToString());
+            product.LastUpdatedBy = int.Parse(Session["RoleID"].ToString());
             int updated = 0;
              ProductModel newProduct = null;
             if(UpdateCheck != null)
             {
                 product.ProductID = int.Parse(Productid);
+                product.LastUpdatedBy = int.Parse(Session["RoleID"].ToString());
                 updated = updateProduct(product);
             }
             else

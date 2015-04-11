@@ -15,17 +15,43 @@ namespace Database.SCM
         {
               String sql = @"INSERT INTO [dbo].[Product]
                         ([PName],[PCode],[SalePrice],[PDescription],[PThreshHoldValue],[PReOrderValue],[PurchasePrice],
-                        [UnitTypeID],[ProductTypeID])
+                        [UnitTypeID],[ProductTypeID],[CreatedBy],[LastUpdatedBy])
 		                output inserted.ID 
                         VALUES ('" + productModel.ProductName + "','" + productModel.ProductCode + "','" +
                                    productModel.SalesPrice + "','" + productModel.ProductDescription   +
                                    "','" + productModel.ProductThresholdValue + "','" + productModel.ProductReOderValue + "','" +
-                                   productModel.PurchasePrice + "','" + productModel.UnitTypeID + "','" + productModel.ProductTypeID + "')";
+                                   productModel.PurchasePrice + "','" + productModel.UnitTypeID + "','" + productModel.ProductTypeID + "','" + productModel.CreatedBy + "','" + productModel.LastUpdatedBy + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             productModel.ProductID = int.Parse(id.ToString());
             return productModel;
         }
-        
+        // this function is for getting Rawmaterial list
+        public static List<ProductModel> getProductListOfType(String ID)
+        {
+            List<ProductModel> productList = new List<ProductModel>();
+            String sql = @"select Product.Id PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
+                        Product.PThreshHoldValue PthreshHold,Product.PReOrderValue pReOrder,Product.PurchasePrice purchasePrice,
+                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
+                        from Product
+                        where Product.ProductTypeID='" + ID + "'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                ProductModel product = new ProductModel();
+                product.ProductID = int.Parse(reader["PID"].ToString());
+                product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
+                product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
+                product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
+                product.UnitTypeID = int.Parse(reader["UnitTypeID"].ToString());
+                product.ProductName = reader["PName"].ToString();
+                product.ProductCode = reader["PCode"].ToString();
+                product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
+                product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
+                productList.Add(product);
+            }
+            return productList;
+        }
+        // this function is Same as above but it gives all products list
         public static List<ProductModel> getProductList(String searchtext)
         {
             List<ProductModel> productList = new List<ProductModel>();
@@ -85,6 +111,7 @@ namespace Database.SCM
                         + "' , [PThreshHoldValue] = '" + pModel.ProductThresholdValue 
                         + "',[PReOrderValue] = '" +pModel.ProductReOderValue + "' , [PurchasePrice] = '" + pModel.PurchasePrice 
                         + "' , [UnitTypeID] = '" +pModel.UnitTypeID + "' , [ProductTypeID] = '" + pModel.ProductTypeID
+                        + "' , [LastUpdatedBy] = '" + pModel.LastUpdatedBy
                         + "' WHERE Product.id = '" + pModel.ProductID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
@@ -99,6 +126,59 @@ namespace Database.SCM
             String sql = @"DELETE FROM Product WHERE Id ='" + PID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery( System.Data.CommandType.Text, sql, null);
             if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+        //  Product Coposition data
+
+        public static ProductCompositionModel addProductCompositionItem(ProductCompositionModel PCModel)
+        {
+            String sql = @"INSERT INTO [dbo].[ProductComposition]
+                        ([PID],[RMID],[Quantity],[CreatedBy],[LastUpdatedBy] )
+		                output inserted.ID 
+                        VALUES ('" + PCModel.ProductID + "','" + PCModel.RawMaterialID + "','" +
+                                    PCModel.Quantity + "','" +  PCModel.CreatedBy + "','" + PCModel.LastUpdatedBy + "')";
+            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            PCModel.ID = int.Parse(id.ToString());
+            return PCModel;
+        }
+
+        public static List<ProductCompositionModel> getProductCompositionList(String PID)
+        {
+            List<ProductCompositionModel> productCompositionList = new List<ProductCompositionModel>();
+            String sql = @"select ProductComposition.id ID, ProductComposition.RMID RMID, ProductComposition.Quantity Quantity
+                        from ProductComposition
+                        where ProductComposition.PID='" + PID + "'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                ProductCompositionModel productComposition = new ProductCompositionModel();
+                productComposition.ID = int.Parse(reader["ID"].ToString());
+                productComposition.RawMaterialID = int.Parse(reader["RMID"].ToString());
+                productComposition.Quantity = int.Parse(reader["Quantity"].ToString());
+                productCompositionList.Add(productComposition);
+            }
+            return productCompositionList;
+        }
+        public static int DeleteProductCompositionItem(string PID)
+        {
+            String sql = @"DELETE FROM ProductComposition WHERE Id ='" + PID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
+        public static int updateProductCompositionItem(ProductCompositionModel PCModel)
+        {
+            String sql = @"UPDATE [dbo].[ProductComposition] SET [Quantity] = '" + PCModel.Quantity 
+                + "' , [LastUpdatedBy] = '" + PCModel.LastUpdatedBy +"'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check == 1)
             {
                 return 1;
             }

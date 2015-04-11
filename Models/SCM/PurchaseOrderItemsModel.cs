@@ -13,5 +13,7 @@ namespace Models.SCM
         public int ProductID { set; get; }
         public int Quantity { set; get; }
         public float PurchasePrice { set; get; }
+        public int CreatedBy { get; set; }
+        public int LastUpdatedBy { get; set; }
     }
 }

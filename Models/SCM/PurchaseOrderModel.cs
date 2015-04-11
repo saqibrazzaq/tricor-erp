@@ -13,6 +13,8 @@ namespace Models.SCM
         public int SID { set; get; }
         public String OrderDate { set; get; }
         public String OrderType { set; get; }
+        public int CreatedBy { get; set; }
+        public int LastUpdatedBy { get; set; }
         public List<PurchaseOrderItemsModel> PurchaseOrderItems { set; get; }
     }
 }

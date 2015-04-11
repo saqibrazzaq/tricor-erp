@@ -75,6 +75,8 @@
     <Content Include="SCM\AddNewSupplier.aspx" />
     <Content Include="SCM\EditSupplier.aspx" />
     <Content Include="SCM\EditWareHouse.aspx" />
+    <Content Include="SCM\ProductComposition.aspx" />
+    <Content Include="SCM\ProductComposition.js" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseOrder.js" />
     <Content Include="SCM\SCM_Scripts\PurchaseOrder.js" />
@@ -266,6 +268,13 @@
     </Compile>
     <Compile Include="SCM\EditWareHouse.aspx.designer.cs">
       <DependentUpon>EditWareHouse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ProductComposition.aspx.cs">
+      <DependentUpon>ProductComposition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ProductComposition.aspx.designer.cs">
+      <DependentUpon>ProductComposition.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PurchaseOrder.aspx.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>

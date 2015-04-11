@@ -14,6 +14,8 @@ namespace Models.SCM
          public String ProductName { get; set; }
          public int ProductTypeID { get; set; }
          public int UnitTypeID { get; set; }
+         public int CreatedBy { get; set; } 
+         public int LastUpdatedBy { get; set; }
         public String ProductCode { get; set; }
         public float SalesPrice { get; set; }
         public String ProductDescription { get; set; }

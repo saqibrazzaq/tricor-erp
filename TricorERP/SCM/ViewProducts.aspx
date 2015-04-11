@@ -29,6 +29,7 @@
                         <th>Re Order Value</th>
                         <th>Sale Price</th>
                         <th>Purchase Price</th>
+                        <th>Product Composotion</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -58,7 +59,10 @@
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("PurchasePrice") %>'></asp:LinkButton>
                     </td>
-                       <td>
+                    <td>
+                        <asp:LinkButton runat="server" CommandName="ProductComposition" CommandArgument='<%# Eval("ProductID") %>' Text="Product Composition" ></asp:LinkButton>
+                    </td>
+                    <td>
                       <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>'><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                     
                     </td>

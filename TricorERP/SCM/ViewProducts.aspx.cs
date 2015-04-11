@@ -38,7 +38,7 @@ namespace TricorERP.SCM
 
         private List<Models.SCM.ProductModel> GetFromDatabase(String SearchProduct)
         {
-            return Database.SCM.ProductDB.getProductList(SearchProduct);
+            return Database.SCM.ProductDB.getProductListOfType("1");
         }
         private int DeleteProductFromDatabase(String PID)
         {
@@ -52,6 +52,12 @@ namespace TricorERP.SCM
                 // not really need to save in session...
                 Session["ProductID"] = ProductID;
                 Response.Redirect("~/SCM/AddNewProduct.aspx?ProductID=" + ProductID + "&update=1");
+            }
+            else if(e.CommandName == "ProductComposition")
+            {
+                String ProductID = e.CommandArgument.ToString();
+                Response.Redirect("~/SCM/ProductComposition.aspx?PID=" + ProductID);
+           
             }
         }
 
