@@ -11,6 +11,8 @@ namespace Models.SCM
             public int ID { set; get; }
             public String Name { set; get; }
             public String Description { set; get; }
+            public int CreatedBy { get; set; }
+            public int LastUpdatedBy { get; set; }
         }
     }
 

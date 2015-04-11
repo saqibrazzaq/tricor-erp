@@ -34,12 +34,14 @@ namespace Database.SCM
             return 0;
         }
 
-        public static List<WareHouseModel> getWareHouseList(String searchtext)
+        public static List<WareHouseModel> getWareHouseList(String searchtext, string userID)
         {
             List<WareHouseModel> wareHouseList = new List<WareHouseModel>();
             String sql = @"select top 10 WareHouse.ID WHID , WareHouse.WHName WHName,  WareHouse.WHDescription WHDescription
                         from WareHouse
+                        inner join [User] on Warehouse.ID = [User].WarehouseID
                         where 1=1
+                        and [User].ID = " + userID + @"
                         and 
 	                    (WareHouse.WHName like '%" + searchtext + "%' or WareHouse.WHDescription like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);

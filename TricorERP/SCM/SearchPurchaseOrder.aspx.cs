@@ -40,6 +40,11 @@ namespace TricorERP.SCM
         {
             return Database.SCM.PurchaseOrderDB.getPurchaseOrderList(SearchOrder);
         }
+        public int DeleteOrdersFromDatabase(String ID)
+        {
+            return Database.SCM.PurchaseOrderDB.deletePurchaseOrder(ID);
+        }
+        
         protected void PurchaseOrderListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "EditPurchaseOrder")
@@ -52,6 +57,12 @@ namespace TricorERP.SCM
         protected void SearchPurchaseOrders(object sender, EventArgs e)
         {
             SearchPurchaseOrderList(SearchPurchaseOrderText.Text);
+        }
+        protected void deletePurchaseOrder_onClick(object sender, EventArgs e)
+        {
+            String POID = txtPurchaseOrderID.Text;
+            DeleteOrdersFromDatabase(POID);
+            Response.Redirect("~/SCM/SearchPurchaseOrder.aspx");
         }
 
     }

@@ -41,16 +41,19 @@
   <ItemGroup>
     <Compile Include="Global\AddressModel.cs" />
     <Compile Include="Login\UserModel.cs" />
-    <Compile Include="POS\Cashier\CashierModel.cs" />
+    <Compile Include="POS\Report\ReportModel.cs" />
+    <Compile Include="POS\RoleModel.cs" />
+    <Compile Include="POS\User\UserModel.cs" />
     <Compile Include="POS\Customer\AddressModel.cs" />
     <Compile Include="POS\Customer\CustomerModel.cs" />
-    <Compile Include="POS\Order\OrderModel.cs" />
+    <Compile Include="POS\Order\OrderStatusModel.cs" />
     <Compile Include="POS\Order\SaleOrderModel.cs" />
     <Compile Include="POS\Order\SaleOrderItemModel.cs" />
     <Compile Include="POS\ProductModel.cs" />
-    <Compile Include="POS\Stock\POSStock.cs" />
+    <Compile Include="POS\Stock\POSStockModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\CustomerModel.cs" />
+    <Compile Include="SCM\ProductCompositionModel.cs" />
     <Compile Include="SCM\ProductModel.cs" />
     <Compile Include="SCM\PurchaseOrderItemsModel.cs" />
     <Compile Include="SCM\PurchaseOrderModel.cs" />

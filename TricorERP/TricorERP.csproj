@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -59,8 +59,8 @@
   <ItemGroup>
     <Content Include="Home.aspx" />
     <Content Include="POS\BranchManager\AddAddress.aspx" />
-    <Content Include="POS\BranchManager\CashierList.aspx" />
-    <Content Include="POS\BranchManager\EditCashier.aspx" />
+    <Content Include="POS\BranchManager\UserList.aspx" />
+    <Content Include="POS\BranchManager\EditUser.aspx" />
     <Content Include="POS\BranchManager\EditCashier.js" />
     <Content Include="POS\Cashier\EditAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
@@ -68,6 +68,12 @@
     <Content Include="POS\Order\AddOrder.aspx" />
     <Content Include="POS\Order\AddOrder.js" />
     <Content Include="POS\Order\OrderList.aspx" />
+    <Content Include="POS\Reports\PurchaseReport.aspx" />
+    <Content Include="POS\Reports\SalesReport.aspx" />
+    <Content Include="POS\Reports\StockReport.aspx" />
+    <Content Include="POS\Stock\EditStock.aspx" />
+    <Content Include="POS\Stock\EditStock.js" />
+    <Content Include="POS\Stock\StockList.aspx" />
     <Content Include="SCM\AddSupplierAddress.aspx" />
     <Content Include="SCM\AddWareHouseAddress.aspx" />
     <Content Include="SCM\AddNewStockItem.aspx" />
@@ -75,19 +81,28 @@
     <Content Include="SCM\AddNewSupplier.aspx" />
     <Content Include="SCM\EditSupplier.aspx" />
     <Content Include="SCM\EditWareHouse.aspx" />
+    <Content Include="SCM\ProductComposition.aspx" />
+    <Content Include="SCM\ProductComposition.js" />
     <Content Include="SCM\PurchaseOrder.aspx" />
+    <Content Include="SCM\PurchaseOrder.js" />
+    <Content Include="SCM\SCM_Scripts\PurchaseOrder.js" />
     <Content Include="SCM\PurchaseOrderItem.aspx" />
     <Content Include="SCM\QueuedOrderDetails.aspx" />
     <Content Include="SCM\SearchAddress.aspx" />
     <Content Include="SCM\SearchPurchaseOrder.aspx" />
+    <Content Include="SCM\SCM_Scripts\SearchPurchaseOrder.js" />
+    <Content Include="SCM\SearchPurchaseOrder.js" />
     <Content Include="SCM\SearchStockItem.aspx" />
+    <Content Include="SCM\SearchStockItem.js" />
     <Content Include="SCM\SearchSupplier.aspx" />
     <Content Include="SCM\SearchWareHouse.aspx" />
     <Content Include="SCM\ViewManufactureRequests.aspx" />
     <Content Include="SCM\ViewManufactureQueue.aspx" />
     <Content Include="SCM\ViewManufactureRequestDetails.aspx" />
+    <Content Include="SCM\SearchWareHouse.js" />
     <Content Include="SCM\ViewProducts.aspx" />
     <Content Include="SCM\AddNewWareHouse.aspx" />
+    <Content Include="SCM\ViewProducts.js" />
     <Content Include="Scripts\jquery.confirm.js" />
     <Content Include="Scripts\jquery.confirm.min.js" />
     <Content Include="Tricor.Master" />
@@ -144,19 +159,19 @@
     <Compile Include="POS\BranchManager\AddAddress.aspx.designer.cs">
       <DependentUpon>AddAddress.aspx</DependentUpon>
     </Compile>
-    <Compile Include="POS\BranchManager\CashierList.aspx.cs">
-      <DependentUpon>CashierList.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="POS\BranchManager\CashierList.aspx.designer.cs">
-      <DependentUpon>CashierList.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="POS\BranchManager\EditCashier.aspx.cs">
-      <DependentUpon>EditCashier.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="POS\BranchManager\EditCashier.aspx.designer.cs">
-      <DependentUpon>EditCashier.aspx</DependentUpon>
+    <Compile Include="POS\BranchManager\EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\Cashier\EditAddress.aspx.cs">
       <DependentUpon>EditAddress.aspx</DependentUpon>
@@ -199,6 +214,41 @@
     </Compile>
     <Compile Include="POS\Order\OrderList.aspx.designer.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Reports\PurchaseReport.aspx.cs">
+      <DependentUpon>PurchaseReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Reports\PurchaseReport.aspx.designer.cs">
+      <DependentUpon>PurchaseReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Reports\SalesReport.aspx.cs">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Reports\SalesReport.aspx.designer.cs">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Reports\StockReport.aspx.cs">
+      <DependentUpon>StockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Reports\StockReport.aspx.designer.cs">
+      <DependentUpon>StockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Stock\EditStock.aspx.cs">
+      <DependentUpon>EditStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Stock\EditStock.aspx.designer.cs">
+      <DependentUpon>EditStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Stock\StockList.aspx.cs">
+      <DependentUpon>StockList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Stock\StockList.aspx.designer.cs">
+      <DependentUpon>StockList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\EditCustomer.aspx.cs">
@@ -263,6 +313,13 @@
     </Compile>
     <Compile Include="SCM\EditWareHouse.aspx.designer.cs">
       <DependentUpon>EditWareHouse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ProductComposition.aspx.cs">
+      <DependentUpon>ProductComposition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ProductComposition.aspx.designer.cs">
+      <DependentUpon>ProductComposition.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PurchaseOrder.aspx.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>

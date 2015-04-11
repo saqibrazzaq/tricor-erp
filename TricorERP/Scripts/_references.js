@@ -8,3 +8,5 @@
 /// <reference path="../pos/order/addorder.js" />
 /// <reference path="../pos/cashier/editcustomer.js" />
 /// <reference path="../pos/branchmanager/editcashier.js" />
+/// <reference path="../scm/purchaseorder.js" />
+/// <reference path="../pos/stock/editstock.js" />

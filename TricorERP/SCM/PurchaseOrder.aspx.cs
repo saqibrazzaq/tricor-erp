@@ -96,7 +96,7 @@ namespace TricorERP.SCM
         }
         private List<Models.SCM.WareHouseModel> GetWareHouseListFromDatabase()
         {
-            return Database.SCM.WareHouseDB.getWareHouseList(null);
+            return Database.SCM.WareHouseDB.getWareHouseList(null, Session["UserID"].ToString());
         }
         private List<Models.SCM.SupplierModel> GetSuppliersListFromDatabase()
         {
@@ -110,27 +110,50 @@ namespace TricorERP.SCM
             
             if (e.CommandName == "EditOrderProduct")
             {
-               // Response.Redirect("~/SCM/PurchaseOrderItem.aspx?WHID=" + WHID + "&SID=" + SID + "&PID=" + PID + "&POID=" + POID + "&Update=1");
+              
             }
             else if (e.CommandName == "DeleteOrderProduct")
             {
 
             }
         }
-        private PurchaseOrderModel addNewProduct(PurchaseOrderModel POModel)
+        private PurchaseOrderModel addPurchaseProduct(PurchaseOrderModel POModel)
         {
             return Database.SCM.PurchaseOrderDB.addPurchaseProduct(POModel);
         }
 
-        private int updateProduct(PurchaseOrderModel POModel)
+        private int updatePurchaseOrder(PurchaseOrderModel POModel)
         {
             return Database.SCM.PurchaseOrderDB.updatePurchaseOrder(POModel);
         }
-        protected void Addbtn_Click(object sender, EventArgs e)
+        private int updatePurchaseOrderItems(PurchaseOrderItemsModel POIModel)
+        {
+            return Database.SCM.PurchaseOrderDB.updatePurchaseOrderItems(POIModel);
+        }
+        private int deletePurchaseOrderItems(String ID)
+        {
+            return Database.SCM.PurchaseOrderDB.deletePurchaseOrderItems(ID);
+        }
+        protected void AddProductbtn_Click(object sender, EventArgs e)
         {
             WHID = WareHouseDropDown.SelectedValue;
             SID = SupplierDropDown.SelectedValue;
             Response.Redirect("~/SCM/PurchaseOrderItem.aspx?WHID=" + WHID + "&SID=" + SID + "&PID=-1"+"&POID="+POID);
+        }
+
+        protected void UpdatePurchaseOrderItem_onClick(object sender, EventArgs e)
+        {
+            PurchaseOrderItemsModel POIModel = new PurchaseOrderItemsModel();
+            POIModel.ID = int.Parse(txtPurchaseOrderItemID.Text);
+            POIModel.PurchasePrice = float.Parse(txtPrice.Text);
+            POIModel.Quantity = int.Parse(txtQuantity.Text);
+            updatePurchaseOrderItems(POIModel);
+            Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
+        }
+        protected void deletePurchaseOrderItem_onClick(object sender, EventArgs e)
+        {
+            deletePurchaseOrderItems(txtPurchaseOrderItemID.Text);
+            Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
         }
         protected void Savebtn_Click(object sender, EventArgs e)
         {
@@ -144,13 +167,12 @@ namespace TricorERP.SCM
             if (UpdateCheck != null)
             {
                 POModel.ID = int.Parse(POID);
-                updated = updateProduct(POModel);
+                updated = updatePurchaseOrder(POModel);
             }
             else
             {
-                NewPurchaseOrder = addNewProduct(POModel);
+                NewPurchaseOrder = addPurchaseProduct(POModel);
             }
-
             if (NewPurchaseOrder != null)
             {
                 POID =""+NewPurchaseOrder.ID;
@@ -163,8 +185,5 @@ namespace TricorERP.SCM
                 //ErrorMessageLable.Text = "Data is Updated Successfully...";
             }
         }
-
-      
-
     }
 }

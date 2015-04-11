@@ -8,16 +8,15 @@ using System.Web.UI.WebControls;
 using Models.POS.Order;
 using Models.POS.Customer;
 using Models.POS;
+using Models.SCM;
 
 namespace TricorERP.POS.Order
 {
     public partial class AddOrder : System.Web.UI.Page
     {
         SaleOrderModel soModel = new SaleOrderModel() { ID = 0 };
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -32,6 +31,39 @@ namespace TricorERP.POS.Order
             LoadCustomerListInDropdown();
             LoadProductListInDropdown();
             UpdateSalesOrderUI();
+            LoadOrderStatusListInDropdown();
+
+            LoadWaherHouseDropDownList();
+
+            TotalPrice.Text = soModel.TotalPrice.ToString();
+        }
+
+        private void LoadWaherHouseDropDownList()
+        {
+            List<WareHouseModel> WHModel = GetWareHouseList();
+            WaherHouseDropDownList.DataSource = WHModel;
+            WaherHouseDropDownList.DataTextField = "Name";
+            WaherHouseDropDownList.DataValueField = "ID";
+            WaherHouseDropDownList.DataBind();
+        }
+
+        private List<WareHouseModel> GetWareHouseList()
+        {
+            return Database.POS.Order.OrderDB.getWareHouseList();
+        }
+
+        private void LoadOrderStatusListInDropdown()
+        {
+            List<OrderStatusModel> orderstatus = GetOrderStatusList();
+            OrderStatusList.DataSource = orderstatus;
+            OrderStatusList.DataTextField = "StatusName";
+            OrderStatusList.DataValueField = "ID";
+            OrderStatusList.DataBind();
+        }
+
+        private List<OrderStatusModel> GetOrderStatusList()
+        {
+            return Database.POS.Order.OrderDB.getOrderStatusList();
         }
 
         private void InitializeOrderModel()
@@ -85,7 +117,7 @@ namespace TricorERP.POS.Order
 
         private void LoadProductListInDropdown()
         {
-            List<ProductModel> products = GetProducts();
+            List<Models.POS.ProductModel> products = GetProducts();
             ProductList.DataSource = products;
             // Set text and value
             ProductList.DataTextField = "ProductName";
@@ -93,7 +125,7 @@ namespace TricorERP.POS.Order
             ProductList.DataBind();
         }
 
-        private List<ProductModel> GetProducts()
+        private List<Models.POS.ProductModel> GetProducts()
         {
             return Database.POS.ProductDB.getProductList();
         }
@@ -107,8 +139,8 @@ namespace TricorERP.POS.Order
                 // Bind the items in list view
 
                 if (Session["RoleID"].ToString() == "1")
-                    OrderStatusList.Items.FindByValue(soModel.OrderStatus.ToString()).Selected = true;
-
+                    OrderStatusList.SelectedValue = soModel.OrderStatus.ToString();
+            
                 SalesOrderItemListview.DataSource = soModel.items;
                 SalesOrderItemListview.DataBind();
             }
@@ -126,6 +158,7 @@ namespace TricorERP.POS.Order
                 soItemModel.ProductID = int.Parse(ProductList.SelectedValue);
                 // Set quantity to default 1
                 soItemModel.Quantity = 1;
+                soItemModel.WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue);
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
                 InitializePageContents();
             }
@@ -169,6 +202,8 @@ namespace TricorERP.POS.Order
             so.ID = soModel.ID;
             so.CustomerID = int.Parse(CustomerList.SelectedValue);
             so.OrderDate = DateTime.Now.ToString();
+            
+            //////////////////////////////////////////////
             return so;
         }
 
@@ -183,11 +218,13 @@ namespace TricorERP.POS.Order
 
         protected void SaveSalesOrderItem_onClick(object sender, EventArgs e)
         {
+            // on that point set the warehouse id 
             SaleOrderItemModel soItemModel = new SaleOrderItemModel()
             {
                 ID = int.Parse(txtSalesOrderItemID.Text),
                 Quantity = int.Parse(txtQuantity.Text),
-                Price = float.Parse(txtPrice.Text)
+                Price = float.Parse(txtPrice.Text),
+                WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue)
             };
             int check = Database.POS.Order.OrderDB.updateSalesItem(soItemModel);
             if (check > 0)

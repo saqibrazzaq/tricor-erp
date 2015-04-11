@@ -2,7 +2,6 @@
 $(document).ready(function () {
 
     $(".ItemRowEdit").click(function () {
-       
         ItemRow_onClick($(this));
     });
 

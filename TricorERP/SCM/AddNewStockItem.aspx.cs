@@ -54,7 +54,7 @@ namespace TricorERP.SCM
         // getting WareHouses list..
         private List<Models.SCM.WareHouseModel> GetWareHouseFromDatabase()
         {
-            return Database.SCM.WareHouseDB.getWareHouseList("");
+            return Database.SCM.WareHouseDB.getWareHouseList("", Session["UserID"].ToString());
         }
         // Save button click...
         protected void Savebtn_Click(object sender, EventArgs e)

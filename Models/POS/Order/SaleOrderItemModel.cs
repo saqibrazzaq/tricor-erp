@@ -14,5 +14,10 @@ namespace Models.POS.Order
         public int Quantity { get; set; }
         public float Price { get; set; }
         public string ProductName { get; set; }
+
+        // for checking the data of warehouse 
+        public int WareHouseID { get; set; }
+        public string WareHouseName { get; set; }            
+
     }
 }

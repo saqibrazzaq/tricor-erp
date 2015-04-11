@@ -133,7 +133,7 @@ namespace Database.SCM
         public static int updatePurchaseOrderItems(PurchaseOrderItemsModel POIModel)
         {
             String sql = @"UPDATE [dbo].[PurchaseOrderItems]
-                         SET [POID] = '" + POIModel.PurchaseOrderID +"' ,  [PID] = '" + POIModel.ProductID + "' ,[Quantity] = '" + POIModel.Quantity
+                         SET [Quantity] = '" + POIModel.Quantity
                         + "', [PurchasePrice]='" + POIModel.PurchasePrice
                         + "' WHERE PurchaseOrderItems.ID = '" + POIModel.ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
@@ -172,6 +172,27 @@ namespace Database.SCM
                 PModel.Add(product);
             }
             return PModel;
+        }
+        public static int deletePurchaseOrderItems(String ID)
+        {
+            String sql = @"DELETE FROM PurchaseOrderItems WHERE ID ='" + ID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery( System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+        public static int deletePurchaseOrder(string ID)
+        {
+            String sql = @"DELETE FROM PurchaseOrder WHERE ID ='" + ID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check > 0)
+            {
+                return 1;
+            }
+            return 0;
         }
     }
 }

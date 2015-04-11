@@ -38,7 +38,11 @@ namespace TricorERP.SCM
 
         private List<Models.SCM.ProductModel> GetFromDatabase(String SearchProduct)
         { 
-            return Database.SCM.ProductDB.getProductList(SearchProduct);
+            return Database.SCM.ProductDB.getProductListOfType("1");
+        }
+        private int DeleteProductFromDatabase(String PID)
+        {
+            return Database.SCM.ProductDB.DeleteProduct(PID);
         }
         protected void ProductListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
@@ -49,8 +53,19 @@ namespace TricorERP.SCM
                 Session["ProductID"] = ProductID;
                 Response.Redirect("~/SCM/AddNewProduct.aspx?ProductID=" + ProductID + "&update=1");
             }
+            else if(e.CommandName == "ProductComposition")
+            {
+                String ProductID = e.CommandArgument.ToString();
+                Response.Redirect("~/SCM/ProductComposition.aspx?PID=" + ProductID);
+           
+            }
         }
 
+        protected void deleteProduct_onClick(object sender, EventArgs e)
+        {
+            DeleteProductFromDatabase(txtProductID.Text);
+            Response.Redirect("~/SCM/ViewProducts.aspx");
+        }
         protected void SearchProduct(object sender, EventArgs e)
         {
             SearchProduct(SearchProductText.Text);

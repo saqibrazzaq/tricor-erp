@@ -13,7 +13,18 @@ namespace TricorERP.POS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (IsPostBack == false)
+            {
+                InitializePageContents();
+            }
+        }
+
+        private void InitializePageContents()
+        {
+            //if (Session["RoleID"].ToString() == "")
+            //{
+            //    loginMsg.Text = Session["logOutMsg"].ToString();
+            //}
         }
 
         protected void Login_Click(object sender, EventArgs e)
@@ -24,6 +35,7 @@ namespace TricorERP.POS
                 Session["Username"] = NameTextBox.Text;
                 Session["RoleID"] = userModel.RoleID;
                 Session["CustomerID"] = userModel.ID;
+                Session["UserID"] = userModel.ID;
                 Response.Redirect("~/Home.aspx");
             }
             else

@@ -76,6 +76,24 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.ListView SalesOrderItemListview;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// TotalPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalPrice;
+        
+        /// <summary>
         /// Order control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,15 @@ namespace TricorERP.POS.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSalesOrderItemID;
+        
+        /// <summary>
+        /// WaherHouseDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList WaherHouseDropDownList;
         
         /// <summary>
         /// txtPrice control.
