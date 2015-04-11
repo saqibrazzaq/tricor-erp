@@ -257,6 +257,12 @@ namespace Database.POS.Order
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
             soItemModel.ID = int.Parse(id.ToString());
 
+            /* if quantity <= product quantity or if < then how much quantity of items */
+
+            String sqlupdatestock = @"";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
+            
+
             return soItemModel;
         }
 

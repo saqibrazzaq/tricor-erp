@@ -8,6 +8,11 @@ namespace Database.POS
 {
     public class ReportDB
     {
-        
+
+        public static Models.POS.Order.SaleOrderModel getSaleReport()
+        {
+
+            return null;
+        }
     }
 }

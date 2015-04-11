@@ -11,7 +11,27 @@ namespace TricorERP.POS.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack == false)
+            {
+                InitializePageContents();
+            }
+        }
 
+        private void InitializePageContents()
+        {
+            Models.POS.Order.SaleOrderModel salesreport = GetSalesRoport();
+            //to be continue...
+        }
+
+        /*That function get the data of sales order of a day*/
+        private Models.POS.Order.SaleOrderModel GetSalesRoport()
+        {
+            return Database.POS.ReportDB.getSaleReport();
+        }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

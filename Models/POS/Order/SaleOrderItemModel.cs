@@ -17,7 +17,6 @@ namespace Models.POS.Order
 
         // for checking the data of warehouse 
         public int WareHouseID { get; set; }
-
         public string WareHouseName { get; set; }            
 
     }

@@ -15,10 +15,8 @@ namespace TricorERP.POS.Order
     public partial class AddOrder : System.Web.UI.Page
     {
         SaleOrderModel soModel = new SaleOrderModel() { ID = 0 };
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (IsPostBack == false)
             {
                 InitializePageContents();
