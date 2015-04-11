@@ -198,7 +198,7 @@ namespace Database.POS
         public static List<Models.POS.RoleModel> getRoleList()
         {
             List<Models.POS.RoleModel> roles = new List<Models.POS.RoleModel>();
-            String sql = @"select * from Role where [Role].Name = 'POS Cashier' or [Role].Name='POS Customer'";
+            String sql = @"select * from Role ";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())

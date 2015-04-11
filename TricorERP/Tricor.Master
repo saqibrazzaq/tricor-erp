@@ -330,14 +330,14 @@
             $("#ReportsDropdown").addClass("hidden");
 
 
-        } else if ('8' == '<%=roleID%>') {
+        } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
             $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#PendingSales").addClass("hidden");
             $("#ReportsDropdown").addClass("hidden");
-        } else if ('4' == '<%=roleID%>') {
+        } else if ('3' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");

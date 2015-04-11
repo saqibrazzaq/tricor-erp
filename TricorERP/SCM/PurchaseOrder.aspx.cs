@@ -96,7 +96,7 @@ namespace TricorERP.SCM
         }
         private List<Models.SCM.WareHouseModel> GetWareHouseListFromDatabase()
         {
-            return Database.SCM.WareHouseDB.getWareHouseList(null);
+            return Database.SCM.WareHouseDB.getWareHouseList(null, Session["UserID"].ToString());
         }
         private List<Models.SCM.SupplierModel> GetSuppliersListFromDatabase()
         {

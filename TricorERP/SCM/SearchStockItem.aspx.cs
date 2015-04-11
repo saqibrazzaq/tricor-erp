@@ -47,7 +47,7 @@ namespace TricorERP.SCM
         }
         private List<Models.SCM.WareHouseModel> GetWareHouseFromDatabase()
         {
-            return Database.SCM.WareHouseDB.getWareHouseList("");
+            return Database.SCM.WareHouseDB.getWareHouseList("", Session["UserID"].ToString());
         }
         private List<Models.SCM.StockModel> GetFromDatabase(String WHID, String SearchProduct)
         {

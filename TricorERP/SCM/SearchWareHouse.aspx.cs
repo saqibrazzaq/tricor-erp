@@ -37,7 +37,7 @@ namespace TricorERP.SCM
         }
         private List<Models.SCM.WareHouseModel> GetFromDatabase(String searchWareHouse)
         {
-            return Database.SCM.WareHouseDB.getWareHouseList(searchWareHouse);
+            return Database.SCM.WareHouseDB.getWareHouseList(searchWareHouse, Session["UserID"].ToString());
         }
         protected void WareHouseListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
