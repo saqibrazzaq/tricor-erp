@@ -72,7 +72,8 @@ namespace TricorERP.POS.Stock
             Models.POS.Stock.POSStockModel posstockmodel = new Models.POS.Stock.POSStockModel()
             {
                 ID = int.Parse(txtStockItemID.Text),
-                Quantity = int.Parse(txtQuantity.Text)
+                Quantity = int.Parse(txtQuantity.Text),
+                WHID = 1
             };
             int check = Database.POS.StockDB.updateStockQuantity(posstockmodel);
             if (check > 0)

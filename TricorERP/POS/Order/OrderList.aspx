@@ -31,6 +31,7 @@
                                         <th>Order Date</th>
                                         <th>Delivery Date</th>
                                         <th>Order Status</th>
+                                        <th>Edit</th>
                                     </tr>
                                     <tr runat="server" id="itemPlaceholder"></tr>
                                 </table>
@@ -45,7 +46,7 @@
                                         <%# Eval("CustomerID") %>
                                     </td>
                                     <td>
-                                        <asp:LinkButton runat="server" CommandName="EditSaleOrder" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("CName") %>'></asp:LinkButton>
+                                        <asp:LinkButton runat="server" CommandName="EditSaleOrder" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("CustomerName") %>'></asp:LinkButton>
                                     </td>
                                     <td>
                                         <%# Eval("OrderDate") %>
@@ -55,6 +56,13 @@
                                     </td>
                                     <td>
                                         <%# Eval("OrderStatusName") %>
+                                    </td>
+                                    <td>
+                                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-default btn-xs" CommandName="EditSaleOrder" CommandArgument='<%# Eval("ID") %>' Text=''>
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        </asp:LinkButton>
+                                        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-default btn-xs" Text="View" CommandName="EditSaleOrder" CommandArgument='<%# Eval("ID") %>' />
+                                            
                                     </td>
 
                                 </tr>
@@ -73,7 +81,7 @@
 
                     <div class="row container-fluid">
                         <div class="col-lg-4">
-                            <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary " OnClick="Cancel_Click" >Cancel</asp:LinkButton>
+                            <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary " OnClick="Cancel_Click">Cancel</asp:LinkButton>
                         </div>
                     </div>
 

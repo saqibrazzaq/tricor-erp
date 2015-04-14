@@ -28,7 +28,7 @@
 
         <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
         </div>
-        <asp:Label ID="ErroMessage" runat="server" Text=""></asp:Label>
+        
 
 
         <div class="panel-body">
@@ -87,16 +87,15 @@
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
-            <hr />
             <table class="table">
                 <tr>
                     <td>
-                        <b>
-                            <asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
+                        <b><asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
                         <asp:Label ID="TotalPrice" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
             </table>
+            <asp:Label ID="ErroMessage"  runat="server" ForeColor="Red"></asp:Label>
         </div>
 
 

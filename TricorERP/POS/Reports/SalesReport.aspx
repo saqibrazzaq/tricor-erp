@@ -6,18 +6,25 @@
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <asp:Label ID="HeadingOfSalesReport" runat="server" Text="Sales Report"></asp:Label>
+            <h3 class="h3">
+                <asp:Label ID="HeadingOfSalesReport" runat="server" Text="Sales Report of ">
+                    <asp:Label runat="server" ID="error" Text=""> </asp:Label>
+                </asp:Label>
+            </h3>
         </div>
         <div class="panel-body">
             <div class="col-lg-10">
                 <div class="panel-body">
-                    <%--<asp:ListView ID="CashierAddressesview" OnItemCommand="CashierListview_ItemCommand" runat="server">
+
+                    <asp:ListView ID="SalesReportView" runat="server">
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
                                     <th>Product Name</th>
-                                    <th>Sale Price</th>
                                     <th>Quantity</th>
+                                    <th>Sale Price</th>
+                                    <th>Purchase Price</th>
+
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
                             </table>
@@ -25,23 +32,25 @@
                         <ItemTemplate>
                             <tr id="Tr1" runat="server">
                                 <td class="AddressID">
-                                    <%# Eval("ID") %>
+                                    <%# Eval("ProductName") %>
                                 </td>
                                 <td>
-                                    <%# Eval("Phonenumber") %>
+                                    <%# Eval("Quantity") %>
                                 </td>
                                 <td>
-                                    <%# Eval("City") %>
-
+                                    <%# Eval("Price") %>
+                                </td>
+                                <td>
+                                    <%# Eval("PurchasePrice") %>
                                 </td>
                             </tr>
                         </ItemTemplate>
-                    </asp:ListView>--%>
-            <div class="row container-fluid">
-                <div class="col-lg-4">
-                    <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary" OnClick="Cancel_Click">Cancel</asp:LinkButton>
-                </div>
-            </div>
+                    </asp:ListView>
+                    <div class="row container-fluid">
+                        <div class="col-lg-4">
+                            <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary" OnClick="Cancel_Click">Cancel</asp:LinkButton>
+                        </div>
+                    </div>
 
                 </div>
             </div>

@@ -22,6 +22,24 @@ namespace TricorERP.POS.Reports {
         protected global::System.Web.UI.WebControls.Label HeadingOfSalesReport;
         
         /// <summary>
+        /// error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label error;
+        
+        /// <summary>
+        /// SalesReportView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView SalesReportView;
+        
+        /// <summary>
         /// Cancel control.
         /// </summary>
         /// <remarks>

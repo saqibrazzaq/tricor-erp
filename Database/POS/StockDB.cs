@@ -53,11 +53,12 @@ namespace Database.POS
         public static List<Models.POS.Stock.POSStockModel> getStockList(string productname)
         {
             List<Models.POS.Stock.POSStockModel> stocklist = new List<Models.POS.Stock.POSStockModel>();
-            String sql = @"select Stock.ID ID, Stock.Quantity Qant, Stock.WHID WHID, Product.Name PN
+            // changing
+            String sql = @"select Stock.ID ID, Stock.Quantity Qant, Stock.WHID WHID, Product.PName PN
 	                     from Stock 
 	                     join Product on Stock.PID = Product.Id
 	                     where 1=1
-                         and (Product.Name like '%"+productname+"%') ";
+                         and (Product.PName like '%"+productname+"%') ";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -84,10 +85,33 @@ namespace Database.POS
             return 0;
         }
 
+
+        // that function can return the quantity of a product...
+        public static int getQuantityFromStock(Models.POS.Order.SaleOrderItemModel soItemModel)
+        {
+            int stockquantity = 0;
+            String sqlproductquantity = @"select [Stock].Quantity from [Stock] where [Stock].PID='" + soItemModel.ProductID + "'";
+            using (SqlDataReader readerPrice = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlproductquantity, null))
+            {
+                if (readerPrice.Read())
+                {
+                    stockquantity = int.Parse(readerPrice["Quantity"].ToString());
+                }
+            }
+            return stockquantity;
+        }
+
+        // that function update the quantity according to the WHID and productID...
         public static int updateStockQuantity(Models.POS.Stock.POSStockModel posstockmodel)
         {
-            String sql = @"UPDATE [dbo].[Stock]
-                         SET [Quantity] = '"+posstockmodel.Quantity+"' WHERE [Stock].ID = '"+posstockmodel.ID+"'";
+            String sql = null;
+            if (posstockmodel.ID != 0)
+                sql = @"UPDATE [dbo].[Stock]
+                         SET [Quantity] = '" + posstockmodel.Quantity + "' WHERE [Stock].ID = '" + posstockmodel.ID + "' and [Stock].WHID='" + posstockmodel.WHID + "'";
+            else
+                sql = @"UPDATE [dbo].[Stock]
+                      SET [Quantity] = '" + posstockmodel.Quantity + @"'
+                      WHERE [Stock].PID = '" + posstockmodel.ProductID + "' and [Stock].WHID = '" + posstockmodel.WHID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {

@@ -19,14 +19,23 @@ namespace TricorERP.POS.Reports
 
         private void InitializePageContents()
         {
-            Models.POS.Order.SaleOrderModel salesreport = GetSalesRoport();
-            //to be continue...
+            LoadListView();
+
         }
 
-        /*That function get the data of sales order of a day*/
-        private Models.POS.Order.SaleOrderModel GetSalesRoport()
+        private void LoadListView()
         {
-            return Database.POS.ReportDB.getSaleReport();
+            List<Models.POS.Order.SaleOrderItemModel> salesreport = GetSalesRoport();
+            SalesReportView.DataSource = salesreport;
+            SalesReportView.DataBind();
+        }
+
+        private List<Models.POS.Order.SaleOrderItemModel> GetSalesRoport()
+        {
+            DateTime date = DateTime.Now;
+            String shortdate = date.ToShortDateString();
+            error.Text = shortdate;
+            return Database.POS.ReportDB.getSaleReport(shortdate);
         }
 
         protected void Cancel_Click(object sender, EventArgs e)

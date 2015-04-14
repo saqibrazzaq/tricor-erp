@@ -75,7 +75,8 @@ namespace TricorERP.POS.Order
                     soModel.ID = int.Parse(Request.QueryString["ID"]);
                     loadOrderModel();
                 }
-                else {
+                else
+                {
                     ProductList.Enabled = false;
                     btnAddProduct.Enabled = false;
                 }
@@ -140,7 +141,7 @@ namespace TricorERP.POS.Order
 
                 if (Session["RoleID"].ToString() == "1")
                     OrderStatusList.SelectedValue = soModel.OrderStatus.ToString();
-            
+
                 SalesOrderItemListview.DataSource = soModel.items;
                 SalesOrderItemListview.DataBind();
             }
@@ -160,7 +161,10 @@ namespace TricorERP.POS.Order
                 soItemModel.Quantity = 1;
                 soItemModel.WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue);
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
-                InitializePageContents();
+                if (soItemModel.ID == 0)
+                    ErroMessage.Text = "Quantity of Selected Product is not Prasent in your Stock...";
+                else
+                    InitializePageContents();
             }
         }
 
@@ -202,18 +206,19 @@ namespace TricorERP.POS.Order
             so.ID = soModel.ID;
             so.CustomerID = int.Parse(CustomerList.SelectedValue);
             so.OrderDate = DateTime.Now.ToString();
-            
-            //////////////////////////////////////////////
             return so;
         }
 
-        
+
 
         protected void deleteSalesOrderItem_onClick(object sender, EventArgs e)
         {
             int itemID = int.Parse(txtSalesOrderItemID.Text);
             int check = Database.POS.Order.OrderDB.deleteSaleOrderItem(itemID);
-            InitializePageContents();
+            if (check > 0)
+                InitializePageContents();
+            else
+                ErroMessage.Text = "data is not deleted";
         }
 
         protected void SaveSalesOrderItem_onClick(object sender, EventArgs e)
@@ -224,12 +229,18 @@ namespace TricorERP.POS.Order
                 ID = int.Parse(txtSalesOrderItemID.Text),
                 Quantity = int.Parse(txtQuantity.Text),
                 Price = float.Parse(txtPrice.Text),
-                WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue)
+                WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue),
+                ProductID = int.Parse(ProductList.SelectedValue)
             };
             int check = Database.POS.Order.OrderDB.updateSalesItem(soItemModel);
             if (check > 0)
+            {
                 ErroMessage.Text = "Product is update";
-            InitializePageContents();
+                InitializePageContents();
+            }
+            else
+                ErroMessage.Text = "Quantity of Selected Product is not Prasent in your Stock...";
+
         }
 
         protected void OrderApproved_Click(object sender, EventArgs e)

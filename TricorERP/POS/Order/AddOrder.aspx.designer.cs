@@ -58,15 +58,6 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.Button NewSalesOrder;
         
         /// <summary>
-        /// ErroMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErroMessage;
-        
-        /// <summary>
         /// SalesOrderItemListview control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace TricorERP.POS.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label TotalPrice;
+        
+        /// <summary>
+        /// ErroMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErroMessage;
         
         /// <summary>
         /// Order control.

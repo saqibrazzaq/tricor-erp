@@ -103,8 +103,8 @@ namespace Database.POS
                     // Create new product model
                     ProductModel product = new ProductModel();
                     product.ProductID = int.Parse(reader["Id"].ToString());
-                    product.ProductName = reader["Name"].ToString();
-                    product.Description = reader["Description"].ToString();
+                    product.ProductName = reader["PName"].ToString();
+                    product.Description = reader["PDescription"].ToString();
                     product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
                     product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
                     // Add to the lsit
