@@ -32,7 +32,7 @@ namespace TricorERP.POS.Reports
 
         private List<Models.POS.Order.SaleOrderItemModel> GetSalesRoport()
         {
-            DateTime date = DateTime.Now;
+            DateTime date = DateTime.Today;
             String shortdate = date.ToShortDateString();
             error.Text = shortdate;
             return Database.POS.ReportDB.getSaleReport(shortdate);

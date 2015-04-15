@@ -85,16 +85,8 @@ namespace TricorERP.POS.Stock
             {
                 Models.POS.Stock.POSStockModel stockItems = CreateStockItemFromUI();
                 stockItems = Database.POS.StockDB.addNewStock(stockItems);
-                if (stockItems.ID == 0)
-                {
-                    //If already existing product is inserted it will show error message
-                    MessageLable.Text = @"This product is already exist in stock...";
-                }
-                else
-                {
-                    stckModel.ID = stockItems.ID;
-                    MessageLable.Text = "New Data of stock is saved...";
-                }
+                stckModel.ID = stockItems.ID;
+                MessageLable.Text = "Data of stock is saved...";
             }
         }
         private void UpdateStock()
