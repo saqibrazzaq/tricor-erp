@@ -40,13 +40,13 @@ namespace TricorERP.POS.Stock {
         protected global::System.Web.UI.WebControls.Panel pnlContents;
         
         /// <summary>
-        /// OrderListview control.
+        /// StockListview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView OrderListview;
+        protected global::System.Web.UI.WebControls.ListView StockListview;
         
         /// <summary>
         /// ErrorMessage control.

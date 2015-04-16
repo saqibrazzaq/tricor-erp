@@ -41,7 +41,7 @@
                 <asp:Panel ID="pnlContents" runat="server">
                     <div class="row">
                         <div class="col-lg-10">
-                            <asp:ListView ID="OrderListview" runat="server">
+                            <asp:ListView ID="StockListview" runat="server">
                                 <LayoutTemplate>
                                     <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                                         <tr class="active">

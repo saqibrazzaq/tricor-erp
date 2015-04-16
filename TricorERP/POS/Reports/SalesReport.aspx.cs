@@ -20,7 +20,6 @@ namespace TricorERP.POS.Reports
         private void InitializePageContents()
         {
             LoadListView();
-
         }
 
         private void LoadListView()
@@ -28,19 +27,34 @@ namespace TricorERP.POS.Reports
             List<Models.POS.Order.SaleOrderItemModel> salesreport = GetSalesRoport();
             SalesReportView.DataSource = salesreport;
             SalesReportView.DataBind();
+            float[] totalsaleprice = new float[salesreport.Count];
+            float[] totalpurchasePrice = new float[salesreport.Count];
+
+            for (int i = 0; i < salesreport.Count; i++) {
+                totalsaleprice[i] = salesreport[i].Price;
+                totalpurchasePrice[i] = salesreport[i].PurchasePrice;
+            }
+            float totalsp = 0;
+            float totalpp = 0;
+            for (int i = 0; i < salesreport.Count; i++) {
+                totalsp = totalsp + totalsaleprice[i];
+                totalpp = totalpp + totalpurchasePrice[i];
+            }
+
+            TotalSalePrice.Text = "Total Sales Price :" + totalsp;
+            TotalPurchasePrice.Text = "Total Purchase Price :" + totalpp;
+            Profit.Text = "Profit is :" + (totalsp - totalpp); 
         }
 
         private List<Models.POS.Order.SaleOrderItemModel> GetSalesRoport()
         {
-            DateTime date = DateTime.Now;
-            String shortdate = date.ToShortDateString();
-            error.Text = shortdate;
-            return Database.POS.ReportDB.getSaleReport(shortdate);
+            return Database.POS.ReportDB.getSaleReport();
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
         }
+
     }
 }
