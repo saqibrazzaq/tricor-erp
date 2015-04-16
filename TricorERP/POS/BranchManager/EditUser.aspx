@@ -13,14 +13,14 @@
         <div class="panel-body">
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">Full Name :</label>
+                    <label for="InputName">Full Name :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter user full name" ControlToValidate="CashierNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CashierNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <asp:Label ID="message" runat="server" CssClass="alert" ForeColor="Red"></asp:Label>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">Password :</label>
+                    <label for="InputName">Password :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter user password" ControlToValidate="CashierPasswordText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CashierPasswordText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
@@ -28,13 +28,13 @@
             </div>
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">CNIC :</label>
+                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter user CNIC" ControlToValidate="CNIC" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CNIC" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">User-Type :</label>
+                    <label for="InputName">User-Type :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Select user type" ControlToValidate="UserTypeDropDownList" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="UserTypeDropDownList" runat="server">
                         </asp:DropDownList>
@@ -117,4 +117,5 @@
             </div>
         </div>
     </div>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
 </asp:Content>

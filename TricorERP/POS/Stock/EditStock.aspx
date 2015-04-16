@@ -14,7 +14,7 @@
             <div class="row container-fluid">
 
                 <div class="col-lg-4">
-                    <label for="InputName">Product :</label>
+                    <label for="InputName">Product :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Select product" ControlToValidate="ProductDropDownList" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="ProductDropDownList" runat="server">
                         </asp:DropDownList>
@@ -25,14 +25,13 @@
             <br />
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">Quantity</label>
+                    <label for="InputName">Quantity :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter quantity" ControlToValidate="Quantity" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="Quantity" Font-Names="InputName" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                        <br />
+                        <br />
+                        <asp:Label ID="MessageLable" runat="server" Text="" ForeColor="Red"></asp:Label>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <br />
-                    <asp:Label ID="MessageLable" CssClass="alert-danger" runat="server" Text="*"></asp:Label>
                 </div>
             </div>
             <br />
@@ -45,4 +44,5 @@
             
         </div>
     </div>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
 </asp:Content>
