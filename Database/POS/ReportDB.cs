@@ -10,16 +10,17 @@ namespace Database.POS
     public class ReportDB
     {
         /*That function return the sale tht is based on daly bases*/
-        public static List<Models.POS.Order.SaleOrderItemModel> getSaleReport(string shortdate)
+        public static List<Models.POS.Order.SaleOrderItemModel> getSaleReport()
         {
             List<Models.POS.Order.SaleOrderItemModel> salereport = new List<Models.POS.Order.SaleOrderItemModel>();
+            String sql = @"select [Product].PName, sum([SalesOrderItem].TotalQuantity) as  TotalQuantity
+		                , sum([Product].SalePrice) as SalePrice, sum([Product].PurchasePrice) as PurchasePrice
+		                from [SalesOrder] 
+		                join [SalesOrderItem] on [SalesOrder].ID=[SalesOrderItem].OrderID
+		                join [Product] on [SalesOrderItem].ProductID=[Product].Id
+		                where [SalesOrder].OrderStatus='6'
+		                group by [Product].PName  ";
 
-            String sql = @"select  [Product].PName, [Product].SalePrice, [SalesOrderItem].TotalQuantity, [Product].PurchasePrice
-                         from [SalesOrder]
-                         join [SalesOrderItem] on [SalesOrder].ID=[SalesOrderItem].OrderID
-                         join [Product] on [SalesOrderItem].ProductID = [Product].Id
-                         where 1=1
-                         and [SalesOrder].OrderDate like '%"+shortdate+"%'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -33,6 +34,8 @@ namespace Database.POS
             }
             return salereport;
         }
-        //to be continue on that point....
+        
+
+
     }
 }

@@ -51,7 +51,7 @@ namespace Database.POS
             }
             return stockquantity;
         }
-        
+
         //that function update the existence stock
         public static int updateStock(Models.POS.Stock.POSStockModel updatestockitems)
         {
@@ -147,28 +147,34 @@ namespace Database.POS
                 int updateorderstatus = Database.POS.Order.OrderDB.updateOrderStatus(soModel);
                 if (updateorderstatus > 0)
                 {
-                    // these integer arrays contains the product ids and quantity...
-                    int NumberOfProduct = soModel.items.Count;
-                    int[] ProductId = new int[NumberOfProduct];
-                    int[] Quantity = new int[NumberOfProduct];
-                    int[] WHID = new int[NumberOfProduct];
-
-                    for (int i = 0; i < NumberOfProduct; i++)
+                    foreach (Models.POS.Order.SaleOrderItemModel soItem in soModel.items)
                     {
-                        ProductId[i] = soModel.items[i].ProductID;
-                        Quantity[i] = soModel.items[i].Quantity;
-                        WHID[i] = soModel.items[i].WareHouseID;
-                    }
-
-                    int[] totalquantity = getTotalQuantityFromStock(ProductId, WHID, NumberOfProduct);
-
-                    for (int i = 0; i < NumberOfProduct; i++)
-                    {
-                        int quant = totalquantity[i] - Quantity[i];
                         String sqlupdatestock = @"UPDATE [dbo].[Stock]
-                                           SET [Quantity] = '" + quant + "'WHERE [Stock].PID='" + ProductId[i] + "' and [Stock].WHID='" + WHID[i] + "'";
-                        int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
+                                           SET [Quantity] = [Quantity] - " + soItem.Quantity + " WHERE [Stock].PID='" + soItem.ProductID + "' and [Stock].WHID='" + soItem.WareHouseID + "'";
+                        DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
                     }
+                    // these integer arrays contains the product ids and quantity...
+                    //                    int NumberOfProduct = soModel.items.Count;
+                    //                    int[] ProductId = new int[NumberOfProduct];
+                    //                    int[] Quantity = new int[NumberOfProduct];
+                    //                    int[] WHID = new int[NumberOfProduct];
+
+                    //                    for (int i = 0; i < NumberOfProduct; i++)
+                    //                    {
+                    //                        ProductId[i] = soModel.items[i].ProductID;
+                    //                        Quantity[i] = soModel.items[i].Quantity;
+                    //                        WHID[i] = soModel.items[i].WareHouseID;
+                    //                    }
+
+                    //                    int[] totalquantity = getTotalQuantityFromStock(ProductId, WHID, NumberOfProduct);
+
+                    //                    for (int i = 0; i < NumberOfProduct; i++)
+                    //                    {
+                    //                        int quant = totalquantity[i] - Quantity[i];
+                    //                        String sqlupdatestock = @"UPDATE [dbo].[Stock]
+                    //                                           SET [Quantity] = '" + quant + "'WHERE [Stock].PID='" + ProductId[i] + "' and [Stock].WHID='" + WHID[i] + "'";
+                    //                        int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
+                    //                    }
                     return 1;
                 }
                 else
@@ -184,7 +190,7 @@ namespace Database.POS
             int[] QuantityList = new int[size];
             for (int i = 0; i < size; i++)
             {
-                String sqlproductquantity = @"select [Stock].Quantity from [Stock] where [Stock].PID='" + ProductId[i] + "' and [Stock].WHID='"+WHID[i]+"'";
+                String sqlproductquantity = @"select [Stock].Quantity from [Stock] where [Stock].PID='" + ProductId[i] + "' and [Stock].WHID='" + WHID[i] + "'";
                 using (SqlDataReader readerPrice = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlproductquantity, null))
                 {
                     if (readerPrice.Read())

@@ -103,7 +103,7 @@ namespace TricorERP.POS.Stock
             productstock.Quantity = int.Parse(Quantity.Text);
 
             // how to set WHID in stock
-            productstock.WHID = 1;
+            productstock.WHID = Common.WarehouseIDDefault;
             return productstock;
         }
 

@@ -18,6 +18,7 @@
     </title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/tricor.css" rel="stylesheet" />
 
     <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
     <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>

@@ -35,8 +35,8 @@ namespace TricorERP.POS.Stock
             {
                 stocklist = GetStockListFromBD(productname);
             }
-            OrderListview.DataSource = stocklist;
-            OrderListview.DataBind();
+            StockListview.DataSource = stocklist;
+            StockListview.DataBind();
         }
 
         private List<Models.POS.Stock.POSStockModel> GetStockListFromBD(string productname)
@@ -73,7 +73,7 @@ namespace TricorERP.POS.Stock
             {
                 ID = int.Parse(txtStockItemID.Text),
                 Quantity = int.Parse(txtQuantity.Text),
-                WHID = 1
+                WHID = Common.WarehouseIDDefault
             };
             int check = Database.POS.StockDB.updateStockQuantity(posstockmodel);
             if (check > 0)

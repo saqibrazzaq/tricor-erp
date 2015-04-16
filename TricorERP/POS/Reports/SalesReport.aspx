@@ -6,14 +6,17 @@
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <h3 class="h3">
-                <asp:Label ID="HeadingOfSalesReport" runat="server" Text="Sales Report of ">
-                    <asp:Label runat="server" ID="error" Text=""> </asp:Label>
-                </asp:Label>
-            </h3>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="h3">
+                        <asp:Label ID="HeadingOfSalesReport" runat="server" Text="Sale Report">
+                        </asp:Label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="panel-body">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="panel-body">
 
                     <asp:ListView ID="SalesReportView" runat="server">
@@ -21,10 +24,9 @@
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
                                     <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Sale Price</th>
-                                    <th>Purchase Price</th>
-
+                                    <th>Total Quantity</th>
+                                    <th>Total Sale Price</th>
+                                    <th>Total Purchase Price</th>
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
                             </table>
@@ -50,11 +52,15 @@
                         <div class="col-lg-4">
                             <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary" OnClick="Cancel_Click">Cancel</asp:LinkButton>
                         </div>
+                        <div class="col-lg-8">
+                            <b>
+                                <asp:Label ID="TotalSalePrice" runat="server" Text=""></asp:Label><br />
+                                <asp:Label ID="TotalPurchasePrice" runat="server" Text=""></asp:Label><br />
+                                <asp:Label ID="Profit" runat="server" Text=""></asp:Label></b>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
 </asp:Content>

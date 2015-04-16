@@ -193,7 +193,6 @@ namespace TricorERP.POS.Order
 
         private void SaveSalesOrder()
         {
-            /////////////////////////////////////////
             InitializeOrderModel();
             if (soModel.ID == 0 && NewSalesOrder.Text == "Create New Sales Order")
             {
@@ -201,7 +200,6 @@ namespace TricorERP.POS.Order
             }
             else if (soModel.ID != 0 && NewSalesOrder.Text == "Save Sales Order")
             {
-                /////////////////////////////
                 UpdateStock();
             }
             else
@@ -248,6 +246,7 @@ namespace TricorERP.POS.Order
             SaleOrderModel so = new SaleOrderModel();
             so.ID = soModel.ID;
             so.CustomerID = int.Parse(CustomerList.SelectedValue);
+            
             so.OrderDate = DateTime.Today.ToString();
             return so;
         }
@@ -289,17 +288,7 @@ namespace TricorERP.POS.Order
 
         }
 
-        //assorder click...
-        protected void OrderApproved_Click(object sender, EventArgs e)
-        {
-            InitializeOrderModel();
-            soModel.OrderStatus = int.Parse(OrderStatusList.SelectedValue);
-            int check = Database.POS.Order.OrderDB.updateOrderStatus(soModel);
-            if (check > 0)
-                ErroMessage.Text = "UPDATED...";
-            //update on that point.....
-        }
-
+       
         protected void Cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/POS/Order/OrderList.aspx");

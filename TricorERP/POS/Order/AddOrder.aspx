@@ -12,7 +12,7 @@
 
             <div class="row container-fluid">
                 <label for="InputName">Customer :</label>
-                <asp:DropDownList ID="CustomerList" runat="server"></asp:DropDownList>
+                <asp:DropDownList CssClass="" ID="CustomerList" runat="server"></asp:DropDownList>
                 <label for="InputName">Product:</label>
                 <asp:DropDownList runat="server" ID="ProductList"></asp:DropDownList>
                 <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
@@ -101,9 +101,7 @@
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <ul id="OrderApproved" class="nav navbar-nav">
-                    <li>
-                        <asp:Button ID="Order" runat="server" CssClass="btn btn-default" Text="Order" OnClick="OrderApproved_Click" />
-                    </li>
+                    
                     <li>
                         <asp:Button ID="Cancel" runat="server" CssClass="btn btn-default" Text="Cancel" OnClick="Cancel_Click" />
                     </li>
