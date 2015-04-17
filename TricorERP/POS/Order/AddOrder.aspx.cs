@@ -177,7 +177,7 @@ namespace TricorERP.POS.Order
                 soItemModel.OrderID = soModel.ID;
                 soItemModel.ProductID = int.Parse(ProductList.SelectedValue);
                 // Set quantity to default 1
-                soItemModel.Quantity = 1;
+                soItemModel.Quantity = Common.WarehouseIDDefault;
                 soItemModel.WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue);
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
                 if (soItemModel.ID == 0)
@@ -302,6 +302,7 @@ namespace TricorERP.POS.Order
                 //    HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("ItemRow");
                 //    row.Attributes.Add("Class", "alert-warning");
                 //}
+                //to be continue on that point.....
             }
         }
     }

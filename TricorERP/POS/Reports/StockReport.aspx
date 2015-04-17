@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <div class="panel-body">
                     <asp:ListView ID="StockReportView" runat="server" OnItemDataBound="StockReportView_ItemDataBound">
                         <LayoutTemplate>
@@ -31,9 +31,11 @@
                             <tr id="Tr1" runat="server" class="">
                                 <td class="AddressID">
                                     <%# Eval("ProductName") %>
+                                    
                                 </td>
                                 <td>
                                     <%# Eval("Quantity") %>
+                                    <asp:Label ID="StockLowMessage" runat="server" Text="(Low Stock)"></asp:Label>
                                 </td>
                             </tr>
                         </ItemTemplate>

@@ -45,7 +45,7 @@
                                 <LayoutTemplate>
                                     <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                                         <tr class="active">
-                                            <th>Stock ID</th>
+                                            <th class="hidden">Stock ID</th>
                                             <th>Product Name</th>
                                             <th>Quantity</th>
                                             <th>Edit/Delete</th>
@@ -56,7 +56,7 @@
                                 <ItemTemplate>
                                     <tr class="ItemRow" id="ItemRow" runat="server">
 
-                                        <td class="ItemCol_ItemID">
+                                        <td class="hidden ItemCol_ItemID">
                                             <%# Eval("ID") %>
                                         </td>
                                         <td class="ItemCol_ProductName">
@@ -64,6 +64,7 @@
                                         </td>
                                         <td class="ItemCol_Quantity">
                                             <%# Eval("Quantity") %>
+                                            <asp:Label ID="StockLowMessage" runat="server" Text="(Low Stock)"></asp:Label>
                                         </td>
                                         <td>
                                             <button type="button" class="QuantityRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#StockItemEditModal">
@@ -87,7 +88,7 @@
                     <div>
                         <div class="col-lg-6">
                             <div class="input-group">
-                                <asp:Label ID="ErrorMessage" CssClass="alert-danger" runat="server"></asp:Label>
+                                <asp:Label ID="ErrorMessage" ForeColor="Red" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>

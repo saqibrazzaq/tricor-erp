@@ -90,10 +90,15 @@ namespace TricorERP.POS.Stock
         {
             Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
             if (stock.Quantity < 10)
-            {
+            {       
                 // make the data row red
                 HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("ItemRow");
-                row.Attributes.Add("Class", "alert-warning");
+                row.Attributes.Add("Class", "alert-danger");
+            }
+            else
+            {
+                Label lab = (Label)e.Item.FindControl("StockLowMessage");
+                lab.Attributes.Add("Class", "hidden");
             }
         }
 

@@ -18,7 +18,6 @@ namespace Database.POS
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
-                //stockItems.ID = 0;
                 stockItems.ID = getExistingStockId(stockItems);
                 int quantity = getQuantityFromStock(stockItems);
                 stockItems.Quantity = stockItems.Quantity + quantity;
@@ -27,10 +26,8 @@ namespace Database.POS
             }
             else
             {
-                sql = @"INSERT INTO [dbo].[Stock]
-                         ([WHID] ,[PID] ,[Quantity])
-                         output inserted.ID
-                         VALUES (" + stockItems.WHID + " ," + stockItems.ProductID + " ," + stockItems.Quantity + " )";
+                sql = @"INSERT INTO [dbo].[Stock] ([WHID] ,[PID] ,[Quantity])
+                      output inserted.ID VALUES('"+stockItems.WHID+"','"+stockItems.ProductID+"','"+stockItems.Quantity+"')";
                 object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
                 stockItems.ID = int.Parse(id.ToString());
                 return stockItems;

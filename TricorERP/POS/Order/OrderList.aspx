@@ -25,8 +25,8 @@
                             <LayoutTemplate>
                                 <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                                     <tr class="active">
-                                        <th>ID</th>
-                                        <th>Customer ID</th>
+                                        <th class="hidden">ID</th>
+                                        <th class="hidden">Customer ID</th>
                                         <th>Customer Name</th>
                                         <th>Order Date</th>
                                         <th>Delivery Date</th>
@@ -39,10 +39,10 @@
                             <ItemTemplate>
                                 <tr runat="server">
 
-                                    <td>
+                                    <td class="hidden">
                                         <%# Eval("ID") %>
                                     </td>
-                                    <td>
+                                    <td class="hidden">
                                         <%# Eval("CustomerID") %>
                                     </td>
                                     <td>

@@ -37,7 +37,7 @@
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
-                                    <th>ID</th>
+                                    <th class="hidden">ID</th>
                                     <th>Full Name</th>
                                     <th>Phone Number</th>
                                     <th>Edit</th>
@@ -48,7 +48,7 @@
                         </LayoutTemplate>
                         <ItemTemplate>
                             <tr runat="server">
-                                <td class="AddressID">
+                                <td class="hidden AddressID">
                                     <%# Eval("ID") %>
                                 </td>
                                 <td>
@@ -79,7 +79,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <asp:Label ID="Message" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="Message" ForeColor="Red" runat="server" Text=""></asp:Label>
                 </div>
             </div>
 

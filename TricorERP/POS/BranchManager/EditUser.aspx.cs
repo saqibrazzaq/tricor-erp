@@ -88,7 +88,9 @@ namespace TricorERP.POS.BranchManager
             if (UserID == "0")
                 addNewUser();
             else
+            {
                 updateCashier();
+            }
         }
         private void addNewUser()
         {
@@ -121,14 +123,14 @@ namespace TricorERP.POS.BranchManager
             int check = Database.POS.UserDB.updateUser(updatecashier);
             if (check == 1)
             {
-                message.Text = "Data is Updated";
-                Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + updatecashier.ID + "&AddressID=0");
+                ErroMessage.Text = "Data is Updated";
+                //Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + updatecashier.ID + "&AddressID=0");
             }
-            else
-            {
-                message.Text = "Data is not Updated";
-                Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + updatecashier.ID + "&AddressID=0");
-            }
+            //else
+            //{
+            //    message.Text = "Data is not Updated";
+            //    //Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + updatecashier.ID + "&AddressID=0");
+            //}
         }
 
         protected void CashierListview_ItemCommand(object sender, ListViewCommandEventArgs e)
