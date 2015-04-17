@@ -11,12 +11,13 @@ namespace TricorERP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (Session["RoleID"] == null) {
+                Response.Redirect("~/Login.aspx");
+            }
         }
         protected void LogoffLinkButton(object sender, EventArgs e)
         {
-            Session["logOutMsg"] = "You logout successfully";
-            Session["UserName"] = null;
+            Session.Abandon();
             Response.Redirect("~/Login.aspx");
         }
     }

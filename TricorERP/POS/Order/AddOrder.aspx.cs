@@ -9,6 +9,7 @@ using Models.POS.Order;
 using Models.POS.Customer;
 using Models.POS;
 using Models.SCM;
+using System.Web.UI.HtmlControls;
 
 namespace TricorERP.POS.Order
 {
@@ -198,8 +199,9 @@ namespace TricorERP.POS.Order
             {
                 CreateNewSalesOrder();
             }
-            else if (soModel.ID != 0 && NewSalesOrder.Text == "Save Sales Order")
+            else if (soModel.ID != 0 && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString()=="Complete")
             {
+                //that condition is false....
                 UpdateStock();
             }
             else
@@ -211,14 +213,14 @@ namespace TricorERP.POS.Order
         private void UpdateStock()
         {
             soModel.OrderStatus = int.Parse(OrderStatusList.SelectedValue);
-            int updatestockcheck = GetUpdateStock( soModel );
+            int updatestockcheck = UpdateStock( soModel );
             if (updatestockcheck > 0) {
                 ErroMessage.Text = "Your request is procede...";
                 InitializePageContents();
             }
         }
 
-        private int GetUpdateStock(SaleOrderModel soModel)
+        private int UpdateStock(SaleOrderModel soModel)
         {
             return Database.POS.StockDB.updateStockItems(soModel);
         }
@@ -246,13 +248,10 @@ namespace TricorERP.POS.Order
             SaleOrderModel so = new SaleOrderModel();
             so.ID = soModel.ID;
             so.CustomerID = int.Parse(CustomerList.SelectedValue);
-            
             so.OrderDate = DateTime.Today.ToString();
             return so;
         }
-
-
-
+        
         protected void deleteSalesOrderItem_onClick(object sender, EventArgs e)
         {
             int itemID = int.Parse(txtSalesOrderItemID.Text);
@@ -288,11 +287,22 @@ namespace TricorERP.POS.Order
 
         }
 
-       
         protected void Cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/POS/Order/OrderList.aspx");
         }
 
+        protected void SalesOrderItemListview_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (OrderStatusList.SelectedValue != "Complete" && soModel.ID != 0) {
+                //SaleOrderModel stock = (SaleOrderModel)e.Item.DataItem;
+                //if (1 < 10)
+                //{
+                //    // make the data row red
+                //    HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("ItemRow");
+                //    row.Attributes.Add("Class", "alert-warning");
+                //}
+            }
+        }
     }
 }

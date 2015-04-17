@@ -41,7 +41,7 @@
                 <asp:Panel ID="pnlContents" runat="server">
                     <div class="row">
                         <div class="col-lg-10">
-                            <asp:ListView ID="StockListview" runat="server">
+                            <asp:ListView ID="StockListview" runat="server" OnItemDataBound="StockListview_ItemDataBound">
                                 <LayoutTemplate>
                                     <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                                         <tr class="active">
@@ -54,7 +54,7 @@
                                     </table>
                                 </LayoutTemplate>
                                 <ItemTemplate>
-                                    <tr class="ItemRow" runat="server">
+                                    <tr class="ItemRow" id="ItemRow" runat="server">
 
                                         <td class="ItemCol_ItemID">
                                             <%# Eval("ID") %>

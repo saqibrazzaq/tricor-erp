@@ -6,11 +6,14 @@
     <div class="panel panel-default">
 
         <div class="panel-heading">
+            <h2 class="h2">Sale Report</h2>
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="h3">
-                        <asp:Label ID="HeadingOfSalesReport" runat="server" Text="Sale Report">
-                        </asp:Label>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <asp:TextBox ID="SearchSales" CssClass="form-control" placeholder="Search by date(17-Apr-15)..." runat="server"></asp:TextBox>
+                        <span class="input-group-btn">
+                            <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search" OnClick="Search_Click" />
+                        </span>
                     </div>
                 </div>
             </div>
@@ -27,6 +30,7 @@
                                     <th>Total Quantity</th>
                                     <th>Total Sale Price</th>
                                     <th>Total Purchase Price</th>
+                                    <th>Profit</th>
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
                             </table>
@@ -34,29 +38,31 @@
                         <ItemTemplate>
                             <tr id="Tr1" runat="server">
                                 <td class="AddressID">
-                                    <%# Eval("ProductName") %>
+                                    <%# Eval("orderdates") %>
                                 </td>
                                 <td>
                                     <%# Eval("Quantity") %>
                                 </td>
                                 <td>
-                                    <%# Eval("Price") %>
+                                    <%# Eval("SalePrice") %>
                                 </td>
                                 <td>
                                     <%# Eval("PurchasePrice") %>
                                 </td>
+                                <td>
+                                    <%# Eval("Profit") %>
+                                </td>
                             </tr>
                         </ItemTemplate>
                     </asp:ListView>
+
+                    <div class="row">
+                        <asp:Label ID="ErrorMessage" runat="server" ForeColor="Red"></asp:Label>
+                    </div>
+                    
                     <div class="row container-fluid">
                         <div class="col-lg-4">
                             <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary" OnClick="Cancel_Click">Cancel</asp:LinkButton>
-                        </div>
-                        <div class="col-lg-8">
-                            <b>
-                                <asp:Label ID="TotalSalePrice" runat="server" Text=""></asp:Label><br />
-                                <asp:Label ID="TotalPurchasePrice" runat="server" Text=""></asp:Label><br />
-                                <asp:Label ID="Profit" runat="server" Text=""></asp:Label></b>
                         </div>
                     </div>
                 </div>

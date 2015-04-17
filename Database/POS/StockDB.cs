@@ -185,23 +185,5 @@ namespace Database.POS
             return 0;
         }
 
-        private static int[] getTotalQuantityFromStock(int[] ProductId, int[] WHID, int size)
-        {
-            int[] QuantityList = new int[size];
-            for (int i = 0; i < size; i++)
-            {
-                String sqlproductquantity = @"select [Stock].Quantity from [Stock] where [Stock].PID='" + ProductId[i] + "' and [Stock].WHID='" + WHID[i] + "'";
-                using (SqlDataReader readerPrice = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlproductquantity, null))
-                {
-                    if (readerPrice.Read())
-                    {
-                        QuantityList[i] = int.Parse(readerPrice["Quantity"].ToString());
-                    }
-                }
-            }
-
-            return QuantityList;
-        }
-
     }
 }

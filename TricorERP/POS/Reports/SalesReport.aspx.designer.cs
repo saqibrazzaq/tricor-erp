@@ -13,13 +13,22 @@ namespace TricorERP.POS.Reports {
     public partial class SalesReport {
         
         /// <summary>
-        /// HeadingOfSalesReport control.
+        /// SearchSales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label HeadingOfSalesReport;
+        protected global::System.Web.UI.WebControls.TextBox SearchSales;
+        
+        /// <summary>
+        /// Search control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Search;
         
         /// <summary>
         /// SalesReportView control.
@@ -31,6 +40,15 @@ namespace TricorERP.POS.Reports {
         protected global::System.Web.UI.WebControls.ListView SalesReportView;
         
         /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMessage;
+        
+        /// <summary>
         /// Cancel control.
         /// </summary>
         /// <remarks>
@@ -38,32 +56,5 @@ namespace TricorERP.POS.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Cancel;
-        
-        /// <summary>
-        /// TotalSalePrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalSalePrice;
-        
-        /// <summary>
-        /// TotalPurchasePrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalPurchasePrice;
-        
-        /// <summary>
-        /// Profit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Profit;
     }
 }

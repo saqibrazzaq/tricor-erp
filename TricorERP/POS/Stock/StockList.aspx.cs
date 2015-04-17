@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace TricorERP.POS.Stock
@@ -83,6 +84,17 @@ namespace TricorERP.POS.Stock
         protected void Cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
+        }
+
+        protected void StockListview_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
+            if (stock.Quantity < 10)
+            {
+                // make the data row red
+                HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("ItemRow");
+                row.Attributes.Add("Class", "alert-warning");
+            }
         }
 
 

@@ -9,27 +9,30 @@ namespace Database.POS
 {
     public class ReportDB
     {
-        /*That function return the sale tht is based on daly bases*/
-        public static List<Models.POS.Order.SaleOrderItemModel> getSaleReport()
+        /*That function return the sale report that is based on date*/
+        public static List<Models.POS.Report.ReportModel> getSaleReport(string searchbydate)
         {
-            List<Models.POS.Order.SaleOrderItemModel> salereport = new List<Models.POS.Order.SaleOrderItemModel>();
-            String sql = @"select [Product].PName, sum([SalesOrderItem].TotalQuantity) as  TotalQuantity
-		                , sum([Product].SalePrice) as SalePrice, sum([Product].PurchasePrice) as PurchasePrice
-		                from [SalesOrder] 
-		                join [SalesOrderItem] on [SalesOrder].ID=[SalesOrderItem].OrderID
-		                join [Product] on [SalesOrderItem].ProductID=[Product].Id
-		                where [SalesOrder].OrderStatus='6'
-		                group by [Product].PName  ";
+            List<Models.POS.Report.ReportModel> salereport = new List<Models.POS.Report.ReportModel>();
+            String sql = @"select [SalesOrder].OrderDate , SUM([SalesOrderItem].TotalQuantity) as TotalQuantity, SUM([SalesOrderItem].Price) 
+		                as TotalSalePrice 
+		                , sum([Product].SalePrice) as TotalPurchasePrice,
+		                SUM([SalesOrderItem].Price-[Product].SalePrice) as Profit
+		                from [SalesOrder]
+		                join [SalesOrderItem] on [SalesOrder].ID = [SalesOrderItem].OrderID
+		                join [Product] on [SalesOrderItem].ProductID = [Product].Id
+		                where [SalesOrder].OrderStatus='6' and [SalesOrder].OrderDate like '%"+searchbydate
+                        +"%'group by [SalesOrder].OrderDate";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
-                Models.POS.Order.SaleOrderItemModel salesreportitems = new Models.POS.Order.SaleOrderItemModel();
-                salesreportitems.ProductName = reader["PName"].ToString();
-                salesreportitems.Quantity = int.Parse(reader["TotalQuantity"].ToString());
-                salesreportitems.Price = float.Parse(reader["SalePrice"].ToString());
-                salesreportitems.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
+                Models.POS.Report.ReportModel salesreportitems = new Models.POS.Report.ReportModel();
 
+                salesreportitems.orderdates = reader["OrderDate"].ToString();
+                salesreportitems.Quantity = int.Parse(reader["TotalQuantity"].ToString());
+                salesreportitems.SalePrice = float.Parse(reader["TotalSalePrice"].ToString());
+                salesreportitems.PurchasePrice = float.Parse(reader["TotalPurchasePrice"].ToString());
+                salesreportitems.Profit = float.Parse(reader["Profit"].ToString());
                 salereport.Add(salesreportitems);
             }
             return salereport;

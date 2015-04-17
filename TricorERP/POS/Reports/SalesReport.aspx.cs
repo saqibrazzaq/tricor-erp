@@ -9,8 +9,10 @@ namespace TricorERP.POS.Reports
 {
     public partial class SalesReport : System.Web.UI.Page
     {
+        List<Models.POS.Report.ReportModel> salesreport = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            ErrorMessage.Text = "";
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -19,41 +21,40 @@ namespace TricorERP.POS.Reports
 
         private void InitializePageContents()
         {
-            LoadListView();
+            LoadSalesListView("");
         }
 
-        private void LoadListView()
+        private void LoadSalesListView(String searchbydate)
         {
-            List<Models.POS.Order.SaleOrderItemModel> salesreport = GetSalesRoport();
-            SalesReportView.DataSource = salesreport;
-            SalesReportView.DataBind();
-            float[] totalsaleprice = new float[salesreport.Count];
-            float[] totalpurchasePrice = new float[salesreport.Count];
-
-            for (int i = 0; i < salesreport.Count; i++) {
-                totalsaleprice[i] = salesreport[i].Price;
-                totalpurchasePrice[i] = salesreport[i].PurchasePrice;
+            if (searchbydate == null)
+            {
+                salesreport = GetSalesRoport("");   
             }
-            float totalsp = 0;
-            float totalpp = 0;
-            for (int i = 0; i < salesreport.Count; i++) {
-                totalsp = totalsp + totalsaleprice[i];
-                totalpp = totalpp + totalpurchasePrice[i];
+            else 
+            {
+                salesreport = GetSalesRoport(searchbydate);
             }
+                SalesReportView.DataSource = salesreport;
+                SalesReportView.DataBind();
+       }
 
-            TotalSalePrice.Text = "Total Sales Price :" + totalsp;
-            TotalPurchasePrice.Text = "Total Purchase Price :" + totalpp;
-            Profit.Text = "Profit is :" + (totalsp - totalpp); 
-        }
-
-        private List<Models.POS.Order.SaleOrderItemModel> GetSalesRoport()
+        private List<Models.POS.Report.ReportModel> GetSalesRoport( String searchbydate )
         {
-            return Database.POS.ReportDB.getSaleReport();
+            return Database.POS.ReportDB.getSaleReport(searchbydate);
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
+        }
+
+        protected void Search_Click(object sender, EventArgs e)
+        {
+            LoadSalesListView(SearchSales.Text);
+            if (salesreport.Count == 0)
+            {
+                ErrorMessage.Text = "Data is not found...";
+            }
         }
 
     }

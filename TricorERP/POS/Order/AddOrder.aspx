@@ -25,14 +25,11 @@
                 </ul>
             </div>
         
-
         <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
         </div>
         
-
-
         <div class="panel-body">
-            <asp:ListView ID="SalesOrderItemListview" runat="server">
+            <asp:ListView ID="SalesOrderItemListview" runat="server" OnItemDataBound="SalesOrderItemListview_ItemDataBound">
                 <LayoutTemplate>
                     <table class="table table-bordered table-hover">
                         <tr class="active">
@@ -49,7 +46,7 @@
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <tr class="ItemRow" runat="server">
+                    <tr class="ItemRow" id="ItemRow" runat="server">
                         <td class="ItemCol_ItemID">
                             <%# Eval("ID") %>
                         </td>
