@@ -182,5 +182,14 @@ namespace Database.POS
             return 0;
         }
 
+        /*that function return the count of all products that have low stock*/
+        public static int getStockStatus()
+        {
+            String sql = @"SELECT COUNT (*) 
+                           FROM [dbo].[Stock]
+                           where [Stock].Quantity < '10'";
+            object lowstock = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(lowstock.ToString());
+        }
     }
 }
