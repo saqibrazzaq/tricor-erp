@@ -150,28 +150,6 @@ namespace Database.POS
                                            SET [Quantity] = [Quantity] - " + soItem.Quantity + " WHERE [Stock].PID='" + soItem.ProductID + "' and [Stock].WHID='" + soItem.WareHouseID + "'";
                         DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
                     }
-                    // these integer arrays contains the product ids and quantity...
-                    //                    int NumberOfProduct = soModel.items.Count;
-                    //                    int[] ProductId = new int[NumberOfProduct];
-                    //                    int[] Quantity = new int[NumberOfProduct];
-                    //                    int[] WHID = new int[NumberOfProduct];
-
-                    //                    for (int i = 0; i < NumberOfProduct; i++)
-                    //                    {
-                    //                        ProductId[i] = soModel.items[i].ProductID;
-                    //                        Quantity[i] = soModel.items[i].Quantity;
-                    //                        WHID[i] = soModel.items[i].WareHouseID;
-                    //                    }
-
-                    //                    int[] totalquantity = getTotalQuantityFromStock(ProductId, WHID, NumberOfProduct);
-
-                    //                    for (int i = 0; i < NumberOfProduct; i++)
-                    //                    {
-                    //                        int quant = totalquantity[i] - Quantity[i];
-                    //                        String sqlupdatestock = @"UPDATE [dbo].[Stock]
-                    //                                           SET [Quantity] = '" + quant + "'WHERE [Stock].PID='" + ProductId[i] + "' and [Stock].WHID='" + WHID[i] + "'";
-                    //                        int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
-                    //                    }
                     return 1;
                 }
                 else

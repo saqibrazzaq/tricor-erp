@@ -28,17 +28,17 @@ namespace TricorERP.POS.Reports
         {
             if (searchbydate == null)
             {
-                salesreport = GetSalesRoport("");   
+                salesreport = GetSalesRoport("");
             }
-            else 
+            else
             {
                 salesreport = GetSalesRoport(searchbydate);
             }
-                SalesReportView.DataSource = salesreport;
-                SalesReportView.DataBind();
-       }
+            SalesReportView.DataSource = salesreport;
+            SalesReportView.DataBind();
+        }
 
-        private List<Models.POS.Report.ReportModel> GetSalesRoport( String searchbydate )
+        private List<Models.POS.Report.ReportModel> GetSalesRoport(String searchbydate)
         {
             return Database.POS.ReportDB.getSaleReport(searchbydate);
         }

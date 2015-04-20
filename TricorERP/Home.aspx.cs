@@ -24,7 +24,6 @@ namespace TricorERP
                 }
             //}
         }
-
         private void InitializePageContents()
         {
             UpdateDatabasePanels();

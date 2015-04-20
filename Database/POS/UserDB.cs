@@ -32,8 +32,6 @@ namespace Database.POS
                 return null;
             }
         }
-
-        //
         public static Boolean checkUserName(String name)
         {
             String sql = @"SELECT [Username] Name FROM [dbo].[User]
@@ -46,7 +44,6 @@ namespace Database.POS
                 return false;
             return true;
         }
-
         public static Boolean checkUserCNIC(String name)
         {
             String sql = @"SELECT [CNIC] CNIC FROM [dbo].[User]
@@ -59,8 +56,6 @@ namespace Database.POS
                 return false;
             return true;
         }
-
-
         // get cashier information and return an object of CashierModel
         public static UserModel getUserInFo(String UserID)
         {
@@ -77,7 +72,6 @@ namespace Database.POS
             }
             return cashier;
         }
-
         //get all data of cashier and return an list.
         public static List<UserModel> getUserList(String searchtext, String roleid)
         {
@@ -101,7 +95,6 @@ namespace Database.POS
             }
             return users;
         }
-
         // update the cashier data 
         public static int updateUser(UserModel updateuser)
         {
@@ -115,7 +108,6 @@ namespace Database.POS
             }
             return 0;
         }
-
         // add address into useraddress table of cashier 
         public static int addAddress(string UserID, int CashierAddressID)
         {
@@ -129,7 +121,6 @@ namespace Database.POS
             else
                 return 0;
         }
-
         //get address of cashier from database and return an list of Cashiers.
         public static List<AddressModel> getUserAddresses(String ID)
         {
@@ -154,7 +145,6 @@ namespace Database.POS
             }
             return useraddresses;
         }
-
         public static int deleteAddress(String UserID, String AddressID)
         {
             SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
@@ -192,9 +182,7 @@ namespace Database.POS
             }
             return 1;
         }
-
         /*That function is return an list of Roles that is getting from database */
-
         public static List<Models.POS.RoleModel> getRoleList()
         {
             List<Models.POS.RoleModel> roles = new List<Models.POS.RoleModel>();
@@ -210,6 +198,5 @@ namespace Database.POS
             }
             return roles;
         }
-
     }
 }

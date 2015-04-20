@@ -74,18 +74,6 @@ namespace Database.POS.Order
         // that function can update the data when user want to update it
         public static int updateSalesItem(SaleOrderItemModel updatesaleproduct)
         {
-            //int stockQuantity = Database.POS.StockDB.getQuantityFromStock(updatesaleproduct);
-
-            //if (stockQuantity >= updatesaleproduct.Quantity)
-            //{
-            //    Models.POS.Stock.POSStockModel updatestock = new Models.POS.Stock.POSStockModel();
-            //    updatestock.Quantity = stockQuantity - updatesaleproduct.Quantity;
-            //    updatestock.ProductID = updatesaleproduct.ProductID;
-            //    updatestock.WHID = updatesaleproduct.WareHouseID;
-            //    int updatequantity = Database.POS.StockDB.updateStockQuantity(updatestock);
-
-            //    if (updatequantity > 0)
-            //    {
             String sql = @"UPDATE [dbo].[SalesOrderItem] SET [TotalQuantity]=" + updatesaleproduct.Quantity
                          + ",[Price] = " + updatesaleproduct.Price + ",[WareHouseID] =" + updatesaleproduct.WareHouseID
                          + "WHERE [SalesOrderItem].ID=" + updatesaleproduct.ID + ";";
@@ -94,33 +82,12 @@ namespace Database.POS.Order
             {
                 return 1;
             }
-            //    }
-            //    else
-            //    {
-            //        return 0;
-            //    }
-            //}// if stock quantity is < entered uantity and stock quantity is > 0 then perform some otrer task.
             return 0;
-
         }
 
         // by using saleorderitem id that function can delete an tuple in the table and return an integer value 
         public static int deleteSaleOrderItem(int itemID)
         {
-            //Models.POS.Order.SaleOrderItemModel item = getOrderItem(itemID);
-
-            //int stockQuantity = Database.POS.StockDB.getQuantityFromStock(item);
-            //if (stockQuantity == 0 || stockQuantity != 0)
-            //{
-            //    Models.POS.Stock.POSStockModel updatestock = new Models.POS.Stock.POSStockModel();
-            //    updatestock.ProductID = item.ProductID;
-            //    //addition of quantity in stock
-            //    updatestock.Quantity = item.Quantity + stockQuantity;
-            //    updatestock.WHID = item.WareHouseID;
-
-            //    int updatequantity = Database.POS.StockDB.updateStockQuantity(updatestock);
-            //    if (updatequantity > 0)
-            //    {
             String sql = @"DELETE FROM [dbo].[SalesOrderItem]
                          WHERE [SalesOrderItem].ID = '" + itemID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
@@ -128,8 +95,6 @@ namespace Database.POS.Order
             {
                 return 1;
             }
-            //    }
-            //}
             return 0;
         }
 
@@ -224,21 +189,6 @@ namespace Database.POS.Order
                     soItemModel.Price = int.Parse(readerPrice["SalePrice"].ToString());
                 }
             }
-            // Add the item to sales order
-            // check the quantity of items into the data base and then insert into the sales roder item...
-
-            //int stockQuantity = Database.POS.StockDB.getQuantityFromStock(soItemModel);
-            //if (stockQuantity >= soItemModel.Quantity)
-            //{
-            //    //update query that san update the data into the stock table...
-            //    Models.POS.Stock.POSStockModel updatestock = new Models.POS.Stock.POSStockModel();
-            //    updatestock.Quantity = stockQuantity - soItemModel.Quantity;
-            //    updatestock.ProductID = soItemModel.ProductID;
-            //    updatestock.WHID = soItemModel.WareHouseID;
-            //    int updatequantity = Database.POS.StockDB.updateStockQuantity(updatestock);
-
-            //    if (updatequantity > 0)
-            //    {
             String sqlInsert = @"INSERT INTO [dbo].[SalesOrderItem]
                         ([OrderID] ,[ProductID] ,[TotalQuantity]
                         ,[Price] ,[ManufacturedQuantity] ,[ProductStatus] ,[WareHouseID])
@@ -248,17 +198,6 @@ namespace Database.POS.Order
                                 + "','" + soItemModel.WareHouseID + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
             soItemModel.ID = int.Parse(id.ToString());
-            //    }
-            //}
-            //else if (stockQuantity < soItemModel.Quantity)
-            //{
-
-            //}
-            //else if (stockQuantity == 0)
-            //{
-            //    // if null
-            //    return null;
-            //}
             return soItemModel;
         }
 
