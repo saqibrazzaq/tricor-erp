@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace TricorERP.POS.Stock
@@ -35,8 +36,8 @@ namespace TricorERP.POS.Stock
             {
                 stocklist = GetStockListFromBD(productname);
             }
-            OrderListview.DataSource = stocklist;
-            OrderListview.DataBind();
+            StockListview.DataSource = stocklist;
+            StockListview.DataBind();
         }
 
         private List<Models.POS.Stock.POSStockModel> GetStockListFromBD(string productname)
@@ -72,7 +73,8 @@ namespace TricorERP.POS.Stock
             Models.POS.Stock.POSStockModel posstockmodel = new Models.POS.Stock.POSStockModel()
             {
                 ID = int.Parse(txtStockItemID.Text),
-                Quantity = int.Parse(txtQuantity.Text)
+                Quantity = int.Parse(txtQuantity.Text),
+                WHID = Common.WarehouseIDDefault
             };
             int check = Database.POS.StockDB.updateStockQuantity(posstockmodel);
             if (check > 0)
@@ -82,6 +84,22 @@ namespace TricorERP.POS.Stock
         protected void Cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
+        }
+
+        protected void StockListview_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
+            if (stock.Quantity < 10)
+            {       
+                // make the data row red
+                HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("ItemRow");
+                row.Attributes.Add("Class", "alert-danger");
+            }
+            else
+            {
+                Label lab = (Label)e.Item.FindControl("StockLowMessage");
+                lab.Attributes.Add("Class", "hidden");
+            }
         }
 
 

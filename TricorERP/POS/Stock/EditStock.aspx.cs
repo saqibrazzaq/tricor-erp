@@ -79,10 +79,6 @@ namespace TricorERP.POS.Stock
 
         private void NewStock()
         {
-            if (Quantity.Text == "")
-                MessageLable.Text = "Enter Quantity...";
-            else
-            {
                 Models.POS.Stock.POSStockModel stockItems = CreateStockItemFromUI();
                 stockItems = Database.POS.StockDB.addNewStock(stockItems);
                 if (stockItems.ID == 0)
@@ -95,7 +91,6 @@ namespace TricorERP.POS.Stock
                     stckModel.ID = stockItems.ID;
                     MessageLable.Text = "New Data of stock is saved...";
                 }
-            }
         }
         private void UpdateStock()
         {

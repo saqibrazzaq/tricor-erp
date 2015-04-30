@@ -14,5 +14,6 @@ namespace Models.POS.Report
         public float PurchasePrice { set; get; }
         public float TotalPrice { set; get; }
         public float Profit { set; get; }
+        public string orderdates { set; get; }
     }
 }

@@ -66,7 +66,7 @@ namespace Database.POS.Customer
         {
             String sql = @"UPDATE [dbo].[Customer]
                          SET [Name] = '" + updatecustomer.Name + "' ,[CNIC] = '" + updatecustomer.CNIC + "',[Gender] = '" + updatecustomer.Gender
-                         + "' WHERE Customer.Id = '" + updatecustomer.ID + "'";
+                         + "',[Type] = '"+updatecustomer.Type+"' WHERE Customer.Id = '" + updatecustomer.ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {

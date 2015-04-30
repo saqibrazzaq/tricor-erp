@@ -31,13 +31,22 @@ namespace TricorERP.POS.Stock {
         protected global::System.Web.UI.WebControls.Button SearchStockItems;
         
         /// <summary>
-        /// OrderListview control.
+        /// pnlContents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView OrderListview;
+        protected global::System.Web.UI.WebControls.Panel pnlContents;
+        
+        /// <summary>
+        /// StockListview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView StockListview;
         
         /// <summary>
         /// ErrorMessage control.
@@ -56,6 +65,15 @@ namespace TricorERP.POS.Stock {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Cancel;
+        
+        /// <summary>
+        /// StockReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton StockReport;
         
         /// <summary>
         /// txtQuantity control.

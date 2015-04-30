@@ -12,7 +12,7 @@
 
             <div class="row container-fluid">
                 <label for="InputName">Customer :</label>
-                <asp:DropDownList ID="CustomerList" runat="server"></asp:DropDownList>
+                <asp:DropDownList CssClass="" ID="CustomerList" runat="server"></asp:DropDownList>
                 <label for="InputName">Product:</label>
                 <asp:DropDownList runat="server" ID="ProductList"></asp:DropDownList>
                 <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
@@ -25,20 +25,17 @@
                 </ul>
             </div>
         
-
         <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
         </div>
-        <asp:Label ID="ErroMessage" runat="server" Text=""></asp:Label>
-
-
+        
         <div class="panel-body">
-            <asp:ListView ID="SalesOrderItemListview" runat="server">
+            <asp:ListView ID="SalesOrderItemListview" runat="server" OnItemDataBound="SalesOrderItemListview_ItemDataBound">
                 <LayoutTemplate>
                     <table class="table table-bordered table-hover">
                         <tr class="active">
-                            <th>ID</th>
-                            <th>Sales Order ID</th>
-                            <th>WareHouseID</th>
+                            <th class="hidden">ID</th>
+                            <th class="hidden">Sales Order ID</th>
+                            <th class="hidden">WareHouseID</th>
                             <th>Product Name</th>
                             <%--<th>WareHouseName</th>--%>
                             <th>Quantity</th>
@@ -49,14 +46,14 @@
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <tr class="ItemRow" runat="server">
-                        <td class="ItemCol_ItemID">
+                    <tr class="ItemRow" id="ItemRow" runat="server">
+                        <td class="hidden ItemCol_ItemID">
                             <%# Eval("ID") %>
                         </td>
-                        <td>
+                        <td class="hidden">
                             <%# Eval("OrderID") %>
                         </td>
-                        <td>
+                        <td class="hidden">
                             <%#Eval("WareHouseID") %>
                         </td>
 
@@ -77,35 +74,31 @@
                             <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </button>
-                            <%--<asp:Button ID="Button1" CssClass ="hidden Updatevales" OnClick="updateproduct_onClick" runat="server"  />--%>
 
                             <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </button>
-                            <asp:Button runat="server" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
+                            <asp:Button runat="server" ID="DeleteItem" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
                         </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
-            <hr />
             <table class="table">
                 <tr>
                     <td>
-                        <b>
-                            <asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
+                        <b><asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
                         <asp:Label ID="TotalPrice" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
             </table>
+            <asp:Label ID="ErroMessage"  runat="server" ForeColor="Red"></asp:Label>
         </div>
 
 
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <ul id="OrderApproved" class="nav navbar-nav">
-                    <li>
-                        <asp:Button ID="Order" runat="server" CssClass="btn btn-default" Text="Order" OnClick="OrderApproved_Click" />
-                    </li>
+                    
                     <li>
                         <asp:Button ID="Cancel" runat="server" CssClass="btn btn-default" Text="Cancel" OnClick="Cancel_Click" />
                     </li>
@@ -130,6 +123,7 @@
                             <div class="col-lg-3">
                                 <asp:TextBox CssClass="form-control txtQuantity" runat="server" ID="txtQuantity" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtSalesOrderItemID" runat="server" ID="txtSalesOrderItemID" Text=""></asp:TextBox>
+                                <asp:TextBox CssClass="hidden txtProductName" runat="server" ID="txtProductName" Text=""></asp:TextBox>
                             </div>
                             <div class="col-lg-2">
                                 <label class="">WaherHouse</label>
@@ -151,7 +145,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:Button runat="server" OnClick="SaveSalesOrderItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
+                        <asp:Button runat="server" ID="SaveSaleOrder" OnClick="SaveSalesOrderItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
                     </div>
                 </div>
             </div>

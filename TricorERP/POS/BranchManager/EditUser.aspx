@@ -13,14 +13,14 @@
         <div class="panel-body">
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">Full Name :</label>
+                    <label for="InputName">Full Name :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter user full name" ControlToValidate="CashierNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CashierNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <asp:Label ID="message" runat="server" CssClass="alert" ForeColor="Red"></asp:Label>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">Password :</label>
+                    <label for="InputName">Password :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter user password" ControlToValidate="CashierPasswordText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CashierPasswordText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
@@ -28,13 +28,13 @@
             </div>
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">CNIC :</label>
+                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter user CNIC" ControlToValidate="CNIC" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CNIC" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">User-Type :</label>
+                    <label for="InputName">User-Type :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Select user type" ControlToValidate="UserTypeDropDownList" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="UserTypeDropDownList" runat="server">
                         </asp:DropDownList>
@@ -53,13 +53,17 @@
             <div class="row container-fluid">
                 <div class="col-lg-10">
                     <h5 class="h5">
-                        <label for="InputName">All Possible Addresses...</label></h5>
+                        <label for="InputName">All Possible Addresses...</label>
+                    </h5>
+                    <div class="row">
+                        <asp:Label runat="server" ID="ErroMessage" ForeColor="Red" Text=""></asp:Label>
+                    </div>
                     <div class="panel-body">
                         <asp:ListView ID="CashierAddressesview" OnItemCommand="CashierListview_ItemCommand" runat="server">
                             <LayoutTemplate>
                                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                     <tr class="active">
-                                        <th>Address ID</th>
+                                        <th class="hidden">Address ID</th>
                                         <th>Phone Number</th>
                                         <th>City</th>
                                         <th>Location</th>
@@ -71,7 +75,7 @@
                             </LayoutTemplate>
                             <ItemTemplate>
                                 <tr runat="server">
-                                    <td class="AddressID">
+                                    <td class="hidden AddressID">
                                         <%# Eval("ID") %>
                                     </td>
                                     <td>
@@ -103,18 +107,18 @@
 
                         <asp:TextBox CssClass="hidden txtAddressID" runat="server" ID="txtAddressID" Text=""></asp:TextBox>
 
-
                     </div>
                 </div>
             </div>
-
             <div class="row container-fluid">
+                
                 <div class="col-lg-5">
                     <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>
-                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click">Cancel</asp:LinkButton>
+                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click" CausesValidation="False">Cancel</asp:LinkButton>
 
                 </div>
             </div>
         </div>
     </div>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
 </asp:Content>

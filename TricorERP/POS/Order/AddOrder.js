@@ -41,6 +41,7 @@ function ItemRow_onClick(arg) {
     $(".txtQuantity").val(quantity);
     $(".txtPrice").val(price);
     $(".txtSalesOrderItemID").val(itemID);
+    $(".txtProductName").val(productName);
 }
 
 function initializeItemModalDialog() {

@@ -3,8 +3,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <%--<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>--%>
 
+    <div id="StockStatusalert" class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert">&times;
+        </a>
+        <strong>Warning!</strong> Number Of Products which are Low in the.
+        <a href="POS/Stock/StockList.aspx">stock :
+             <asp:Label ID="StockStatusLab" runat="server" Text="">
+             </asp:Label>
+        </a>
+    </div>
 
     <div id="PendingSales" class="panel panel-info">
         <div class="panel-heading">
@@ -12,7 +23,7 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <label class="">Pending Sales Order :</label>
                     <asp:Label ID="PandingSaleOrderLabel" runat="server" Text=""></asp:Label>
                 </div>
@@ -37,8 +48,4 @@
             </div>
         </div>
     </div>--%>
-
-
-
-
 </asp:Content>

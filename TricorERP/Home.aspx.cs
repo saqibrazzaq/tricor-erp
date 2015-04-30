@@ -24,12 +24,10 @@ namespace TricorERP
                 }
             //}
         }
-
         private void InitializePageContents()
         {
             UpdateDatabasePanels();
         }
-
         /*For checking the pending sales order and view the count of pending and
           view in-progress sales order*/
         private void UpdateDatabasePanels()
@@ -39,34 +37,42 @@ namespace TricorERP
                 UpdatePOSPanels();
             }
         }
-
+        /*That function load the data of Panels related to the POS*/
         private void UpdatePOSPanels()
         {
             GetPendingSalesOrder();
             GetInProgressSalesOrder();
+            POSStockStatus();
         }
-
+        /*Function get the count of pending sale order and set that count on the lable*/
         private void GetPendingSalesOrder()
         {
             int pendngsalesorder = GetPendingSalesOrderDB();
             PandingSaleOrderLabel.Text = pendngsalesorder.ToString();
         }
-
         private int GetPendingSalesOrderDB()
         {
             return Database.POS.Order.OrderDB.getPendingSalesOrderCount();
         }
-
+        /*function set the count of inprogress salesorder on the label*/
         private void GetInProgressSalesOrder()
         {
             int inprogresssalesorder = GetInProgressSalesOrderDB();
             InProgressOrderLabel.Text = inprogresssalesorder.ToString();
         }
-
         private int GetInProgressSalesOrderDB()
         {
             return Database.POS.Order.OrderDB.getProgressSalesOrderCount();
         }
-
+        /*function set the count of low stock status*/
+        private void POSStockStatus()
+        {
+            int stockstatus = GetStockStatus();
+            StockStatusLab.Text = stockstatus.ToString();
+        }
+        private int GetStockStatus()
+        {
+            return Database.POS.StockDB.getStockStatus();
+        }
     }
 }

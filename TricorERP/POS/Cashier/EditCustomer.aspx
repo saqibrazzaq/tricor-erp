@@ -12,16 +12,18 @@
         <div class="panel-body">
             <div class="row container-fluid">
                 <div class="col-lg-3">
-                    <label for="InputName">Full Name :</label>
+                    <label for="InputName">Full Name :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter customer full name" ControlToValidate="CustomerNameText" ForeColor="Red">*</asp:RequiredFieldValidator><asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="CustomerNameText"
+                                    ErrorMessage="Only letters are allowed in name" ForeColor="Red"
+                                    ValidationExpression="^[a-zA-Z\s]+$">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CustomerNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <label for="InputName">Type :</label>
+                    <label for="InputName">Type :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Select customer type" ControlToValidate="CustomerTyepDropDown" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:DropDownList ID="CustomerTyepDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
-                            <asp:ListItem>---Select---</asp:ListItem>
+                            <asp:ListItem Value="">---Select---</asp:ListItem>
                             <asp:ListItem Value="1">Individual</asp:ListItem>
                             <asp:ListItem Value="2">Company  </asp:ListItem>
                         </asp:DropDownList>
@@ -31,16 +33,16 @@
 
             <div class="row container-fluid">
                 <div class="col-lg-3">
-                    <label for="InputName">CNIC</label>
+                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter customer CNIC" ControlToValidate="CNICText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CNICText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <label for="InputName">Gender :</label>
+                    <label for="InputName">Gender :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Select customer gender" ControlToValidate="GenderDropDown" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:DropDownList ID="GenderDropDown" Font-Names="InputName" CssClass="form-control" runat="server">
-                            <asp:ListItem>---Select---</asp:ListItem>
+                            <asp:ListItem Value="">---Select---</asp:ListItem>
                             <asp:ListItem Value="M">Male</asp:ListItem>
                             <asp:ListItem Value="F">Female</asp:ListItem>
                             <asp:ListItem Value="O">Other</asp:ListItem>
@@ -70,7 +72,7 @@
                             <LayoutTemplate>
                                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                     <tr class="active">
-                                        <th>Address ID</th>
+                                        <th class="hidden">Address ID</th>
                                         <th>Phone Number</th>
                                         <th>City</th>
                                         <th>Location</th>
@@ -82,7 +84,7 @@
                             </LayoutTemplate>
                             <ItemTemplate>
                                 <tr runat="server">
-                                    <td class="AddressID">
+                                    <td class="hidden AddressID">
                                         <%# Eval("ID") %>
                                     </td>
                                     <td>
@@ -127,4 +129,6 @@
             </div>
         </div>
     </div>
+    
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
 </asp:Content>
