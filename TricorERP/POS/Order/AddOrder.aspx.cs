@@ -15,7 +15,7 @@ namespace TricorERP.POS.Order
 {
     public partial class AddOrder : System.Web.UI.Page
     {
-        SaleOrderModel soModel = new SaleOrderModel() { ID = 0 };
+        SaleOrderModel soModel = new SaleOrderModel() { ID = Common.NULL_ID };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -34,10 +34,12 @@ namespace TricorERP.POS.Order
             UpdateSalesOrderUI();
             LoadOrderStatusListInDropdown();
             LoadWaherHouseDropDownList();
+
             TotalPrice.Text = soModel.TotalPrice.ToString();
-            
-            //checks if ou sale order id have some value then disable all the buttons.
-            if (soModel.ID != 0 && NewSalesOrder.Text=="Save Sales Order") {
+            //ErroMessage.Text = soModel.CustomerID;
+
+            //checks if our sale order id have some value then disable all the buttons.
+            if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text=="Save Sales Order") {
                 int checkOrdestatus = GetOrderStatus(soModel);
                 if (checkOrdestatus > 0) {
                     NewSalesOrder.Enabled = false;
@@ -47,6 +49,7 @@ namespace TricorERP.POS.Order
                     btnAddProduct.Enabled = false;
                     SaveSaleOrder.Enabled = false;
                     //DeleteItem.Enabled = false;
+                    btnAddInvoice.Text = "Invoice";
                 }
             }
         }
@@ -89,20 +92,21 @@ namespace TricorERP.POS.Order
         {
             try
             {
-                if (Request.QueryString["ID"] != null)
+                if (Common.CheckNullString(Request.QueryString["ID"]) != Common.NULL_ID)
                 {
-                    soModel.ID = int.Parse(Request.QueryString["ID"]);
+                    soModel.ID = Request.QueryString["ID"];
                     loadOrderModel();
                 }
                 else
                 {
                     ProductList.Enabled = false;
                     btnAddProduct.Enabled = false;
+                    OrderStatusList.Enabled = false;
                 }
             }
             catch (Exception ex)
             {
-                soModel.ID = 0;
+                soModel.ID = Common.NULL_ID;
                 throw ex;
             }
         }
@@ -114,7 +118,7 @@ namespace TricorERP.POS.Order
 
         private void InitializeSaveOrderButton()
         {
-            if (soModel.ID == 0)
+            if (soModel.ID == Common.NULL_ID)
                 NewSalesOrder.Text = "Create New Sales Order";
             else
                 NewSalesOrder.Text = "Save Sales Order";
@@ -152,13 +156,13 @@ namespace TricorERP.POS.Order
 
         private void UpdateSalesOrderUI()
         {
-            if (soModel.ID != 0)
+            if (soModel.ID != Common.NULL_ID)
             {
                 // Select the customer
                 CustomerList.Items.FindByValue(soModel.CustomerID.ToString()).Selected = true;
                 // Bind the items in list view
 
-                if (Session["RoleID"].ToString() == "1")
+                if (Session["RoleID"].ToString() == Common.POSManager)
                     OrderStatusList.SelectedValue = soModel.OrderStatus.ToString();
 
                 SalesOrderItemListview.DataSource = soModel.items;
@@ -169,18 +173,18 @@ namespace TricorERP.POS.Order
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             InitializeOrderModel();
-            if (soModel.ID != 0)
+            if (soModel.ID != Common.NULL_ID)
             {
                 // Create the order item model
                 SaleOrderItemModel soItemModel = new SaleOrderItemModel();
                 // Set sales order id and product id of the selected product
                 soItemModel.OrderID = soModel.ID;
-                soItemModel.ProductID = int.Parse(ProductList.SelectedValue);
+                soItemModel.ProductID = ProductList.SelectedValue;
                 // Set quantity to default 1
-                soItemModel.Quantity = Common.WarehouseIDDefault;
-                soItemModel.WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue);
+                soItemModel.Quantity = 1;
+                soItemModel.WareHouseID = Common.WarehouseIDDefault;
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
-                if (soItemModel.ID == 0)
+                if (soItemModel.ID == null)
                     ErroMessage.Text = "Quantity of Selected Product is not Prasent in your Stock...";
                 else
                     InitializePageContents();
@@ -195,24 +199,32 @@ namespace TricorERP.POS.Order
         private void SaveSalesOrder()
         {
             InitializeOrderModel();
-            if (soModel.ID == 0 && NewSalesOrder.Text == "Create New Sales Order")
+            if (soModel.ID == Common.NULL_ID && NewSalesOrder.Text == "Create New Sales Order")
             {
                 CreateNewSalesOrder();
             }
-            else if (soModel.ID != 0 && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString()=="Complete")
+            else if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString()=="Complete")
             {
                 //that condition is false....
                 UpdateStock();
-            }
-            else
-            {
+            }else if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString()=="Cancel"){
+                CancelSaleOrder();
+            }else{
                 UpdateSalesOrder();
+            }
+        }
+
+        private void CancelSaleOrder()
+        {
+            int check = Database.POS.Order.OrderDB.deleteSalesOrder(soModel);
+            if (check > 0) {
+                Response.Redirect("~/POS/Order/CancelOrder.aspx");
             }
         }
 
         private void UpdateStock()
         {
-            soModel.OrderStatus = int.Parse(OrderStatusList.SelectedValue);
+            soModel.OrderStatus = OrderStatusList.SelectedValue;
             int updatestockcheck = UpdateStock( soModel );
             if (updatestockcheck > 0) {
                 ErroMessage.Text = "Your request is procede...";
@@ -247,14 +259,15 @@ namespace TricorERP.POS.Order
             // Create the Sales Order Model from UI
             SaleOrderModel so = new SaleOrderModel();
             so.ID = soModel.ID;
-            so.CustomerID = int.Parse(CustomerList.SelectedValue);
+            so.CustomerID = CustomerList.SelectedValue;
             so.OrderDate = DateTime.Today.ToString();
+            so.OrderStatus = OrderStatusList.SelectedValue;
             return so;
         }
         
         protected void deleteSalesOrderItem_onClick(object sender, EventArgs e)
         {
-            int itemID = int.Parse(txtSalesOrderItemID.Text);
+            String itemID = txtSalesOrderItemID.Text.Trim();
             int check = Database.POS.Order.OrderDB.deleteSaleOrderItem(itemID);
             if (check > 0)
                 InitializePageContents();
@@ -266,14 +279,14 @@ namespace TricorERP.POS.Order
         {
             // on that point set the warehouse id 
             //on that point our product is not save in the productname 
-            
+            // here  can set default warehouse WareHouseID = WaherHouseDropDownList.SelectedValue
             SaleOrderItemModel soItemModel = new SaleOrderItemModel()
             {
-                ID = int.Parse(txtSalesOrderItemID.Text),
+                ID = txtSalesOrderItemID.Text.Trim(),
                 Quantity = int.Parse(txtQuantity.Text),
                 Price = float.Parse(txtPrice.Text),
-                WareHouseID = int.Parse(WaherHouseDropDownList.SelectedValue),
-                ProductID = int.Parse(ProductList.SelectedValue),
+                WareHouseID = Common.WarehouseIDDefault,
+                ProductID = ProductList.SelectedValue,
                 ProductName = txtProductName.Text
             };
             int check = Database.POS.Order.OrderDB.updateSalesItem(soItemModel);
@@ -284,7 +297,6 @@ namespace TricorERP.POS.Order
             }
             else
                 ErroMessage.Text = "Quantity of Selected Product is not Prasent in your Stock...";
-
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
@@ -294,9 +306,14 @@ namespace TricorERP.POS.Order
 
         protected void SalesOrderItemListview_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
-            if (OrderStatusList.SelectedValue != "Complete" && soModel.ID != 0) {
+            if (soModel.OrderStatus == Common.OrderComplete) {
+                Control myControl1 = e.Item.FindControl("ItemCommandtd");
+                if (myControl1 != null)
+                    myControl1.Visible = false;
+            }
+            if (OrderStatusList.SelectedValue != "Complete" && soModel.ID != Common.NULL_ID) {
                 //SaleOrderModel stock = (SaleOrderModel)e.Item.DataItem;
-                //if (1 < 10)
+                //if (1 < 1null)
                 //{
                 //    // make the data row red
                 //    HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("ItemRow");
@@ -304,6 +321,12 @@ namespace TricorERP.POS.Order
                 //}
                 //to be continue on that point.....
             }
+        }
+
+        protected void btnAddInvoice_Click(object sender, EventArgs e)
+        {
+            InitializeOrderModel();
+            Response.Redirect("~/POS/Invoice/AddInvoice.aspx?ID=" + Request.QueryString["ID"].ToString() + "&CustomerID="+CustomerList.SelectedValue);
         }
     }
 }

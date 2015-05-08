@@ -8,13 +8,13 @@ namespace Models.POS.User
 {
     public class UserModel
     {
-        public int ID { get; set; }
+        public String ID { get; set; }
         public String Name { get; set; }
         public String Password { get; set; }
         public String Role { get; set; }
         public String CNIC { get; set; }
         public String PhoneNo { get; set; }
-        
+        public String WHID { set; get; }
     }
 
 }

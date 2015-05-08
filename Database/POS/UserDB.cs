@@ -20,11 +20,11 @@ namespace Database.POS
             Boolean cniccheck = checkUserCNIC(newuser.Name);
             if (namecheck && cniccheck)
             {
-                sql = @"INSERT INTO [dbo].[User] ([Username] ,[Password] ,[RoleID] ,[CNIC])
+                sql = @"INSERT INTO [dbo].[User] ([Username] ,[Password] ,[RoleID] ,[CNIC],[WarehouseID])
                   output inserted.ID 
-                  VALUES ('" + newuser.Name + "','" + newuser.Password + "','"+newuser.Role+"','" + newuser.CNIC + "')";
+                  VALUES ('" + newuser.Name + "','" + newuser.Password + "','"+newuser.Role+"','" + newuser.CNIC + "','"+newuser.WHID+"')";
                 object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-                newuser.ID = int.Parse(id.ToString());
+                newuser.ID = id.ToString();
                 return newuser;
             }
             else
@@ -60,15 +60,17 @@ namespace Database.POS
         public static UserModel getUserInFo(String UserID)
         {
             UserModel cashier = new UserModel();
-            String sql = @"SELECT [ID],[Username] Name,[Password] Password,[RoleID],[CNIC] CNIC FROM [dbo].[User]
+            String sql = @"SELECT * FROM [dbo].[User]
                            where ID = '" + UserID + "'";
             //SELECT [Username] Name ,[Password] Password FROM [dbo].[User], [CNIC] CNIC where ID = '" + CashierID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
-                cashier.Name = reader["Name"].ToString();
+                cashier.Name = reader["Username"].ToString();
                 cashier.Password = reader["Password"].ToString();
+                cashier.Role = reader["RoleID"].ToString();
                 cashier.CNIC = reader["CNIC"].ToString();
+                cashier.WHID = reader["WarehouseID"].ToString();   
             }
             return cashier;
         }
@@ -80,15 +82,15 @@ namespace Database.POS
                            from [User] 
                            join UserAddress on [User].ID = UserAddress.UserID
                            join Address on Address.Id = UserAddress.AddressID
-                           where [User].RoleID="+ roleid
-                           +"and([User].Username like '%" + searchtext 
+                           where [User].RoleID='"+ roleid
+                           +"'and([User].Username like '%" + searchtext 
                            + "%' or Address.PhoneNo like '%" + searchtext + "%')";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
                 UserModel user = new UserModel();
-                user.ID = int.Parse(reader["ID"].ToString());
+                user.ID = reader["ID"].ToString();
                 user.Name = reader["Name"].ToString();
                 user.PhoneNo = reader["PhoneNo"].ToString();
                 users.Add(user);
@@ -100,7 +102,7 @@ namespace Database.POS
         {
             String sql = @"UPDATE [dbo].[User] SET [Username] = '" + updateuser.Name
                         + "',[Password] = '" + updateuser.Password + "',[CNIC] = '" + updateuser.CNIC + "',[RoleID] ='" + updateuser.Role
-                        + "' WHERE [ID]=" + updateuser.ID;
+                        + "' WHERE [ID]= '" + updateuser.ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -109,14 +111,14 @@ namespace Database.POS
             return 0;
         }
         // add address into useraddress table of cashier 
-        public static int addAddress(string UserID, int CashierAddressID)
+        public static int addAddress(String UserID, String CashierAddressID)
         {
             String sql = @"INSERT INTO [dbo].[UserAddress] ([UserID] ,[AddressID])
                              output inserted.ID
                                  VALUES ('" + UserID + "', '" + CashierAddressID + "')";
 
             Object check = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            if (int.Parse(check.ToString()) > 0)
+            if (check.ToString() != null)
                 return 1;
             else
                 return 0;
@@ -136,11 +138,11 @@ namespace Database.POS
             while (reader.Read())
             {
                 AddressModel address = new AddressModel();
-                address.ID = int.Parse(reader["ID"].ToString());
+                address.ID = reader["ID"].ToString();
                 address.City = reader["City"].ToString();
                 address.Location1 = reader["Location1"].ToString();
                 address.Phonenumber = reader["Phoneno"].ToString();
-                address.ID = int.Parse(reader["ID"].ToString());
+                address.ID = reader["ID"].ToString();
                 useraddresses.Add(address);
             }
             return useraddresses;
@@ -156,7 +158,7 @@ namespace Database.POS
                 if(AddressID != null)
                     sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + UserID + "' and [UserAddress].AddressID ='" + AddressID + "';";
                 else
-                    sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + UserID + "';";
+                    sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + UserID + "'";
                 int check = DBUtility.SqlHelper.ExecuteNonQuery(trans, System.Data.CommandType.Text, sql, null);
                 if (check > 0)
                 {
@@ -192,7 +194,7 @@ namespace Database.POS
             while (reader.Read())
             {
                 Models.POS.RoleModel role = new Models.POS.RoleModel();
-                role.ID = int.Parse(reader["ID"].ToString());
+                role.ID = reader["ID"].ToString();
                 role.Name = reader["Name"].ToString();
                 roles.Add(role);
             }

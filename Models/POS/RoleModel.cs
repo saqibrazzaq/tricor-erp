@@ -8,7 +8,7 @@ namespace Models.POS
 {
     public class RoleModel
     {
-        public int ID { set; get; }
+        public String ID { set; get; }
         public string Name { set; get; }
         public string Description { set; get; }
     }

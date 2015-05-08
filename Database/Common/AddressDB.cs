@@ -25,11 +25,11 @@ namespace Database.Common
             while (reader.Read())
             {
                 AddressModel address = new AddressModel();
-                address.ID = int.Parse(reader["ID"].ToString());
+                address.ID = reader["ID"].ToString();
                 address.City = reader["City"].ToString();
                 address.Location1 = reader["Location1"].ToString();
                 address.Phonenumber = reader["Phoneno"].ToString();
-                address.ID = int.Parse(reader["ID"].ToString());
+                address.ID = reader["ID"].ToString();
                 customerAddresses.Add(address);
             }
             return customerAddresses;
@@ -49,7 +49,7 @@ namespace Database.Common
                          output inserted.ID 
                          values ('" + newaddress.City + "', '" + newaddress.Location1 + "', '" + newaddress.Phonenumber + "', '" + newaddress.Email + "', '" + newaddress.Location2 + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            newaddress.ID = int.Parse(id.ToString());
+            newaddress.ID = id.ToString();
             //                String sql2 = "";
 
             //                // alln other query2 are implemented on other hand. 
@@ -88,7 +88,7 @@ namespace Database.Common
             AddressModel address = new AddressModel();
             if (reader.Read())
             {
-                address.ID = int.Parse(reader["ID"].ToString());
+                address.ID = reader["Id"].ToString();
                 address.City = reader["City"].ToString();
                 address.Location1 = reader["Location1"].ToString();
                 address.Phonenumber = reader["PhoneNo"].ToString();
@@ -112,7 +112,6 @@ namespace Database.Common
             }
             return 0;
         }
-
 
         //delete address of an customer from CustomerAddress table. 
         public static int deleteAddress(String AddressID, SqlTransaction trans)

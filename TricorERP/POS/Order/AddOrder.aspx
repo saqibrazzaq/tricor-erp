@@ -9,25 +9,42 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-
             <div class="row container-fluid">
-                <label for="InputName">Customer :</label>
-                <asp:DropDownList CssClass="" ID="CustomerList" runat="server"></asp:DropDownList>
-                <label for="InputName">Product:</label>
-                <asp:DropDownList runat="server" ID="ProductList"></asp:DropDownList>
-                <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
-
-                <ul id="OrderStatus" class="nav navbar-nav navbar-right">
-                    <li>
-                        <label for="InputName">Order-Status :</label>
-                        <asp:DropDownList ID="OrderStatusList" runat="server"></asp:DropDownList>
-                    </li>
-                </ul>
+                <div class="col-lg-2" >
+                    <label for="InputName">Customer :</label>
+                    <asp:DropDownList CssClass="form-control" ID="CustomerList" runat="server"></asp:DropDownList>
+                </div>
+                <div class="col-lg-2">
+                    <label for="InputName">Product:</label>
+                    <asp:DropDownList runat="server" CssClass="form-control" ID="ProductList"></asp:DropDownList>
+                </div>
+                <div class="col-lg-8">
+                    <ul id="OrderStatus" class="nav navbar-nav navbar-right">
+                        <li>
+                            <div class="input-group">
+                                <label for="InputName">Order-Status :</label>
+                                <asp:DropDownList ID="OrderStatusList" CssClass="form-control" runat="server"></asp:DropDownList>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                   
             </div>
-        
-        <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-lg-3">
+                    <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
+                </div>
+                <div class="col-lg-2">
+                    <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
+                </div>
+                <div class="col-lg-3">
+                    <asp:Button runat="server" ID="btnAddInvoice" Text="Add Invoice" OnClick="btnAddInvoice_Click" CssClass="btn btn-default" />
+                </div>
+            </div>
         </div>
-        
+
         <div class="panel-body">
             <asp:ListView ID="SalesOrderItemListview" runat="server" OnItemDataBound="SalesOrderItemListview_ItemDataBound">
                 <LayoutTemplate>
@@ -71,14 +88,16 @@
                             <%# Eval("Price") %>
                         </td>
                         <td>
-                            <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </button>
+                            <div runat="server" id="ItemCommandtd">
+                                <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </button>
 
-                            <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-                            <asp:Button runat="server" ID="DeleteItem" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
+                                <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                                <asp:Button runat="server" ID="DeleteItem" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
+                            </div>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -86,24 +105,23 @@
             <table class="table">
                 <tr>
                     <td>
-                        <b><asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
+                        <b>
+                            <asp:Label ID="Label1" runat="server" Text="Total Price Is : "></asp:Label></b>
                         <asp:Label ID="TotalPrice" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
             </table>
-            <asp:Label ID="ErroMessage"  runat="server" ForeColor="Red"></asp:Label>
+            <asp:Label ID="ErroMessage" runat="server" ForeColor="Red"></asp:Label>
         </div>
-
-
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <ul id="OrderApproved" class="nav navbar-nav">
-                    
                     <li>
-                        <asp:Button ID="Cancel" runat="server" CssClass="btn btn-default" Text="Cancel" OnClick="Cancel_Click" />
+                        <asp:Button ID="Cancel" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="Cancel_Click" CausesValidation="False" />
                     </li>
                 </ul>
             </div>
+            <br /><br /><br />
         </div>
 
 
@@ -118,25 +136,26 @@
                     <div class="modal-body">
                         <div class="row form-group">
                             <div class="col-lg-2">
-                                <label class="">Quantity</label>
+                                <label class="">Quantity :</label>
                             </div>
                             <div class="col-lg-3">
                                 <asp:TextBox CssClass="form-control txtQuantity" runat="server" ID="txtQuantity" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtSalesOrderItemID" runat="server" ID="txtSalesOrderItemID" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtProductName" runat="server" ID="txtProductName" Text=""></asp:TextBox>
                             </div>
-                            <div class="col-lg-2">
-                                <label class="">WaherHouse</label>
-                            </div>
                             <div class="col-lg-3">
-                                <asp:DropDownList ID="WaherHouseDropDownList" runat="server">
+                                <label class="InputName">WaherHouse :</label>
+                            </div>
+                            <div class="input-group col-lg-3" > 
+
+                                <asp:DropDownList CssClass="form-control" ID="WaherHouseDropDownList" runat="server">
                                 </asp:DropDownList>
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-lg-2">
-                                <label class="">Price</label>
+                                <label class="">Price :</label>
                             </div>
                             <div class="col-lg-3">
                                 <asp:TextBox CssClass="form-control txtPrice" runat="server" ID="txtPrice" Text=""></asp:TextBox>

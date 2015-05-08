@@ -8,12 +8,12 @@ namespace Models.POS.Order
 {
     public class SaleOrderModel
     {
-        public int ID { set; get; }
-        public int CustomerID { set; get; }
+        public String ID { set; get; }
+        public String CustomerID { set; get; }
         public String OrderDate { set; get; }
         public String DeliveryDate { set; get; }
         public String CustomerName { set; get; }
-        public int OrderStatus { set; get; }
+        public String OrderStatus { set; get; }
         public String OrderStatusName { set; get; }
         public List<SaleOrderItemModel> items = new List<SaleOrderItemModel>();
         //that mathord is used for geting the total price of different items....

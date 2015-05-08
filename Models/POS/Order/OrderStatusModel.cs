@@ -8,7 +8,7 @@ namespace Models.POS.Order
 {
     public  class OrderStatusModel
     {
-        public int ID { set; get; }
+        public String ID { set; get; }
         public String  StatusName{ set; get; }
 
     }

@@ -63,6 +63,13 @@
                     <asp:Label ID="message" runat="server"></asp:Label>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="true" OnCheckedChanged="chkSelect_CheckedChanged" /><span style="color: red;">&nbsp;
+                                                                                                                 I agree with <a href="#" >terms and conditions.</a>       
+                                                                                                          </span>
+                </div>
+            </div>
             <div class="row container-fluid">
                 <div class="col-lg-9">
                     <h5 class="h5">
@@ -123,8 +130,8 @@
 
             <div class="row container-fluid">
                 <div class="col-lg-5">
-                    <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click">Save</asp:LinkButton>
-                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click">Cancel</asp:LinkButton>
+                    <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click" Text="">Save</asp:LinkButton>
+                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-primary" OnClick="btnCancel_Click" CausesValidation="False">Cancel</asp:LinkButton>
                 </div>
             </div>
         </div>

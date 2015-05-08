@@ -8,7 +8,7 @@ namespace Models.POS.Customer
 {
     public class CustomerModel
     {
-        public int ID { get; set; }
+        public String ID { get; set; }
         public String Name { get; set; }
         public String Phonenumber { get; set; }
         public String CNIC { get; set; }

@@ -10,19 +10,22 @@ namespace TricorERP.POS.Cashier
 {
     public partial class EditCustomer : System.Web.UI.Page
     {
-        String customerID = "0";
-       
+        String customerID = Guid.Empty.ToString();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            customerID = Request.QueryString["CustomerID"];
-            if (customerID == "0")
+            customerID = Common.CheckNullString(Request.QueryString["CustomerID"]);
+            if (customerID == Common.NULL_ID)
             {
                 btnAddNewAddress.Enabled = false;
                 HeadingOfCuatomer.Text = "New Customer";
+                Savebtn.Text = "Save";
             }
             else
+            {
+                Savebtn.Text = "Update";
                 HeadingOfCuatomer.Text = "Customer Data";
-
+            }
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -37,17 +40,19 @@ namespace TricorERP.POS.Cashier
         {
             CustomerModel customer = null;
             List<Models.POS.Customer.AddressModel> customerAddresses = null;
+            //if (customerID != "0")
+            //{
+                customer = GetCustomerInFo(Id);
+                customerAddresses = GetAddressesFromDB(Id);
 
-            customer = GetCustomerInFo(Id);
-            customerAddresses = GetAddressesFromDB(Id);
+                CustomerNameText.Text = customer.Name;
+                CNICText.Text = customer.CNIC;
+                GenderDropDown.SelectedValue = customer.Gender;
+                CustomerTyepDropDown.SelectedValue = customer.Type.ToString();
 
-            CustomerNameText.Text = customer.Name;
-            CNICText.Text = customer.CNIC;
-            GenderDropDown.SelectedValue = customer.Gender;
-            CustomerTyepDropDown.SelectedValue = customer.Type.ToString();
-
-            CustomerAddressesview.DataSource = customerAddresses;
-            CustomerAddressesview.DataBind();
+                CustomerAddressesview.DataSource = customerAddresses;
+                CustomerAddressesview.DataBind();
+            //}
         }
 
         private CustomerModel GetCustomerInFo(String Id)
@@ -62,12 +67,12 @@ namespace TricorERP.POS.Cashier
 
         protected void btnAddNewAddress_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/Cashier/EditAddress.aspx?CustomerID=" + customerID + "&AddressID=0");
+            Response.Redirect("~/POS/Cashier/EditAddress.aspx?CustomerID=" + customerID + "&AddressID=");
         }
 
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (customerID == "0")
+            if (customerID == Common.NULL_ID)
                 AddNewCustomer();
             else
                 UpdateCustomer();
@@ -82,7 +87,7 @@ namespace TricorERP.POS.Cashier
             customer.Type = int.Parse(CustomerTyepDropDown.SelectedValue);
             customer = Database.POS.Customer.CustomerDB.addNewCustomer(customer);
             if (customer != null)
-                Response.Redirect("~/POS/Cashier/EditAddress.aspx?CustomerID=" + customer.ID + "&AddressID=0");
+                Response.Redirect("~/POS/Cashier/EditAddress.aspx?CustomerID=" + customer.ID + "&AddressID=");
         }
 
         // method for update customers
@@ -90,7 +95,7 @@ namespace TricorERP.POS.Cashier
         {
             CustomerModel customer = new CustomerModel();
 
-            customer.ID = int.Parse(customerID.ToString());
+            customer.ID = customerID.ToString();
             customer.Name = CustomerNameText.Text;
             customer.CNIC = CNICText.Text;
             customer.Gender = GenderDropDown.SelectedValue;
@@ -117,7 +122,7 @@ namespace TricorERP.POS.Cashier
                 Response.Redirect("EditAddress.aspx?CustomerID=" + customerID + "&AddressID=" + AddressID);
             }
         }
-        
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
@@ -125,7 +130,7 @@ namespace TricorERP.POS.Cashier
 
         protected void deleteCustomerAddress_onClick(object sender, EventArgs e)
         {
-            int AddressID = int.Parse(txtAddressID.Text);
+            String AddressID = txtAddressID.Text.Trim();
             deleteCustomerAddress(AddressID.ToString());
             InitializePageContents();
         }
@@ -133,6 +138,14 @@ namespace TricorERP.POS.Cashier
         private int deleteCustomerAddress(String AddressID)
         {
             return Database.POS.Customer.CustomerDB.deleteAddress(customerID, AddressID);
+        }
+
+        protected void chkSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSelect.Checked == true)
+                Savebtn.Enabled = true;
+            else
+                Savebtn.Enabled = false;
         }
     }
 }

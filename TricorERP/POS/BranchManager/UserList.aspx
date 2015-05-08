@@ -21,7 +21,7 @@
                 <div class="col-lg-6">
                     <br />
                     <div class="input-group">
-                        <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
+                        <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search Customer By Name Or Phone Number..." runat="server"></asp:TextBox>
                         <span class="input-group-btn">
                             <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchCustomerButton1_Click" />
                         </span>

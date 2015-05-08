@@ -10,17 +10,19 @@ namespace Database.POS
     public class ReportDB
     {
         /*That function return the sale report that is based on date*/
-        public static List<Models.POS.Report.ReportModel> getSaleReport(string searchbydate)
+        public static List<Models.POS.Report.ReportModel> getSaleReport(string searchbydate, String OrderComplete)
         {
             List<Models.POS.Report.ReportModel> salereport = new List<Models.POS.Report.ReportModel>();
-            String sql = @"select [SalesOrder].OrderDate , SUM([SalesOrderItem].TotalQuantity) as TotalQuantity, SUM([SalesOrderItem].Price) 
+            String sql = @"select [SalesOrder].OrderDate , SUM([SalesOrderItem].TotalQuantity) as TotalQuantity, 
+                        SUM([SalesOrderItem].Price) 
 		                as TotalSalePrice 
 		                , sum([Product].SalePrice) as TotalPurchasePrice,
 		                SUM([SalesOrderItem].Price-[Product].SalePrice) as Profit
 		                from [SalesOrder]
 		                join [SalesOrderItem] on [SalesOrder].ID = [SalesOrderItem].OrderID
 		                join [Product] on [SalesOrderItem].ProductID = [Product].Id
-		                where [SalesOrder].OrderStatus='6' and [SalesOrder].OrderDate like '%"+searchbydate
+		                where [SalesOrder].OrderStatus='"+OrderComplete
+                                                         +@"' and [SalesOrder].OrderDate like '%"+searchbydate
                         +"%'group by [SalesOrder].OrderDate";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
@@ -36,6 +38,27 @@ namespace Database.POS
                 salereport.Add(salesreportitems);
             }
             return salereport;
+        }
+
+        public static List<Models.POS.Report.ReportModel> getPurchaseReport(string p)
+        {
+            List<Models.POS.Report.ReportModel> purchaereport = new List<Models.POS.Report.ReportModel>();
+            String sql = @"SELECT [PurchaseOrder].OrderDate OrderDate, SUM([PurchaseOrderItems].Quantity) as TotalQuantity
+		                FROM PurchaseOrder
+		                JOIN [PurchaseOrderItems] on [PurchaseOrder].ID = [PurchaseOrderItems].POID
+		                WHERE [PurchaseOrder].OrderStatus = '"+CommonDB.OrderApproved+"' and [PurchaseOrder].OrderDate LIKE '%" +p+@"%'
+		                GROUP BY [PurchaseOrder].OrderDate";
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                Models.POS.Report.ReportModel purchasereportitems = new Models.POS.Report.ReportModel();
+                purchasereportitems.orderdates = reader["OrderDate"].ToString();
+                purchasereportitems.Quantity = int.Parse(reader["TotalQuantity"].ToString());
+                
+                purchaereport.Add(purchasereportitems);
+            }
+            return purchaereport;
         }
     }
 }

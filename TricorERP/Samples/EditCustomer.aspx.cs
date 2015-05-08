@@ -10,7 +10,7 @@ namespace TricorERP.Samples
     public partial class EditCustomer : System.Web.UI.Page
     {
         // Customer ID as a member
-        int customerID = 0;
+        String customerID = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {

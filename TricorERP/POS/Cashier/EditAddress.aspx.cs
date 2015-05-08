@@ -11,12 +11,24 @@ namespace TricorERP.POS.Cashier
 {
     public partial class AddAddress : System.Web.UI.Page
     {
-        String customerID = "0";
-        String AddressID = "0";
+        String customerID = null;
+        String AddressID = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             customerID = Request.QueryString["CustomerID"];
             AddressID = Request.QueryString["AddressID"];
+
+            AddressID = Common.CheckNullString(AddressID);
+            customerID = Common.CheckNullString(customerID);
+            if (AddressID != null && customerID != null)
+            {
+                Savebtn.Text = "Update";
+            }
+            else 
+            {
+                Savebtn.Text = "Save";
+            }
+
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -37,7 +49,6 @@ namespace TricorERP.POS.Cashier
             email.Text = customeraddress.Email;
             PhoneNumberText.Text = customeraddress.Phonenumber;
             CityNameText.Text = customeraddress.City;
-
             if (customerID != null)
             {
                 //set customer personal information.
@@ -47,22 +58,22 @@ namespace TricorERP.POS.Cashier
                 CustomerCNIC.Text = customer.CNIC;
             }
         }
+
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (AddressID == "0")
+            if (AddressID == Common.NULL_ID)
                 saveNewAddress();
-            else if (customerID != "0")
+            else if (customerID != Common.NULL_ID)
                 updateAddress();
-
         }
 
         //for saving new address in database
         private void saveNewAddress()
         {
             AddressModel newaddress = new AddressModel();
-            if (customerID != null)
+            if (customerID != Common.NULL_ID)
             {
-                newaddress.ID = int.Parse(customerID.ToString());
+                newaddress.ID = customerID.ToString();
             }
             newaddress.City = CityNameText.Text;
             newaddress.Location1 = Location1Text.Text;
@@ -79,9 +90,9 @@ namespace TricorERP.POS.Cashier
                     Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=" + newaddress.ID);
                 }
             }
-            else 
-            { 
-            
+            else
+            {
+
             }
 
         }
@@ -90,7 +101,7 @@ namespace TricorERP.POS.Cashier
         private void updateAddress()
         {
             AddressModel updateaddress = new AddressModel();
-            updateaddress.ID = int.Parse(AddressID.ToString());
+            updateaddress.ID = AddressID.ToString();
             updateaddress.City = CityNameText.Text;
             updateaddress.Location1 = Location1Text.Text;
             updateaddress.Location2 = Location2Text.Text;

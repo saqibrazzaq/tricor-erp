@@ -12,21 +12,25 @@ namespace TricorERP.POS.BranchManager
 
     public partial class EditCashier : System.Web.UI.Page
     {
-        String UserID = "0";
-        string AddressID = "0";
+        String UserID = Common.NULL_ID;
+        string AddressID = Common.NULL_ID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            UserID = Request.QueryString["UserID"];
-            AddressID = Request.QueryString["AddressID"];
+            UserID = Common.CheckNullString(Request.QueryString["UserID"]);
+            AddressID = Common.CheckNullString(Request.QueryString["AddressID"]);
 
-            if (UserID == "0") { 
-                btnAddNewAddress.Enabled = false;
-            }
 
-            if (UserID != "0")
+            if (UserID != Common.NULL_ID)
+            {
                 Head.Text = "User Information";
-            else if(UserID == "0")
+                Savebtn.Text = "Update";
+            }
+            else if (UserID == Common.NULL_ID)
+            {
                 Head.Text = "New User";
+                btnAddNewAddress.Enabled = false;
+                Savebtn.Text = "Save";
+            }
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -85,7 +89,7 @@ namespace TricorERP.POS.BranchManager
 
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (UserID == "0")
+            if (UserID == Common.NULL_ID)
                 addNewUser();
             else
             {
@@ -98,8 +102,8 @@ namespace TricorERP.POS.BranchManager
             newcasier.Name = CashierNameText.Text;
             newcasier.Password = CashierPasswordText.Text;
             newcasier.CNIC = CNIC.Text;
-            
             newcasier.Role = UserTypeDropDownList.SelectedValue;
+            newcasier.WHID = Session["WHID"].ToString();
 
             newcasier = Database.POS.UserDB.addNewUser(newcasier);
 
@@ -112,7 +116,7 @@ namespace TricorERP.POS.BranchManager
         private void updateCashier()
         {
             UserModel updatecashier = new UserModel();
-            updatecashier.ID = int.Parse(UserID.ToString());
+            updatecashier.ID = UserID.ToString();
             updatecashier.CNIC = CNIC.Text;
             updatecashier.Name = CashierNameText.Text;
             updatecashier.Password = CashierPasswordText.Text;
@@ -144,7 +148,7 @@ namespace TricorERP.POS.BranchManager
 
         protected void deleteCashierrAddress_onClick(object sender, EventArgs e)
         {
-            int AddressID = int.Parse(txtAddressID.Text);
+            String AddressID = txtAddressID.Text.Trim();
             deleteCashierAddress(AddressID.ToString());
             InitializePageContents();
         }

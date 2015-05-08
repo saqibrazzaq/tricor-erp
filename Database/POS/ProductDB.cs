@@ -21,7 +21,7 @@ namespace Database.POS
                                  "','" + productModel.ProductThresholdValue + "','" + productModel.ProductReOderValue + "','" +
                                  productModel.PurchasePrice + "','" + productModel.UnitTypeID + "','" + productModel.ProductTypeID + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            productModel.ProductID = int.Parse(id.ToString());
+            productModel.ProductID = id.ToString();
             return productModel;
         }
 
@@ -39,11 +39,11 @@ namespace Database.POS
             while (reader.Read())
             {
                 ProductModel product = new ProductModel();
-                product.ProductID = int.Parse(reader["PID"].ToString());
+                product.ProductID = reader["PID"].ToString();
                 product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
-                product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
-                product.UnitTypeID = int.Parse(reader["UnitTypeID"].ToString());
+                product.ProductTypeID = reader["productTypeID"].ToString();
+                product.UnitTypeID = reader["UnitTypeID"].ToString();
                 product.ProductName = reader["PName"].ToString();
                 product.ProductCode = reader["PCode"].ToString();
                 product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
@@ -65,8 +65,8 @@ namespace Database.POS
                 product = new ProductModel();
                 product.ProductThresholdValue = int.Parse(reader["PthreshHold"].ToString());
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
-                product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
-                product.UnitTypeID = int.Parse(reader["UnitTypeID"].ToString());
+                product.ProductTypeID = reader["productTypeID"].ToString();
+                product.UnitTypeID = reader["UnitTypeID"].ToString();
                 product.ProductName = reader["PName"].ToString();
                 product.ProductCode = reader["PCode"].ToString();
                 product.ProductDescription = reader["PDescription"].ToString();
@@ -102,7 +102,7 @@ namespace Database.POS
                 {
                     // Create new product model
                     ProductModel product = new ProductModel();
-                    product.ProductID = int.Parse(reader["Id"].ToString());
+                    product.ProductID = reader["ID"].ToString();
                     product.ProductName = reader["PName"].ToString();
                     product.Description = reader["PDescription"].ToString();
                     product.SalesPrice = float.Parse(reader["SalePrice"].ToString());

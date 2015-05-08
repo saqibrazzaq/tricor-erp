@@ -13,9 +13,9 @@ namespace TricorERP.Samples
 
     public partial class Test : System.Web.UI.Page
     {
-        // Initialize with 0 order id
+        // Initialize with null order id
         // This page will load and save whatever is in this model
-        SalesOrderModel soModel = new SalesOrderModel() { ID = 0 };
+        SalesOrderModel soModel = new SalesOrderModel() { ID = null };
 
         
         protected void Page_Load(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace TricorERP.Samples
 
         private void UpdateSalesOrderUI()
         {
-            if (soModel.ID != 0)
+            if (soModel.ID != null)
             {
                 // Select the customer
                 CustomerList.Items.FindByValue(soModel.CustomerID.ToString()).Selected = true;
@@ -90,7 +90,7 @@ namespace TricorERP.Samples
 
         private void InitializeSaveOrderButton()
         {
-            if (soModel.ID == 0)
+            if (soModel.ID == null)
                 btnSaveSalesOrder.Text = "Create New Sales Order";
             else
                 btnSaveSalesOrder.Text = "Save Sales Order";
@@ -98,19 +98,19 @@ namespace TricorERP.Samples
 
         private void InitializeOrderModel()
         {
-            // If no order id in query string, set it 0
+            // If no order id in query string, set it null
             try
             {
                 if (Request.QueryString["ID"] != null)
                 {
-                    soModel.ID = int.Parse(Request.QueryString["ID"]);
+                    soModel.ID = Request.QueryString["ID"];
                     loadOrderModel();
                 }
                     
             }
             catch(Exception ex)
             {
-                soModel.ID = 0;
+                soModel.ID = null;
                 throw ex;
             }
         }
@@ -125,7 +125,7 @@ namespace TricorERP.Samples
                 if (reader.Read())
                 {
                     // Load the order
-                    soModel.CustomerID = int.Parse(reader["CustomerID"].ToString());
+                    soModel.CustomerID = reader["CustomerID"].ToString();
                     soModel.OrderDate = DateTime.Parse(reader["OrderDate"].ToString());
                 }
             }
@@ -143,9 +143,9 @@ namespace TricorERP.Samples
                 {
                     SalesOrderItemModel soItemModel = new SalesOrderItemModel()
                     {
-                        ID = int.Parse(readerItems["ID"].ToString()),
-                        SalesOrderID = int.Parse(readerItems["SalesOrderID"].ToString()),
-                        ProductID = int.Parse(readerItems["ProductID"].ToString()),
+                        ID = readerItems["ID"].ToString(),
+                        SalesOrderID = readerItems["SalesOrderID"].ToString(),
+                        ProductID = readerItems["ProductID"].ToString(),
                         quantity = int.Parse(readerItems["Quantity"].ToString()),
                         price = float.Parse(readerItems["Price"].ToString()),
                         ProductName = readerItems["ProductName"].ToString(),
@@ -161,7 +161,7 @@ namespace TricorERP.Samples
             // Prepare the Item model from UI
             SalesOrderItemModel soItemModel = new SalesOrderItemModel()
                 {
-                    ID = int.Parse(txtSalesOrderItemID.Text),
+                    ID = txtSalesOrderItemID.Text,
                     quantity = int.Parse(txtQuantity.Text),
                     price = float.Parse(txtPrice.Text)
                 };
@@ -219,8 +219,8 @@ namespace TricorERP.Samples
 
         class SalesOrderModel
         {
-            public int ID { get; set; }
-            public int CustomerID { get; set; }
+            public String ID { get; set; }
+            public String CustomerID { get; set; }
             public DateTime OrderDate { get; set; }
             public List<SalesOrderItemModel> items = new List<SalesOrderItemModel>();
         }
@@ -228,9 +228,9 @@ namespace TricorERP.Samples
         class SalesOrderItemModel
         {
             // Table members
-            public int ID { get; set; }
-            public int SalesOrderID { get; set; }
-            public int ProductID { get; set; }
+            public String ID { get; set; }
+            public String SalesOrderID { get; set; }
+            public String ProductID { get; set; }
             public int quantity { get; set; }
             public float price { get; set; }
 
@@ -245,7 +245,7 @@ namespace TricorERP.Samples
         {
             InitializeOrderModel();
 
-            if (soModel.ID == 0)
+            if (soModel.ID == null)
                 CreateNewSalesOrder();
             else
                 UpdateSalesOrder();
@@ -271,7 +271,7 @@ namespace TricorERP.Samples
                 OUTPUT INSERTED.ID
                 VALUES ( " + so.CustomerID + " , '" + so.OrderDate + "' )";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            so.ID = int.Parse(id.ToString());
+            so.ID = id.ToString();
 
             // Load the page with the order id
             Response.Redirect("Test.aspx?ID=" + so.ID);
@@ -282,7 +282,7 @@ namespace TricorERP.Samples
             // Create the Sales Order Model from UI
             SalesOrderModel so = new SalesOrderModel();
             so.ID = soModel.ID;
-            so.CustomerID = int.Parse(CustomerList.SelectedValue);
+            so.CustomerID = CustomerList.SelectedValue;
             so.OrderDate = DateTime.Now;
             return so;
         }
@@ -312,7 +312,7 @@ namespace TricorERP.Samples
 
         protected void deleteSalesOrderItem_onClick(object sender, EventArgs e)
         {
-            int itemID = int.Parse(txtSalesOrderItemID.Text);
+            String itemID = txtSalesOrderItemID.Text;
             string sql = "DELETE FROM SalesOrderItem WHERE ID = " + itemID;
             DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
 
@@ -333,13 +333,13 @@ namespace TricorERP.Samples
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             InitializeOrderModel();
-            if (soModel.ID != 0)
+            if (soModel.ID != null)
             {
                 // Create the order item model
                 SalesOrderItemModel soItemModel = new SalesOrderItemModel();
                 // Set sales order id and product id of the selected product
                 soItemModel.SalesOrderID = soModel.ID;
-                soItemModel.ProductID = int.Parse(ProductList.SelectedValue);
+                soItemModel.ProductID = ProductList.SelectedValue;
                 // Set quantity to default 1
                 soItemModel.quantity = 1;
                 // Get the price of this proeuct from database
@@ -355,7 +355,7 @@ namespace TricorERP.Samples
                 string sqlInsert = @"INSERT INTO SalesOrderItem (SalesOrderID, ProductID, Quantity, Price) OUTPUT INSERTED.ID VALUES (" + soItemModel.SalesOrderID + " , " +  
                     soItemModel.ProductID + " , " + soItemModel.quantity + " , '" + soItemModel.price + "')";
                 object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
-                soItemModel.ID = int.Parse(id.ToString());
+                soItemModel.ID = id.ToString();
 
                 // Initialize the page
                 InitializePageContents();

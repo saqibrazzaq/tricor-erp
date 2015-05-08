@@ -38,7 +38,7 @@
             <div class="row container-fluid">
                 <div class="col-lg-4">
                     <asp:LinkButton ID="btnAddStock" runat="server" CssClass="btn btn-primary" OnClick="btnAddStock_Click">Add Stock</asp:LinkButton>
-                    <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary" OnClick="Cancel_Click">Cancel</asp:LinkButton>
+                    <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary" OnClick="Cancel_Click" CausesValidation="False">Cancel</asp:LinkButton>
                 </div>
             </div>
             

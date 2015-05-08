@@ -66,9 +66,15 @@
     <Content Include="POS\Cashier\EditAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="POS\Cashier\EditCustomer.js" />
+    <Content Include="POS\Invoice\AddInvoice.aspx" />
     <Content Include="POS\Order\AddOrder.aspx" />
     <Content Include="POS\Order\AddOrder.js" />
+    <Content Include="POS\Order\CancelOrder.aspx" />
     <Content Include="POS\Order\OrderList.aspx" />
+    <Content Include="POS\PurchaseOrder\PurchaseOrder.aspx" />
+    <Content Include="POS\PurchaseOrder\PurchaseOrder.js" />
+    <Content Include="POS\PurchaseOrder\PurchaserOrderItems.aspx" />
+    <Content Include="POS\PurchaseOrder\SearchPurchaseOrder.aspx" />
     <Content Include="POS\Reports\PurchaseReport.aspx" />
     <Content Include="POS\Reports\SalesReport.aspx" />
     <Content Include="POS\Reports\StockReport.aspx" />
@@ -203,6 +209,13 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="POS\Invoice\AddInvoice.aspx.cs">
+      <DependentUpon>AddInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Invoice\AddInvoice.aspx.designer.cs">
+      <DependentUpon>AddInvoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="POS\Order\AddOrder.aspx.cs">
       <DependentUpon>AddOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -210,12 +223,40 @@
     <Compile Include="POS\Order\AddOrder.aspx.designer.cs">
       <DependentUpon>AddOrder.aspx</DependentUpon>
     </Compile>
+    <Compile Include="POS\Order\CancelOrder.aspx.cs">
+      <DependentUpon>CancelOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Order\CancelOrder.aspx.designer.cs">
+      <DependentUpon>CancelOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="POS\Order\OrderList.aspx.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="POS\Order\OrderList.aspx.designer.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\PurchaseOrder\PurchaseOrder.aspx.cs">
+      <DependentUpon>PurchaseOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\PurchaseOrder\PurchaseOrder.aspx.designer.cs">
+      <DependentUpon>PurchaseOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\PurchaseOrder\PurchaserOrderItems.aspx.cs">
+      <DependentUpon>PurchaserOrderItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\PurchaseOrder\PurchaserOrderItems.aspx.designer.cs">
+      <DependentUpon>PurchaserOrderItems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\PurchaseOrder\SearchPurchaseOrder.aspx.cs">
+      <DependentUpon>SearchPurchaseOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\PurchaseOrder\SearchPurchaseOrder.aspx.designer.cs">
+      <DependentUpon>SearchPurchaseOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\Reports\PurchaseReport.aspx.cs">
       <DependentUpon>PurchaseReport.aspx</DependentUpon>

@@ -11,7 +11,7 @@ namespace TricorERP.POS.Stock
     {
         Models.POS.Stock.POSStockModel stckModel = new Models.POS.Stock.POSStockModel()
         {
-            ID = 0
+            ID = Common.NULL_ID
         };
 
         protected void Page_Load(object sender, EventArgs e)
@@ -46,14 +46,14 @@ namespace TricorERP.POS.Stock
         {
             try
             {
-                if (Request.QueryString["ID"] != null)
+                if (Common.CheckNullString(Request.QueryString["ID"]) != Common.NULL_ID)
                 {
-                    stckModel.ID = int.Parse(Request.QueryString["ID"]);
+                    stckModel.ID = Request.QueryString["ID"];
                 }
             }
             catch (Exception ex)
             {
-                stckModel.ID = 0;
+                stckModel.ID = null;
                 throw ex;
             }
         }
@@ -66,7 +66,7 @@ namespace TricorERP.POS.Stock
         private void SaveProductInStock()
         {
             InitializeStockModel();
-            if (stckModel.ID == 0)
+            if (stckModel.ID == Common.NULL_ID)
             {
                 NewStock();
             }
@@ -76,12 +76,11 @@ namespace TricorERP.POS.Stock
             }
         }
 
-
         private void NewStock()
         {
                 Models.POS.Stock.POSStockModel stockItems = CreateStockItemFromUI();
                 stockItems = Database.POS.StockDB.addNewStock(stockItems);
-                if (stockItems.ID == 0)
+                if (stockItems.ID == Common.NULL_ID)
                 {
                     //If already existing product is inserted it will show error message
                     MessageLable.Text = @"This product is already exist in stock...";
@@ -89,7 +88,11 @@ namespace TricorERP.POS.Stock
                 else
                 {
                     stckModel.ID = stockItems.ID;
-                    MessageLable.Text = "New Data of stock is saved...";
+                    if(stockItems.check == -1)
+                        MessageLable.Text = @"Quantity of New stock is 
+                                              Added in previous one...";
+                    else
+                        MessageLable.Text = "New Data of stock is saved...";
                 }
         }
         private void UpdateStock()
@@ -102,11 +105,11 @@ namespace TricorERP.POS.Stock
         private Models.POS.Stock.POSStockModel CreateStockItemFromUI()
         {
             Models.POS.Stock.POSStockModel productstock = new Models.POS.Stock.POSStockModel();
-            productstock.ProductID = int.Parse(ProductDropDownList.SelectedValue);
+            productstock.ProductID = ProductDropDownList.SelectedValue;
             productstock.Quantity = int.Parse(Quantity.Text);
 
             // how to set WHID in stock
-            productstock.WHID = 1;
+            productstock.WHID = Session["WHID"].ToString();
             return productstock;
         }
 

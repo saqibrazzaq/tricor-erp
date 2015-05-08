@@ -11,7 +11,7 @@ namespace Models.Samples
     /// </summary>
     public class CustomerModel
     {
-        public int ID { get; set; }
+        public String ID { get; set; }
         public String FullName { get; set; }
         public int CustomerType { get; set; }
     }

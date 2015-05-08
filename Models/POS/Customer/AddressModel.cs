@@ -8,7 +8,7 @@ namespace Models.POS.Customer
 {
     public class AddressModel
     {
-        public int ID { set; get; }
+        public String ID { set; get; }
         public String Location1 { set; get; }
         public String Location2 { set; get; }
        

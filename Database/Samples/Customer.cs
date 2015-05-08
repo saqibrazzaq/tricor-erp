@@ -33,7 +33,7 @@ namespace Database.Samples
             {
                 // Create a new customer for every record
                 CustomerModel customerModel = new CustomerModel();
-                customerModel.ID = int.Parse(reader["ID"].ToString());
+                customerModel.ID = reader["ID"].ToString();
                 customerModel.FullName = reader["FullName"].ToString();
                 customerModel.CustomerType = int.Parse(reader["CustomerType"].ToString());
                 // Add it to list
@@ -74,7 +74,7 @@ namespace Database.Samples
 //            {
 //                // Create a new customer for every record
 //                Customer customerModel = new Customer();
-//                customerModel.ID = int.Parse(reader["ID"].ToString());
+//                customerModel.ID = reader["ID"].ToString();
 //                customerModel.Name = reader["Name"].ToString();
 //                customerModel.Phonenumber = reader["Phoneno"];
 //                // Add it to list

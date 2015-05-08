@@ -8,9 +8,9 @@ namespace Models.POS.Order
 {
     public class SaleOrderItemModel
     {
-        public int ID { get; set; }
-        public int OrderID { get; set; }
-        public int ProductID { get; set; }
+        public String ID { get; set; }
+        public String OrderID { get; set; }
+        public String ProductID { get; set; }
         
         public int Quantity { get; set; }
         public float Price { get; set; }
@@ -21,7 +21,7 @@ namespace Models.POS.Order
         public int ManufacturedQuantity { get; set; }
 
         // for checking the data of warehouse 
-        public int WareHouseID { get; set; }
+        public String WareHouseID { get; set; }
         public string WareHouseName { get; set; }            
 
     }

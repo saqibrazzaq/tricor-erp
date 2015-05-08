@@ -25,7 +25,7 @@ namespace Database.POS.Customer
             while (reader.Read())
             {
                 CustomerModel customer = new CustomerModel();
-                customer.ID = int.Parse(reader["ID"].ToString());
+                customer.ID = reader["ID"].ToString();
                 customer.Name = reader["Name"].ToString();
                 customer.Phonenumber = reader["Phoneno"].ToString();
                 customers.Add(customer);
@@ -42,6 +42,7 @@ namespace Database.POS.Customer
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
+                customer.ID = reader["ID"].ToString();
                 customer.Name = reader["Name"].ToString();
                 customer.CNIC = reader["CNIC"].ToString();
                 customer.Gender = reader["Gender"].ToString();
@@ -57,7 +58,7 @@ namespace Database.POS.Customer
             output inserted.ID 
             VALUES('" + newcustomer.Name + "','" + newcustomer.CNIC + "','" + newcustomer.Gender + "','" + newcustomer.Type + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            newcustomer.ID = int.Parse(id.ToString());
+            newcustomer.ID = id.ToString();
             return newcustomer;
         }
 
@@ -84,7 +85,7 @@ namespace Database.POS.Customer
             while (reader.Read())
             {
                 CustomerModel customer = new CustomerModel();
-                customer.ID = int.Parse(reader["ID"].ToString());
+                customer.ID = reader["ID"].ToString();
                 customer.Name = reader["Name"].ToString();
                 customers.Add(customer);
             }
@@ -92,14 +93,14 @@ namespace Database.POS.Customer
         }
 
         // add new address in Customer Address and return an integer value for it
-        public static int addAddress(string customerID, int CustomerAddressID)
+        public static int addAddress(string customerID, String CustomerAddressID)
         {
             String sql = @"insert into CustomerAddress(Customer_ID, Address_ID)
                             output inserted.ID 
                                         values('" + customerID + "', '" + CustomerAddressID + "')";
 
             Object check = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            if (int.Parse(check.ToString()) > 0)
+            if ((check.ToString()) != null)
                 return 1;
             else
                 return 0;

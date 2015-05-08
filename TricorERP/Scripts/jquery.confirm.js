@@ -80,7 +80,7 @@
             },
             cancel: function (o) {
             },
-            button: null
+            button: 0
         }, dataOptions, options);
 
         // Modal

@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <asp:TextBox ID="SearchOrderData" CssClass="form-control" placeholder="Search for..." runat="server"></asp:TextBox>
+                        <asp:TextBox ID="SearchOrderData" CssClass="form-control" placeholder="Search Order By Customer Name Or Date..." runat="server"></asp:TextBox>
                         <span class="input-group-btn">
                             <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchOrderDataButton1_Click" />
                         </span>
@@ -81,7 +81,7 @@
 
                     <div class="row container-fluid">
                         <div class="col-lg-4">
-                            <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary " OnClick="Cancel_Click">Cancel</asp:LinkButton>
+                            <asp:LinkButton ID="Cancel" runat="server" CssClass="btn btn-primary " OnClick="Cancel_Click" CausesValidation="False">Cancel</asp:LinkButton>
                         </div>
                     </div>
 

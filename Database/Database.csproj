@@ -39,8 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonDB.cs" />
     <Compile Include="Common\AddressDB.cs" />
+    <Compile Include="Common\PurchaseOrderDB.cs" />
+    <Compile Include="Common\PurchaseOrderItemDB.cs" />
     <Compile Include="DBUtility.cs" />
+    <Compile Include="POS\InvoiceDB.cs" />
     <Compile Include="POS\ReportDB.cs" />
     <Compile Include="POS\StockDB.cs" />
     <Compile Include="POS\UserDB.cs" />

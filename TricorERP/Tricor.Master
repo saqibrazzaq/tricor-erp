@@ -8,22 +8,26 @@
         <% 
             String role = Session["RoleID"].ToString();
             String title = null;
-            if (role == "1")
+            if (role == TricorERP.Common.POSManager)
                 title = "Branch Manager";
-            else if (role == "2")
+            else if (role == TricorERP.Common.POSCashier)
                 title = "Cashier";
         %>
         <%=title%>
         <%-- set title dynamically --%>
     </title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/tricor.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
-    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
-    <script src='<%=ResolveClientUrl("~/Scripts/jquery.confirm.js")%>'></script>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+   
+    <script src='<%=ResolveClientUrl("~/Scripts/jquery.confirm.min.js")%>'></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -56,7 +60,7 @@
 
                             <!-- Same in each model  -->
                             <li class="dropdown">
-                                <asp:HyperLink ID="HyperLink1" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
+                                <asp:HyperLink ID="CatalogDropdown" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Cashier/About.aspx" runat="server">Kitchens</asp:HyperLink>
@@ -120,9 +124,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="OrderStatusOfAnCustomer">
+                            <%--<li id="OrderStatusOfAnCustomer">
                                 <asp:HyperLink ID="HyperLink27" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
-                            </li>
+                            </li>--%>
 
                             <li id="StockDropdown" class="dropdown">
                                 <asp:HyperLink ID="HyperLink47" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
@@ -155,6 +159,18 @@
                                 </ul>
                             </li>
 
+                             <li id="PurchaseOrderPOS" class="dropdown">
+                                <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase's <span class="caret"></span></asp:HyperLink>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink50" NavigateUrl="~/POS/PurchaseOrder/PurchaseOrder.aspx" runat="server">Add new Purchase Order</asp:HyperLink>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink51" NavigateUrl="~/POS/PurchaseOrder/SearchPurchaseOrder.aspx" runat="server">View previous Purchase Orders</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
 
                             <!-- ----------------------------------------->
 
@@ -270,7 +286,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server" CausesValidation="False"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
                             </li>
                         </ul>
                     </div>
@@ -295,13 +311,11 @@
     </form>
 
 
-
-
     <script lang="javascript">
         <%
         String roleID = Session["RoleID"].ToString();
         %>
-        if ('1' == '<%=roleID%>') {
+        if ('<%=TricorERP.Common.POSManager%>' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
             $("#Products").addClass("hidden");
             $("#PurchaseOrder").addClass("hidden");
@@ -311,9 +325,12 @@
             $("#WareHouse").addClass("hidden");
             $("#Stock").addClass("hidden");
             $("#Supplier").addClass("hidden");
-            $("#AddOrder").addClass("hidden");
+            $("#CatalogDropdown").addClass("hidden");
 
-        } else if ('2' == '<%=roleID%>') {
+            
+          //  $("#AddOrder").addClass("hidden");
+
+        } else if ('<%=TricorERP.Common.POSCashier%>' == '<%=roleID%>') {
             $("#SCMMenu").addClass("hidden");
             $("#Products").addClass("hidden");
             $("#PurchaseOrder").addClass("hidden");
@@ -325,26 +342,26 @@
             $("#UserDropdown").addClass("hidden");
             $("#Supplier").addClass("hidden");
             $("#OrderStatus").addClass("hidden");
-            $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#OrderStatus").addClass("hidden");
-            $("#OrderApproved").addClass("hidden");
+           // $("#OrderApproved").addClass("hidden");
             $("#ReportsDropdown").addClass("hidden");
+            $("#PurchaseOrderPOS").addClass("hidden");
+            $("#CatalogDropdown").addClass("hidden");
 
-
-        } else if ('4' == '<%=roleID%>') {
+        } else if ('<%=TricorERP.Common.scm1%>' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
-            $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#PendingSales").addClass("hidden");
             $("#ReportsDropdown").addClass("hidden");
-        } else if ('3' == '<%=roleID%>') {
+            $("#PurchaseOrderPOS").addClass("hidden");
+        } else if ('<%=TricorERP.Common.scm2%>' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
-            $("#OrderStatusOfAnCustomer").addClass("hidden");
             $("#PendingSales").addClass("hidden");
             $("#ReportsDropdown").addClass("hidden");
+            $("#PurchaseOrderPOS").addClass("hidden");
         }
     </script>
 </body>

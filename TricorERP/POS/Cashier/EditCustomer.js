@@ -27,3 +27,4 @@ function ItemRowDelete_onClick(arg) {
     var itemID = row.find(".AddressID").text();
     $(".txtAddressID").val(itemID);
 }
+

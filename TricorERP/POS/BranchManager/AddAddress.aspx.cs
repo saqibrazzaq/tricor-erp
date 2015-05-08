@@ -11,15 +11,12 @@ namespace TricorERP.POS.BranchManager
 {
     public partial class AddAddress : System.Web.UI.Page
     {
-        String AddressID = "0";
-        String UserID = "0";
+        String AddressID = "null";
+        String UserID = "null";
         protected void Page_Load(object sender, EventArgs e)
         {
-            AddressID = Request.QueryString["AddressID"];
-            UserID = Request.QueryString["UserID"];
-            //if (CashierID != "0")
-            //    btnCancel.Enabled = false;
-            
+            AddressID = Common.CheckNullString(Request.QueryString["AddressID"]);
+            UserID = Common.CheckNullString(Request.QueryString["UserID"]);
             if (IsPostBack == false)
             {
                 InitializePageContents();
@@ -50,9 +47,9 @@ namespace TricorERP.POS.BranchManager
         }
         protected void Savebtn_Click(object sender, EventArgs e)
         {
-            if (AddressID == "0")
+            if (AddressID == Common.NULL_ID)
                 saveNewAddress();
-            else if (UserID != "0")
+            else if (UserID != Common.NULL_ID)
                 updateAddress();
 
         }
@@ -61,7 +58,7 @@ namespace TricorERP.POS.BranchManager
         private void saveNewAddress()
         {
             AddressModel newaddress = new AddressModel();
-            newaddress.ID = int.Parse(UserID.ToString());
+            newaddress.ID = UserID.ToString();
             newaddress.City = CityNameText.Text;
             newaddress.Location1 = Location1Text.Text;
             newaddress.Location2 = Location2Text.Text;
@@ -86,7 +83,7 @@ namespace TricorERP.POS.BranchManager
         private void updateAddress()
         {
             AddressModel updateaddress = new AddressModel();
-            updateaddress.ID = int.Parse(AddressID.ToString());
+            updateaddress.ID = AddressID.ToString();
             updateaddress.City = CityNameText.Text;
             updateaddress.Location1 = Location1Text.Text;
             updateaddress.Location2 = Location2Text.Text;
@@ -106,7 +103,7 @@ namespace TricorERP.POS.BranchManager
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + UserID + "& AddressID=0");
+            Response.Redirect("~/POS/BranchManager/EditUser.aspx?UserID=" + UserID + "& AddressID=null");
         }
     }
 }

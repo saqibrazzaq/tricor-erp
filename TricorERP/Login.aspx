@@ -48,6 +48,7 @@
             </div>
         </div>
     </form>
+    <%--<script src='<%=ResolveClientUrl("~/Scripts/jquery-2.1.3.min.js")%>'></script>--%>
     <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
 </body>
 </html>

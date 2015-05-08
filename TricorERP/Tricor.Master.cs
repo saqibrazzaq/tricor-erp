@@ -11,7 +11,8 @@ namespace TricorERP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["RoleID"] == null) {
+            if (Session.Count == 0)
+            {
                 Response.Redirect("~/Login.aspx");
             }
         }

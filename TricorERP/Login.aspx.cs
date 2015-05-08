@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Database.UserLogin;
-using Models.Login;
+using Models.POS.User;
 
 namespace TricorERP.POS
 {
@@ -33,9 +33,10 @@ namespace TricorERP.POS
             if (userModel != null)
             {
                 Session["Username"] = NameTextBox.Text;
-                Session["RoleID"] = userModel.RoleID;
-                Session["CustomerID"] = userModel.ID;
+                Session["RoleID"] = userModel.Role;
+                //Session["CustomerID"] = userModel.ID;
                 Session["UserID"] = userModel.ID;
+                Session["WHID"] = userModel.WHID;
                 Response.Redirect("~/Home.aspx");
             }
             else

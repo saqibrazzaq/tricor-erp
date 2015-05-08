@@ -44,7 +44,7 @@ namespace TricorERP.POS.Reports
         protected void StockReportView_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
-            if (stock.Quantity < 10)
+            if (stock.Quantity <= Database.POS.StockDB.getThreshHoldValue(stock.ID, Common.WarehouseIDDefault))
             {
                 // TableCell 
                 // make the data row red

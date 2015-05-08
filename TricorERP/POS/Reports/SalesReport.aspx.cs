@@ -40,7 +40,7 @@ namespace TricorERP.POS.Reports
 
         private List<Models.POS.Report.ReportModel> GetSalesRoport(String searchbydate)
         {
-            return Database.POS.ReportDB.getSaleReport(searchbydate);
+            return Database.POS.ReportDB.getSaleReport(searchbydate, Common.OrderComplete);
         }
 
         protected void Cancel_Click(object sender, EventArgs e)

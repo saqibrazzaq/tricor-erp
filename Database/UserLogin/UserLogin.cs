@@ -1,4 +1,4 @@
-﻿using Models.Login;
+﻿using Models.POS.User;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -21,10 +21,11 @@ namespace Database.UserLogin
                 {
                     userModel = new UserModel()
                     {
-                        ID = int.Parse(reader["ID"].ToString()),
-                        Username = reader["Username"].ToString(),
+                        ID = reader["ID"].ToString(),
+                        Name = reader["Username"].ToString(),
                         Password = reader["Password"].ToString(),
-                        RoleID = int.Parse(reader["RoleID"].ToString())
+                        Role = reader["RoleID"].ToString(),
+                        WHID = reader["WarehouseID"].ToString()
                     };
                 }
             }

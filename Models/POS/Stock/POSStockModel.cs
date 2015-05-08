@@ -8,10 +8,12 @@ namespace Models.POS.Stock
 {
     public class POSStockModel
     {
-        public int ID { set; get; }
-        public int ProductID { set; get; }
-        public int WHID { set; get; }
+        public String ID { set; get; }
+        public String ProductID { set; get; }
+        public String WHID { set; get; }
         public int Quantity { set; get; }
         public string ProductName { set; get; }
+
+        public int check { set; get; }
     }
 }

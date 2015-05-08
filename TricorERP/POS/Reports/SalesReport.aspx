@@ -26,7 +26,7 @@
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                 <tr class="active">
-                                    <th>Product Name</th>
+                                    <th>Date</th>
                                     <th>Total Quantity</th>
                                     <th>Total Sale Price</th>
                                     <th>Total Purchase Price</th>

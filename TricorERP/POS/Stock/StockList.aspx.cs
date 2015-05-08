@@ -63,7 +63,7 @@ namespace TricorERP.POS.Stock
 
         protected void deleteStockItem_onClick(object sender, EventArgs e)
         {
-            int itemID = int.Parse(txtStockItemID.Text);
+            String itemID = txtStockItemID.Text.Trim();
             int check = Database.POS.StockDB.deleteStockItem(itemID);
             InitializePageContents();
         }
@@ -72,7 +72,7 @@ namespace TricorERP.POS.Stock
         {
             Models.POS.Stock.POSStockModel posstockmodel = new Models.POS.Stock.POSStockModel()
             {
-                ID = int.Parse(txtStockItemID.Text),
+                ID = txtStockItemID.Text.Trim(),
                 Quantity = int.Parse(txtQuantity.Text),
                 WHID = Common.WarehouseIDDefault
             };
@@ -89,7 +89,7 @@ namespace TricorERP.POS.Stock
         protected void StockListview_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
-            if (stock.Quantity < 10)
+            if (stock.Quantity <= Database.POS.StockDB.getThreshHoldValue(stock.ID, Common.WarehouseIDDefault))
             {       
                 // make the data row red
                 HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("ItemRow");
@@ -101,7 +101,6 @@ namespace TricorERP.POS.Stock
                 lab.Attributes.Add("Class", "hidden");
             }
         }
-
 
     }
 }
