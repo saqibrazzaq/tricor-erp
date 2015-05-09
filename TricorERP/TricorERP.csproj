@@ -67,6 +67,7 @@
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="POS\Cashier\EditCustomer.js" />
     <Content Include="POS\Invoice\AddInvoice.aspx" />
+    <Content Include="POS\Invoice\AddInvoice.js" />
     <Content Include="POS\Order\AddOrder.aspx" />
     <Content Include="POS\Order\AddOrder.js" />
     <Content Include="POS\Order\CancelOrder.aspx" />

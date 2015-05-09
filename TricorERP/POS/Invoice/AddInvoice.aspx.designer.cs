@@ -49,6 +49,15 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.DropDownList PaymentMethodDropDownList;
         
         /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMessage;
+        
+        /// <summary>
         /// btnAddInvoice control.
         /// </summary>
         /// <remarks>
@@ -85,31 +94,13 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.Button Cancel;
         
         /// <summary>
-        /// txtQuantity control.
+        /// txtInvoiceID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
-        
-        /// <summary>
-        /// txtSalesOrderItemID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSalesOrderItemID;
-        
-        /// <summary>
-        /// txtProductName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductName;
+        protected global::System.Web.UI.WebControls.TextBox txtInvoiceID;
         
         /// <summary>
         /// txtPrice control.
@@ -121,12 +112,21 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
-        /// SaveInvoicePrice control.
+        /// PaymentMethordDropDownListPop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SaveInvoicePrice;
+        protected global::System.Web.UI.WebControls.DropDownList PaymentMethordDropDownListPop;
+        
+        /// <summary>
+        /// UpdateInvoicePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateInvoicePrice;
     }
 }
