@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 using Models.POS.Order;
 using Models.POS.Customer;
 using Models.POS;
-using Models.SCM;
 using System.Web.UI.HtmlControls;
 
 namespace TricorERP.POS.Order

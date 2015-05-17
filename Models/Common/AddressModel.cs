@@ -8,7 +8,7 @@ namespace Models.Global
 {
      public class AddressModel
     {
-        public String ID { set; get; }
+        public int ID { set; get; }
         public String Location1 { set; get; }
         public String Location2 { set; get; }
 

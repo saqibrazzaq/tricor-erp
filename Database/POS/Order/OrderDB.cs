@@ -293,15 +293,15 @@ namespace Database.POS.Order
 
 
         // that function can return the list of warehouse list for viewing on the panal
-        public static List<Models.SCM.WareHouseModel> getWareHouseList()
+        public static List<Models.POS.WareHouseModel> getWareHouseList()
         {
-            List<Models.SCM.WareHouseModel> WHlists = new List<Models.SCM.WareHouseModel>();
+            List<Models.POS.WareHouseModel> WHlists = new List<Models.POS.WareHouseModel>();
             String sql = @"SELECT [ID] ID,[WHName] WHN ,[WHDescription] WHD
                          FROM [dbo].[Warehouse]";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
-                Models.SCM.WareHouseModel WHList = new Models.SCM.WareHouseModel();
+                Models.POS.WareHouseModel WHList = new Models.POS.WareHouseModel();
                 WHList.ID = reader["ID"].ToString();
                 WHList.Name = reader["WHN"].ToString();
                 WHList.Description = reader["WHD"].ToString();

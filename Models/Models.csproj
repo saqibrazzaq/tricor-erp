@@ -54,6 +54,7 @@
     <Compile Include="POS\Order\SaleOrderItemModel.cs" />
     <Compile Include="POS\ProductModel.cs" />
     <Compile Include="POS\Stock\POSStockModel.cs" />
+    <Compile Include="POS\WareHouseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\CustomerModel.cs" />
     <Compile Include="SCM\ProductCompositionModel.cs" />
