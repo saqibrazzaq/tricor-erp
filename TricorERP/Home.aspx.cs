@@ -82,7 +82,5 @@ namespace TricorERP
         {
             return Database.POS.StockDB.getStockStatus(WHID);
         }
-
-
     }
 }

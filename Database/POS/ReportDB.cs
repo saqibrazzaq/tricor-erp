@@ -14,14 +14,14 @@ namespace Database.POS
         {
             List<Models.POS.Report.ReportModel> salereport = new List<Models.POS.Report.ReportModel>();
             String sql = @"select [SalesOrder].OrderDate , SUM([SalesOrderItem].TotalQuantity) as TotalQuantity, 
-                        SUM([SalesOrderItem].Price) 
+                        SUM([SalesOrderItem].Price*[SalesOrderItem].TotalQuantity) 
 		                as TotalSalePrice 
-		                , sum([Product].SalePrice) as TotalPurchasePrice,
-		                SUM([SalesOrderItem].Price-[Product].SalePrice) as Profit
+		                , sum([Product].SalePrice*[SalesOrderItem].TotalQuantity) as TotalPurchasePrice,
+		                SUM(([SalesOrderItem].Price*[SalesOrderItem].TotalQuantity)-([Product].SalePrice*[SalesOrderItem].TotalQuantity)) as Profit
 		                from [SalesOrder]
 		                join [SalesOrderItem] on [SalesOrder].ID = [SalesOrderItem].OrderID
 		                join [Product] on [SalesOrderItem].ProductID = [Product].Id
-		                where [SalesOrder].OrderStatus='"+OrderComplete
+		                where [SalesOrder].OrderStatus='" + OrderComplete
                                                          +@"' and [SalesOrder].OrderDate like '%"+searchbydate
                         +"%'group by [SalesOrder].OrderDate";
 

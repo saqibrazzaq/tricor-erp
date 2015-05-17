@@ -81,11 +81,6 @@ namespace TricorERP.POS.Stock
                 InitializePageContents();
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Home.aspx");
-        }
-
         protected void StockListview_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
@@ -100,6 +95,11 @@ namespace TricorERP.POS.Stock
                 Label lab = (Label)e.Item.FindControl("StockLowMessage");
                 lab.Attributes.Add("Class", "hidden");
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
 
     }

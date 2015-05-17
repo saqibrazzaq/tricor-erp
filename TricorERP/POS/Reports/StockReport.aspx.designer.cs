@@ -31,12 +31,12 @@ namespace TricorERP.POS.Reports {
         protected global::System.Web.UI.WebControls.ListView StockReportView;
         
         /// <summary>
-        /// Cancel control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Cancel;
+        protected global::System.Web.UI.WebControls.LinkButton btnBack;
     }
 }

@@ -1,20 +1,25 @@
-﻿using System;
+﻿using Models.POS.Order;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace TricorERP.POS.Invoice
 {
     public partial class AddInvoice : System.Web.UI.Page
     {
-        List <Models.POS.InvoiceModel> invoicemodel = null;
+        List<Models.POS.InvoiceModel> invoicemodel = null;
         Models.POS.Customer.CustomerModel customerinfo = null;
+        SaleOrderModel soModel = new SaleOrderModel() { ID = Common.NULL_ID };
         String OrderID = null;
         String CustomerID = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Price.Text = "";
+
             CustomerID = Request.QueryString["CustomerID"].ToString();
             if (IsPostBack == false)
             {
@@ -25,9 +30,10 @@ namespace TricorERP.POS.Invoice
         private void InitializePageContents()
         {
             ErroMessage.Text = "";
-            txtPrice.Text = "";
-
+            Pricetxt.Text = "";
             InitializeInvoiceModel();
+            totalpaymettxt.Text = soModel.TotalPrice.ToString();
+
             LoadPaymentMethodDropDownListInDropdown();
             GetCustomerInFo(CustomerID);
             DateTextBox.Text = DateTime.Today.ToShortDateString();
@@ -36,6 +42,12 @@ namespace TricorERP.POS.Invoice
             AddInvoiceListview.DataSource = invoicemodel;
             AddInvoiceListview.DataBind();
 
+            if (int.Parse(totalpaymettxt.Text) == int.Parse(TotalAmount.Text))
+            {
+                btnAddInvoice.Enabled = false;
+                Pricetxt.Enabled = false;
+                
+            }
         }
 
         private void InitializeInvoiceModel()
@@ -57,10 +69,27 @@ namespace TricorERP.POS.Invoice
 
         private void loadInvoiceModel()
         {
-            invoicemodel = Database.POS.InvoiceDB.getInvoiceModel(OrderID, CustomerID); 
+            invoicemodel = Database.POS.InvoiceDB.getInvoiceModel(OrderID, CustomerID);
+
+            var total = 0;
+
+            //foreach (var count in invoicemodel.Count.ToString())
+            //{
+            //    total = total + invoicemodel[count].Price;
+            //}
+
+            for (int i = 0; i < invoicemodel.Count; i++)
+            {
+                total = total + invoicemodel[i].Price;
+            }
+
+            TotalAmount.Text = total.ToString();
+
+            soModel.ID = OrderID;
+            soModel = Database.POS.Order.OrderDB.loadOrderModel(soModel);
         }
 
-        private void GetCustomerInFo(String CustomerID )
+        private void GetCustomerInFo(String CustomerID)
         {
             customerinfo = Database.POS.Customer.CustomerDB.getCustomerInFo(CustomerID);
         }
@@ -88,22 +117,26 @@ namespace TricorERP.POS.Invoice
 
         protected void btnAddInvoice_Click(object sender, EventArgs e)
         {
-            
-            Models.POS.InvoiceModel addInvice = new Models.POS.InvoiceModel();
-            addInvice.CustomerID = CustomerID;
-            addInvice.Date = DateTextBox.Text;
-            addInvice.OrderID = Request.QueryString["ID"].ToString().Trim();
-            addInvice.Price = int.Parse(Price.Text);
-            addInvice.CreatedBy = Session["UserID"].ToString().Trim();
-            addInvice.LastUpdatedBy = Session["UserID"].ToString().Trim();
-            addInvice.PaymentMathordName = PaymentMethodDropDownList.SelectedValue;
-            addInvice = Database.POS.InvoiceDB.addInviceData(addInvice);
-            InitializePageContents();
-        }
-
-        protected void Cancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/POS/Order/AddOrder.aspx?ID=" + Request.QueryString["ID"].ToString());
+           
+            if (int.Parse(totalpaymettxt.Text) < int.Parse(TotalAmount.Text) + int.Parse(Pricetxt.Text))
+            {
+                
+                    ErroMessage.Text = "The Amount Entered is incorrect...";
+            }
+            else
+            {
+                Models.POS.InvoiceModel addInvice = new Models.POS.InvoiceModel();
+                addInvice.CustomerID = CustomerID;
+                addInvice.Date = DateTextBox.Text;
+                addInvice.OrderID = Request.QueryString["ID"].ToString().Trim();
+                addInvice.Price = int.Parse(Pricetxt.Text);
+                addInvice.CreatedBy = Session["UserID"].ToString().Trim();
+                addInvice.LastUpdatedBy = Session["UserID"].ToString().Trim();
+                addInvice.PaymentMathordName = PaymentMethodDropDownList.SelectedValue;
+                addInvice = Database.POS.InvoiceDB.addInviceData(addInvice);
+                InitializePageContents();
+            }
+            Pricetxt.Text = "";
         }
 
         protected void DeleteInvoice_Click(object sender, EventArgs e)
@@ -128,13 +161,31 @@ namespace TricorERP.POS.Invoice
             updateinvoice.PaymentMathordID = PaymentMethordDropDownListPop.SelectedValue;
             updateinvoice.LastUpdatedBy = Session["UserID"].ToString().Trim();
             int check = Database.POS.InvoiceDB.updateInvoice(updateinvoice);
-            
-            if (check > 0) {
+
+            if (check > 0)
+            {
                 InitializePageContents();
             }
 
             ErroMessage.Text = "Data is Updated...";
 
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/POS/Order/AddOrder.aspx?ID=" + Request.QueryString["ID"].ToString());
+        }
+
+        protected void AddInvoiceListview_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (int.Parse(totalpaymettxt.Text) == int.Parse(TotalAmount.Text))
+            {
+                btnAddInvoice.Enabled = false;
+                Control myControl1 = e.Item.FindControl("ItemCommandtd");
+                if (myControl1 != null)
+                    myControl1.Visible = false;
+               
+            }
         }
 
     }

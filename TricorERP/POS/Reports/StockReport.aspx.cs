@@ -35,12 +35,6 @@ namespace TricorERP.POS.Reports
             return Database.POS.StockDB.getStockList("");
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Home.aspx");
-            // to be continue on that point and next work is related to the purchases....
-        }
-
         protected void StockReportView_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
@@ -56,6 +50,11 @@ namespace TricorERP.POS.Reports
                 Label lab = (Label)e.Item.FindControl("StockLowMessage");
                 lab.Attributes.Add("Class", "hidden");
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

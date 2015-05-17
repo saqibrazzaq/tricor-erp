@@ -15,12 +15,9 @@ namespace TricorERP.POS.Cashier
         String AddressID = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            customerID = Request.QueryString["CustomerID"];
-            AddressID = Request.QueryString["AddressID"];
-
-            AddressID = Common.CheckNullString(AddressID);
-            customerID = Common.CheckNullString(customerID);
-            if (AddressID != null && customerID != null)
+            AddressID = Common.CheckNullString(Request.QueryString["AddressID"]);
+            customerID = Common.CheckNullString(Request.QueryString["CustomerID"]);
+            if (AddressID != Common.NULL_ID && customerID != Common.NULL_ID)
             {
                 Savebtn.Text = "Update";
             }
@@ -120,11 +117,10 @@ namespace TricorERP.POS.Cashier
             }
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        protected void btnBack_Click(object sender, EventArgs e)
         {
             if (customerID != null)
                 Response.Redirect("~/POS/Cashier/EditCustomer.aspx?CustomerID=" + customerID + "& AddressID=0");
-
         }
     }
 }

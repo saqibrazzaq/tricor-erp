@@ -36,11 +36,6 @@ namespace TricorERP.POS.PurchaseOrder
             ProductDropDownList.DataBind();
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/POS/PurchaseOrder/PurchaseOrder.aspx?ID="+purchaseorderid);
-        }
-
         protected void SavePurchaseItembtn_Click(object sender, EventArgs e)
         {
             if (PurchaseOrderItem.ID == Common.NULL_ID)
@@ -64,6 +59,11 @@ namespace TricorERP.POS.PurchaseOrder
             if (PurchaseOrderItem.ID != Common.NULL_ID) {
                 Response.Redirect("~/POS/PurchaseOrder/PurchaseOrder.aspx?ID="+purchaseorderid);
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/POS/PurchaseOrder/PurchaseOrder.aspx?ID=" + purchaseorderid);
         }
     }
 }

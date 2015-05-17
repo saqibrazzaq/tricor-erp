@@ -67,6 +67,15 @@ namespace TricorERP.POS.Stock {
         protected global::System.Web.UI.WebControls.Label MessageLable;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// btnAddStock control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,31 @@ namespace TricorERP.POS.Stock {
         protected global::System.Web.UI.WebControls.LinkButton btnAddStock;
         
         /// <summary>
-        /// Cancel control.
+        /// CsvFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Cancel;
+        protected global::System.Web.UI.WebControls.FileUpload CsvFileUpload;
+        
+        /// <summary>
+        /// UploadStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UploadStock;
+        
+        /// <summary>
+        /// btnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBack;
         
         /// <summary>
         /// ValidationSummary1 control.

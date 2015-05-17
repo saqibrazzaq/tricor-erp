@@ -22,7 +22,9 @@ namespace Models.POS.Order
 
         // for checking the data of warehouse 
         public String WareHouseID { get; set; }
-        public string WareHouseName { get; set; }            
+        public string WareHouseName { get; set; }
+
+        public float PerUnitTotalPrice { get; set; }
 
     }
 }

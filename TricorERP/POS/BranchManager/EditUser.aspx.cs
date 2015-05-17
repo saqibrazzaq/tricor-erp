@@ -158,9 +158,10 @@ namespace TricorERP.POS.BranchManager
             return Database.POS.UserDB.deleteAddress(UserID, AddressID);
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        
+        protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/POS/BranchManager/UserList.aspx");
+            Response.Redirect("~/Home.aspx");
         }
 
         

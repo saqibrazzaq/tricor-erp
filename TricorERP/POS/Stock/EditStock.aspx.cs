@@ -113,9 +113,14 @@ namespace TricorERP.POS.Stock
             return productstock;
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
+        protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
+        }
+
+        protected void UploadStock_Click(object sender, EventArgs e)
+        {
+            //to be continue on that point...
         }
     }
 }

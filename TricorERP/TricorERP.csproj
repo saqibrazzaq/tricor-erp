@@ -57,8 +57,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fixedfooter.css" />
     <Content Include="Content\tricor.css" />
     <Content Include="Home.aspx" />
+    <Content Include="Images\Tricorlogo.ico" />
     <Content Include="POS\BranchManager\AddAddress.aspx" />
     <Content Include="POS\BranchManager\UserList.aspx" />
     <Content Include="POS\BranchManager\EditUser.aspx" />

@@ -123,11 +123,6 @@ namespace TricorERP.POS.Cashier
             }
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Home.aspx");
-        }
-
         protected void deleteCustomerAddress_onClick(object sender, EventArgs e)
         {
             String AddressID = txtAddressID.Text.Trim();
@@ -146,6 +141,11 @@ namespace TricorERP.POS.Cashier
                 Savebtn.Enabled = true;
             else
                 Savebtn.Enabled = false;
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

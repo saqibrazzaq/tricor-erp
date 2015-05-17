@@ -56,7 +56,8 @@
                             <th>Product Name</th>
                             <%--<th>WareHouseName</th>--%>
                             <th>Quantity</th>
-                            <th>Price</th>
+                            <th>Unit Price</th>
+                            <th>Per Unit Total Price</th>
                             <th></th>
                         </tr>
                         <tr runat="server" id="itemPlaceholder"></tr>
@@ -88,6 +89,9 @@
                             <%# Eval("Price") %>
                         </td>
                         <td>
+                            <%#Eval("PerUnitTotalPrice") %>
+                        </td>
+                        <td>
                             <div runat="server" id="ItemCommandtd">
                                 <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -117,7 +121,7 @@
             <div class="col-lg-5">
                 <ul id="OrderApproved" class="nav navbar-nav">
                     <li>
-                        <asp:Button ID="Cancel" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="Cancel_Click" CausesValidation="False" />
+                        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-primary" Text="Back" OnClick="btnBack_Click" CausesValidation="False" />
                     </li>
                 </ul>
             </div>

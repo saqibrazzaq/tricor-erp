@@ -16,8 +16,12 @@
                     <asp:TextBox ID="DateTextBox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
                 <div class="col-lg-2">
-                    <label for="InputName">Price :</label>
-                    <asp:TextBox ID="Price" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <label for="InputName">Total Price:</label>
+                    <asp:TextBox runat="server" ID="totalpaymettxt" Font-Names="InputName" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                </div>
+                <div class="col-lg-2">
+                    <label for="InputName">Payment :</label>
+                    <asp:TextBox ID="Pricetxt" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
                 <div class="input-group col-lg-2">
                     <label for="InputName">Payment method :</label>
@@ -39,7 +43,7 @@
         </div>
 
         <div class="panel-body">
-            <asp:ListView ID="AddInvoiceListview" runat="server">
+            <asp:ListView ID="AddInvoiceListview" runat="server" OnItemDataBound="AddInvoiceListview_ItemDataBound">
                 <LayoutTemplate>
                     <table class="table table-bordered table-hover">
                         <tr class="active">
@@ -47,7 +51,7 @@
                             <th class="hidden">Sales Order ID</th>
                             <th class="">Date</th>
                             <th class="">Payment method</th>
-                            <th>Price</th>
+                            <th>Amount</th>
                             <th>Edit/Delete</th>
                         </tr>
                         <tr runat="server" id="itemPlaceholder"></tr>
@@ -86,17 +90,26 @@
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
+            
+            <table class="table">
+                <tr>
+                    <td>
+                        <b>
+                            <asp:Label ID="Label1" runat="server" Text="Total Amount Is : "></asp:Label></b>
+                        <asp:Label ID="TotalAmount" runat="server" Text=""></asp:Label>
+                    </td>
+                </tr>
+            </table>
             <asp:Label ID="ErroMessage" runat="server" ForeColor="Red"></asp:Label>
         </div>
         <div class="row container-fluid">
             <div class="col-lg-5">
                 <ul id="OrderApproved" class="nav navbar-nav">
                     <li>
-                        <asp:Button ID="Cancel" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="Cancel_Click" CausesValidation="False" />
+                        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-primary" Text="Back" OnClick="btnBack_Click" CausesValidation="False" />
                     </li>
                 </ul>
             </div>
-            <br />
             <br />
             <br />
         </div>

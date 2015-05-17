@@ -49,6 +49,8 @@ namespace TricorERP.POS.Order
                     btnAddProduct.Enabled = false;
                     SaveSaleOrder.Enabled = false;
                     //DeleteItem.Enabled = false;
+                    //btnAddInvoice.Enabled = false;
+                    btnAddInvoice.Text = "View Invoice";
                     btnAddInvoice.Text = "Invoice";
                 }
             }
@@ -102,6 +104,7 @@ namespace TricorERP.POS.Order
                     ProductList.Enabled = false;
                     btnAddProduct.Enabled = false;
                     OrderStatusList.Enabled = false;
+                    btnAddInvoice.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -299,11 +302,6 @@ namespace TricorERP.POS.Order
                 ErroMessage.Text = "Quantity of Selected Product is not Prasent in your Stock...";
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/POS/Order/OrderList.aspx");
-        }
-
         protected void SalesOrderItemListview_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (soModel.OrderStatus == Common.OrderComplete) {
@@ -327,6 +325,11 @@ namespace TricorERP.POS.Order
         {
             InitializeOrderModel();
             Response.Redirect("~/POS/Invoice/AddInvoice.aspx?ID=" + Request.QueryString["ID"].ToString() + "&CustomerID="+CustomerList.SelectedValue);
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/POS/Order/OrderList.aspx");
         }
     }
 }

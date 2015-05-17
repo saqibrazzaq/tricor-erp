@@ -155,11 +155,6 @@ namespace TricorERP.POS.PurchaseOrder
             return Database.Common.PurchaseOrderDB.getPurchaseOrderInFol(purchaseOrder.ID);
         }
 
-       
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Home.aspx");
-        }
 
         protected void PurchaseOrderItemview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
@@ -197,6 +192,11 @@ namespace TricorERP.POS.PurchaseOrder
                 ErrorMessage.Text = "Due to Some Issue Data is Updated...";
             }
             
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
 
 

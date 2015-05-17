@@ -31,13 +31,22 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.TextBox DateTextBox;
         
         /// <summary>
-        /// Price control.
+        /// totalpaymettxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Price;
+        protected global::System.Web.UI.WebControls.TextBox totalpaymettxt;
+        
+        /// <summary>
+        /// Pricetxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Pricetxt;
         
         /// <summary>
         /// PaymentMethodDropDownList control.
@@ -76,6 +85,24 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.ListView AddInvoiceListview;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// TotalAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalAmount;
+        
+        /// <summary>
         /// ErroMessage control.
         /// </summary>
         /// <remarks>
@@ -85,13 +112,13 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.Label ErroMessage;
         
         /// <summary>
-        /// Cancel control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Cancel;
+        protected global::System.Web.UI.WebControls.Button btnBack;
         
         /// <summary>
         /// txtInvoiceID control.

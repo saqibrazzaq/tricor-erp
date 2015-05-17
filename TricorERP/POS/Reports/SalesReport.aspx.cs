@@ -43,11 +43,6 @@ namespace TricorERP.POS.Reports
             return Database.POS.ReportDB.getSaleReport(searchbydate, Common.OrderComplete);
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Home.aspx");
-        }
-
         protected void Search_Click(object sender, EventArgs e)
         {
             LoadSalesListView(SearchSales.Text);
@@ -55,6 +50,11 @@ namespace TricorERP.POS.Reports
             {
                 ErrorMessage.Text = "Data is not found...";
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
 
     }

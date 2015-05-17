@@ -77,7 +77,7 @@ namespace TricorERP.POS.Order
                 ErrorMessage.Text = @"Data is not found...";
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
+        protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
         }

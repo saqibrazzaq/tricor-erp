@@ -91,7 +91,7 @@ namespace TricorERP.POS.BranchManager
             InitializePageContents();
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
+        protected void Back_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
         }

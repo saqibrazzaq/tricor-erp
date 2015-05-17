@@ -4,18 +4,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
+    <link rel="shortcut icon" type="image/ico" href="Images/Tricorlogo.ico" />
     <title>
-        <% 
-            String role = Session["RoleID"].ToString();
-            String title = null;
-            if (role == TricorERP.Common.POSManager)
-                title = "Branch Manager";
-            else if (role == TricorERP.Common.POSCashier)
-                title = "Cashier";
-        %>
-        <%=title%>
-        <%-- set title dynamically --%>
+        Tricor
     </title>
+    
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -25,337 +18,349 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
-   
-    <script src='<%=ResolveClientUrl("~/Scripts/jquery.confirm.min.js")%>'></script>
 
+
+    <script src='<%=ResolveClientUrl("~/Scripts/jquery.confirm.min.js")%>'></script>
+    <link href="Content/fixedfooter.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
 </head>
 <body>
-    <form id="form1" method="post" runat="server">
-        <div class="container">
+    <div>
+        <form id="form1" method="post" runat="server">
+            <div class="container">
 
-            <h2><a href="#">
-                <% String s = (String)Session["UserName"];%>
-                <%=s%> <span class="glyphicon glyphicon-thumbs-up"></span>
-            </a></h2>
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">TRICOR</a>
-                    </div>
+                <h2><a href="#">
+                    <% String s = (String)Session["UserName"];%>
+                    <%=s%> <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a></h2>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <% 
+                                    String role = Session["RoleID"].ToString();
+                                    String title = null;
+                                    if (role == TricorERP.Common.POSManager)
+                                        title = "Branch Manager";
+                                    else if (role == TricorERP.Common.POSCashier)
+                                        title = "Cashier";
+                                %>
+                                <%=title%>
+                            </a>
+                        </div>
 
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Home.aspx" runat="server"><span class="glyphicon glyphicon-home"></span></asp:HyperLink>
-                            </li>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active">
+                                    <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Home.aspx" runat="server"><span class="glyphicon glyphicon-home"></span></asp:HyperLink>
+                                </li>
 
-                            <!-- Same in each model  -->
-                            <li class="dropdown">
-                                <asp:HyperLink ID="CatalogDropdown" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Cashier/About.aspx" runat="server">Kitchens</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Cashier/About.aspx" runat="server">Doors</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink5" NavigateUrl="~/Cashier/About.aspx" runat="server">Wardrobes</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Cashier/About.aspx" runat="server">Product4</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
+                                <!-- Same in each model  -->
+                                <li class="dropdown">
+                                    <asp:HyperLink ID="CatalogDropdown" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Cashier/About.aspx" runat="server">Kitchens</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Cashier/About.aspx" runat="server">Doors</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink5" NavigateUrl="~/Cashier/About.aspx" runat="server">Wardrobes</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Cashier/About.aspx" runat="server">Product4</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
 
-                            <!--POS Values For Cashier -->
-                            <li id="CustomerDropdown" class="dropdown">
-                                <asp:HyperLink ID="HyperLink7" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Customer<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink8" NavigateUrl="~/POS/Cashier/EditCustomer.aspx?CustomerID=0" runat="server">New-Customer</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink9" NavigateUrl="~/POS/Cashier/CustomerList.aspx" runat="server">Customer-List</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-
-
-                            <li id="AddOrder" class="dropdown">
-                                <asp:HyperLink ID="HyperLink42" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink43" NavigateUrl="~/POS/Order/AddOrder.aspx" runat="server">New-Order</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink44" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
+                                <!--POS Values For Cashier -->
+                                <li id="CustomerDropdown" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink7" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Customer<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink8" NavigateUrl="~/POS/Cashier/EditCustomer.aspx?CustomerID=0" runat="server">New-Customer</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink9" NavigateUrl="~/POS/Cashier/CustomerList.aspx" runat="server">Customer-List</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
 
 
-                            <!-- ----------------------------------------->
+                                <li id="AddOrder" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink42" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Order<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink43" NavigateUrl="~/POS/Order/AddOrder.aspx" runat="server">New-Order</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink44" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
 
-                            <!-- Branch manager for POS -->
-                            <li id="UserDropdown" class="dropdown">
-                                <asp:HyperLink ID="HyperLink36" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">User's<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink37" NavigateUrl="~/POS/BranchManager/EditUser.aspx?UserID=0" runat="server">New-User</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink38" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">User-List</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-                            <%--<li id="OrderStatusOfAnCustomer">
+
+                                <!-- ----------------------------------------->
+
+                                <!-- Branch manager for POS -->
+                                <li id="UserDropdown" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink36" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">User's<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink37" NavigateUrl="~/POS/BranchManager/EditUser.aspx?UserID=0" runat="server">New-User</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink38" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">User-List</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <%--<li id="OrderStatusOfAnCustomer">
                                 <asp:HyperLink ID="HyperLink27" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
                             </li>--%>
 
-                            <li id="StockDropdown" class="dropdown">
-                                <asp:HyperLink ID="HyperLink47" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink48" NavigateUrl="~/POS/Stock/EditStock.aspx" runat="server">Add-Stock</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink49" NavigateUrl="~/POS/Stock/StockList.aspx" runat="server">Stock-List</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
+                                <li id="StockDropdown" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink47" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink48" NavigateUrl="~/POS/Stock/EditStock.aspx" runat="server">Add-Stock</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink49" NavigateUrl="~/POS/Stock/StockList.aspx" runat="server">Stock-List</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
 
 
-                            <li id="ReportsDropdown" class="dropdown">
-                                <asp:HyperLink ID="HyperLink29" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Reports<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink30" NavigateUrl="~/POS/Reports/SalesReport.aspx" runat="server">Sales-Report</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink45" NavigateUrl="~/POS/Reports/StockReport.aspx" runat="server">Stock-Report</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink46" NavigateUrl="~/POS/Reports/PurchaseReport.aspx" runat="server">Purchase-Reports</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
+                                <li id="ReportsDropdown" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink29" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Reports<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink30" NavigateUrl="~/POS/Reports/SalesReport.aspx" runat="server">Sales-Report</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink45" NavigateUrl="~/POS/Reports/StockReport.aspx" runat="server">Stock-Report</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink46" NavigateUrl="~/POS/Reports/PurchaseReport.aspx" runat="server">Purchase-Reports</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
 
-                             <li id="PurchaseOrderPOS" class="dropdown">
-                                <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase's <span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink50" NavigateUrl="~/POS/PurchaseOrder/PurchaseOrder.aspx" runat="server">Add new Purchase Order</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink51" NavigateUrl="~/POS/PurchaseOrder/SearchPurchaseOrder.aspx" runat="server">View previous Purchase Orders</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
+                                <li id="PurchaseOrderPOS" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink27" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase's <span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink50" NavigateUrl="~/POS/PurchaseOrder/PurchaseOrder.aspx" runat="server">Add new Purchase Order</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink51" NavigateUrl="~/POS/PurchaseOrder/SearchPurchaseOrder.aspx" runat="server">View previous Purchase Orders</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
 
-                            <!-- ----------------------------------------->
+                                <!-- ----------------------------------------->
 
-                            <!-- All SCMS Menus -->
+                                <!-- All SCMS Menus -->
 
-                            <li id="Products" class="dropdown">
-                                <asp:HyperLink ID="HyperLink10" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Products<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink11" NavigateUrl="~/SCM/ViewProducts.aspx" runat="server">View Products</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink12" NavigateUrl="~/SCM/AddNewProduct.aspx" runat="server">Add new Product</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink26" NavigateUrl="" runat="server">Update Product</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink25" NavigateUrl="" runat="server">Delete Product</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li id="WareHouse" class="dropdown">
-                                <asp:HyperLink ID="HyperLink28" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">WareHouse<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink31" NavigateUrl="~/SCM/SearchWareHouse.aspx" runat="server">View WareHouses</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink32" NavigateUrl="~/SCM/AddNewWareHouse.aspx" runat="server">Add new WareHouse</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                </ul>
-                            </li>
-                            <li id="Stock" class="dropdown">
-                                <asp:HyperLink ID="HyperLink33" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink34" NavigateUrl="~/SCM/SearchStockItem.aspx" runat="server">View Stock</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink35" NavigateUrl="~/SCM/AddNewStockItem.aspx" runat="server">Add new Stock item</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                </ul>
-                            </li>
-                            <li id="PurchaseOrder" class="dropdown">
-                                <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink23" NavigateUrl="~/SCM/PurchaseOrder.aspx" runat="server">Add new Purchase Order</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink24" NavigateUrl="~/SCM/SearchPurchaseOrder.aspx" runat="server">View previous Purchase Orders</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li id="SaleOrder" class="dropdown">
-                                <asp:HyperLink ID="HyperLink13" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Sales Order <span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink14" NavigateUrl="" runat="server">All Orders</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink15" NavigateUrl="~/SCM/ViewManufactureRequests.aspx" runat="server">Pending Orders</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SCM/ViewManufactureQueue.aspx" runat="server">Accepted Orders</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink21" NavigateUrl="" runat="server">Rejected Orders</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li id="Queue" class="dropdown">
-                                <asp:HyperLink ID="HyperLink16" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Manufacture Queue <span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink17" NavigateUrl="" runat="server">View Manufacture Queue</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink18" NavigateUrl="" runat="server">Pause Manufacture Queue</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink19" NavigateUrl="" runat="server">Resume Manufacture Queue</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li id="Supplier" class="dropdown">
-                                <asp:HyperLink ID="HyperLink39" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Supplier<span class="caret"></span></asp:HyperLink>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink40" NavigateUrl="~/SCM/SearchSupplier.aspx" runat="server">View Suppliers</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink41" NavigateUrl="~/SCM/AddNewSupplier.aspx" runat="server">Add new Supplier</asp:HyperLink>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                                <li id="Products" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink10" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Products<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink11" NavigateUrl="~/SCM/ViewProducts.aspx" runat="server">View Products</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink12" NavigateUrl="~/SCM/AddNewProduct.aspx" runat="server">Add new Product</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink26" NavigateUrl="" runat="server">Update Product</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink25" NavigateUrl="" runat="server">Delete Product</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="WareHouse" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink28" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">WareHouse<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink31" NavigateUrl="~/SCM/SearchWareHouse.aspx" runat="server">View WareHouses</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink32" NavigateUrl="~/SCM/AddNewWareHouse.aspx" runat="server">Add new WareHouse</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                    </ul>
+                                </li>
+                                <li id="Stock" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink33" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink34" NavigateUrl="~/SCM/SearchStockItem.aspx" runat="server">View Stock</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink35" NavigateUrl="~/SCM/AddNewStockItem.aspx" runat="server">Add new Stock item</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                    </ul>
+                                </li>
+                                <li id="PurchaseOrder" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink22" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Purchase Order <span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink23" NavigateUrl="~/SCM/PurchaseOrder.aspx" runat="server">Add new Purchase Order</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink24" NavigateUrl="~/SCM/SearchPurchaseOrder.aspx" runat="server">View previous Purchase Orders</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="SaleOrder" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink13" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Sales Order <span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink14" NavigateUrl="" runat="server">All Orders</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink15" NavigateUrl="~/SCM/ViewManufactureRequests.aspx" runat="server">Pending Orders</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SCM/ViewManufactureQueue.aspx" runat="server">Accepted Orders</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink21" NavigateUrl="" runat="server">Rejected Orders</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="Queue" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink16" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Manufacture Queue <span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink17" NavigateUrl="" runat="server">View Manufacture Queue</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink18" NavigateUrl="" runat="server">Pause Manufacture Queue</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink19" NavigateUrl="" runat="server">Resume Manufacture Queue</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="Supplier" class="dropdown">
+                                    <asp:HyperLink ID="HyperLink39" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Supplier<span class="caret"></span></asp:HyperLink>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink40" NavigateUrl="~/SCM/SearchSupplier.aspx" runat="server">View Suppliers</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink41" NavigateUrl="~/SCM/AddNewSupplier.aspx" runat="server">Add new Supplier</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server" CausesValidation="False"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
-                            </li>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server" CausesValidation="False"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Main Functions.</li>
+
+                            <li><a href="#">About Us</a></li>
                         </ul>
                     </div>
-                </div>
-            </nav>
-            <div class="row">
-                <div class="col-lg-2">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Main Functions.</li>
-
-                        <li><a href="#">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-10">
-                    <div class="active focus">
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        </asp:ContentPlaceHolder>
+                    <div class="col-lg-10">
+                        <div class="active focus">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 
 
-    <script lang="javascript">
+        <script lang="javascript">
         <%
-        String roleID = Session["RoleID"].ToString();
+            String roleID = Session["RoleID"].ToString();
         %>
-        if ('<%=TricorERP.Common.POSManager%>' == '<%=roleID%>') {
-            $("#SCMMenu").addClass("hidden");
-            $("#Products").addClass("hidden");
-            $("#PurchaseOrder").addClass("hidden");
-            $("#SaleOrder").addClass("hidden");
-            $("#Queue").addClass("hidden");
-            $("#Inventory").addClass("hidden");
-            $("#WareHouse").addClass("hidden");
-            $("#Stock").addClass("hidden");
-            $("#Supplier").addClass("hidden");
-            $("#CatalogDropdown").addClass("hidden");
+            if ('<%=TricorERP.Common.POSManager%>' == '<%=roleID%>') {
+                $("#SCMMenu").addClass("hidden");
+                $("#Products").addClass("hidden");
+                $("#PurchaseOrder").addClass("hidden");
+                $("#SaleOrder").addClass("hidden");
+                $("#Queue").addClass("hidden");
+                $("#Inventory").addClass("hidden");
+                $("#WareHouse").addClass("hidden");
+                $("#Stock").addClass("hidden");
+                $("#Supplier").addClass("hidden");
+                $("#CatalogDropdown").addClass("hidden");
 
-            
-          //  $("#AddOrder").addClass("hidden");
 
-        } else if ('<%=TricorERP.Common.POSCashier%>' == '<%=roleID%>') {
-            $("#SCMMenu").addClass("hidden");
-            $("#Products").addClass("hidden");
-            $("#PurchaseOrder").addClass("hidden");
-            $("#SaleOrder").addClass("hidden");
-            $("#Queue").addClass("hidden");
-            $("#Inventory").addClass("hidden");
-            $("#WareHouse").addClass("hidden");
-            $("#Stock").addClass("hidden");
-            $("#UserDropdown").addClass("hidden");
-            $("#Supplier").addClass("hidden");
-            $("#OrderStatus").addClass("hidden");
-            $("#OrderStatus").addClass("hidden");
-           // $("#OrderApproved").addClass("hidden");
-            $("#ReportsDropdown").addClass("hidden");
-            $("#PurchaseOrderPOS").addClass("hidden");
-            $("#CatalogDropdown").addClass("hidden");
+                //  $("#AddOrder").addClass("hidden");
 
-        } else if ('<%=TricorERP.Common.scm1%>' == '<%=roleID%>') {
-            $("#CustomerDropdown").addClass("hidden");
-            $("#UserDropdown").addClass("hidden");
-            $("#AddOrder").addClass("hidden");
-            $("#PendingSales").addClass("hidden");
-            $("#ReportsDropdown").addClass("hidden");
-            $("#PurchaseOrderPOS").addClass("hidden");
-        } else if ('<%=TricorERP.Common.scm2%>' == '<%=roleID%>') {
+            } else if ('<%=TricorERP.Common.POSCashier%>' == '<%=roleID%>') {
+                $("#SCMMenu").addClass("hidden");
+                $("#Products").addClass("hidden");
+                $("#PurchaseOrder").addClass("hidden");
+                $("#SaleOrder").addClass("hidden");
+                $("#Queue").addClass("hidden");
+                $("#Inventory").addClass("hidden");
+                $("#WareHouse").addClass("hidden");
+                $("#Stock").addClass("hidden");
+                $("#UserDropdown").addClass("hidden");
+                $("#Supplier").addClass("hidden");
+                $("#OrderStatus").addClass("hidden");
+                $("#OrderStatus").addClass("hidden");
+                // $("#OrderApproved").addClass("hidden");
+                $("#ReportsDropdown").addClass("hidden");
+                $("#PurchaseOrderPOS").addClass("hidden");
+                $("#CatalogDropdown").addClass("hidden");
+
+            } else if ('<%=TricorERP.Common.scm1%>' == '<%=roleID%>') {
+                $("#CustomerDropdown").addClass("hidden");
+                $("#UserDropdown").addClass("hidden");
+                $("#AddOrder").addClass("hidden");
+                $("#PendingSales").addClass("hidden");
+                $("#ReportsDropdown").addClass("hidden");
+                $("#PurchaseOrderPOS").addClass("hidden");
+            } else if ('<%=TricorERP.Common.scm2%>' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");
@@ -363,6 +368,11 @@
             $("#ReportsDropdown").addClass("hidden");
             $("#PurchaseOrderPOS").addClass("hidden");
         }
-    </script>
+        </script>
+
+        <%--<div class="footer">
+            <center><p>&copy;Copyright 2015 All rights reserved.</p></center>
+        </div>--%>
+    </div>
 </body>
 </html>

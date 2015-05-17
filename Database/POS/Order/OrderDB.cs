@@ -171,6 +171,9 @@ namespace Database.POS.Order
                     soItemModel.Price = float.Parse(readerItems["Price"].ToString());
                     soItemModel.ProductName = readerItems["ProductName"].ToString();
                     soItemModel.WareHouseID = readerItems["WareHouseID"].ToString();
+
+                    soItemModel.PerUnitTotalPrice = soItemModel.Quantity * soItemModel.Price;
+
                     //total Price according to the product quantity 
                     totalprice = totalprice + (soItemModel.Price * soItemModel.Quantity);
                     soModel.items.Add(soItemModel);

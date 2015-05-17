@@ -49,11 +49,6 @@ namespace TricorERP.POS.PurchaseOrder
                 Message.Text = "Data is not Founde...";
         }
 
-        protected void Cancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Home.aspx");
-        }
-
         protected void PurchaseOrderListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "EditPurchaseOrder")
@@ -71,6 +66,11 @@ namespace TricorERP.POS.PurchaseOrder
                 InitializePageContents();
             else
                 Message.Text = "Due to some Data is Not deleted...";
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
         }
     }
 }
