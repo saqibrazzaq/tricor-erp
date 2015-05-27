@@ -25,7 +25,7 @@ namespace TricorERP.POS.PurchaseOrder
             ErrorMessage.Text = "";
             InitializeOrderModel();
             InitializeWareHouseDropDowm();
-            if (Session["RoleID"].ToString() == Common.POSCashier || Session["RoleID"].ToString() == Common.POSManager)
+            if (Session["RoleID"].ToString() == "2" || Session["RoleID"].ToString() == "1")
             {
                 InitializeHeadLable();
                 if (purchaseOrder.ID != Common.NULL_ID)

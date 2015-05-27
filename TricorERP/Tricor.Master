@@ -320,7 +320,7 @@
         <%
             String roleID = Session["RoleID"].ToString();
         %>
-            if ('<%=TricorERP.Common.POSManager%>' == '<%=roleID%>') {
+            if ('1' == '<%=roleID%>') {
                 $("#SCMMenu").addClass("hidden");
                 $("#Products").addClass("hidden");
                 $("#PurchaseOrder").addClass("hidden");
@@ -335,7 +335,7 @@
 
                 //  $("#AddOrder").addClass("hidden");
 
-            } else if ('<%=TricorERP.Common.POSCashier%>' == '<%=roleID%>') {
+            } else if ('2' == '<%=roleID%>') {
                 $("#SCMMenu").addClass("hidden");
                 $("#Products").addClass("hidden");
                 $("#PurchaseOrder").addClass("hidden");
@@ -353,14 +353,14 @@
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#CatalogDropdown").addClass("hidden");
 
-            } else if ('<%=TricorERP.Common.scm1%>' == '<%=roleID%>') {
+            } else if ('3' == '<%=roleID%>') {
                 $("#CustomerDropdown").addClass("hidden");
                 $("#UserDropdown").addClass("hidden");
                 $("#AddOrder").addClass("hidden");
                 $("#PendingSales").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
-            } else if ('<%=TricorERP.Common.scm2%>' == '<%=roleID%>') {
+            } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
             $("#AddOrder").addClass("hidden");

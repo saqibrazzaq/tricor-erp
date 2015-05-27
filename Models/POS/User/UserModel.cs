@@ -15,6 +15,7 @@ namespace Models.POS.User
         public String CNIC { get; set; }
         public String PhoneNo { get; set; }
         public String WHID { set; get; }
+        public String IsActive { set; get; }
     }
 
 }

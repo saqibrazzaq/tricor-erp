@@ -53,7 +53,7 @@ namespace Database.POS
         {
             String sql = @"UPDATE [dbo].[Stock]
                          SET [Quantity] = [Quantity] + '" + updatestockitems.Quantity
-                         + "' WHERE [Stock].PID = '" + updatestockitems.ProductID +"'";
+                         + "' WHERE [Stock].PID = '" + updatestockitems.ProductID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -146,8 +146,8 @@ namespace Database.POS
                     foreach (Models.POS.Order.SaleOrderItemModel soItem in soModel.items)
                     {
                         String sqlupdatestock = @"UPDATE [dbo].[Stock]
-                                           SET [Quantity] = [Quantity] - " + soItem.Quantity 
-                                           + " WHERE [Stock].PID = '" + soItem.ProductID + "' and [Stock].WHID = '" 
+                                           SET [Quantity] = [Quantity] - " + soItem.Quantity
+                                           + " WHERE [Stock].PID = '" + soItem.ProductID + "' and [Stock].WHID = '"
                                            + soItem.WareHouseID + "'";
                         DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
                     }
@@ -175,13 +175,14 @@ namespace Database.POS
 
         /*that funcion get the data related to the threshhold value which is prasent in the 
          data base within product table*/
-        public static int getThreshHoldValue(String stockid, String WHID) {
+        public static int getThreshHoldValue(String stockid, String WHID)
+        {
 
             String sql = @"SELECT p.PThreshHoldValue
                            FROM [Product] p INNER JOIN [Stock] s ON p.Id = s.PID
-	                       WHERE s.WHID = '"+WHID+"' AND s.ID = '"+ stockid
-                                            +"' AND s.Quantity <= p.PThreshHoldValue";
-            
+	                       WHERE s.WHID = '" + WHID + "' AND s.ID = '" + stockid
+                                            + "' AND s.Quantity <= p.PThreshHoldValue";
+
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             int threstholdvalue = 0;
             if (reader.Read())

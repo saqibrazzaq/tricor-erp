@@ -38,9 +38,11 @@ namespace TricorERP.POS.Order
             //ErroMessage.Text = soModel.CustomerID;
 
             //checks if our sale order id have some value then disable all the buttons.
-            if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text=="Save Sales Order") {
+            if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text == "Save Sales Order")
+            {
                 int checkOrdestatus = GetOrderStatus(soModel);
-                if (checkOrdestatus > 0) {
+                if (checkOrdestatus > 0)
+                {
                     NewSalesOrder.Enabled = false;
                     OrderStatusList.Enabled = false;
                     CustomerList.Enabled = false;
@@ -49,8 +51,8 @@ namespace TricorERP.POS.Order
                     SaveSaleOrder.Enabled = false;
                     //DeleteItem.Enabled = false;
                     //btnAddInvoice.Enabled = false;
-                    btnAddInvoice.Text = "View Invoice";
-                    btnAddInvoice.Text = "Invoice";
+                    //btnAddInvoice.Text = "View Invoice";
+                    //btnAddInvoice.Text = "Invoice";
                 }
             }
         }
@@ -195,7 +197,7 @@ namespace TricorERP.POS.Order
 
         protected void NewSalesOrder_Click(object sender, EventArgs e)
         {
-             SaveSalesOrder();
+            SaveSalesOrder();
         }
 
         private void SaveSalesOrder()
@@ -205,13 +207,17 @@ namespace TricorERP.POS.Order
             {
                 CreateNewSalesOrder();
             }
-            else if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString()=="Complete")
+            else if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString() == "Complete")
             {
                 //that condition is false....
                 UpdateStock();
-            }else if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString()=="Cancel"){
+            }
+            else if (soModel.ID != Common.NULL_ID && NewSalesOrder.Text == "Save Sales Order" && OrderStatusList.SelectedItem.ToString() == "Cancel")
+            {
                 CancelSaleOrder();
-            }else{
+            }
+            else
+            {
                 UpdateSalesOrder();
             }
         }
@@ -219,7 +225,8 @@ namespace TricorERP.POS.Order
         private void CancelSaleOrder()
         {
             int check = Database.POS.Order.OrderDB.deleteSalesOrder(soModel);
-            if (check > 0) {
+            if (check > 0)
+            {
                 Response.Redirect("~/POS/Order/CancelOrder.aspx");
             }
         }
@@ -227,8 +234,9 @@ namespace TricorERP.POS.Order
         private void UpdateStock()
         {
             soModel.OrderStatus = OrderStatusList.SelectedValue;
-            int updatestockcheck = UpdateStock( soModel );
-            if (updatestockcheck > 0) {
+            int updatestockcheck = UpdateStock(soModel);
+            if (updatestockcheck > 0)
+            {
                 ErroMessage.Text = "Your request is procede...";
                 InitializePageContents();
             }
@@ -266,7 +274,7 @@ namespace TricorERP.POS.Order
             so.OrderStatus = OrderStatusList.SelectedValue;
             return so;
         }
-        
+
         protected void deleteSalesOrderItem_onClick(object sender, EventArgs e)
         {
             String itemID = txtSalesOrderItemID.Text.Trim();
@@ -303,12 +311,14 @@ namespace TricorERP.POS.Order
 
         protected void SalesOrderItemListview_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
-            if (soModel.OrderStatus == Common.OrderComplete) {
+            if (soModel.OrderStatus == Common.OrderComplete)
+            {
                 Control myControl1 = e.Item.FindControl("ItemCommandtd");
                 if (myControl1 != null)
                     myControl1.Visible = false;
             }
-            if (OrderStatusList.SelectedValue != "Complete" && soModel.ID != Common.NULL_ID) {
+            if (OrderStatusList.SelectedValue != "Complete" && soModel.ID != Common.NULL_ID)
+            {
                 //SaleOrderModel stock = (SaleOrderModel)e.Item.DataItem;
                 //if (1 < 1null)
                 //{
@@ -323,12 +333,19 @@ namespace TricorERP.POS.Order
         protected void btnAddInvoice_Click(object sender, EventArgs e)
         {
             InitializeOrderModel();
-            Response.Redirect("~/POS/Invoice/AddInvoice.aspx?ID=" + Request.QueryString["ID"].ToString() + "&CustomerID="+CustomerList.SelectedValue);
+            Response.Redirect("~/POS/Invoice/AddInvoice.aspx?ID=" + Request.QueryString["ID"].ToString() + "&CustomerID=" + CustomerList.SelectedValue);
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/POS/Order/OrderList.aspx");
+        }
+
+        protected void btnviewInvoice_Click(object sender, EventArgs e)
+        {
+            InitializeOrderModel();
+            ErroMessage.Text = soModel.ID;
+            Response.Redirect("~/POS/Invoice/ViewInvoice.aspx?ID="+soModel.ID);
         }
     }
 }

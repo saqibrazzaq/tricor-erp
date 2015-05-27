@@ -239,7 +239,7 @@ namespace Database.POS.Order
         public static int getPendingSalesOrderCount(String pendingsaleorder)
         {
             String sql = @"SELECT COUNT (*) as Pending
-                         FROM [TRICOR].[dbo].[SalesOrder]
+                         FROM [dbo].[SalesOrder]
                          where [SalesOrder].OrderStatus = '"+pendingsaleorder+"'";
             object PendingOrder = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             return int.Parse(PendingOrder.ToString());
@@ -248,7 +248,7 @@ namespace Database.POS.Order
         public static int getProgressSalesOrderCount(String OrderStatus)
         {
             String sql = @"SELECT COUNT (*) as Pending
-                         FROM [TRICOR].[dbo].[SalesOrder]
+                         FROM [dbo].[SalesOrder]
                          where [SalesOrder].OrderStatus = '"+OrderStatus+"'";
             object inprogressOrders = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             return int.Parse(inprogressOrders.ToString());

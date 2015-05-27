@@ -8,8 +8,8 @@ namespace Database
 {
     public class CommonDB
     {
-        public static string OrderComplete = "ac2e4413-8e83-4e5a-b1d9-8c93a0ec0898";
-        public static String NULL_ID = Guid.Empty.ToString();
-        public static string OrderApproved = "6e31117c-a2d6-4331-87d0-bba13d467193";
+        public static string OrderComplete = "6";
+        public static String NULL_ID = "0";
+        public static string OrderApproved = "7";
     }
 }

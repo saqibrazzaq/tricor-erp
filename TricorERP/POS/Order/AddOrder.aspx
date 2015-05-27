@@ -40,7 +40,10 @@
                     <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
                 </div>
                 <div class="col-lg-3">
-                    <asp:Button runat="server" ID="btnAddInvoice" Text="Add Invoice" OnClick="btnAddInvoice_Click" CssClass="btn btn-default" />
+                    <asp:Button runat="server" ID="btnAddInvoice" Text="Add Payment" OnClick="btnAddInvoice_Click" CssClass="btn btn-default" />
+                </div>
+                <div class="col-lg-2">
+                    <asp:Button runat="server" ID="btnviewInvoice" Text="View Invoice" OnClick="btnviewInvoice_Click" CssClass="btn btn-default" />
                 </div>
             </div>
         </div>

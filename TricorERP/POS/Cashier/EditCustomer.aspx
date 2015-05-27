@@ -102,7 +102,7 @@
 
                                     </td>
                                     <td>
-                                        <%# Eval("Location1") %>
+                                        <%# Eval("Location1") %>, <%# Eval("Location2") %>
                                     </td>
                                     <td>
                                         <asp:LinkButton runat="server" CommandName="AddAddress" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>

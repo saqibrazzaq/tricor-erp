@@ -35,13 +35,13 @@
             <br />
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">Location 1:</label>
+                    <label for="InputName">House Number:</label>
                     <div class="input-group">
                         <asp:TextBox ID="Location1Text" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Location"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">Location 2:</label>
+                    <label for="InputName">Street Number:</label>
                     <div class="input-group">
                         <asp:TextBox ID="Location2Text" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Location"></asp:TextBox>
                     </div>

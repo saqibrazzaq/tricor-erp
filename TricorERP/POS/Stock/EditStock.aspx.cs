@@ -121,6 +121,7 @@ namespace TricorERP.POS.Stock
         protected void UploadStock_Click(object sender, EventArgs e)
         {
             //to be continue on that point...
+
         }
     }
 }
