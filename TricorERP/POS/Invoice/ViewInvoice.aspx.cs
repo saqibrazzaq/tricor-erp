@@ -49,12 +49,21 @@ namespace TricorERP.POS.Invoice
             
             // for geting the data of customer
             CustomerModel customerinfo = Database.POS.Customer.CustomerDB.getCustomerInFo(soModel.CustomerID);
-            labcustomernamebil.Text = customerinfo.Name;
-            labcustomernameship.Text = customerinfo.Name;
+            String x = customerinfo.Name;
+
+            labcidship.Text = customerinfo.Name.ToString();
+            labcustomernamebil.Text = customerinfo.Name.ToString();
+            
             labcnicbil.Text = customerinfo.CNIC;
             labcnicship.Text = customerinfo.CNIC;
+            labtotalprice.Text = soModel.TotalPrice.ToString().Trim();
+            laborderid.Text = soModel.ID;
 
+            AddressModel address = Database.Common.AddressDB.getSingleAddress(soModel.CustomerID);
+            labaddressbil.Text = address.Location1 + ", " + address.Location2;
+            labecustomermail.Text = address.Email;
 
+            labaddressship.Text = address.Location1 + ", " + address.Location2;
 
             SalesOrderItemInvoiceView.DataSource = soModel.items;
             SalesOrderItemInvoiceView.DataBind();

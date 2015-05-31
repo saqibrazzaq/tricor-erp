@@ -125,5 +125,27 @@ namespace Database.Common
             }
             return 0;
         }
+
+        public static AddressModel getSingleAddress(string id)
+        {
+            String sql = @"select Address.City City, Address.Id ID, Address.Location1 Location1, Address.Location2 Location2, 
+                            Address.PhoneNo Phoneno, Address.Email Email
+                          from Customer
+                          join CustomerAddress on Customer.Id = CustomerAddress.Customer_ID
+                          join Address on CustomerAddress.Address_ID=Address.id
+                          where Customer.Id= '" + id + "'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            AddressModel address = new AddressModel();
+            if (reader.Read())
+            {
+                address.ID = reader["Id"].ToString();
+                address.City = reader["City"].ToString();
+                address.Location1 = reader["Location1"].ToString();
+                address.Phonenumber = reader["PhoneNo"].ToString();
+                address.Email = reader["Email"].ToString();
+                address.Location2 = reader["Location2"].ToString();
+            }
+            return address;
+        }
     }
 }

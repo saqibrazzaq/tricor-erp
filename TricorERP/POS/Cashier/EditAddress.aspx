@@ -35,21 +35,6 @@
             <br />
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">House Number:</label>
-                    <div class="input-group">
-                        <asp:TextBox ID="Location1Text" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Location"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <label for="InputName">Street Number:</label>
-                    <div class="input-group">
-                        <asp:TextBox ID="Location2Text" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Location"></asp:TextBox>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row container-fluid">
-                <div class="col-lg-4">
                     <label for="InputName">Phone Number :</label>
                     <div class="input-group">
                         <asp:TextBox ID="PhoneNumberText" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Phone Number"></asp:TextBox>
@@ -57,8 +42,25 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="InputName">Email :</label>
-                    <div class="input-group">
+                    &nbsp;<div class="input-group">
                         <asp:TextBox CssClass="form-control" ID="email" Font-Names="InputName" placeholder="Enter email" runat="server" TextMode="Email"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row container-fluid">
+                <div class="col-lg-4">
+
+
+                    <label for="InputName">Address:</label>
+                    <div class="input-group">
+                        <asp:TextBox ID="Location1Text" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="House Number, Street Number, Area" TextMode="MultiLine"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="hidden col-lg-4">
+                    <label for="InputName">Street Number:</label>
+                    <div class="input-group">
+                        <asp:TextBox ID="Location2Text" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Location"></asp:TextBox>
                     </div>
                 </div>
             </div>

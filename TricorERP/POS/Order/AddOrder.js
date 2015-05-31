@@ -8,7 +8,7 @@ $(document).ready(function () {
     $(".ItemRowDelete").click(function () {
         ItemRowDelete_onClick($(this));
     });
-    
+
     $(".confirm").confirm({
 
         text: "Are you sure you want to delete?",
@@ -33,15 +33,19 @@ function ItemRow_onClick(arg) {
     // Get the order item details from table
     var row = arg.closest("tr");    // Find the row
     var itemID = row.find(".ItemCol_ItemID").text();
+    var proID = row.find(".prodid").text().trim();
     var productName = row.find(".ItemCol_ProductName").text();
     var quantity = row.find(".ItemCol_Quantity").text().trim();
     var price = row.find(".ItemCol_Price").text().trim();
 
     $("#SalesOrderLabel").text("Update Items (" + productName + ")");
     $(".txtQuantity").val(quantity);
+
     $(".txtPrice").val(price);
     $(".txtSalesOrderItemID").val(itemID);
+    $(".txtSalesProductID").val(proID);
     $(".txtProductName").val(productName);
+
 }
 
 function initializeItemModalDialog() {
@@ -54,6 +58,7 @@ function ItemRowDelete_onClick(arg) {
     // Get the order item details from table
     var row = arg.closest("tr");    // Find the row
     var itemID = row.find(".ItemCol_ItemID").text();
+    var proID = row.find("Item_ProductID").text();
+    $(".txtSalesProductID").val(proID);
     $(".txtSalesOrderItemID").val(itemID);
 }
-

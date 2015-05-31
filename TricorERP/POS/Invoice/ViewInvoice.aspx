@@ -18,39 +18,40 @@
             <div class="col-xs-12">
                 <div class="invoice-title">
                     <h2>Invoice</h2>
-                    <h3 class="pull-right">Order # <asp:label runat="server" ID="laborderid" Text=""></asp:label></h3>
+                    <h3 class="pull-right">Order #
+                        <asp:Label runat="server" ID="laborderid" Text=""></asp:Label></h3>
                 </div>
-                <hr>
+                <hr><br />
                 <div class="row">
                     <div class="col-xs-6">
                         <address>
                             <strong>Billed To:</strong><br>
-                            <asp:label runat="server" ID="labcustomernamebil" Text=""></asp:label><br>
-                            <asp:label runat="server" ID="labcnicbil" Text=""></asp:label>
-                            <asp:label runat="server" ID="labaddressbil" Text=""></asp:label>
+                            <asp:Label runat="server" ID="labcustomernamebil" Text=""></asp:Label><br>
+                            <asp:Label runat="server" ID="labcnicbil" Text=""></asp:Label><br />
+                            <asp:Label runat="server" ID="labaddressbil" Text=""></asp:Label>
                         </address>
                     </div>
                     <div class="col-xs-6 text-right">
                         <address>
                             <strong>Shipped To:</strong><br>
-                            <asp:label runat="server" ID="labcustomernameship" Text=""></asp:label><br>
-                            <asp:label runat="server" ID="labcnicship" Text=""></asp:label>
-                            <asp:label runat="server" ID="labaddressship" Text=""></asp:label>
+                            <asp:Label runat="server" ID="labcidship" Text=""></asp:Label><br />
+                            <asp:Label runat="server" ID="labcnicship" Text=""></asp:Label><br />
+                            <asp:Label runat="server" ID="labaddressship" Text=""></asp:Label>
                         </address>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
                         <address>
-                            <strong>Payment Method:</strong><br>
-                            <asp:label runat="server" ID="labpaymentmathord" Text=""></asp:label><br>
-                            <asp:label runat="server" ID="labecustomermail" Text=""></asp:label>
+                          <%--  <strong>Payment Method:</strong><br>
+                            <asp:Label runat="server" ID="labpaymentmathord" Text=""></asp:Label><br>
+                         --%>   <asp:Label runat="server" ID="labecustomermail" Text=""></asp:Label>
                         </address>
                     </div>
                     <div class="col-xs-6 text-right">
                         <address>
                             <strong>Order Date:</strong><br>
-                            <asp:label runat="server" ID="laborderdate" Text=""></asp:label><br>
+                            <asp:Label runat="server" ID="laborderdate" Text=""></asp:Label><br>
                             <br>
                         </address>
                     </div>
@@ -70,31 +71,42 @@
                                 <LayoutTemplate>
                                     <table class="table table-condensed">
                                         <tr class="">
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th>Unit Price</th>
-                                            <th>Per Unit Total Price</th>
+
+
+                                            <td><strong>Product Name</strong></td>
+                                            <td class="text-center"><strong>Quantity</strong></td>
+                                            <td class="text-center"><strong>Unit Price</strong></td>
+                                            <td class="text-right"><strong>Per Unit Total Price</strong></td>
+
                                         </tr>
                                         <tr runat="server" id="itemPlaceholder"></tr>
                                     </table>
                                 </LayoutTemplate>
                                 <ItemTemplate>
                                     <tr class="ItemRow" id="ItemRow" runat="server">
-                                        <td class="ItemCol_ProductName">
+                                        <td>
                                             <%# Eval("ProductName") %>
                                         </td>
-                                        <td class="ItemCol_Quantity">
+                                        <td class="text-center">
                                             <%# Eval("Quantity") %>
                                         </td>
-                                        <td class="ItemCol_Price">
+                                        <td class="text-center">
                                             <%# Eval("Price") %>
                                         </td>
-                                        <td>
+                                        <td class="text-right">
                                             <%#Eval("PerUnitTotalPrice") %>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:ListView>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"><strong>Total : </strong><asp:Label runat="server" ID="labtotalprice" Text=""></asp:Label></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

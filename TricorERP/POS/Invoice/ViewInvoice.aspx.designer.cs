@@ -49,13 +49,13 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.Label labaddressbil;
         
         /// <summary>
-        /// labcustomernameship control.
+        /// labcidship control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labcustomernameship;
+        protected global::System.Web.UI.WebControls.Label labcidship;
         
         /// <summary>
         /// labcnicship control.
@@ -110,5 +110,14 @@ namespace TricorERP.POS.Invoice {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView SalesOrderItemInvoiceView;
+        
+        /// <summary>
+        /// labtotalprice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labtotalprice;
     }
 }

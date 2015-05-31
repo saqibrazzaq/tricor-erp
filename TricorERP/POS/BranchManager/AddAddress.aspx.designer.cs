@@ -40,24 +40,6 @@ namespace TricorERP.POS.BranchManager {
         protected global::System.Web.UI.WebControls.TextBox CityNameText;
         
         /// <summary>
-        /// Location1Text control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Location1Text;
-        
-        /// <summary>
-        /// Location2Text control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Location2Text;
-        
-        /// <summary>
         /// PhoneNumberText control.
         /// </summary>
         /// <remarks>
@@ -74,6 +56,24 @@ namespace TricorERP.POS.BranchManager {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox email;
+        
+        /// <summary>
+        /// Location1Text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Location1Text;
+        
+        /// <summary>
+        /// Location2Text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Location2Text;
         
         /// <summary>
         /// Savebtn control.

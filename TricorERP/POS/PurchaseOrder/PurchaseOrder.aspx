@@ -25,6 +25,15 @@
                     </div>
                 </div>
             </div>
+            <div class="row container-fluid">
+                <div class="col-lg-4">
+                    <label for="InputName">Order Status :</label>
+                    <div class="input-group">
+                        <asp:DropDownList ID="dropdownorderstatus" CssClass="form-control" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+                
+            </div>
             <br />
             <div class="row container-fluid">
                 <div class="col-lg-5">

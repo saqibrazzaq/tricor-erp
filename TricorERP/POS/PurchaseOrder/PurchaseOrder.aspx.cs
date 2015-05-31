@@ -11,6 +11,7 @@ namespace TricorERP.POS.PurchaseOrder
     public partial class PurchaseOrder : System.Web.UI.Page
     {
         Models.Common.PurchaseOrderModel purchaseOrder = new Models.Common.PurchaseOrderModel() { ID = Common.NULL_ID };
+        //Models.POS.Order.OrderStatusModel ordersttus = new Models.POS.Order.OrderStatusModel();
         protected void Page_Load(object sender, EventArgs e)
         {
             InitializeOrderModel();
@@ -34,7 +35,6 @@ namespace TricorERP.POS.PurchaseOrder
                     purchaseOrder = GetPurchaseOrderInFon();
                     DateTextBoox.Text = purchaseOrder.OrderDate;
                     WaherHouseDropDownList.SelectedValue = purchaseOrder.WHID;
-
                     SavePurchaseOrderbtn.Text = "Update";
                 }
                 else
@@ -188,7 +188,7 @@ namespace TricorERP.POS.PurchaseOrder
             }
             else 
             {
-                ErrorMessage.Text = "Due to Some Issue Data is Updated...";
+                ErrorMessage.Text = "Due to Some Issue Data is not Updated...";
             }
             
         }

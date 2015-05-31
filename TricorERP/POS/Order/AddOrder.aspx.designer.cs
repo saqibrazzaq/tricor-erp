@@ -148,6 +148,15 @@ namespace TricorERP.POS.Order {
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
         
         /// <summary>
+        /// txtSalesProductID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSalesProductID;
+        
+        /// <summary>
         /// WaherHouseDropDownList control.
         /// </summary>
         /// <remarks>

@@ -138,7 +138,7 @@ namespace Database.POS
          * and decrese and increse the stock according to the requirement...*/
         public static int updateStockItems(Models.POS.Order.SaleOrderModel soModel)
         {
-            if (soModel.OrderStatus == Database.CommonDB.OrderComplete)
+            if (soModel.OrderStatus == Database.CommonDB.OrderApproved)
             {
                 int updateorderstatus = Database.POS.Order.OrderDB.updateOrderStatus(soModel);
                 if (updateorderstatus > 0)
@@ -191,5 +191,20 @@ namespace Database.POS
             }
             return threstholdvalue;
         }
+
+        public static Models.POS.Stock.POSStockModel getStockItems(String ProductID, String WHID) {
+
+            Models.POS.Stock.POSStockModel stockModel = new Models.POS.Stock.POSStockModel();
+            String sql = @"SELECT [Stock].* FROM [Stock] WHERE [Stock].PID = '"+ProductID+"' AND [Stock].WHID = '"+WHID+"'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            if (reader.Read())
+            {
+                stockModel.ID = reader["ID"].ToString();
+                stockModel.WHID = reader["WHID"].ToString();
+                stockModel.ProductID = reader["PID"].ToString();
+                stockModel.Quantity = int.Parse(reader["Quantity"].ToString());
+            }
+            return stockModel;
+        } 
     }
 }

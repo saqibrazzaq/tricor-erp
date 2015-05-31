@@ -6,15 +6,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2 class="h2"><asp:Label runat="server" ID="HeadingOfCuatomer" Text=""></asp:Label></h2>
+            <h2 class="h2">
+                <asp:Label runat="server" ID="HeadingOfCuatomer" Text=""></asp:Label></h2>
             <%-- to be continue... --%>
         </div>
         <div class="panel-body">
             <div class="row container-fluid">
                 <div class="col-lg-3">
-                    <label for="InputName">Full Name :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter customer full name" ControlToValidate="CustomerNameText" ForeColor="Red">*</asp:RequiredFieldValidator><asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="CustomerNameText"
-                                    ErrorMessage="Only letters are allowed in name" ForeColor="Red"
-                                    ValidationExpression="^[a-zA-Z\s]+$">*</asp:RegularExpressionValidator>
+                    <label for="InputName">Full Name :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter customer full name" ControlToValidate="CustomerNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="CustomerNameText"
+                        ErrorMessage="Only letters are allowed in name" ForeColor="Red"
+                        ValidationExpression="^[a-zA-Z\s]+$">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CustomerNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
@@ -33,7 +35,8 @@
 
             <div class="row container-fluid">
                 <div class="col-lg-3">
-                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter customer CNIC" ControlToValidate="CNICText" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter customer CNIC" ControlToValidate="CNICText" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Correct CNIC Number" ControlToValidate="CNICText" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CNICText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
@@ -66,8 +69,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="true" OnCheckedChanged="chkSelect_CheckedChanged" /><span style="color: red;">&nbsp;
-                                                                                                                 I agree with <a href="#" >terms and conditions.</a>       
-                                                                                                          </span>
+                                                                                                                 I agree with <a href="#">terms and conditions.</a>
+                    </span>
                 </div>
             </div>
             <div class="row container-fluid">
@@ -136,6 +139,6 @@
             </div>
         </div>
     </div>
-    
+
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
 </asp:Content>

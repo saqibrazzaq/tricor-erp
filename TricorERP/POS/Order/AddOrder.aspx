@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="AddOrder.js"></script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -10,7 +9,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row container-fluid">
-                <div class="col-lg-2" >
+                <div class="col-lg-2">
                     <label for="InputName">Customer :</label>
                     <asp:DropDownList CssClass="form-control" ID="CustomerList" runat="server"></asp:DropDownList>
                 </div>
@@ -28,7 +27,7 @@
                         </li>
                     </ul>
                 </div>
-                   
+
             </div>
             <br />
             <br />
@@ -39,7 +38,7 @@
                 <div class="col-lg-2">
                     <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <asp:Button runat="server" ID="btnAddInvoice" Text="Add Payment" OnClick="btnAddInvoice_Click" CssClass="btn btn-default" />
                 </div>
                 <div class="col-lg-2">
@@ -56,6 +55,7 @@
                             <th class="hidden">ID</th>
                             <th class="hidden">Sales Order ID</th>
                             <th class="hidden">WareHouseID</th>
+                            <th class="hidden">ProductID</th>
                             <th>Product Name</th>
                             <%--<th>WareHouseName</th>--%>
                             <th>Quantity</th>
@@ -71,17 +71,19 @@
                         <td class="hidden ItemCol_ItemID">
                             <%# Eval("ID") %>
                         </td>
+
+                        <td class="hidden prodid">
+                            <%#Eval("ProductID") %>
+                        </td>
+
                         <td class="hidden">
                             <%# Eval("OrderID") %>
                         </td>
                         <td class="hidden">
                             <%#Eval("WareHouseID") %>
                         </td>
-
-                        <%-- <td>
-                                <%#Eval("WareHouseName") %>
-                            </td>--%>
-
+                        
+                        
                         <td class="ItemCol_ProductName">
                             <%# Eval("ProductName") %>
                         </td>
@@ -128,7 +130,9 @@
                     </li>
                 </ul>
             </div>
-            <br /><br /><br />
+            <br />
+            <br />
+            <br />
         </div>
 
 
@@ -149,11 +153,13 @@
                                 <asp:TextBox CssClass="form-control txtQuantity" runat="server" ID="txtQuantity" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtSalesOrderItemID" runat="server" ID="txtSalesOrderItemID" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtProductName" runat="server" ID="txtProductName" Text=""></asp:TextBox>
+                                <asp:TextBox CssClass="hidden txtSalesProductID" runat="server" ID="txtSalesProductID" Text=""></asp:TextBox>
+                                
                             </div>
-                            <div class="col-lg-3">
+                            <div class="hidden col-lg-3">
                                 <label class="InputName">WaherHouse :</label>
                             </div>
-                            <div class="input-group col-lg-3" > 
+                            <div class="input-group col-lg-3">
 
                                 <asp:DropDownList CssClass="form-control" ID="WaherHouseDropDownList" runat="server">
                                 </asp:DropDownList>

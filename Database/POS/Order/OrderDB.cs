@@ -74,13 +74,22 @@ namespace Database.POS.Order
         // that function can update the data when user want to update it
         public static int updateSalesItem(SaleOrderItemModel updatesaleproduct)
         {
-            String sql = @"UPDATE [dbo].[SalesOrderItem] SET [TotalQuantity] = '" + updatesaleproduct.Quantity
-                         + "' ,[Price] = '" + updatesaleproduct.Price + "',[WareHouseID] = '" + updatesaleproduct.WareHouseID + @"' 
-                         WHERE [SalesOrderItem].ID = '" + updatesaleproduct.ID + "'";
-            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
-            if (check == 1)
+            Models.POS.Stock.POSStockModel StockChecking = Database.POS.StockDB.getStockItems(updatesaleproduct.ProductID, updatesaleproduct.WareHouseID);
+            int Itemquantity = getProductQuantityInSalesOrder(updatesaleproduct);
+
+            int orignelquantity = Itemquantity + StockChecking.Quantity;
+            int quantitycheck = Itemquantity + updatesaleproduct.Quantity;
+
+            if (orignelquantity >= quantitycheck)
             {
-                return 1;
+                String sql = @"UPDATE [dbo].[SalesOrderItem] SET [TotalQuantity] = '" + updatesaleproduct.Quantity
+                             + "' ,[Price] = '" + updatesaleproduct.Price + "',[WareHouseID] = '" + updatesaleproduct.WareHouseID + @"' 
+                         WHERE [SalesOrderItem].ID = '" + updatesaleproduct.ID + "'";
+                int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+                if (check == 1)
+                {
+                    return 1;
+                }
             }
             return 0;
         }
@@ -182,26 +191,110 @@ namespace Database.POS.Order
             soModel.TotalPrice = totalprice;
             return soModel;
         }
-        public static SaleOrderItemModel setSaleOrderItems(SaleOrderItemModel soItemModel)
-        {
-            string sqlPrice = "SELECT SalePrice FROM Product WHERE ID = '" + soItemModel.ProductID + "'";
-            using (SqlDataReader readerPrice = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlPrice, null))
+
+        public static int getProductQuantityInSalesOrder(SaleOrderItemModel soItemModel) {
+            int Itemquantity = 0;
+            String checksalesorderitem = @"SELECT SUM([SalesOrderItem].TotalQuantity) AS TotalQuantity
+		                                from [SalesOrderItem]
+		                                JOIN [SalesOrder] ON [SalesOrder].ID = [SalesOrderItem].OrderID
+		                                where [SalesOrderItem].ProductID = '" + soItemModel.ProductID +
+                                        @"' AND [SalesOrder].OrderStatus != '" + CommonDB.OrderApproved + @"'
+		                                GROUP BY [SalesOrderItem].ProductID";
+
+            using (SqlDataReader readerQuantity = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, checksalesorderitem, null))
             {
-                if (readerPrice.Read())
+                if (readerQuantity.Read())
                 {
-                    soItemModel.Price = float.Parse(readerPrice["SalePrice"].ToString());
+                    Itemquantity = int.Parse(readerQuantity["TotalQuantity"].ToString());
                 }
             }
-            String sqlInsert = @"INSERT INTO [dbo].[SalesOrderItem]
+            return Itemquantity;
+        }
+
+        public static int getProductQuantityCheckInStock(SaleOrderItemModel soItemModel)
+        {
+            int Itemquantity = getProductQuantityInSalesOrder(soItemModel);
+            Models.POS.Stock.POSStockModel StockChecking = Database.POS.StockDB.getStockItems(soItemModel.ProductID, soItemModel.WareHouseID);
+
+            int orignelquantity = Itemquantity + StockChecking.Quantity;
+            int quantitycheck = Itemquantity + soItemModel.Quantity;
+
+            //if (StockChecking.Quantity >= Itemquantity)
+            //    orignelquantity = StockChecking.Quantity - Itemquantity;
+            //else if(StockChecking.Quantity > 0)
+            //    orignelquantity = Itemquantity - StockChecking.Quantity;
+
+            if (orignelquantity >= quantitycheck)
+                return StockChecking.Quantity;
+            else
+                return 0;
+        }
+
+        public static SaleOrderItemModel setSaleOrderItems(SaleOrderItemModel soItemModel)
+        {
+            int quantity = getProductQuantityCheckInStock(soItemModel);
+            if (quantity > soItemModel.Quantity)
+            {
+
+                string sqlPrice = "SELECT SalePrice FROM Product WHERE ID = '" + soItemModel.ProductID + "'";
+                using (SqlDataReader readerPrice = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlPrice, null))
+                {
+                    if (readerPrice.Read())
+                    {
+                        soItemModel.Price = float.Parse(readerPrice["SalePrice"].ToString());
+                    }
+                }
+
+
+                // to be continue on that point...
+                // think about the check if product is already exist in the table then update it...
+                SaleOrderItemModel checkitem = checkOrderItem(soItemModel);
+
+                if (checkitem.ProductID == soItemModel.ProductID)
+                {
+                   // checkitem.Quantity = checkitem.Quantity + soItemModel.Quantity;
+                    updateSalesItem(checkitem);
+                }
+                else
+                {
+
+                    String sqlInsert = @"INSERT INTO [dbo].[SalesOrderItem]
                         ([OrderID] ,[ProductID] ,[TotalQuantity]
                         ,[Price] ,[ManufacturedQuantity] ,[ProductStatus] ,[WareHouseID])
                         OUTPUT INSERTED.ID
                         VALUES('" + soItemModel.OrderID + "','" + soItemModel.ProductID + "','" + soItemModel.Quantity
-                                + "','" + soItemModel.Price + "','" + soItemModel.ManufacturedQuantity + "','" + soItemModel.ProductStatus
-                                + "','" + soItemModel.WareHouseID + "')";
-            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
-            soItemModel.ID = id.ToString();
+                                        + "','" + soItemModel.Price + "','" + soItemModel.ManufacturedQuantity + "','" + soItemModel.ProductStatus
+                                        + "','" + soItemModel.WareHouseID + "')";
+                    object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
+                    soItemModel.ID = id.ToString();
+                    return soItemModel;
+                }
+            }
+            soItemModel.Quantity = quantity;
             return soItemModel;
+        }
+
+        private static SaleOrderItemModel checkOrderItem(SaleOrderItemModel soModel)
+        {
+            String sql = @"SELECT [SalesOrderItem].*
+                            FROM [SalesOrderItem]
+                            WHERE [SalesOrderItem].ProductID = '"+soModel.ProductID+"'  AND [SalesOrderItem].OrderID = '"+soModel.OrderID+"'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            SaleOrderItemModel saleorderitem = new SaleOrderItemModel();
+            if (reader.Read())
+            {
+                saleorderitem.ID = reader["ID"].ToString();
+                saleorderitem.OrderID = reader["OrderID"].ToString();
+                saleorderitem.ProductID = reader["ProductID"].ToString();
+                saleorderitem.Quantity = int.Parse(reader["TotalQuantity"].ToString())+soModel.Quantity;
+                saleorderitem.Price = float.Parse(reader["Price"].ToString());
+                saleorderitem.ManufacturedQuantity = int.Parse(reader["ManufacturedQuantity"].ToString());
+                saleorderitem.ProductStatus = reader["ProductStatus"].ToString();
+                saleorderitem.WareHouseID = reader["WareHouseID"].ToString();
+
+                saleorderitem.PerUnitTotalPrice = saleorderitem.Quantity * saleorderitem.Price;
+            }
+            return saleorderitem;
         }
 
         public static int updateOrderStatus(SaleOrderModel soModel)
@@ -264,7 +357,7 @@ namespace Database.POS.Order
             {
                 orderstatus = reader["OrderStatus"].ToString();
             }
-            if(orderstatus == Database.CommonDB.OrderComplete)
+            if(orderstatus == Database.CommonDB.OrderApproved)
                 return 1;
             return 0;
         }

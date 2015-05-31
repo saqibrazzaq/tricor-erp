@@ -44,12 +44,12 @@
                  </div>
             </div>
 
-            <div class="row container-fluid">
+            <div class="hidden row container-fluid">
                 <div class="col-lg-12">
                     <h3 class="h3">Data Entering Using csv File</h3>
                 </div>
             </div>
-            <div class="row container-fluid">
+            <div class="hidden row container-fluid">
                 <div class="col-lg-12">
                     <div>
                         <asp:FileUpload ID="CsvFileUpload" runat="server" CssClass="" /><br />
