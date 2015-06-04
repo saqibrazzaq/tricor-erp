@@ -216,15 +216,18 @@ namespace Database.POS.Order
             int Itemquantity = getProductQuantityInSalesOrder(soItemModel);
             Models.POS.Stock.POSStockModel StockChecking = Database.POS.StockDB.getStockItems(soItemModel.ProductID, soItemModel.WareHouseID);
 
-            int orignelquantity = Itemquantity + StockChecking.Quantity;
-            int quantitycheck = Itemquantity + soItemModel.Quantity;
+            //int orignelquantity = Itemquantity + StockChecking.Quantity;
+            //int quantitycheck = Itemquantity + soItemModel.Quantity;
+
+            int quantity = StockChecking.Quantity - Itemquantity;
 
             //if (StockChecking.Quantity >= Itemquantity)
             //    orignelquantity = StockChecking.Quantity - Itemquantity;
             //else if(StockChecking.Quantity > 0)
             //    orignelquantity = Itemquantity - StockChecking.Quantity;
 
-            if (orignelquantity >= quantitycheck)
+            //if (orignelquantity >= quantitycheck)
+            if( quantity > 0 )
                 return StockChecking.Quantity;
             else
                 return 0;
@@ -245,19 +248,15 @@ namespace Database.POS.Order
                     }
                 }
 
-
-                // to be continue on that point...
-                // think about the check if product is already exist in the table then update it...
+                // if product is already exist in the SaleOrderItem Table then update that table accordingly...
                 SaleOrderItemModel checkitem = checkOrderItem(soItemModel);
-
                 if (checkitem.ProductID == soItemModel.ProductID)
                 {
-                   // checkitem.Quantity = checkitem.Quantity + soItemModel.Quantity;
+                    // checkitem.Quantity = checkitem.Quantity + soItemModel.Quantity;
                     updateSalesItem(checkitem);
                 }
                 else
                 {
-
                     String sqlInsert = @"INSERT INTO [dbo].[SalesOrderItem]
                         ([OrderID] ,[ProductID] ,[TotalQuantity]
                         ,[Price] ,[ManufacturedQuantity] ,[ProductStatus] ,[WareHouseID])
@@ -269,6 +268,10 @@ namespace Database.POS.Order
                     soItemModel.ID = id.ToString();
                     return soItemModel;
                 }
+            }
+            else 
+            {
+                soItemModel.QuantityCheck = -1;
             }
             soItemModel.Quantity = quantity;
             return soItemModel;
@@ -365,25 +368,45 @@ namespace Database.POS.Order
         
         public static int deleteSalesOrder(SaleOrderModel soModel)
         {
-//            foreach (Models.POS.Order.SaleOrderItemModel soItem in soModel.items)
-//            {
-//                String sqlupdatestock = @"UPDATE [dbo].[Stock]
-//                                           SET [Quantity] = [Quantity] + " + soItem.Quantity
-//                                   + " WHERE [Stock].PID = '" + soItem.ProductID + "' and [Stock].WHID = '"
-//                                   + soItem.WareHouseID + "'";
-//                DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
-//            }
-
             String sql = @"DELETE FROM [dbo].[SalesOrder]
                          WHERE [SalesOrder].ID = '" + soModel.ID + "'";// AND [SalesOrder].OrderStatus = '"+orderstatus+"'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            Boolean temp = false;
             if (check > 0)
             {
-                return 1;
+                List<SaleOrderItemModel> items = getAllSalesItemS(soModel.ID);
+                foreach (SaleOrderItemModel model in items) {
+                    String sqlupdatestock = @"DELETE FROM [dbo].[SalesOrderItem]
+                                            WHERE [SalesOrderItem].OrderID = '" + model.OrderID + "'";
+                    check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
+                    if (check > 0)
+                    {
+                        temp = true;
+                    }
+                }
+                if(temp)
+                    return 1;
             }
             return 0;
         }
 
+        public static List<SaleOrderItemModel> getAllSalesItemS(String orderID) {
+
+            List<SaleOrderItemModel> items = new List<SaleOrderItemModel>();
+            String sql = @"SELECT [SalesOrderItem].*
+                            FROM [SalesOrderItem]
+                            WHERE [SalesOrderItem].OrderID = '" + orderID + "'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                SaleOrderItemModel item = new SaleOrderItemModel();
+                item.ID = reader["ID"].ToString();
+                item.OrderID = reader["OrderID"].ToString();
+                
+                items.Add(item);
+            }
+            return items;
+        }
 
         // that function can return the list of warehouse list for viewing on the panal
         public static List<Models.POS.WareHouseModel> getWareHouseList()
@@ -402,7 +425,6 @@ namespace Database.POS.Order
             }
             return WHlists;
         }
-
 
     }
 }

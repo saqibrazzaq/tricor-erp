@@ -11,6 +11,10 @@
  * @license MIT
  * @url http://myclabs.github.io/jquery.confirm/
  */
+
+function deleteConfirmation() {
+    return confirm("Are you sure you want to delete this item?");
+}
 (function ($) {
 
     /**
@@ -80,7 +84,7 @@
             },
             cancel: function (o) {
             },
-            button: 0
+            button: null
         }, dataOptions, options);
 
         // Modal

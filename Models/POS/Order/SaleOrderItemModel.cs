@@ -26,5 +26,7 @@ namespace Models.POS.Order
 
         public float PerUnitTotalPrice { get; set; }
 
+
+        public int QuantityCheck { get; set; }
     }
 }

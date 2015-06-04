@@ -28,7 +28,9 @@
             </div>
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter user CNIC" ControlToValidate="CNIC" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <label for="InputName">CNIC :</label>&nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter user CNIC" ControlToValidate="CNIC" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="CNIC number is not correct" ControlToValidate="CNIC" ForeColor="Red" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$"></asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CNIC" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>

@@ -37,7 +37,18 @@ namespace Database.POS.Customer
         public static CustomerModel getCustomerInFo(String ID)
         {
             CustomerModel customer = new CustomerModel();
-            String sql = @"SELECT [Id] ID ,[Name] Name ,[CNIC] CNIC ,[Gender] Gender ,[Type] Type FROM [dbo].[Customer] where Id = '" + ID + "'";
+            String sql;
+            int value;
+            if (int.TryParse(ID, out value))
+            {
+                 sql = @"SELECT [Id] ID ,[Name] Name ,[CNIC] CNIC ,[Gender] Gender ,[Type] Type FROM [dbo].[Customer] where Id = '" + ID + "'";
+            }
+            else 
+            {
+                 sql = @"SELECT [Id] ID ,[Name] Name ,[CNIC] CNIC ,[Gender] Gender ,[Type] Type FROM [dbo].[Customer] where [CNIC]='" + ID + "'";
+            }
+
+            
             //String sql = @"select Customer.Name Name, Customer.CNIC CNIC, Customer.Gender Gender from Customer where Customer.Id='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
@@ -77,20 +88,20 @@ namespace Database.POS.Customer
         }
 
         // get all data of customer and return a list of customer. 
-        public static List<CustomerModel> getallCustomer()
-        {
-            List<CustomerModel> customers = new List<CustomerModel>();
-            String sql = @"SELECT * FROM Customer";
-            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-            while (reader.Read())
-            {
-                CustomerModel customer = new CustomerModel();
-                customer.ID = reader["ID"].ToString();
-                customer.Name = reader["Name"].ToString();
-                customers.Add(customer);
-            }
-            return customers;
-        }
+        //public static List<CustomerModel> getallCustomer()
+        //{
+        //    List<CustomerModel> customers = new List<CustomerModel>();
+        //    String sql = @"SELECT * FROM Customer";
+        //    SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+        //    while (reader.Read())
+        //    {
+        //        CustomerModel customer = new CustomerModel();
+        //        customer.ID = reader["ID"].ToString();
+        //        customer.Name = reader["Name"].ToString();
+        //        customers.Add(customer);
+        //    }
+        //    return customers;
+        //}
 
         // add new address in Customer Address and return an integer value for it
         public static int addAddress(string customerID, String CustomerAddressID)

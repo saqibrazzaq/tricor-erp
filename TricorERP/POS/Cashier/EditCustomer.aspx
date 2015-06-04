@@ -13,7 +13,8 @@
         <div class="panel-body">
             <div class="row container-fluid">
                 <div class="col-lg-3">
-                    <label for="InputName">Full Name :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter customer full name" ControlToValidate="CustomerNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <label for="InputName">Full Name :</label>&nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter customer full name" ControlToValidate="CustomerNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="CustomerNameText"
                         ErrorMessage="Only letters are allowed in name" ForeColor="Red"
                         ValidationExpression="^[a-zA-Z\s]+$">*</asp:RegularExpressionValidator>

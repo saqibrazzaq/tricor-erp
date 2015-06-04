@@ -8,6 +8,35 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
+            <%--<div class="row container-fluid">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <asp:TextBox ID="txtSearchCNIC" CssClass="form-control" placeholder="12345-1234-123-1" runat="server"></asp:TextBox>
+                        <span class="input-group-btn">
+                            <asp:Button ID="btnSearchCustomer" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchByCNIC_Click" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSearchCNIC" ErrorMessage="Enter CNIC Number" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-lg-12">
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="CNIC is not correct" ControlToValidate="txtSearchCNIC" ForeColor="Red" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$"></asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <asp:TextBox ID="check" ReadOnly="true" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            --%>    
+            <br />
+           
             <div class="row container-fluid">
                 <div class="col-lg-2">
                     <label for="InputName">Customer :</label>
@@ -36,13 +65,13 @@
                     <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
                 </div>
                 <div class="col-lg-2">
-                    <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
+                    <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" CausesValidation="False" />
                 </div>
                 <div class="col-lg-2">
-                    <asp:Button runat="server" ID="btnAddInvoice" Text="Add Payment" OnClick="btnAddInvoice_Click" CssClass="btn btn-default" />
+                    <asp:Button runat="server" ID="btnAddInvoice" Text="Add Payment" OnClick="btnAddInvoice_Click" CssClass="btn btn-default" CausesValidation="False" />
                 </div>
                 <div class="col-lg-2">
-                    <asp:Button runat="server" ID="btnviewInvoice" Text="View Invoice" OnClick="btnviewInvoice_Click" CssClass="btn btn-default" />
+                    <asp:Button runat="server" ID="btnviewInvoice" Text="View Invoice" OnClick="btnviewInvoice_Click" CssClass="btn btn-default" CausesValidation="False" />
                 </div>
             </div>
         </div>
@@ -82,8 +111,8 @@
                         <td class="hidden">
                             <%#Eval("WareHouseID") %>
                         </td>
-                        
-                        
+
+
                         <td class="ItemCol_ProductName">
                             <%# Eval("ProductName") %>
                         </td>
@@ -154,7 +183,7 @@
                                 <asp:TextBox CssClass="hidden txtSalesOrderItemID" runat="server" ID="txtSalesOrderItemID" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtProductName" runat="server" ID="txtProductName" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtSalesProductID" runat="server" ID="txtSalesProductID" Text=""></asp:TextBox>
-                                
+
                             </div>
                             <div class="hidden col-lg-3">
                                 <label class="InputName">WaherHouse :</label>
@@ -183,4 +212,5 @@
             </div>
         </div>
     </div>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
 </asp:Content>

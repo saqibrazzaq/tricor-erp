@@ -206,11 +206,11 @@ if (typeof jQuery === 'undefined') {
 
     state = state + 'Text'
 
-    if (data.resetText == 0) $el.data('resetText', $el[val]())
+    if (data.resetText == null) $el.data('resetText', $el[val]())
 
     // push to event loop to allow forms to submit
     setTimeout($.proxy(function () {
-      $el[val](data[state] == 0 ? this.options[state] : data[state])
+      $el[val](data[state] == null ? this.options[state] : data[state])
 
       if (state == 'loadingText') {
         this.isLoading = true
@@ -311,7 +311,7 @@ if (typeof jQuery === 'undefined') {
     this.sliding     =
     this.interval    =
     this.$active     =
-    this.$items      = 0
+    this.$items      = null
 
     this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
 
@@ -545,7 +545,7 @@ if (typeof jQuery === 'undefined') {
     this.$element      = $(element)
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
     this.$trigger      = $(this.options.trigger).filter('[href="#' + element.id + '"], [data-target="#' + element.id + '"]')
-    this.transitioning = 0
+    this.transitioning = null
 
     if (this.options.parent) {
       this.$parent = this.getParent()
@@ -587,7 +587,7 @@ if (typeof jQuery === 'undefined') {
 
     if (actives && actives.length) {
       Plugin.call(actives, 'hide')
-      activesData || actives.data('bs.collapse', 0)
+      activesData || actives.data('bs.collapse', null)
     }
 
     var dimension = this.dimension()
@@ -920,7 +920,7 @@ if (typeof jQuery === 'undefined') {
     this.$body          = $(document.body)
     this.$element       = $(element)
     this.$backdrop      =
-    this.isShown        = 0
+    this.isShown        = null
     this.scrollbarWidth = 0
 
     if (this.options.remote) {
@@ -1071,7 +1071,7 @@ if (typeof jQuery === 'undefined') {
 
   Modal.prototype.removeBackdrop = function () {
     this.$backdrop && this.$backdrop.remove()
-    this.$backdrop = 0
+    this.$backdrop = null
   }
 
   Modal.prototype.backdrop = function (callback) {
@@ -1247,7 +1247,7 @@ if (typeof jQuery === 'undefined') {
     this.enabled    =
     this.timeout    =
     this.hoverState =
-    this.$element   = 0
+    this.$element   = null
 
     this.init('tooltip', element, options)
   }
@@ -1436,7 +1436,7 @@ if (typeof jQuery === 'undefined') {
       var complete = function () {
         var prevHoverState = that.hoverState
         that.$element.trigger('shown.bs.' + that.type)
-        that.hoverState = 0
+        that.hoverState = null
 
         if (prevHoverState == 'out') that.leave(that)
       }
@@ -1538,7 +1538,7 @@ if (typeof jQuery === 'undefined') {
         .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
       complete()
 
-    this.hoverState = 0
+    this.hoverState = null
 
     return this
   }
@@ -1561,13 +1561,13 @@ if (typeof jQuery === 'undefined') {
     var isBody = el.tagName == 'BODY'
 
     var elRect    = el.getBoundingClientRect()
-    if (elRect.width == 0) {
+    if (elRect.width == null) {
       // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
       elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top })
     }
     var elOffset  = isBody ? { top: 0, left: 0 } : $element.offset()
     var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() }
-    var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : 0
+    var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null
 
     return $.extend({}, elRect, scroll, outerDims, elOffset)
   }
@@ -1836,7 +1836,7 @@ if (typeof jQuery === 'undefined') {
     this.selector       = (this.options.target || '') + ' .nav li > a'
     this.offsets        = []
     this.targets        = []
-    this.activeTarget   = 0
+    this.activeTarget   = null
     this.scrollHeight   = 0
 
     this.$scrollElement.on('scroll.bs.scrollspy', process)
@@ -1879,7 +1879,7 @@ if (typeof jQuery === 'undefined') {
         return ($href
           && $href.length
           && $href.is(':visible')
-          && [[$href[offsetMethod]().top + offsetBase, href]]) || 0
+          && [[$href[offsetMethod]().top + offsetBase, href]]) || null
       })
       .sort(function (a, b) { return a[0] - b[0] })
       .each(function () {
@@ -1906,7 +1906,7 @@ if (typeof jQuery === 'undefined') {
     }
 
     if (activeTarget && scrollTop < offsets[0]) {
-      this.activeTarget = 0
+      this.activeTarget = null
       return this.clear()
     }
 
@@ -2167,7 +2167,7 @@ if (typeof jQuery === 'undefined') {
     this.$element     = $(element)
     this.affixed      =
     this.unpin        =
-    this.pinnedOffset = 0
+    this.pinnedOffset = null
 
     this.checkPosition()
   }
@@ -2186,19 +2186,19 @@ if (typeof jQuery === 'undefined') {
     var position     = this.$element.offset()
     var targetHeight = this.$target.height()
 
-    if (offsetTop != 0 && this.affixed == 'top') return scrollTop < offsetTop ? 'top' : false
+    if (offsetTop != null && this.affixed == 'top') return scrollTop < offsetTop ? 'top' : false
 
     if (this.affixed == 'bottom') {
-      if (offsetTop != 0) return (scrollTop + this.unpin <= position.top) ? false : 'bottom'
+      if (offsetTop != null) return (scrollTop + this.unpin <= position.top) ? false : 'bottom'
       return (scrollTop + targetHeight <= scrollHeight - offsetBottom) ? false : 'bottom'
     }
 
-    var initializing   = this.affixed == 0
+    var initializing   = this.affixed == null
     var colliderTop    = initializing ? scrollTop : position.top
     var colliderHeight = initializing ? targetHeight : height
 
-    if (offsetTop != 0 && scrollTop <= offsetTop) return 'top'
-    if (offsetBottom != 0 && (colliderTop + colliderHeight >= scrollHeight - offsetBottom)) return 'bottom'
+    if (offsetTop != null && scrollTop <= offsetTop) return 'top'
+    if (offsetBottom != null && (colliderTop + colliderHeight >= scrollHeight - offsetBottom)) return 'bottom'
 
     return false
   }
@@ -2231,7 +2231,7 @@ if (typeof jQuery === 'undefined') {
     var affix = this.getState(scrollHeight, height, offsetTop, offsetBottom)
 
     if (this.affixed != affix) {
-      if (this.unpin != 0) this.$element.css('top', '')
+      if (this.unpin != null) this.$element.css('top', '')
 
       var affixType = 'affix' + (affix ? '-' + affix : '')
       var e         = $.Event(affixType + '.bs.affix')
@@ -2241,7 +2241,7 @@ if (typeof jQuery === 'undefined') {
       if (e.isDefaultPrevented()) return
 
       this.affixed = affix
-      this.unpin = affix == 'bottom' ? this.getPinnedOffset() : 0
+      this.unpin = affix == 'bottom' ? this.getPinnedOffset() : null
 
       this.$element
         .removeClass(Affix.RESET)
@@ -2296,8 +2296,8 @@ if (typeof jQuery === 'undefined') {
 
       data.offset = data.offset || {}
 
-      if (data.offsetBottom != 0) data.offset.bottom = data.offsetBottom
-      if (data.offsetTop    != 0) data.offset.top    = data.offsetTop
+      if (data.offsetBottom != null) data.offset.bottom = data.offsetBottom
+      if (data.offsetTop    != null) data.offset.top    = data.offsetTop
 
       Plugin.call($spy, data)
     })

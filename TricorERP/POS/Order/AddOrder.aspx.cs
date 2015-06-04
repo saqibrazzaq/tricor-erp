@@ -15,6 +15,7 @@ namespace TricorERP.POS.Order
     public partial class AddOrder : System.Web.UI.Page
     {
         SaleOrderModel soModel = new SaleOrderModel() { ID = Common.NULL_ID };
+        CustomerModel customerInFo;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -55,6 +56,7 @@ namespace TricorERP.POS.Order
                     //btnAddInvoice.Text = "Invoice";
                 }
             }
+
         }
 
         // that function can return the orderstatus according to the sale order
@@ -140,7 +142,7 @@ namespace TricorERP.POS.Order
 
         private List<CustomerModel> GetCustomers()
         {
-            return Database.POS.Customer.CustomerDB.getallCustomer();
+            return Database.POS.Customer.CustomerDB.getCustomersList("");
         }
 
         private void LoadProductListInDropdown()
@@ -188,7 +190,7 @@ namespace TricorERP.POS.Order
                 soItemModel.Quantity = 1;
                 soItemModel.WareHouseID = Common.WarehouseIDDefault;
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
-                if (soItemModel.Quantity <= 0)
+                if (soItemModel.Quantity <= 0 || soItemModel.QuantityCheck == -1)
                     ErroMessage.Text = "Quantity of Selected Product is not Prasent in your Stock...";
                 else
                     InitializePageContents();
@@ -273,7 +275,9 @@ namespace TricorERP.POS.Order
             // Create the Sales Order Model from UI
             SaleOrderModel so = new SaleOrderModel();
             so.ID = soModel.ID;
-            so.CustomerID = CustomerList.SelectedValue;
+
+            so.CustomerID = CustomerList.SelectedValue;//customerInFo.ID;
+
             so.OrderDate = DateTime.Today.ToString();
             so.OrderStatus = OrderStatusList.SelectedValue;
             return so;
@@ -337,7 +341,7 @@ namespace TricorERP.POS.Order
         protected void btnAddInvoice_Click(object sender, EventArgs e)
         {
             InitializeOrderModel();
-            Response.Redirect("~/POS/Invoice/AddInvoice.aspx?ID=" + Request.QueryString["ID"].ToString() + "&CustomerID=" + CustomerList.SelectedValue);
+            Response.Redirect("~/POS/Invoice/AddInvoice.aspx?ID=" + Request.QueryString["ID"].ToString() + "&CustomerID=" + CustomerList.SelectedValue); //customerInFo.ID);
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
@@ -351,5 +355,16 @@ namespace TricorERP.POS.Order
             ErroMessage.Text = soModel.ID;
             Response.Redirect("~/POS/Invoice/ViewInvoice.aspx?ID="+soModel.ID);
         }
+
+        protected void SearchByCNIC_Click(object sender, EventArgs e)
+        {
+            //String CNIC = txtSearchCNIC.Text;
+            //customerInFo = Database.POS.Customer.CustomerDB.getCustomerInFo(CNIC);
+
+            //check.Text = customerInFo.Name;
+
+        }
+
+      
     }
 }
