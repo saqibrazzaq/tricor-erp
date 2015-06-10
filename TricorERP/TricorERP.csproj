@@ -59,6 +59,14 @@
   <ItemGroup>
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Home.aspx" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\4.jpg" />
+    <Content Include="Images\5.jpg" />
+    <Content Include="Images\6.jpg" />
+    <Content Include="Images\7.jpg" />
+    <Content Include="Images\8.jpg" />
     <Content Include="Images\Tricorlogo.ico" />
     <Content Include="POS\BranchManager\AddAddress.aspx" />
     <Content Include="POS\BranchManager\UserList.aspx" />
@@ -67,6 +75,7 @@
     <Content Include="POS\Cashier\EditAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="POS\Cashier\EditCustomer.js" />
+    <Content Include="POS\Catalog\MainCatalog.aspx" />
     <Content Include="POS\Invoice\AddInvoice.aspx" />
     <Content Include="POS\Invoice\AddInvoice.js" />
     <Content Include="POS\Invoice\ViewInvoice.aspx" />
@@ -211,6 +220,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Catalog\MainCatalog.aspx.cs">
+      <DependentUpon>MainCatalog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Catalog\MainCatalog.aspx.designer.cs">
+      <DependentUpon>MainCatalog.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\Invoice\AddInvoice.aspx.cs">
       <DependentUpon>AddInvoice.aspx</DependentUpon>

@@ -3,6 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type = "text/javascript">
+        function PrintPanel() {
+            var panel = document.getElementById("<%=pnlContents.ClientID %>");
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><title>Stock Report</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(panel.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            setTimeout(function () {
+                printWindow.print();
+            }, 500);
+            return false;
+        }
+    </script>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
@@ -15,8 +31,9 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="panel-body">
+                    <asp:Panel id="pnlContents" runat = "server">
                     <asp:ListView ID="StockReportView" runat="server" OnItemDataBound="StockReportView_ItemDataBound">
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="StockTable">
@@ -31,22 +48,20 @@
                             <tr id="Tr1" runat="server" class="">
                                 <td class="AddressID">
                                     <%# Eval("ProductName") %>
-                                    
                                 </td>
                                 <td>
                                     <%# Eval("Quantity") %>
-                                    <asp:Label ID="StockLowMessage" runat="server" Text="(Low Stock)"></asp:Label>
                                 </td>
                             </tr>
                         </ItemTemplate>
-
                     </asp:ListView>
+                        </asp:Panel>
                     <div class="row container-fluid">
                         <div class="col-lg-4">
-                            <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click">Back</asp:LinkButton>
+                            <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click">Back</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-primary" Text="Print Report" OnClientClick="return PrintPanel();" />
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -22,6 +22,15 @@ namespace TricorERP.POS.Reports {
         protected global::System.Web.UI.WebControls.Label HeadingOfSalesReport;
         
         /// <summary>
+        /// pnlContents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlContents;
+        
+        /// <summary>
         /// StockReportView control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,14 @@ namespace TricorERP.POS.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnBack;
+        
+        /// <summary>
+        /// btnPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrint;
     }
 }

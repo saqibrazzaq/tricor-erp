@@ -76,6 +76,10 @@
                                     <asp:HyperLink ID="CatalogDropdown" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
+                                            <asp:HyperLink ID="HyperLink1" NavigateUrl="~/POS/Catalog/MainCatalog.aspx" runat="server">All Products</asp:HyperLink>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
                                             <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Cashier/About.aspx" runat="server">Kitchens</asp:HyperLink>
                                         </li>
                                         <li class="divider"></li>
@@ -338,7 +342,6 @@
                 $("#WareHouse").addClass("hidden");
                 $("#Stock").addClass("hidden");
                 $("#Supplier").addClass("hidden");
-                $("#CatalogDropdown").addClass("hidden");
 
 
                 //  $("#AddOrder").addClass("hidden");
@@ -368,6 +371,7 @@
                 $("#PendingSales").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
+
             } else if ('4' == '<%=roleID%>') {
             $("#CustomerDropdown").addClass("hidden");
             $("#UserDropdown").addClass("hidden");
