@@ -59,11 +59,7 @@
                     <div class="row container-fluid">
                         <div class="col-lg-4">
                             <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click">Back</asp:LinkButton>&nbsp;&nbsp;&nbsp;
-<<<<<<< HEAD
                             <asp:LinkButton ID="printPreview" runat="server" CssClass="btn btn-primary" OnClick="printPreview_Click">Print Preview</asp:LinkButton>
-=======
-                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-primary" Text="Print Report" OnClientClick="return PrintPanel();" />
->>>>>>> origin/master
                         </div>
                     </div>
                 </div>

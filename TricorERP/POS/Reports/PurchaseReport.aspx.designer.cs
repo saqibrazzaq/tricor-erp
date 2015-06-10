@@ -67,20 +67,12 @@ namespace TricorERP.POS.Reports {
         protected global::System.Web.UI.WebControls.LinkButton btnBack;
         
         /// <summary>
-<<<<<<< HEAD
         /// printPreview control.
-=======
-        /// btnPrint control.
->>>>>>> origin/master
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.LinkButton printPreview;
-=======
-        protected global::System.Web.UI.WebControls.Button btnPrint;
->>>>>>> origin/master
     }
 }

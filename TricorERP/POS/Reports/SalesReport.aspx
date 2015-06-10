@@ -36,11 +36,8 @@
         <div class="panel-body">
             <div class="col-lg-12">
                 <div class="panel-body">
-<<<<<<< HEAD
-=======
                     <asp:Panel ID="pnlContents" runat="server">
->>>>>>> origin/master
-                        <asp:ListView ID="SalesReportView" runat="server">
+                       <asp:ListView ID="SalesReportView" runat="server">
                             <LayoutTemplate>
                                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
                                     <tr class="active">
@@ -73,21 +70,14 @@
                                 </tr>
                             </ItemTemplate>
                         </asp:ListView>
-<<<<<<< HEAD
-=======
                     </asp:Panel>
->>>>>>> origin/master
                     <div class="row">
                         <asp:Label ID="ErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                     <div class="row container-fluid">
                         <div class="col-lg-4">
                             <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click">Back</asp:LinkButton>&nbsp;&nbsp;&nbsp;
-<<<<<<< HEAD
                             <asp:LinkButton ID="printPreview" runat="server" CssClass="btn btn-primary" OnClick="printPreview_Click">Print Preview</asp:LinkButton>
-=======
-                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-primary" Text="Print Report" OnClientClick="return PrintPanel();" />
->>>>>>> origin/master
                         </div>
                     </div>
                 </div>

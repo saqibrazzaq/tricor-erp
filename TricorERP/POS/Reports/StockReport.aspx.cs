@@ -47,8 +47,8 @@ namespace TricorERP.POS.Reports
             }
             else
             {
-                Label lab = (Label)e.Item.FindControl("StockLowMessage");
-                lab.Attributes.Add("Class", "hidden");
+                //Label lab = (Label)e.Item.FindControl("StockLowMessage");
+                //lab.Attributes.Add("Class", "hidden");
             }
         }
 
