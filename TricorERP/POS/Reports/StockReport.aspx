@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="panel-body">
                     <asp:ListView ID="StockReportView" runat="server" OnItemDataBound="StockReportView_ItemDataBound">
                         <LayoutTemplate>
@@ -31,22 +31,19 @@
                             <tr id="Tr1" runat="server" class="">
                                 <td class="AddressID">
                                     <%# Eval("ProductName") %>
-                                    
                                 </td>
                                 <td>
                                     <%# Eval("Quantity") %>
-                                    <asp:Label ID="StockLowMessage" runat="server" Text="(Low Stock)"></asp:Label>
                                 </td>
                             </tr>
                         </ItemTemplate>
-
                     </asp:ListView>
                     <div class="row container-fluid">
                         <div class="col-lg-4">
-                            <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click">Back</asp:LinkButton>
+                            <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click">Back</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                            <asp:LinkButton ID="printPreview" runat="server" CssClass="btn btn-primary" OnClick="printPreview_Click">Print Preview</asp:LinkButton>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

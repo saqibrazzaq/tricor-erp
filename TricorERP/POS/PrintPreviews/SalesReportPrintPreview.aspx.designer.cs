@@ -7,63 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TricorERP.POS.Reports {
+namespace TricorERP.POS.PrintPreviews {
     
     
-    public partial class PurchaseReport {
+    public partial class SalesReportPrintPreview {
         
         /// <summary>
-        /// SearchPurchaseOrder control.
+        /// pnlContents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchPurchaseOrder;
+        protected global::System.Web.UI.WebControls.Panel pnlContents;
         
         /// <summary>
-        /// Search control.
+        /// SalesReportView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Search;
+        protected global::System.Web.UI.WebControls.ListView SalesReportView;
         
         /// <summary>
-        /// PurchaseReportView control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView PurchaseReportView;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ErrorMessage control.
+        /// btnPrint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorMessage;
-        
-        /// <summary>
-        /// btnBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBack;
-        
-        /// <summary>
-        /// printPreview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton printPreview;
+        protected global::System.Web.UI.WebControls.Button btnPrint;
     }
 }

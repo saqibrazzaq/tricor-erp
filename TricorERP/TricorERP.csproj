@@ -59,6 +59,14 @@
   <ItemGroup>
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Home.aspx" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\4.jpg" />
+    <Content Include="Images\5.jpg" />
+    <Content Include="Images\6.jpg" />
+    <Content Include="Images\7.jpg" />
+    <Content Include="Images\8.jpg" />
     <Content Include="Images\Tricorlogo.ico" />
     <Content Include="POS\BranchManager\AddAddress.aspx" />
     <Content Include="POS\BranchManager\UserList.aspx" />
@@ -67,6 +75,7 @@
     <Content Include="POS\Cashier\EditAddress.aspx" />
     <Content Include="POS\Cashier\EditCustomer.aspx" />
     <Content Include="POS\Cashier\EditCustomer.js" />
+    <Content Include="POS\Catalog\MainCatalog.aspx" />
     <Content Include="POS\Invoice\AddInvoice.aspx" />
     <Content Include="POS\Invoice\AddInvoice.js" />
     <Content Include="POS\Invoice\ViewInvoice.aspx" />
@@ -74,6 +83,9 @@
     <Content Include="POS\Order\AddOrder.js" />
     <Content Include="POS\Order\CancelOrder.aspx" />
     <Content Include="POS\Order\OrderList.aspx" />
+    <Content Include="POS\PrintPreviews\PurchaseReportPrintPreview.aspx" />
+    <Content Include="POS\PrintPreviews\SalesReportPrintPreview.aspx" />
+    <Content Include="POS\PrintPreviews\StockReportPrintPreview.aspx" />
     <Content Include="POS\PurchaseOrder\PurchaseOrder.aspx" />
     <Content Include="POS\PurchaseOrder\PurchaseOrder.js" />
     <Content Include="POS\PurchaseOrder\PurchaserOrderItems.aspx" />
@@ -212,6 +224,13 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="POS\Catalog\MainCatalog.aspx.cs">
+      <DependentUpon>MainCatalog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Catalog\MainCatalog.aspx.designer.cs">
+      <DependentUpon>MainCatalog.aspx</DependentUpon>
+    </Compile>
     <Compile Include="POS\Invoice\AddInvoice.aspx.cs">
       <DependentUpon>AddInvoice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -246,6 +265,27 @@
     </Compile>
     <Compile Include="POS\Order\OrderList.aspx.designer.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\PrintPreviews\PurchaseReportPrintPreview.aspx.cs">
+      <DependentUpon>PurchaseReportPrintPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\PrintPreviews\PurchaseReportPrintPreview.aspx.designer.cs">
+      <DependentUpon>PurchaseReportPrintPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\PrintPreviews\SalesReportPrintPreview.aspx.cs">
+      <DependentUpon>SalesReportPrintPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\PrintPreviews\SalesReportPrintPreview.aspx.designer.cs">
+      <DependentUpon>SalesReportPrintPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\PrintPreviews\StockReportPrintPreview.aspx.cs">
+      <DependentUpon>StockReportPrintPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\PrintPreviews\StockReportPrintPreview.aspx.designer.cs">
+      <DependentUpon>StockReportPrintPreview.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\PurchaseOrder\PurchaseOrder.aspx.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>

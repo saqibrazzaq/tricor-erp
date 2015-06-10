@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-namespace TricorERP.POS.Reports
+namespace TricorERP.POS.PrintPreviews
 {
-    public partial class StockReport : System.Web.UI.Page
+    public partial class StockReportPrintPreview : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,8 +40,6 @@ namespace TricorERP.POS.Reports
             Models.POS.Stock.POSStockModel stock = (Models.POS.Stock.POSStockModel)e.Item.DataItem;
             if (stock.Quantity <= Database.POS.StockDB.getThreshHoldValue(stock.ID, Common.WarehouseIDDefault))
             {
-                // TableCell 
-                // make the data row red
                 HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("tr1");
                 row.Attributes.Add("Class", "alert-danger");
             }
@@ -50,18 +48,6 @@ namespace TricorERP.POS.Reports
                 Label lab = (Label)e.Item.FindControl("StockLowMessage");
                 lab.Attributes.Add("Class", "hidden");
             }
-        }
-
-        protected void btnBack_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Home.aspx");
-        }
-
-        protected void printPreview_Click(object sender, EventArgs e)
-        {
-            string url = "../PrintPreviews/StockReportPrintPreview.aspx";
-            string s = "window.open('" + url + "', 'popup_window', 'width=1200,height=530,left=100,top=100,resizable=yes');";
-            ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
         }
     }
 }
