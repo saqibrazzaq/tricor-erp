@@ -3,6 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        function PrintPanel() {
+            var panel = document.getElementById("<%=pnlContents.ClientID %>");
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><title>Sales Report</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(panel.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            setTimeout(function () {
+                printWindow.print();
+            }, 500);
+            return false;
+        }
+    </script>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="h2">Sale Report</h2>
@@ -20,6 +36,10 @@
         <div class="panel-body">
             <div class="col-lg-12">
                 <div class="panel-body">
+<<<<<<< HEAD
+=======
+                    <asp:Panel ID="pnlContents" runat="server">
+>>>>>>> origin/master
                         <asp:ListView ID="SalesReportView" runat="server">
                             <LayoutTemplate>
                                 <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
@@ -53,13 +73,21 @@
                                 </tr>
                             </ItemTemplate>
                         </asp:ListView>
+<<<<<<< HEAD
+=======
+                    </asp:Panel>
+>>>>>>> origin/master
                     <div class="row">
                         <asp:Label ID="ErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                     <div class="row container-fluid">
                         <div class="col-lg-4">
                             <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click">Back</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+<<<<<<< HEAD
                             <asp:LinkButton ID="printPreview" runat="server" CssClass="btn btn-primary" OnClick="printPreview_Click">Print Preview</asp:LinkButton>
+=======
+                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-primary" Text="Print Report" OnClientClick="return PrintPanel();" />
+>>>>>>> origin/master
                         </div>
                     </div>
                 </div>
