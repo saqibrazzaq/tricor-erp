@@ -76,23 +76,19 @@
                                     <asp:HyperLink ID="CatalogDropdown" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Catalog<span class="caret"></span></asp:HyperLink>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <asp:HyperLink ID="HyperLink1" NavigateUrl="~/POS/Catalog/MainCatalog.aspx" runat="server">All Products</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink3" NavigateUrl="~/POS/Catalog/MainCatalog.aspx?CatId=2&CatName=Kitchens" runat="server">Kitchens</asp:HyperLink>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Cashier/About.aspx" runat="server">Kitchens</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink4" NavigateUrl="~/POS/Catalog/MainCatalog.aspx?CatId=3&CatName=Doors" runat="server">Doors</asp:HyperLink>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Cashier/About.aspx" runat="server">Doors</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink5" NavigateUrl="~/POS/Catalog/MainCatalog.aspx?CatId=1&CatName=Wardrobes" runat="server">Wardrobes</asp:HyperLink>
                                         </li>
                                         <li class="divider"></li>
-                                        <li>
-                                            <asp:HyperLink ID="HyperLink5" NavigateUrl="~/Cashier/About.aspx" runat="server">Wardrobes</asp:HyperLink>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Cashier/About.aspx" runat="server">Product4</asp:HyperLink>
+                                         <li>
+                                            <asp:HyperLink ID="HyperLink1" NavigateUrl="~/POS/Catalog/MainCatalog.aspx?CatId=AllProducts&CatName=All Products" runat="server">All Products</asp:HyperLink>
                                         </li>
                                     </ul>
                                 </li>

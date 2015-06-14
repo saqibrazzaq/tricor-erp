@@ -59,14 +59,21 @@
   <ItemGroup>
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Home.aspx" />
-    <Content Include="Images\1.jpg" />
-    <Content Include="Images\2.jpg" />
-    <Content Include="Images\3.jpg" />
-    <Content Include="Images\4.jpg" />
-    <Content Include="Images\5.jpg" />
-    <Content Include="Images\6.jpg" />
-    <Content Include="Images\7.jpg" />
-    <Content Include="Images\8.jpg" />
+    <Content Include="Images\Catalog\door001.jpg" />
+    <Content Include="Images\Catalog\door002.jpg" />
+    <Content Include="Images\Catalog\door003.jpg" />
+    <Content Include="Images\Catalog\door004.jpg" />
+    <Content Include="Images\Catalog\door005.jpg" />
+    <Content Include="Images\Catalog\Kitchen001.jpg" />
+    <Content Include="Images\Catalog\Kitchen002.jpg" />
+    <Content Include="Images\Catalog\Kitchen003.jpg" />
+    <Content Include="Images\Catalog\Kitchen004.jpg" />
+    <Content Include="Images\Catalog\Kitchen005.jpg" />
+    <Content Include="Images\Catalog\wardrobe001.jpg" />
+    <Content Include="Images\Catalog\wardrobe002.jpg" />
+    <Content Include="Images\Catalog\wardrobe003.jpg" />
+    <Content Include="Images\Catalog\wardrobe004.jpg" />
+    <Content Include="Images\Catalog\wardrobe005.jpg" />
     <Content Include="Images\Tricorlogo.ico" />
     <Content Include="POS\BranchManager\AddAddress.aspx" />
     <Content Include="POS\BranchManager\UserList.aspx" />
@@ -128,6 +135,7 @@
     <Content Include="Scripts\jquery.confirm.js" />
     <Content Include="Scripts\jquery.confirm.min.js" />
     <Content Include="Tricor.Master" />
+    <Content Include="Images\Catalog\Thumbs.db" />
     <None Include="Properties\PublishProfiles\Publish to Directory.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
