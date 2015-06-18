@@ -22,10 +22,12 @@
             </div>
         </div>
         <div class="panel-body">
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" BackColor="#FFCCCC" BorderColor="#FF9999" BorderStyle="Solid" BorderWidth="1px" HeaderText="Required Fields*" Font-Bold="False" />
+            <br />
             <h4 class="h4">Cashier Address :</h4>
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">City :</label>
+                    <label for="InputName">City :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter user city!" ControlToValidate="CityNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CityNameText" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Name"></asp:TextBox>
                     </div>
@@ -34,13 +36,19 @@
             <br />
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">Phone Number :</label>
+                    <label for="InputName">Phone Number :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter user phone number!" ControlToValidate="PhoneNumberText" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="PhoneNumberText"
+                        ErrorMessage="Please enter user valid phone number!" ForeColor="Red"
+                        ValidationExpression="[0-9]*\.?[0-9]*">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="PhoneNumberText" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="Phone Number"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">Email :</label>
+                    <label for="InputName">Email :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter user email address!" ControlToValidate="email" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="email"
+                        ErrorMessage="Please enter user valid email address!" ForeColor="Red"
+                        ValidationExpression="[0-9]*\.?[0-9]*">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox CssClass="form-control" ID="email" Font-Names="InputName" placeholder="Enter email" runat="server" TextMode="Email"></asp:TextBox>
                     </div>
@@ -49,7 +57,7 @@
             <br />
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">Address :</label>
+                    <label for="InputName">Address :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter user residence address!" ControlToValidate="Location1Text" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="Location1Text" Font-Names="InputName" CssClass="form-control" runat="server" Placeholder="House Number, Street Number, Area" TextMode="MultiLine"></asp:TextBox>
                     </div>
@@ -69,7 +77,6 @@
                     <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click" CausesValidation="False">Back</asp:LinkButton>
                 </div>
             </div>
-
             <div class="row container-fluid">
                 <div class="col-lg-5">
                     <asp:Label ID="message" runat="server" Text=""></asp:Label>
