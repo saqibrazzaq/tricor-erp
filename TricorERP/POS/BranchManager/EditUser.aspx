@@ -11,16 +11,23 @@
             </h2>
         </div>
         <div class="panel-body">
+            <asp:ValidationSummary ID="ValidationSummary2" runat="server" BackColor="#FFCCCC" BorderColor="#FF9999" BorderStyle="Solid" BorderWidth="1px" HeaderText="Required Fields*" Font-Bold="False" />
+            <br />
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">Full Name :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter user full name" ControlToValidate="CashierNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <label for="InputName">Full Name :</label>&nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter user full name!" ControlToValidate="CashierNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CashierNameText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <asp:Label ID="message" runat="server" CssClass="alert" ForeColor="Red"></asp:Label>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">Password :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter user password" ControlToValidate="CashierPasswordText" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <label for="InputName">Password :</label>&nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter user password!" ControlToValidate="CashierPasswordText" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegExp1" runat="server" ErrorMessage="Password length must be between 7 to 15 characters"
+                                    ControlToValidate="CashierPasswordText" ValidationExpression="^[a-zA-Z0-9'@&amp;#.\s]{7,15}$"
+                                    ForeColor="Red">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CashierPasswordText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
@@ -28,15 +35,14 @@
             </div>
             <div class="row container-fluid">
                 <div class="col-lg-4">
-                    <label for="InputName">CNIC :</label>&nbsp;
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter user CNIC" ControlToValidate="CNIC" ForeColor="Red">*</asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="CNIC number is not correct" ControlToValidate="CNIC" ForeColor="Red" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$"></asp:RegularExpressionValidator>
+                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter user CNIC number!" ControlToValidate="CNIC" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter user valid CNIC number!" ControlToValidate="CNIC" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$" ForeColor="Red">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CNIC" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">User-Type :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Select user type" ControlToValidate="UserTypeDropDownList" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <label for="InputName">User-Type :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please select user type!" ControlToValidate="UserTypeDropDownList" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <div class="input-group">
                         <asp:DropDownList Font-Names="InputName" CssClass="form-control" ID="UserTypeDropDownList" runat="server">
                         </asp:DropDownList>
@@ -122,5 +128,4 @@
             </div>
         </div>
     </div>
-    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
 </asp:Content>
