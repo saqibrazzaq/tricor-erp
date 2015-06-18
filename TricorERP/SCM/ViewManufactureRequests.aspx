@@ -54,6 +54,9 @@
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="manufacture" CommandArgument='<%# Eval("ID") %>' Text="Send to Manufacture">  </asp:LinkButton>
+                    </td>
+                    <td>
+                        <asp:LinkButton runat="server" CommandName="reject" OnClientClick="if ( ! deleteConfirmation()) return false;" CommandArgument ='<%# Eval("ID") %>' Text="Reject">  </asp:LinkButton>
                     </td>   
                 </tr>
             </ItemTemplate>

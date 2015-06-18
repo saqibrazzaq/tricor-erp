@@ -11,6 +11,7 @@ namespace Models.SCM
          public int ProductReOderValue { get; set; }
          public int ProductThresholdValue { get; set; }
          public int ProductID { get; set; }
+         public int ManufactureTime { get; set; }
          public String ProductName { get; set; }
          public int ProductTypeID { get; set; }
          public int UnitTypeID { get; set; }

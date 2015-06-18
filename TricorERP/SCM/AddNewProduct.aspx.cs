@@ -31,6 +31,7 @@ namespace TricorERP.SCM
                 ProductDescriptionText.Text = product.ProductDescription;
                 ThresholdValueText.Text = product.ProductThresholdValue.ToString();
                 ReOrderValueText.Text = product.ProductReOderValue.ToString();
+              
                 }
             else
             {
@@ -64,6 +65,8 @@ namespace TricorERP.SCM
             product.ProductDescription = ProductDescriptionText.Text;
             product.CreatedBy = int.Parse(Session["RoleID"].ToString());
             product.LastUpdatedBy = int.Parse(Session["RoleID"].ToString());
+            product.ManufactureTime = int.Parse(ManufactureTimeText.Text);
+            
             int updated = 0;
              ProductModel newProduct = null;
             if(UpdateCheck != null)

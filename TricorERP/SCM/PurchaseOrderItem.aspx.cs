@@ -81,9 +81,6 @@ namespace TricorERP.SCM
                 //DeleteOrderItem();
             }
         }
-
-        
-        
         private List<PurchaseOrderItemsModel> GetPurchaseOrderitemsFromDatabase(String POID)
         {
             return Database.SCM.PurchaseOrderDB.getAllPurchaseOrderitemsList(POID);
@@ -117,12 +114,12 @@ namespace TricorERP.SCM
 
             if (NewPurchaseOrderItem != null)
             {
-                Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
+                Response.Redirect("~/SCM/AddNewPurchaseOrder.aspx?POID=" + POID + "&update=1");
                 ErrorMessageLable.Text = "Data of new Purchase Order is saved...";
             }
             else if (updated == 1)
             {
-                Response.Redirect("~/SCM/PurchaseOrder.aspx?POID=" + POID);
+                Response.Redirect("~/SCM/AddNewPurchaseOrder.aspx?POID=" + POID + "&update=1");
                 ErrorMessageLable.Text = "Data is Updated Successfully...";
             }
         }

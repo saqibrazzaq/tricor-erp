@@ -10,8 +10,6 @@ namespace Database.SCM
 {
     public class AddressDB
     {
-
-
         //set address within database and return id of inserted address.
         public static AddressModel addAddress(AddressModel newaddress, SqlTransaction trans)
         {

@@ -10,97 +10,70 @@
 namespace TricorERP.SCM {
     
     
-    public partial class WebForm1 {
+    public partial class PurchaseOrder {
         
         /// <summary>
-        /// ProductNameText control.
+        /// WareHouseDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductNameText;
+        protected global::System.Web.UI.WebControls.DropDownList WareHouseDropDown;
         
         /// <summary>
-        /// ProductCodeText control.
+        /// SupplierDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductCodeText;
+        protected global::System.Web.UI.WebControls.DropDownList SupplierDropDown;
         
         /// <summary>
-        /// ProductTypeID control.
+        /// OrderTypeDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ProductTypeID;
+        protected global::System.Web.UI.WebControls.DropDownList OrderTypeDropDown;
         
         /// <summary>
-        /// UnitTypeID control.
+        /// OrderDateText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList UnitTypeID;
+        protected global::System.Web.UI.WebControls.TextBox OrderDateText;
         
         /// <summary>
-        /// SalePriceText control.
+        /// Addbtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SalePriceText;
+        protected global::System.Web.UI.WebControls.LinkButton Addbtn;
         
         /// <summary>
-        /// PurchasePriceText control.
+        /// ProductListview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PurchasePriceText;
+        protected global::System.Web.UI.WebControls.ListView ProductListview;
         
         /// <summary>
-        /// ThresholdValueText control.
+        /// ProductListviewconfirmed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ThresholdValueText;
-        
-        /// <summary>
-        /// ReOrderValueText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ReOrderValueText;
-        
-        /// <summary>
-        /// ManufactureTimeText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ManufactureTimeText;
-        
-        /// <summary>
-        /// ProductDescriptionText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductDescriptionText;
+        protected global::System.Web.UI.WebControls.ListView ProductListviewconfirmed;
         
         /// <summary>
         /// Savebtn control.
@@ -128,5 +101,41 @@ namespace TricorERP.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ErrorMessageLable;
+        
+        /// <summary>
+        /// txtQuantity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
+        
+        /// <summary>
+        /// txtPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrice;
+        
+        /// <summary>
+        /// txtRecivedQuantity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRecivedQuantity;
+        
+        /// <summary>
+        /// txtPurchaseOrderItemID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPurchaseOrderItemID;
     }
 }

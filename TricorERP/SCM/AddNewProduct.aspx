@@ -72,8 +72,15 @@
                <div class="row container-fluid">
                 <div class="col-lg-3">
                 <div class="input-group">
+                <label for="InputName">Manufacture Time</label>
+                <asp:TextBox ID="ManufactureTimeText" CssClass="form-control" Font-Names="InputName"  wrap="true" runat="server" ></asp:TextBox>
+                </div>
+                    </div>
+                    <div class="col-lg-3">
+                    <div class="input-group">
                 <label for="InputName">Product Discription</label>
-                <asp:TextBox ID="ProductDescriptionText" CssClass="form-control" Font-Names="InputName"  width="430px" Height="50px" wrap="true" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="ProductDescriptionText" CssClass="form-control" Font-Names="InputName"  width="215px" Height="50px" wrap="true" runat="server" TextMode="MultiLine"></asp:TextBox>
+             </div>
              </div>
             </div>
           </div>

@@ -31,6 +31,8 @@ namespace TricorERP.SCM
             WareHouseDropDown.DataValueField = "ID";
             WareHouseDropDown.DataSource = wareHouses;
             WareHouseDropDown.DataBind();
+            //WareHouseDropDown.Enabled = false;
+
         }
 
         private void LoadProductList()
@@ -62,10 +64,16 @@ namespace TricorERP.SCM
             StockModel sModel = new StockModel();
             sModel.WareHouseID = int.Parse(WareHouseDropDown.SelectedValue);
             sModel.ProductID = int.Parse(ProductDropDown.SelectedValue);
-            sModel.Quantity = float.Parse(QuantityText.Text);
+            sModel.Quantity = int.Parse(QuantityText.Text);
             StockModel SModel = addNewStockItem(sModel);
-            if (SModel != null)
+            if (SModel.check == 0)
+            {
                 ErrorMessageLable.Text = "Data of new Stock is saved...!!!";
+            }
+            else if(SModel.check == 1)
+            {
+                ErrorMessageLable.Text = "Data of Stock is Updated...!!!";
+            }
         }
     }
     }

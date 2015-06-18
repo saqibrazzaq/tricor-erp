@@ -29,6 +29,7 @@
                         <th>Re Order Value</th>
                         <th>Sale Price</th>
                         <th>Purchase Price</th>
+                        <th>Manufacture Time</th>
                         <th>Product Composotion</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -41,8 +42,6 @@
 
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductID") %>'></asp:LinkButton>
-                    <td class="ItemCol_ID">
-                        <%# Eval("ProductID") %>
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ProductCode") %>'></asp:LinkButton>
@@ -61,6 +60,9 @@
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("PurchasePrice") %>'></asp:LinkButton>
+                    </td>
+                    <td>
+                        <asp:LinkButton runat="server" CommandName="Manufactuer Time" CommandArgument='<%# Eval("ProductID") %>' Text='<%# Eval("ManufactureTime") %>'></asp:LinkButton>
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="ProductComposition" CommandArgument='<%# Eval("ProductID") %>' Text="Product Composition" ></asp:LinkButton>

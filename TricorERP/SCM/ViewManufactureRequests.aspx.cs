@@ -11,7 +11,7 @@ namespace TricorERP.SCM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            SearchOrder("");
         }
         private void SearchOrder(String text)
         {
@@ -35,6 +35,11 @@ namespace TricorERP.SCM
                 String OrderID = e.CommandArgument.ToString();
                 Database.SCM.SalesOrder.SendToManufacture(OrderID);
                 SearchOrder("");
+            }
+            if(e.CommandName == "reject")
+            {
+                String id = e.CommandArgument.ToString();
+                Response.Redirect("~/SCM/RejectOrderReason.aspx?OrderID=" + id);
             }
         }
 

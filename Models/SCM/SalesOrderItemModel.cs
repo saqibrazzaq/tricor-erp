@@ -16,5 +16,6 @@ namespace Models.SCM
         public float Price { get; set; }
         public string ProductName { get; set; }
         public string ProductStatus { get; set; }
+        public int ManufactureTime { get; set; }
     }
 }

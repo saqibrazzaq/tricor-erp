@@ -11,7 +11,10 @@
             <%-- to be continue... --%>
         </div>
         <div class="panel-body">
+            
             <div class="row container-fluid">
+
+
                 <div class="col-lg-3">
                     <label for="InputName">Full Name :</label>&nbsp;
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter customer full name" ControlToValidate="CustomerNameText" ForeColor="Red">*</asp:RequiredFieldValidator>
@@ -32,12 +35,13 @@
                         </asp:DropDownList>
                     </div>
                 </div>
+
             </div>
 
             <div class="row container-fluid">
                 <div class="col-lg-3">
                     <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter customer CNIC" ControlToValidate="CNICText" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Correct CNIC Number" ControlToValidate="CNICText" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$">*</asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Correct CNIC Number" ControlToValidate="CNICText" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox ID="CNICText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>

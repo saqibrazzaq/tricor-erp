@@ -15,12 +15,13 @@ namespace Database.SCM
         {
               String sql = @"INSERT INTO [dbo].[Product]
                         ([PName],[PCode],[SalePrice],[PDescription],[PThreshHoldValue],[PReOrderValue],[PurchasePrice],
-                        [UnitTypeID],[ProductTypeID],[CreatedBy],[LastUpdatedBy])
+                        [UnitTypeID],[ProductTypeID],[CreatedBy],[LastUpdatedBy],[ManufactureTime])
 		                output inserted.ID 
                         VALUES ('" + productModel.ProductName + "','" + productModel.ProductCode + "','" +
                                    productModel.SalesPrice + "','" + productModel.ProductDescription   +
                                    "','" + productModel.ProductThresholdValue + "','" + productModel.ProductReOderValue + "','" +
-                                   productModel.PurchasePrice + "','" + productModel.UnitTypeID + "','" + productModel.ProductTypeID + "','" + productModel.CreatedBy + "','" + productModel.LastUpdatedBy + "')";
+                                   productModel.PurchasePrice + "','" + productModel.UnitTypeID + "','" + productModel.ProductTypeID +
+                                   "','" + productModel.CreatedBy + "','" + productModel.LastUpdatedBy + "','" + productModel.ManufactureTime + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             productModel.ProductID = int.Parse(id.ToString());
             return productModel;
@@ -31,7 +32,7 @@ namespace Database.SCM
             List<ProductModel> productList = new List<ProductModel>();
             String sql = @"select Product.Id PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
                         Product.PThreshHoldValue PthreshHold,Product.PReOrderValue pReOrder,Product.PurchasePrice purchasePrice,
-                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
+                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID,Product.ManufactureTime ManufactureTime
                         from Product
                         where Product.ProductTypeID='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
@@ -43,6 +44,7 @@ namespace Database.SCM
                 product.ProductReOderValue = int.Parse(reader["pReOrder"].ToString());
                 product.ProductTypeID = int.Parse(reader["productTypeID"].ToString());
                 product.UnitTypeID = int.Parse(reader["UnitTypeID"].ToString());
+                product.ManufactureTime = int.Parse(reader["ManufactureTime"].ToString());
                 product.ProductName = reader["PName"].ToString();
                 product.ProductCode = reader["PCode"].ToString();
                 product.SalesPrice = float.Parse(reader["SalePrice"].ToString());

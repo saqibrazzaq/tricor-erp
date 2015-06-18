@@ -44,12 +44,11 @@ function ItemRow_onClick(arg) {
 function initializeItemModalDialog() {
     $("#StockItemLabel").text("Update");
     $(".txtQuantity").val("0");
-  }
+}
 
 function ItemRowDelete_onClick(arg) {
     // Get the order item details from table
     var row = arg.closest("tr");    // Find the row
     var itemID = row.find(".ItemCol_ItemID").text();
-    $(".txtStockItemID").val(itemID);
 }
 

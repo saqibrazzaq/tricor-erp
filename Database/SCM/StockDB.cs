@@ -11,11 +11,32 @@ namespace Database.SCM
     public class StockDB
     {
         public static StockModel addNewStockItem(StockModel sModel)
+        { 
+
+            String sql2 = @"select  Stock.ID sID , Stock.Quantity Quantity  
+                        from Stock where Stock.PID = '" + sModel.ProductID + "'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql2, null);
+            if (reader.Read())
+            {
+                sModel.check = 1;
+                sModel.ID = int.Parse(reader["sID"].ToString());
+                sModel.Quantity = sModel.Quantity + int.Parse(reader["quantity"].ToString());
+                updateStockItem(sModel);
+                //return stockItems;
+            }
+            else
+            {
+                sModel.check = 0;
+                InsertNewStockItem(sModel);
+            }
+            return sModel;
+        }
+        public static StockModel InsertNewStockItem(StockModel sModel)
         {
             String sql = @"INSERT INTO [dbo].[Stock]
                         ([WHID],[PID],[Quantity])
 		                output inserted.ID 
-                        VALUES ('" + sModel.WareHouseID + "','" + sModel.ProductID + "','" +sModel.Quantity + "')";
+                        VALUES ('" + sModel.WareHouseID + "','" + sModel.ProductID + "','" + sModel.Quantity + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             sModel.ID = int.Parse(id.ToString());
             return sModel;
@@ -60,7 +81,7 @@ namespace Database.SCM
                 sModel.ID = int.Parse(reader["ID"].ToString());
                 sModel.WareHouseID = int.Parse(reader["WHID"].ToString());
                 sModel.ProductID = int.Parse(reader["PID"].ToString());
-                sModel.Quantity = float.Parse(reader["Quantity"].ToString());
+                sModel.Quantity = int.Parse(reader["Quantity"].ToString());
             }
             return sModel;
         }
@@ -76,7 +97,7 @@ namespace Database.SCM
                 sModel = new StockModel();
                 sModel.ID = int.Parse(reader["ID"].ToString());
                 sModel.ProductID = int.Parse(reader["PID"].ToString());
-                sModel.Quantity = float.Parse(reader["Quantity"].ToString());
+                sModel.Quantity = int.Parse(reader["Quantity"].ToString());
                 stockItemList.Add(sModel);
             }
             return stockItemList;
@@ -102,6 +123,18 @@ namespace Database.SCM
                 return 1;
             }
             return 0;
+        }
+        public static int getStockStatus()
+        {
+            int WHID = 1005;
+            String sql = @"  SELECT COUNT(*)
+                        FROM Stock s
+                        INNER JOIN Product p ON s.PID = p.Id
+                        WHERE S.WHID = '" + WHID + @"' 
+                        AND s.Quantity <= P.PThreshHoldValue";
+          
+            object lowstock = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(lowstock.ToString());
         }
     }
 }

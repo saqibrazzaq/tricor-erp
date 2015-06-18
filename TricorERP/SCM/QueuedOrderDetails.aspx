@@ -6,6 +6,7 @@
     <h2 class="h2">Queued Order Details</h2>
     <div class="panel-body">
         <asp:ListView ID="OrderDetialsListview" runat="server" OnItemCommand="OrderDetailsListview_ItemCommand" OnSelectedIndexChanged="OrderDetailsListview_SelectedIndexChanged">
+            
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                     <tr class="active">

@@ -29,8 +29,8 @@ namespace Database.SCM
                         from PurchaseOrder
                         where 1=1
                         and 
-	                    (PurchaseOrder.WHID like '%" + searchtext + "%' or PurchaseOrder.SID like '%" + searchtext + 
-                        "%' or PurchaseOrder.OrderDate like '%" + searchtext + "%' or PurchaseOrder.ID like '%"    +
+	                    (PurchaseOrder.WHID like '%" + searchtext + "%' or PurchaseOrder.SID like '%" + searchtext +
+                        "%' or PurchaseOrder.OrderDate like '%" + searchtext + "%' or PurchaseOrder.ID like '%" +
                         searchtext + "%' or PurchaseOrder.OrderType like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
@@ -59,7 +59,7 @@ namespace Database.SCM
                 poModel.SID = int.Parse(reader["SID"].ToString());
                 poModel.OrderDate = reader["OrderDate"].ToString();
                 poModel.OrderType = reader["OrderType"].ToString();
-             
+
             }
             return poModel;
         }
@@ -77,16 +77,16 @@ namespace Database.SCM
             }
             return 0;
         }
-        
+
         /////----------------- PurchaseOrder Items ---------------------------/////////
-        
+
         public static PurchaseOrderItemsModel addPurchaseProductItems(PurchaseOrderItemsModel POIModel)
         {
             String sql = @"INSERT INTO [dbo].[PurchaseOrderItems]
-                        ([POID],[PID],[Quantity],[PurchasePrice])
+                        ([POID],[PID],[Quantity],[PurchasePrice],[RecivedQuantity])
 		                output inserted.ID 
                         VALUES ('" + POIModel.PurchaseOrderID + "','" + POIModel.ProductID + "','" +
-                                 POIModel.Quantity + "','" + POIModel.PurchasePrice + "')";
+                                 POIModel.Quantity + "','" + POIModel.PurchasePrice + "','"+0+"')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             POIModel.ID = int.Parse(id.ToString());
             return POIModel;
@@ -95,7 +95,7 @@ namespace Database.SCM
         {
             List<PurchaseOrderItemsModel> POIList = new List<PurchaseOrderItemsModel>();
             String sql = @"select PurchaseOrderItems.ID ID, PurchaseOrderItems.POID POID, PurchaseOrderItems.PID PID, PurchaseOrderItems.Quantity Quantity,
-                         PurchaseOrderItems.PurchasePrice PPrice from PurchaseOrderItems
+                         PurchaseOrderItems.PurchasePrice PPrice,PurchaseOrderItems.RecivedQuantity RecivedQuantity from PurchaseOrderItems
                         where 1=1
                         and 
 	                    (PurchaseOrderItems.POID like '%" + searchtext + "%' or PurchaseOrderItems.PurchasePrice like '%" + searchtext + "%' or PurchaseOrderItems.Quantity like '%" + searchtext + "%')";
@@ -107,27 +107,34 @@ namespace Database.SCM
                 POIMOdel.PurchaseOrderID = int.Parse(reader["POID"].ToString());
                 POIMOdel.ProductID = int.Parse(reader["PID"].ToString());
                 POIMOdel.Quantity = int.Parse(reader["Quantity"].ToString());
+                POIMOdel.RecivedQuantity = int.Parse(reader["RecivedQuantity"].ToString());
                 POIMOdel.PurchasePrice = float.Parse(reader["PPrice"].ToString());
-                POIList.Add(POIMOdel);
+                if (POIMOdel.Quantity > POIMOdel.RecivedQuantity)
+                {
+                    POIList.Add(POIMOdel);
+                }
             }
             return POIList;
         }
         public static PurchaseOrderItemsModel getPurchaseOrderItemsInFo(String ID)
         {
-            PurchaseOrderItemsModel POIModel = null;
-            String sql = @"select   PurchaseOrderItems.POID POID, PurchaseOrderItems.PID PID, PurchaseOrderItems.Quantity Quantity,
-                         PurchaseOrderItems.PurchasePrice PPrice from PurchaseOrderItems
+            //PurchaseOrderItemsModel POIModel = null;
+            String sql = @"select  PurchaseOrderItems.POID POID, PurchaseOrderItems.PID PID, PurchaseOrderItems.Quantity Quantity, 
+                         PurchaseOrderItems.PurchasePrice PPrice , PurchaseOrderItems.RecivedQuantity RecivedQuantity from PurchaseOrderItems
                         where PurchaseOrderItems.ID='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
-                POIModel = new PurchaseOrderItemsModel();
-                POIModel.PurchaseOrderID = int.Parse(reader["POID"].ToString());
-                POIModel.ProductID = int.Parse(reader["PID"].ToString());
-                POIModel.Quantity = int.Parse(reader["Quantity"].ToString());
-                POIModel.PurchasePrice = float.Parse(reader["PPrice"].ToString());
+                PurchaseOrderItemsModel POIMOdel = new PurchaseOrderItemsModel();
+                POIMOdel.ID = int.Parse(ID);
+                POIMOdel.PurchaseOrderID = int.Parse(reader["POID"].ToString());
+                POIMOdel.ProductID = int.Parse(reader["PID"].ToString());
+                POIMOdel.Quantity = int.Parse(reader["Quantity"].ToString());
+                POIMOdel.RecivedQuantity = int.Parse(reader["RecivedQuantity"].ToString());
+                POIMOdel.PurchasePrice = float.Parse(reader["PPrice"].ToString());
+                return POIMOdel;
             }
-            return POIModel;
+            return null;
         }
 
         public static int updatePurchaseOrderItems(PurchaseOrderItemsModel POIModel)
@@ -143,7 +150,42 @@ namespace Database.SCM
             }
             return 0;
         }
+        public static int updatePurchaseOrderQuantity(PurchaseOrderItemsModel POIModel)
+        {
 
+            String sql = @"UPDATE [dbo].[PurchaseOrderItems]
+                         SET   [RecivedQuantity]='" + POIModel.RecivedQuantity
+                        + "' WHERE PurchaseOrderItems.ID = '" + POIModel.ID + "'";
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            if (check == 1)
+            {
+                //add recived order items in stock
+                updateStokQuantity(POIModel);
+
+                POIModel = getPurchaseOrderItemsInFo(POIModel.ID.ToString());
+                if (getDeliveredPurchaseOrderItemsCount(POIModel.PurchaseOrderID) == 0)
+                {
+                    String sql3 = @"UPDATE [dbo].[PurchaseOrder]
+                         SET [OrderType]= '" + "5" 
+                       + "' WHERE PurchaseOrder.ID = '" + POIModel.PurchaseOrderID + "'";
+                    int check3 = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql3, null);
+                    
+                }
+                return 1;
+            }
+            return 0;
+        }
+
+        private static void updateStokQuantity(PurchaseOrderItemsModel sModel)
+           {
+//            String sql = @"INSERT INTO [dbo].[Stock]
+//                        ([WHID],[PID],[Quantity])
+//		                output inserted.ID 
+//                        VALUES ('" + Models.SCM.Common.OurWareHouseID + "','" + sModel.ProductID + "','" + sModel.Quantity + "')";
+               String sql = @"UPDATE [dbo].[Stock]
+                         SET [Quantity] = Quantity +'" + sModel.Quantity + "' WHERE Stock.PID = '" + sModel.ProductID + "'";
+            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+        }
         public static List<ProductModel> getPurchaseOrderItemsList(string POID)
         {
             List<ProductModel> PModel = new List<ProductModel>();
@@ -176,7 +218,7 @@ namespace Database.SCM
         public static int deletePurchaseOrderItems(String ID)
         {
             String sql = @"DELETE FROM PurchaseOrderItems WHERE ID ='" + ID + "'";
-            int check = DBUtility.SqlHelper.ExecuteNonQuery( System.Data.CommandType.Text, sql, null);
+            int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check > 0)
             {
                 return 1;
@@ -193,6 +235,46 @@ namespace Database.SCM
                 return 1;
             }
             return 0;
+        }
+
+        public static List<PurchaseOrderModel> GetSpecificPurchaseOrdersList(string type,string searchtext)
+        {
+            List<PurchaseOrderModel> POList = new List<PurchaseOrderModel>();
+            String sql = @"select PurchaseOrder.ID ID, PurchaseOrder.WHID WHID, PurchaseOrder.SID SID,
+                            PurchaseOrder.OrderDate, PurchaseOrder.OrderType OrderType
+                        from PurchaseOrder
+                        where PurchaseOrder.OrderType='" + type + "' and (PurchaseOrder.WHID like '%" + searchtext + "%' or PurchaseOrder.SID like '%" + searchtext +
+                        "%' or PurchaseOrder.OrderDate like '%" + searchtext + "%' or PurchaseOrder.ID like '%" +
+                        searchtext + "%' or PurchaseOrder.OrderType like '%" + searchtext + "%')";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            while (reader.Read())
+            {
+                PurchaseOrderModel POMOdel = new PurchaseOrderModel();
+                POMOdel.ID = int.Parse(reader["ID"].ToString());
+                POMOdel.WHID = int.Parse(reader["WHID"].ToString());
+                POMOdel.SID = int.Parse(reader["SID"].ToString());
+                POMOdel.OrderDate = reader["OrderDate"].ToString();
+                POMOdel.OrderType = reader["OrderType"].ToString();
+                POList.Add(POMOdel);
+            }
+            return POList;
+        }
+
+        public static int getProgressPurchaseOrderCount()
+        {
+            String sql = @"SELECT COUNT (*) as result
+                         FROM PurchaseOrder 
+                         where [PurchaseOrder].OrderType = '1'";
+            object result = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(result.ToString());
+        }
+        public static int getDeliveredPurchaseOrderItemsCount(int ID)
+        {
+            String sql = @"SELECT COUNT (*) as result 
+                         FROM PurchaseOrderItems
+                         where [PurchaseOrderItems].Quantity > [PurchaseOrderItems].RecivedQuantity and [PurchaseOrderItems].POID='" + ID + "'";
+            object result = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(result.ToString());
         }
     }
 }

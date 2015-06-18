@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="SearchStockItem.aspx.cs" Inherits="TricorERP.SCM.SearchStockItem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+    <script src="../Scripts/jquery.confirm.min.js"></script>
     <script src="SearchStockItem.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -25,21 +27,22 @@
             </div>
         </div>
         <div class="panel-body">
-            <asp:ListView ID="StockProductListview" runat="server" OnItemCommand="ProductListview_ItemCommand">
+            <asp:ListView ID="StockProductListview" runat="server" OnItemCommand="StockProductListview_ItemCommand"  OnItemDataBound="StockProductListview_ItemDataBound">
                 <LayoutTemplate>
-                    <table class="table table-bordered table-hover" runat="server" id="productTable">
+                    <table class="table table-bordered table-hover" runat="server" id="HeadingTable">
                         <tr class="active">
                             <th>ID</th>
                             <th>Product Code</th>
                             <th>Product Quantity</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th id="ReOrderHeading">ReOrder</th>
+                            <th id="EditHeading">Edit</th>
+                            <th id="DeleteHeading">Delete</th>
                         </tr>
                         <tr runat="server" id="itemPlaceholder"></tr>
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <tr id="Tr1" runat="server">
+                    <tr id="Tr1" class="Tr1" runat="server">
 
                         <td class="ItemCol_ItemID">
                             <%# Eval("ID") %>
@@ -51,15 +54,19 @@
                         <td class="ItemCol_Quantity">
                             <%# Eval("Quantity") %>
                         </td>
-                        <td>
-                            <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#StockItemModal">
+                    <td id="ReOrderCol">
+                        <asp:LinkButton runat="server" CommandName="ReOrder" CommandArgument='<%# Eval("ProductID") %>' Text= "ReOrder"></asp:LinkButton>
+                    </td>
+                        <td id="EditCol">
+                            <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#StockItemEditModal">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </button>
                         </td>
-                        <td>
+                        <td id="DeleteCol">
                             <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </button>
+                            <asp:Button runat="server" CssClass="hidden DeleteStockItem" OnClick="deleteStockItem_onClick" />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -90,7 +97,7 @@
                     <asp:TextBox CssClass="hidden txtStockItemID" runat="server" ID="txtStockItemID" Text=""></asp:TextBox>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <asp:Button runat="server" OnClick="UpdateStockItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
-                    <asp:Button runat="server" CssClass="hidden DeleteStockItem" OnClick="deleteStockItem_onClick" />
+                    <asp:TextBox CssClass="hidden txtStockQuantity" runat="server" ID="txtStockQuantity" Text=""></asp:TextBox>
                 </div>
             </div>
         </div>
