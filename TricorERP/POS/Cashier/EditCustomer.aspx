@@ -11,12 +11,8 @@
             <%-- to be continue... --%>
         </div>
         <div class="panel-body">
-<<<<<<< HEAD
-            
-=======
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" BackColor="#FFCCCC" BorderColor="#FF9999" BorderStyle="Solid" BorderWidth="1px" HeaderText="Required Fields*" Font-Bold="False" />
             <br />
->>>>>>> origin/master
             <div class="row container-fluid">
 
 
@@ -45,13 +41,10 @@
             <br />
             <div class="row container-fluid">
                 <div class="col-lg-3">
-<<<<<<< HEAD
+
                     <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter customer CNIC" ControlToValidate="CNICText" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Correct CNIC Number" ControlToValidate="CNICText" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$">*</asp:RegularExpressionValidator>
-=======
-                    <label for="InputName">CNIC :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter customer CNIC number!" ControlToValidate="CNICText" ForeColor="Red">*</asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter customer valid CNIC number!" ControlToValidate="CNICText" ValidationExpression="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$">*</asp:RegularExpressionValidator>
->>>>>>> origin/master
+
                     <div class="input-group">
                         <asp:TextBox ID="CNICText" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
