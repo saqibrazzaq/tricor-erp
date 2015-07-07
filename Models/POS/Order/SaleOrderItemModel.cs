@@ -28,5 +28,7 @@ namespace Models.POS.Order
 
 
         public int QuantityCheck { get; set; }
+
+        public String ProductDescription { get; set; }
     }
 }

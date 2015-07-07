@@ -140,6 +140,7 @@ namespace Database.POS.Customer
             catch (Exception e)
             {
                 trans.Rollback();
+                e.ToString();
             }
             finally
             {

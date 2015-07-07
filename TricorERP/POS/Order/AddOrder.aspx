@@ -86,6 +86,7 @@
                             <th class="hidden">WareHouseID</th>
                             <th class="hidden">ProductID</th>
                             <th>Product Name</th>
+                            <th>Product Description</th>
                             <%--<th>WareHouseName</th>--%>
                             <th>Quantity</th>
                             <th>Unit Price</th>
@@ -113,19 +114,22 @@
                         </td>
 
 
-                        <td class="ItemCol_ProductName">
+                        <td class="col-md-1 ItemCol_ProductName">
                             <%# Eval("ProductName") %>
                         </td>
-                        <td class="ItemCol_Quantity">
+                        <td class="col-md-2">
+                            <%# Eval("ProductDescription") %>
+                        </td>
+                        <td class="col-md-1 ItemCol_Quantity">
                             <%# Eval("Quantity") %>
                         </td>
-                        <td class="ItemCol_Price">
+                        <td class="col-md-1 ItemCol_Price">
                             <%# Eval("Price") %>
                         </td>
-                        <td>
+                        <td class="col-md-1">
                             <%#Eval("PerUnitTotalPrice") %>
                         </td>
-                        <td>
+                        <td class="col-md-1">
                             <div runat="server" id="ItemCommandtd">
                                 <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

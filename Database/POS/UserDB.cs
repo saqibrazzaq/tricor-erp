@@ -177,6 +177,7 @@ namespace Database.POS
             catch (Exception e)
             {
                 trans.Rollback();
+                e.ToString();
             }
             finally
             {

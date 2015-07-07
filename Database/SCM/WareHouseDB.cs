@@ -120,6 +120,7 @@ namespace Database.SCM
             }
             catch (Exception e)
             {
+                e.ToString();
                 trans.Rollback();
             }
             finally
@@ -157,6 +158,7 @@ namespace Database.SCM
             catch (Exception e)
             {
                 trans.Rollback();
+                e.ToString();
             }
             finally
             {

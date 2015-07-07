@@ -9,7 +9,6 @@
             <div class="row container-fluid">
 
                 <div class="col-lg-4">
-
                     <div class="input-group">
                         <b>Name: </b>
                         <asp:Label ID="customerName" runat="server" Text=""></asp:Label>
@@ -50,7 +49,7 @@
                     <label for="InputName">Email :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter customer email address!" ControlToValidate="email" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="email"
                         ErrorMessage="Please enter customer valid email address!" ForeColor="Red"
-                        ValidationExpression="[0-9]*\.?[0-9]*">*</asp:RegularExpressionValidator>
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
                     &nbsp;<div class="input-group">
                         <asp:TextBox CssClass="form-control" ID="email" Font-Names="InputName" placeholder="Enter email" runat="server" TextMode="Email"></asp:TextBox>
                     </div>

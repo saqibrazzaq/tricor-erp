@@ -9,8 +9,6 @@
     </title>
 
 
-
-
     <%--<link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
     <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
@@ -40,7 +38,7 @@
 
                 <h2><a href="#">
                     <% String s = (String)Session["UserName"];%>
-                    <%=s%> <span class="glyphicon glyphicon-thumbs-up"></span>
+                    Welcome <%=s%> <span class="glyphicon glyphicon-thumbs-up"></span>
                 </a></h2>
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
@@ -316,9 +314,8 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <ul class="nav nav-list">
-                            <li class="nav-header">Main Functions.</li>
-
-                            <li><a href="#">About Us</a></li>
+                            <li class="nav-header">Extra Functions.</li>
+                            <li><a href="#">Help</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-10">
@@ -385,10 +382,10 @@
                 $("#PurchaseOrderPOS").addClass("hidden");
             }
         </script>
+    </div>
 
-        <%--<div class="footer">
+    <div class="panel-footer">
             <center><p>&copy;Copyright 2015 All rights reserved.</p></center>
-        </div>--%>
     </div>
 </body>
 </html>
