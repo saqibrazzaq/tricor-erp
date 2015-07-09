@@ -38,7 +38,7 @@
 
                 <h2><a href="#">
                     <% String s = (String)Session["UserName"];%>
-                    Welcome <%=s%> <span class="glyphicon glyphicon-thumbs-up"></span>
+                    Welcome <%=s%> 
                 </a></h2>
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
@@ -312,13 +312,40 @@
                     </div>
                 </nav>
                 <div class="row">
-                    <div class="col-lg-2">
-                        <ul class="nav nav-list">
-                            <li class="nav-header">Extra Functions.</li>
-                            <li><a href="#">Help</a></li>
+                    <div class="col-lg-3">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="active">
+                                <asp:HyperLink ID="HyperLink53" NavigateUrl="~/Home.aspx" runat="server">
+                                    <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard
+                                </asp:HyperLink>
+                            </li>
+                            <li>
+                                <asp:HyperLink aria-label="Left Align" NavigateUrl="~/POS/Cashier/CustomerList.aspx" ID="HyperLink54" runat="server">
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Customers
+                                </asp:HyperLink>
+                            </li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink56" aria-label="Left Align" NavigateUrl="~/POS/Catalog/MainCatalog.aspx?CatId=AllProducts&CatName=All Products" runat="server">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>   Items
+                                </asp:HyperLink>
+                            </li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink55" aria-label="Left Align" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Employees
+                                </asp:HyperLink>
+                            </li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink57" aria-label="Left Align" NavigateUrl="#" runat="server">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>  Reports
+                                </asp:HyperLink>
+                            </li>
+                            <li>
+                                <asp:LinkButton ID="LinkButton2" OnClick="LogoffLinkButton" runat="server" CausesValidation="False"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
+                            </li>
                         </ul>
                     </div>
-                    <div class="col-lg-10">
+
+                    <div class="col-lg-9">
                         <div class="active focus">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
@@ -385,7 +412,7 @@
     </div>
 
     <div class="panel-footer">
-            <center><p>&copy;Copyright 2015 All rights reserved.</p></center>
+        <center><p>&copy;Copyright 2015 All rights reserved.</p></center>
     </div>
 </body>
 </html>
