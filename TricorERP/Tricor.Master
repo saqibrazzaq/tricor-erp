@@ -305,7 +305,10 @@
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" runat="server" CausesValidation="False"><span class="glyphicon glyphicon-log-out"></span> Log-Off</asp:LinkButton>
+                                       <asp:LinkButton ID="LinkButton1" OnClick="LogoffLinkButton" class="btn btn-block" runat="server" CausesValidation="False">
+                                           <span class="glyphicon glyphicon-log-out"></span> 
+                                           Log-Off
+                                       </asp:LinkButton>
                                 </li>
                             </ul>
                         </div>
@@ -336,7 +339,7 @@
                             </li>
                             <li>
                                 <asp:HyperLink ID="HyperLink57" aria-label="Left Align" NavigateUrl="#" runat="server">
-                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>  Reports
+                                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Reports
                                 </asp:HyperLink>
                             </li>
                             <li>
@@ -390,7 +393,8 @@
                 // $("#OrderApproved").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
-                $("#CatalogDropdown").addClass("hidden");
+                //$("#CatalogDropdown").addClass("hidden");
+                $("#POSHomeTEandTS").addClass("hidden");
 
             } else if ('3' == '<%=roleID%>') {
                 $("#CustomerDropdown").addClass("hidden");
@@ -399,6 +403,7 @@
                 $("#PendingSales").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
+                $("#POSPanelBody").addClass("hidden");
 
             } else if ('4' == '<%=roleID%>') {
                 $("#CustomerDropdown").addClass("hidden");
@@ -407,6 +412,7 @@
                 $("#PendingSales").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
+                $("#POSPanelBody").addClass("hidden");
             }
         </script>
     </div>

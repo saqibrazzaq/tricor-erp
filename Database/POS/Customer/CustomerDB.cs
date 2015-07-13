@@ -150,6 +150,11 @@ namespace Database.POS.Customer
         }
 
 
-
+        public static int getCustomerCount()
+        {
+            String sql = @"SELECT COUNT (*) as Customer FROM [dbo].Customer";
+            object customercount = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(customercount.ToString());
+        }
     }
 }

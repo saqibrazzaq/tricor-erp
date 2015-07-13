@@ -113,5 +113,18 @@ namespace Database.POS
             }
             return products;
         }
+
+        public static int getAvalableProducts(string WHID)
+        {
+            String sql = @"SELECT SUM([Stock].Quantity) as totalitem FROM [dbo].[Stock] where [Stock].WHID='" + WHID + "'";
+            int totalitems=0;
+            using(SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null)){
+                while (reader.Read())
+                {
+                    totalitems = int.Parse(reader["totalitem"].ToString());
+                }
+            }
+            return totalitems;
+        }
     }
 }

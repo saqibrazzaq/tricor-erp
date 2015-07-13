@@ -34,9 +34,9 @@
                     <asp:TextBox ID="check" ReadOnly="true" runat="server"></asp:TextBox>
                 </div>
             </div>
-            --%>    
+            --%>
             <br />
-           
+
             <div class="row container-fluid">
                 <div class="col-lg-2">
                     <label for="InputName">Customer :</label>

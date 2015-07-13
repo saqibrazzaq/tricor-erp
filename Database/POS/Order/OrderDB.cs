@@ -428,5 +428,12 @@ namespace Database.POS.Order
             return WHlists;
         }
 
+
+        public static int getTotlSalesOrder(string WHID)
+        {
+            String sql = @"SELECT COUNT (*) as Usercount FROM [dbo].[User] where [User].WarehouseID='" + WHID + "'";
+            object salesordercount = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(salesordercount.ToString());
+        }
     }
 }

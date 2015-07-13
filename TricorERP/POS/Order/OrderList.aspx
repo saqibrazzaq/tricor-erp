@@ -6,7 +6,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="h2">Order's List</h2>
-            <div class="row">
+            <div class="row container-fluid">
                 <div class="col-lg-6">
                     <div class="input-group">
                         <asp:TextBox ID="SearchOrderData" CssClass="form-control" placeholder="Search Order By Customer Name Or Date..." runat="server"></asp:TextBox>

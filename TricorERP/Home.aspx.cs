@@ -49,12 +49,63 @@ namespace TricorERP
             GetPendingSalesOrder();
             GetInProgressSalesOrder();
             POSStockStatus();
+            POSCustomerCount();
+            POSEmployCount();
+            POSTotalItemCount();
+            //POSTotalSalesOrder();
+        }
+
+        //private void POSTotalSalesOrder()
+        //{
+        //    int totalsalesorder = GetTotalSalesOrder();
+        //    Labtotalsales.Text = totalsalesorder.ToString();
+        //}
+
+        //private int GetTotalSalesOrder()
+        //{
+        //    return Database.POS.Order.OrderDB.getTotlSalesOrder(Session["WHID"].ToString());
+        //}
+
+        private void POSTotalItemCount()
+        {
+            int totalitem = GetTotalItem();
+            LabtotalItem.Text = totalitem.ToString();
+        }
+
+        private int GetTotalItem()
+        {
+            return Database.POS.ProductDB.getAvalableProducts(Session["WHID"].ToString());
+        }
+
+        private void POSEmployCount()
+        {
+            int employcount = GetEmployCount();
+            Labtotalemployees.Text = employcount.ToString();
+        }
+
+        private int GetEmployCount()
+        {
+            return Database.POS.UserDB.getTotalEmploy(Session["WHID"].ToString());
+        }
+
+        private void POSCustomerCount()
+        {
+            int customercount = GetCustomerCount();
+            Labtotalcustomer.Text = customercount.ToString();
+        }
+
+        private int GetCustomerCount()
+        {
+            return Database.POS.Customer.CustomerDB.getCustomerCount();
         }
         /*Function get the count of pending sale order and set that count on the lable*/
         private void GetPendingSalesOrder()
         {
             int pendngsalesorder = GetPendingSalesOrderDB();
             PandingSaleOrderLabel.Text = pendngsalesorder.ToString();
+
+            //later on remove it
+            Labtotalsales.Text = pendngsalesorder.ToString();
         }
         private int GetPendingSalesOrderDB()
         {

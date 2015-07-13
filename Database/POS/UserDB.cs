@@ -201,5 +201,12 @@ namespace Database.POS
             }
             return roles;
         }
+
+        public static int getTotalEmploy(string WHID)
+        {
+            String sql = @"SELECT COUNT (*) as Usercount FROM [dbo].[User] where [User].WarehouseID='"+WHID+"'";
+            object employeescount = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+            return int.Parse(employeescount.ToString());
+        }
     }
 }
