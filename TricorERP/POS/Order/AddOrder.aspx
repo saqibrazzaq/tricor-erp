@@ -85,13 +85,14 @@
                             <th class="hidden">Sales Order ID</th>
                             <th class="hidden">WareHouseID</th>
                             <th class="hidden">ProductID</th>
+                            <th></th>
                             <th>Product Name</th>
                             <th>Product Description</th>
                             <%--<th>WareHouseName</th>--%>
                             <th>Quantity</th>
                             <th>Unit Price</th>
                             <th>Per Unit Total Price</th>
-                            <th></th>
+                            <th>Picture</th>
                         </tr>
                         <tr runat="server" id="itemPlaceholder"></tr>
                     </table>
@@ -114,6 +115,20 @@
                         </td>
 
 
+                         <td class="col-md-1">
+                            <div runat="server" id="ItemCommandtd">
+                                <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </button>
+
+                                <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                                <asp:Button runat="server" ID="DeleteItem" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
+                            </div>
+                        </td>
+
+
                         <td class="col-md-1 ItemCol_ProductName">
                             <%# Eval("ProductName") %>
                         </td>
@@ -129,18 +144,12 @@
                         <td class="col-md-1">
                             <%#Eval("PerUnitTotalPrice") %>
                         </td>
-                        <td class="col-md-1">
-                            <div runat="server" id="ItemCommandtd">
-                                <button type="button" class="ItemRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#SalesOrderItemEditModal">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-
-                                <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <asp:Button runat="server" ID="DeleteItem" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
-                            </div>
+                       
+                        <td class="col-lg-1">
+                             <img src="<%#Eval("ImagePath") %>" width="100" height="100" />
+                            
                         </td>
+
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

@@ -160,11 +160,12 @@ namespace Database.POS.Order
             //for total price 
             float totalprice = 0;
             // Load the items
-            string sqlItems = @"SELECT item.*, Product.PName AS ProductName , Product.PDescription
-                              FROM SalesOrderItem item
-                              INNER JOIN Product ON item.ProductID = Product.ID
-					          INNER join Warehouse on item.WareHouseID = Warehouse.ID
-                              WHERE item.OrderID = '" + soModel.ID + "'";
+            string sqlItems = @"SELECT item.*, Product.PName AS ProductName , Product.PDescription, [MainCatalog].ImagePath
+                            FROM SalesOrderItem item
+							INNER JOIN Product ON item.ProductID = Product.ID
+							INNER JOIN [MainCatalog] ON item.ProductID = [MainCatalog].PId
+							INNER join Warehouse on item.WareHouseID = Warehouse.ID
+                            WHERE item.OrderID ='" + soModel.ID + "'";
 
             // Empty the list of items before loading from DB
             soModel.items.Clear();
@@ -181,6 +182,7 @@ namespace Database.POS.Order
                     soItemModel.ProductName = readerItems["ProductName"].ToString();
                     soItemModel.WareHouseID = readerItems["WareHouseID"].ToString();
                     soItemModel.ProductDescription = readerItems["PDescription"].ToString();
+                    soItemModel.ImagePath = readerItems["ImagePath"].ToString();
 
                     soItemModel.PerUnitTotalPrice = soItemModel.Quantity * soItemModel.Price;
 
