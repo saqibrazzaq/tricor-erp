@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4 class="h4">Cashier Info :</h4>
+            <h4 class="h4"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Cashier Info :</h4>
             <div class="row container-fluid">
                 <div class="col-lg-4">
                     <div class="input-group">
@@ -48,7 +48,7 @@
                     <label for="InputName">Email :</label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter user email address!" ControlToValidate="email" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="email"
                         ErrorMessage="Please enter user valid email address!" ForeColor="Red"
-                        ValidationExpression="[0-9]*\.?[0-9]*">*</asp:RegularExpressionValidator>
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
                     <div class="input-group">
                         <asp:TextBox CssClass="form-control" ID="email" Font-Names="InputName" placeholder="Enter email" runat="server" TextMode="Email"></asp:TextBox>
                     </div>

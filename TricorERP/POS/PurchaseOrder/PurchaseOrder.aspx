@@ -12,20 +12,28 @@
         </div>
         <div class="panel-body">
             <div class="row container-fluid">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label for="InputName">Waher House :</label>
                     <div class="input-group">
                         <asp:DropDownList ID="WaherHouseDropDownList" CssClass="form-control" runat="server"></asp:DropDownList>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label for="InputName">Date :</label>
                     <div class="input-group">
                         <asp:TextBox ID="DateTextBoox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
+                <div class="col-lg-3">
+                    <label for="InputName">Order Status:</label>
+                    <div class="input-group">
+                        <asp:TextBox ID="txtOrderStatus" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
+                </div>
             </div>
-            <div class="row container-fluid">
+
+            <%-- used for checking what is the status of my order --%>
+            <div class="hidden row container-fluid">
                 <div class="col-lg-4">
                     <label for="InputName">Order Status :</label>
                     <div class="input-group">
@@ -42,7 +50,7 @@
             </div>
             <br />
             <div class="row container-fluid">
-                <div class="col-lg-3">
+                <div class="col-lg-5">
                     <h4 class="h4">
                         <asp:label id="ItemMessageLab" runat="server" for="InputName"></asp:label>
                     </h4>
@@ -55,20 +63,20 @@
                     <h5 class="h5">
                     </h5>
                     <div class="panel-body">
-                        <asp:ListView ID="PurchaseOrderItemview" OnItemCommand="PurchaseOrderItemview_ItemCommand" runat="server">
+                        <asp:ListView ID="PurchaseOrderItemview" runat="server" OnItemDataBound="PurchaseOrderItemview_ItemDataBound">
                             <LayoutTemplate>
-                                <table class="table table-bordered table-hover" runat="server" id="CustomersTable">
+                                <table class="table table-bordered table-hover" runat="server" id="PurchaseOrderItemTable">
                                     <tr class="active">
                                         <th class="hidden PurchaseOrderItemID">ID</th>
                                         <th>Product Name</th>
                                         <th>Quantity</th>
-                                        <th>Edit/Delete</th>
+                                        <th id="editdelete"></th>
                                     </tr>
                                     <tr runat="server" id="itemPlaceholder"></tr>
                                 </table>
                             </LayoutTemplate>
                             <ItemTemplate>
-                                <tr id="Tr1" runat="server">
+                                <tr class="ItemRow" id="ItemRow" runat="server">
                                     <td class="hidden PurchaseOrderItemID">
                                         <%# Eval("ID") %>
                                     </td>
@@ -78,15 +86,17 @@
                                     <td class="ItemCol_Quantity">
                                         <%# Eval("Quantity") %>
                                     </td>
-                                    <td>
-                                        <button type="button" class="QuantityRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#PurchaseItemEditModal">
-                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                        </button>
+                                    <td id="ItemCommandtd">
+                                        <div runat="server" >
+                                            <button type="button" class="QuantityRowEdit btn btn-default btn-xs" data-toggle="modal" data-target="#PurchaseItemEditModal">
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            </button>
 
-                                        <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
-                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                        </button>
-                                        <asp:Button ID="deletePurchaseItem" runat="server" CssClass="hidden deletePurchaseItem" CommandName="DeleteAddress" OnClick="deletePurchaseItem_Click" />
+                                            <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            </button>
+                                            <asp:Button ID="deletePurchaseItem" runat="server" CssClass="hidden deletePurchaseItem" CommandName="DeleteAddress" OnClick="deletePurchaseItem_Click" />
+                                        </div>
                                     </td>
                                 </tr>
                             </ItemTemplate>

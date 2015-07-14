@@ -22,12 +22,12 @@ namespace TricorERP.POS.BranchManager
 
             if (UserID != Common.NULL_ID)
             {
-                Head.Text = "User Information";
+                Head.Text = "Employ Information";
                 Savebtn.Text = "Update";
             }
             else if (UserID == Common.NULL_ID)
             {
-                Head.Text = "New User";
+                Head.Text = "New Employ";
                 btnAddNewAddress.Enabled = false;
                 Savebtn.Text = "Save";
             }

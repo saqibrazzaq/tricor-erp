@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2 class="h2">Customer's List</h2>
+            <h2 class="h2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Customer's List</h2>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group">

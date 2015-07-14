@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2 class="h2">User's List</h2>
+            <h2 class="h2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Employ List</h2>
 
             <div class="row">
 

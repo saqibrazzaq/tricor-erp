@@ -7,7 +7,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="h2">
-                <asp:Label runat="server" ID="HeadingOfCuatomer" Text=""></asp:Label></h2>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+                <asp:Label runat="server" ID="HeadingOfCuatomer" Text=""></asp:Label>
+            </h2>
             <%-- to be continue... --%>
         </div>
         <div class="panel-body">

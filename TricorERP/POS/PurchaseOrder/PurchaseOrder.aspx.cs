@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Models.POS;
+using System.Web.UI.HtmlControls;
 
 namespace TricorERP.POS.PurchaseOrder
 {
@@ -36,11 +37,22 @@ namespace TricorERP.POS.PurchaseOrder
                     DateTextBoox.Text = purchaseOrder.OrderDate;
                     WaherHouseDropDownList.SelectedValue = purchaseOrder.WHID;
                     SavePurchaseOrderbtn.Text = "Update";
+
+                    txtOrderStatus.Text = purchaseOrder.OrderStatus;
+
+                    if (DateTime.Now.ToShortDateString() != purchaseOrder.OrderDate)
+                    {
+                        WaherHouseDropDownList.Enabled = false;
+                        btnAddNewItem.Enabled = false;
+                        SavePurchaseOrderbtn.Enabled = false;
+                    }
+                    
                 }
                 else
                 {
                     SavePurchaseOrderbtn.Text = "Save";
                     btnAddNewItem.Enabled = false;
+                    txtOrderStatus.Text = "Pending";
                     InitializeCurentDate();
                 }
             }
@@ -54,6 +66,8 @@ namespace TricorERP.POS.PurchaseOrder
         {
             DateTextBoox.Text = DateTime.Now.ToShortDateString();
             purchaseOrder.OrderDate = DateTextBoox.Text.Trim();
+
+            txtOrderStatus.Text = "Pending";
         }
 
         private void InitializeWareHouseDropDowm()
@@ -130,7 +144,7 @@ namespace TricorERP.POS.PurchaseOrder
             purchaseOrder.LastUpdatedBy = Session["UserID"].ToString().Trim();
             purchaseOrder.CreatedBy = Session["UserID"].ToString().Trim();
             purchaseOrder.SID = Common.NULL_ID;
-            purchaseOrder.OrderStatus = Common.OrderApproved;
+            purchaseOrder.OrderStatus = Common.OrderPending;
             purchaseOrder = Database.Common.PurchaseOrderDB.addPurchaseOrder(purchaseOrder);
             
             if (purchaseOrder.ID != Common.NULL_ID) {
@@ -155,10 +169,7 @@ namespace TricorERP.POS.PurchaseOrder
         }
 
 
-        protected void PurchaseOrderItemview_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-
-        }
+     
 
         protected void btnAddNewItem_Click(object sender, EventArgs e)
         {
@@ -197,6 +208,24 @@ namespace TricorERP.POS.PurchaseOrder
         {
             Response.Redirect("~/Home.aspx");
         }
+
+        protected void PurchaseOrderItemview_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+
+            purchaseOrder = GetPurchaseOrderInFon();
+
+            if (DateTime.Now.ToShortDateString() != purchaseOrder.OrderDate)
+            {
+                Control myControl1 = e.Item.FindControl("ItemCommandtd");
+                if (myControl1 != null)
+                {
+                    myControl1.Visible = false;
+                    
+                }
+            }
+        }
+
+        
 
 
     }

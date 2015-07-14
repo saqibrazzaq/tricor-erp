@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4 class="h4">Customer Info :</h4>
+            <h4 class="h4"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Customer Info :</h4>
             <div class="row container-fluid">
 
                 <div class="col-lg-4">

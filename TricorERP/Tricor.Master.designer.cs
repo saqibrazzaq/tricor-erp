@@ -121,33 +121,6 @@ namespace TricorERP {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink9;
         
         /// <summary>
-        /// HyperLink42 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink42;
-        
-        /// <summary>
-        /// HyperLink43 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink43;
-        
-        /// <summary>
-        /// HyperLink44 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink44;
-        
-        /// <summary>
         /// HyperLink36 control.
         /// </summary>
         /// <remarks>
@@ -173,6 +146,33 @@ namespace TricorERP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink38;
+        
+        /// <summary>
+        /// HyperLink42 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink42;
+        
+        /// <summary>
+        /// HyperLink43 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink43;
+        
+        /// <summary>
+        /// HyperLink44 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink44;
         
         /// <summary>
         /// HyperLink47 control.

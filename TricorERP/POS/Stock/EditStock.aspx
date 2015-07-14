@@ -41,7 +41,7 @@
             <div class="row container-fluid">
                 <div class="col-lg-4">
                     <asp:LinkButton ID="btnAddStock" runat="server" CssClass="btn btn-primary" OnClick="btnAddStock_Click">Add Stock</asp:LinkButton>
-                 </div>
+                </div>
             </div>
 
             <div class="hidden row container-fluid">
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-         
+
 
             <br />
             <div class="row container-fluid">
@@ -66,7 +66,7 @@
                     <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click" CausesValidation="False">Back</asp:LinkButton>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />

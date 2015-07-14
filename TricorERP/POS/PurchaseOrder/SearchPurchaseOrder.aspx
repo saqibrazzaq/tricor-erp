@@ -29,6 +29,7 @@
                                     <th class="hidden PurchaseOrderItemID">ID</th>
                                     <th>OrderDate</th>
                                     <th>Warehouse Name</th>
+                                    <th>Order Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -45,6 +46,9 @@
                                 </td>
                                 <td>
                                     <%# Eval("WHName") %>
+                                </td>
+                                <td>
+                                    <%# Eval("OrderStatus") %>
                                 </td>
                                 <td>
                                     <asp:LinkButton ID="LinkButton2" runat="server" CommandName="EditPurchaseOrder" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>

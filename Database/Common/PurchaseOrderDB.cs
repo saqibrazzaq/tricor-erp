@@ -38,7 +38,9 @@ namespace Database.Common
         public static PurchaseOrderModel getPurchaseOrderInFol(String ID)
         {
             PurchaseOrderModel poModel = null;
-            String sql = @"select  * from PurchaseOrder where PurchaseOrder.ID='" + ID + "'";
+            String sql = @"select * from PurchaseOrder 
+                           JOIN [OrderStatus] ON [PurchaseOrder].OrderStatus = [OrderStatus].ID 
+                           where PurchaseOrder.ID='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
@@ -50,7 +52,7 @@ namespace Database.Common
                 poModel.OrderType = reader["OrderType"].ToString();
                 poModel.CreatedBy = reader["CreatedBy"].ToString();
                 poModel.LastUpdatedBy = reader["LastUpdatedBy"].ToString();
-                poModel.OrderStatus = reader["OrderStatus"].ToString();
+                poModel.OrderStatus = reader["StatusName"].ToString();
 
             }
             return poModel;
@@ -59,10 +61,11 @@ namespace Database.Common
         public static List<PurchaseOrderModel> getPurchaseOrderList(String searchtext)
         {
             List<PurchaseOrderModel> POList = new List<PurchaseOrderModel>();
-            String sql = @"SELECT [PurchaseOrder].ID ID, [PurchaseOrder].OrderDate OrderDate, [Warehouse].WHName WHName
-                            FROM [PurchaseOrder] 
-                            JOIN [Warehouse] ON [Warehouse].ID = [PurchaseOrder].WHID
-                            WHERE 1=1
+            String sql = @"SELECT [PurchaseOrder].ID ID, [PurchaseOrder].OrderDate OrderDate, [Warehouse].WHName WHName, [OrderStatus].StatusName
+							FROM [PurchaseOrder]
+							JOIN [Warehouse] ON [Warehouse].ID = [PurchaseOrder].WHID
+							JOIN [OrderStatus] ON [OrderStatus].ID = [PurchaseOrder].OrderStatus
+							WHERE 1=1
                             AND (PurchaseOrder.OrderDate like '%" +searchtext+"%' or Warehouse.WHName like '%"+searchtext+"%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
@@ -71,6 +74,7 @@ namespace Database.Common
                 POMOdel.ID = reader["ID"].ToString();
                 POMOdel.WHName = reader["WHName"].ToString();
                 POMOdel.OrderDate = reader["OrderDate"].ToString();
+                POMOdel.OrderStatus = reader["StatusName"].ToString();
                 POList.Add(POMOdel);
             }
             return POList;
