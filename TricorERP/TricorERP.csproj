@@ -93,6 +93,7 @@
     <Content Include="POS\PrintPreviews\PurchaseReportPrintPreview.aspx" />
     <Content Include="POS\PrintPreviews\SalesReportPrintPreview.aspx" />
     <Content Include="POS\PrintPreviews\StockReportPrintPreview.aspx" />
+    <Content Include="POS\Product\AddNewProduct.aspx" />
     <Content Include="POS\PurchaseOrder\PurchaseOrder.aspx" />
     <Content Include="POS\PurchaseOrder\PurchaseOrder.js" />
     <Content Include="POS\PurchaseOrder\PurchaserOrderItems.aspx" />
@@ -294,6 +295,13 @@
     </Compile>
     <Compile Include="POS\PrintPreviews\StockReportPrintPreview.aspx.designer.cs">
       <DependentUpon>StockReportPrintPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS\Product\AddNewProduct.aspx.cs">
+      <DependentUpon>AddNewProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS\Product\AddNewProduct.aspx.designer.cs">
+      <DependentUpon>AddNewProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="POS\PurchaseOrder\PurchaseOrder.aspx.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>

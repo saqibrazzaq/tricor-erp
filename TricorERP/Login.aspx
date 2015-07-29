@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -51,4 +52,5 @@
     <%--<script src='<%=ResolveClientUrl("~/Scripts/jquery-2.1.3.min.js")%>'></script>--%>
     <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.js")%>'></script>
 </body>
+
 </html>

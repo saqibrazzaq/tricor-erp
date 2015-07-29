@@ -44,6 +44,7 @@
     <Compile Include="Common\PurchaseOrderDB.cs" />
     <Compile Include="Common\PurchaseOrderItemDB.cs" />
     <Compile Include="DBUtility.cs" />
+    <Compile Include="POS\CatalogProductDB.cs" />
     <Compile Include="POS\InvoiceDB.cs" />
     <Compile Include="POS\MainCatalog.cs" />
     <Compile Include="POS\ReportDB.cs" />

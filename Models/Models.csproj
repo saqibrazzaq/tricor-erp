@@ -44,6 +44,7 @@
     <Compile Include="Common\PurchaseOrderModel.cs" />
     <Compile Include="POS\InvoiceModel.cs" />
     <Compile Include="POS\PaymentMethordModel.cs" />
+    <Compile Include="POS\Product\ProductModel.cs" />
     <Compile Include="POS\Report\ReportModel.cs" />
     <Compile Include="POS\RoleModel.cs" />
     <Compile Include="POS\User\UserModel.cs" />
