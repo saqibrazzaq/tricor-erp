@@ -1,10 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="ViewManufactureRequestDetails.aspx.cs" Inherits="TricorERP.SCM.ViewOrderDetails" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tricor.Master" AutoEventWireup="true" CodeBehind="ViewRejectedOrderDetails.aspx.cs" Inherits="TricorERP.SCM.ViewRejectedOrderDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="h2">Order Details</h2>
     <div class="panel-body">
+        <asp:TextBox ID="rejectedby" CssClass="form-control" placeholder="" runat="server" OnTextChanged="rejectedby_TextChanged"></asp:TextBox>  
+        <asp:TextBox ID="rejectionreason" CssClass="form-control" placeholder="" runat="server" OnTextChanged="rejectionreason_TextChanged"></asp:TextBox>
+        <asp:TextBox ID="rejectedon" CssClass="form-control" placeholder="" runat="server" OnTextChanged="rejectedon_TextChanged"></asp:TextBox>        
+             
         <asp:ListView ID="OrderDetialsListview" runat="server" OnItemCommand="OrderDetailsListview_ItemCommand" OnSelectedIndexChanged="OrderDetailsListview_SelectedIndexChanged">
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="OrderTable">
@@ -19,7 +22,6 @@
             <ItemTemplate>
                 <tr id="Tr1" runat="server">
 
-
                     <td>
                         <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("OrderID") %>'></asp:LinkButton>
                     </td>
@@ -28,14 +30,9 @@
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("TotalQuantity") %>'></asp:LinkButton>
-
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Price") %>'></asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
     </div>
 </asp:Content>
-

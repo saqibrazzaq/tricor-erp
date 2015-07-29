@@ -18,7 +18,9 @@ namespace TricorERP.SCM
         {
             String id = Request.QueryString["OrderID"];
             String res = reason.Text;
-            Database.SCM.SalesOrder.RejectOrder(id, res); 
+            String rejectedby = Session["RoleID"].ToString();
+
+            Database.SCM.SalesOrder.RejectOrder(id, res, rejectedby);
             Response.Redirect("~/SCM/ViewManufactureRequests.aspx");
         }
     }

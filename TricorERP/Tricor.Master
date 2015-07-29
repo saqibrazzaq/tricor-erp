@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Tricor.master.cs" Inherits="TricorERP.Tricor" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Tricor.master.cs" Inherits="TricorERP.Tricor" %>
 
 <!DOCTYPE html>
 
@@ -264,7 +264,7 @@
                                 <asp:HyperLink ID="HyperLink14" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Sales Order <span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <asp:HyperLink ID="HyperLink15" NavigateUrl="" runat="server">All Orders</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink15" NavigateUrl="~/SCM/ViewAllSalesOrder.aspx" runat="server">All Orders</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -272,11 +272,11 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SCM/ViewManufactureQueue.aspx" runat="server">Accepted Orders</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink20" NavigateUrl="~/SCM/ViewAcceptedOrders.aspx" runat="server">Accepted Orders</asp:HyperLink>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink21" NavigateUrl="" runat="server">Rejected Orders</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink21" NavigateUrl="~/SCM/ViewRejectedOrders.aspx" runat="server">Rejected Orders</asp:HyperLink>
                                     </li>
                                 </ul>
                             </li>

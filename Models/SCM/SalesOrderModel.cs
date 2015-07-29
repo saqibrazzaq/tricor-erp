@@ -15,6 +15,9 @@ namespace Models.SCM
         public String DeliveryDate { set; get; }
         public int OrderStatus { set; get; }
         public String OrderStatusName { set; get; }
+        public string RejectedBy { set; get; }
+        public string RejectionReason { set; get; }
+        public string RejectedOn { set; get; }
         public List<SalesOrderItemModel> items = new List<SalesOrderItemModel>();
     }
 }

@@ -7,13 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace TricorERP.SCM
 {
-    public partial class ViewOrderDetails : System.Web.UI.Page
+    public partial class SalesOrderDetails : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             GetOrderDetails();
         }
-
         protected void OrderDetailsListview_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "none")
@@ -32,7 +31,6 @@ namespace TricorERP.SCM
         {
 
         }
-
 
     }
 }

@@ -115,6 +115,7 @@
     <Content Include="SCM\ProductComposition.js" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseOrder.js" />
+    <Content Include="SCM\RejectOrderReason.aspx" />
     <Content Include="SCM\SCM_Scripts\PurchaseOrder.js" />
     <Content Include="SCM\PurchaseOrderItem.aspx" />
     <Content Include="SCM\QueuedOrderDetails.aspx" />
@@ -126,6 +127,8 @@
     <Content Include="SCM\SearchStockItem.js" />
     <Content Include="SCM\SearchSupplier.aspx" />
     <Content Include="SCM\SearchWareHouse.aspx" />
+    <Content Include="SCM\ViewAcceptedOrders.aspx" />
+    <Content Include="SCM\ViewAllSalesOrder.aspx" />
     <Content Include="SCM\ViewManufactureRequests.aspx" />
     <Content Include="SCM\ViewManufactureQueue.aspx" />
     <Content Include="SCM\ViewManufactureRequestDetails.aspx" />
@@ -133,6 +136,9 @@
     <Content Include="SCM\ViewProducts.aspx" />
     <Content Include="SCM\AddNewWareHouse.aspx" />
     <Content Include="SCM\ViewProducts.js" />
+    <Content Include="SCM\ViewRejectedOrderDetails.aspx" />
+    <Content Include="SCM\ViewRejectedOrders.aspx" />
+    <Content Include="SCM\viewSalesOrderDetails.aspx" />
     <Content Include="Scripts\jquery.confirm.js" />
     <Content Include="Scripts\jquery.confirm.min.js" />
     <Content Include="Tricor.Master" />
@@ -451,6 +457,13 @@
     <Compile Include="SCM\QueuedOrderDetails.aspx.designer.cs">
       <DependentUpon>QueuedOrderDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\RejectOrderReason.aspx.cs">
+      <DependentUpon>RejectOrderReason.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\RejectOrderReason.aspx.designer.cs">
+      <DependentUpon>RejectOrderReason.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\SearchAddress.aspx.cs">
       <DependentUpon>SearchAddress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -486,6 +499,20 @@
     <Compile Include="SCM\SearchWareHouse.aspx.designer.cs">
       <DependentUpon>SearchWareHouse.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\ViewAcceptedOrders.aspx.cs">
+      <DependentUpon>ViewAcceptedOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewAcceptedOrders.aspx.designer.cs">
+      <DependentUpon>ViewAcceptedOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ViewAllSalesOrder.aspx.cs">
+      <DependentUpon>ViewAllSalesOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewAllSalesOrder.aspx.designer.cs">
+      <DependentUpon>ViewAllSalesOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ViewManufactureRequests.aspx.cs">
       <DependentUpon>ViewManufactureRequests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,6 +547,27 @@
     </Compile>
     <Compile Include="SCM\AddNewWareHouse.aspx.designer.cs">
       <DependentUpon>AddNewWareHouse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ViewRejectedOrderDetails.aspx.cs">
+      <DependentUpon>ViewRejectedOrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewRejectedOrderDetails.aspx.designer.cs">
+      <DependentUpon>ViewRejectedOrderDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ViewRejectedOrders.aspx.cs">
+      <DependentUpon>ViewRejectedOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewRejectedOrders.aspx.designer.cs">
+      <DependentUpon>ViewRejectedOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ViewSalesOrderDetails.aspx.cs">
+      <DependentUpon>viewSalesOrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ViewSalesOrderDetails.aspx.designer.cs">
+      <DependentUpon>viewSalesOrderDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tricor.Master.cs">
       <DependentUpon>Tricor.Master</DependentUpon>

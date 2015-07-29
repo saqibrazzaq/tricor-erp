@@ -11,7 +11,7 @@ namespace TricorERP.SCM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Models.SCM.SalesOrderModel> orders = Database.SCM.SalesOrder.ViewQueuedOrders();
+            List<Models.SCM.SalesOrderModel> orders = Database.SCM.SalesOrder.ViewQueuedOrders("");
             MQListview.DataSource = orders;
             MQListview.DataBind();
         }
@@ -27,12 +27,12 @@ namespace TricorERP.SCM
                 String OrderID = e.CommandArgument.ToString();
                 Response.Redirect("~/SCM/QueuedOrderDetails.aspx?OrderID=" + OrderID);
             }
-            
+
         }
         protected void MQListview_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-       
+
     }
 }

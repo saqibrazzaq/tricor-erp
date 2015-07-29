@@ -27,16 +27,16 @@ namespace TricorERP.SCM
             }
             if (e.CommandName == "viewdetails")
             {
-               String OrderID = e.CommandArgument.ToString();
+                String OrderID = e.CommandArgument.ToString();
                 Response.Redirect("~/SCM/ViewManufactureRequestDetails.aspx?OrderID=" + OrderID);
             }
-            if(e.CommandName == "manufacture")
+            if (e.CommandName == "manufacture")
             {
                 String OrderID = e.CommandArgument.ToString();
                 Database.SCM.SalesOrder.SendToManufacture(OrderID);
                 SearchOrder("");
             }
-            if(e.CommandName == "reject")
+            if (e.CommandName == "reject")
             {
                 String id = e.CommandArgument.ToString();
                 Response.Redirect("~/SCM/RejectOrderReason.aspx?OrderID=" + id);
@@ -59,7 +59,7 @@ namespace TricorERP.SCM
         }
         protected void ViewDetails(String id)
         {
-           
+
         }
 
     }
