@@ -10,34 +10,57 @@ namespace Database.POS
 {
     public class MainCatalog
     {
-        SqlConnection con = new SqlConnection(DBUtility.SqlHelper.connectionString);
-        string sqlQuery = null;
-        string productTypeId = null;
-
-        public SqlDataAdapter showCatalogProducts(string pTypeId) // show main catalog products
+        
+        public static List<Models.Common.CatalogModel> showCatalogProducts(string pTypeId)
         {
-            productTypeId = pTypeId;
-
-            if (productTypeId == "AllProducts") // show all products of all catagories
+            List<Models.Common.CatalogModel> catalogs = new List<Models.Common.CatalogModel>();
+            String sqlQuery = null;
+            if (pTypeId == "AllProducts") // show all products of all catagories
             {
-                sqlQuery = "SELECT Product.PName, MainCatalog.ImagePath, Product.PDescription, Product.SalePrice FROM Product INNER JOIN MainCatalog ON Product.Id=MainCatalog.PId";
+                sqlQuery = @"SELECT Product.Id,Product.PName, MainCatalog.ImagePath, Product.PDescription, Product.SalePrice 
+                                       FROM Product INNER JOIN MainCatalog ON Product.Id=MainCatalog.PId";
             }
-
             else  // show specific catagory products
             {
-                sqlQuery = "SELECT Product.PName, MainCatalog.ImagePath, Product.PDescription, Product.SalePrice FROM Product INNER JOIN MainCatalog ON Product.Id=MainCatalog.PId where Product.ProductTypeID=" + productTypeId;
+                sqlQuery = @"SELECT Product.Id, Product.PName, MainCatalog.ImagePath, Product.PDescription, Product.SalePrice 
+                                        FROM Product INNER JOIN MainCatalog ON Product.Id=MainCatalog.PId 
+                                        where Product.ProductTypeID=" + pTypeId;
             }
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlQuery, null);
+            while (reader.Read())
+            {
+                Models.Common.CatalogModel catalog = new Models.Common.CatalogModel();
+                catalog.ID = reader["ID"].ToString();
+                catalog.ImagePath = reader["ImagePath"].ToString();
+                catalog.PDescription = reader["PDescription"].ToString();
+                catalog.PName = reader["PName"].ToString();
+                catalog.SalePrice = int.Parse(reader["SalePrice"].ToString());
 
-            SqlDataAdapter sda = new SqlDataAdapter(sqlQuery, con);
-            return sda;
+                catalogs.Add(catalog);
+            }
+            return catalogs;
         }
 
-        public SqlDataAdapter searchCatalogProducts(string searchText) // show all searched products
+        public static List<Models.Common.CatalogModel> searchCatalogProducts(string searchText) // show all searched products
         {
-            sqlQuery = "SELECT Product.PName, MainCatalog.ImagePath, Product.PDescription, Product.SalePrice FROM Product INNER JOIN MainCatalog ON Product.Id=MainCatalog.PId where Product.PName LIKE '" + searchText + "%' OR Product.SalePrice Like '" + searchText + "%'";
+            String sqlQuery = @"SELECT Product.Id, Product.PName, MainCatalog.ImagePath, Product.PDescription, Product.SalePrice FROM Product 
+                        INNER JOIN MainCatalog ON Product.Id=MainCatalog.PId 
+                        where Product.PName LIKE '" + searchText + "%' OR Product.SalePrice Like '" + searchText + "%'";
 
-            SqlDataAdapter sda = new SqlDataAdapter(sqlQuery, con);
-            return sda;
+            List<Models.Common.CatalogModel> catalogs = new List<Models.Common.CatalogModel>();
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sqlQuery, null);
+            while (reader.Read())
+            {
+                Models.Common.CatalogModel catalog = new Models.Common.CatalogModel();
+                catalog.ID = reader["ID"].ToString();
+                catalog.ImagePath = reader["ImagePath"].ToString();
+                catalog.PDescription = reader["PDescription"].ToString();
+                catalog.PName = reader["PName"].ToString();
+                catalog.SalePrice = int.Parse(reader["SalePrice"].ToString());
+                catalogs.Add(catalog);
+            }
+            return catalogs;
         }
     }
 }

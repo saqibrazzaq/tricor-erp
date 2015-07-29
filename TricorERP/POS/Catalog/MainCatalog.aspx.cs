@@ -12,7 +12,7 @@ namespace TricorERP.POS.Catalog
     public partial class MainCatalog : System.Web.UI.Page
     {
         Database.POS.MainCatalog mainCatalogObject = new Database.POS.MainCatalog();
-        SqlDataAdapter sda = null;
+        List<Models.Common.CatalogModel> sda = null;
         string catId = null;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +20,7 @@ namespace TricorERP.POS.Catalog
             catId = Request.QueryString["CatId"];
             catName.Text = Request.QueryString["CatName"];
 
-            sda = mainCatalogObject.showCatalogProducts(catId);
+            sda = Database.POS.MainCatalog.showCatalogProducts(catId);
             setListView();
 
         }
@@ -29,17 +29,15 @@ namespace TricorERP.POS.Catalog
         {
             if (searchProduct.Text != "")
             {
-                sda = mainCatalogObject.searchCatalogProducts(searchProduct.Text);
+                sda = Database.POS.MainCatalog.searchCatalogProducts(searchProduct.Text);
                 setListView();
             }
         }
 
         public void setListView()
         {
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
 
-            mainCatalogListview.DataSource = dt;
+            mainCatalogListview.DataSource = sda;
             mainCatalogListview.DataBind();
         }
     }

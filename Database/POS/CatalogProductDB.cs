@@ -97,5 +97,6 @@ namespace Database.POS
             int result = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             return result;
         }
+
     }
 }

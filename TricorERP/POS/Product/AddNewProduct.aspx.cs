@@ -12,9 +12,8 @@ namespace TricorERP.POS.Product
     public partial class AddNewProduct : System.Web.UI.Page
     {
         Models.POS.Product.ProductModel product = new Models.POS.Product.ProductModel();
-        Database.POS.MainCatalog mainCatalogObject = new Database.POS.MainCatalog();
-
-        SqlDataAdapter sda = null;
+        
+        List<Models.Common.CatalogModel> sda = null;
 
         int pId;
         
@@ -23,7 +22,7 @@ namespace TricorERP.POS.Product
             pId = int.Parse(Request.QueryString["Pid"]);
 
             ErrorMessageLable.Text = "";
-            sda = mainCatalogObject.showCatalogProducts("AllProducts");
+            sda = Database.POS.MainCatalog.showCatalogProducts("AllProducts");
             setListView();
 
             if (pId != 0 && Session["updateCheck"] != null) //update product
@@ -57,7 +56,7 @@ namespace TricorERP.POS.Product
                 {
                     ErrorMessageLable.ForeColor = System.Drawing.Color.Green;
                     ErrorMessageLable.Text = "Data updated successfully...";
-                    sda = mainCatalogObject.showCatalogProducts("AllProducts");
+                    sda = Database.POS.MainCatalog.showCatalogProducts("AllProducts");
                     setListView();
 
                 }
@@ -75,7 +74,7 @@ namespace TricorERP.POS.Product
                 Database.POS.CatalogProductDB.uploadImage(productID, imgPath);
 
 
-                sda = mainCatalogObject.showCatalogProducts("AllProducts");
+                sda = Database.POS.MainCatalog.showCatalogProducts("AllProducts");
                 setListView();
 
                 ErrorMessageLable.ForeColor = System.Drawing.Color.Green;
@@ -101,7 +100,7 @@ namespace TricorERP.POS.Product
             {
                 int temp = Database.POS.CatalogProductDB.deleteProduct(productId);
             }
-            sda = mainCatalogObject.showCatalogProducts("AllProducts");
+            sda = Database.POS.MainCatalog.showCatalogProducts("AllProducts");
             setListView();
         }
 
@@ -120,10 +119,7 @@ namespace TricorERP.POS.Product
 
         public void setListView()
         {
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-
-            ProductList.DataSource = dt;
+            ProductList.DataSource = sda;
             ProductList.DataBind();
         }
 
