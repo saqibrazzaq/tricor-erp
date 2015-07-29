@@ -34,9 +34,6 @@
 <body>
     <div>
         <form id="form1" method="post" runat="server">
-
-
-
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -118,7 +115,8 @@
                                 </ul>
                             </li>
 
-
+                            
+                            <%-- Problem on that point........ --%>
                             <li id="ProducDropdown" class="dropdown">
                                 <asp:HyperLink ID="HyperLink200" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Products<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
@@ -127,6 +125,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            <%-- hehehehehehhehehehehhe --%>
 
 
                             <li id="AddOrder" class="dropdown">
@@ -146,7 +145,7 @@
                                 <asp:HyperLink ID="HyperLink27" NavigateUrl="~/POS/Order/OrderList.aspx" runat="server">Order-List</asp:HyperLink>
                                 </li>--%>
 
-                            <li id="StockDropdown" class="dropdown">
+                            <li id="POSStockDropdown" class="dropdown">
                                 <asp:HyperLink ID="HyperLink47" CssClass="dropdown-toggle" role="button" aria-expanded="false" data-toggle="dropdown" runat="server">Stock<span class="caret"></span></asp:HyperLink>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -416,7 +415,7 @@
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#POSPanelBody").addClass("hidden");
-
+                $("#POSStockDropdown").addClass("hidden");
             } else if ('4' == '<%=roleID%>') {
                 $("#CustomerDropdown").addClass("hidden");
                 $("#UserDropdown").addClass("hidden");
@@ -425,6 +424,7 @@
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#POSPanelBody").addClass("hidden");
+                $("#POSStockDropdown").addClass("hidden");
             }
         </script>
     </div>

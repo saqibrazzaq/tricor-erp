@@ -18,9 +18,9 @@ namespace Database
     public abstract class SqlHelper {
 
         //Database connection strings
-        public static readonly string connectionString = @"Server= SAQIBRAZZAQ.db.12098099.hostedresource.com;Database=tricor;User ID=tricor;Password=Saqib123!;";
+     //   public static readonly string connectionString = @"Server= SAQIBRAZZAQ.db.12098099.hostedresource.com;Database=tricor;User ID=tricor;Password=Saqib123!;";
 
-//        public static readonly string connectionString = @"Server= localhost;Database=TRICOR_INTID;User ID=tricor;Password=tricor123;";
+        public static readonly string connectionString = @"Server= localhost;Database=TRICOR_INTID;User ID=tricor;Password=tricor123;";
 
         // Hashtable to store cached parameters
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());

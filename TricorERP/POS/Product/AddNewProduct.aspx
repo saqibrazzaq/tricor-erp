@@ -132,6 +132,7 @@
             <ItemTemplate>
                 <tr runat="server">
                     <td class="hidden AddressID">hh
+                    
                     </td>
                     <td>
                         <%#Eval("PName") %>
@@ -142,15 +143,16 @@
                     <td style="text-align: center; text-align: justify">
                         <%#Eval("PDescription") %>
                     </td>
-                    <td style="text-align: center">Rs <%#Eval("SalePrice") %>
+                    <td style="text-align: center">
+                        Rs <%#Eval("SalePrice") %>
                     </td>
                     <td style="text-align: center">
-                        <asp:LinkButton runat="server" CausesValidation="False" ToolTip="Edit a record." CommandName="EditProduct" CommandArgument='<% #Eval("Id") %>'>
+                        <asp:LinkButton runat="server" CausesValidation="False" ToolTip="Edit a record." CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>'>
                             <span class="glyphicon glyphicon-edit"></span>
                         </asp:LinkButton>
                     </td>
                     <td style="text-align: center">
-                        <asp:LinkButton runat="server" CausesValidation="False" ToolTip="Delete a record." OnClientClick="javascript:return confirm('Are you sure to delete record?')" CommandName="DeleteProduct" CommandArgument='<% #Eval("Id") %>'>
+                        <asp:LinkButton runat="server" CausesValidation="False" ToolTip="Delete a record." OnClientClick="javascript:return confirm('Are you sure to delete record?')" CommandName="DeleteProduct" CommandArgument='<%# Eval("ID") %>'>
                             <span class="glyphicon glyphicon-remove"></span>
                         </asp:LinkButton>
                     </td>
