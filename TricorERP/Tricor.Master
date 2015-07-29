@@ -369,12 +369,12 @@
             </div>
         </form>
 
-
         <script lang="javascript">
         <%
             String roleID = Session["RoleID"].ToString();
         %>
             if ('1' == '<%=roleID%>') {
+
                 $("#SCMMenu").addClass("hidden");
                 $("#Products").addClass("hidden");
                 $("#PurchaseOrder").addClass("hidden");
@@ -387,8 +387,8 @@
 
 
                 //  $("#AddOrder").addClass("hidden");
-
             } else if ('2' == '<%=roleID%>') {
+
                 $("#SCMMenu").addClass("hidden");
                 $("#Products").addClass("hidden");
                 $("#PurchaseOrder").addClass("hidden");
@@ -408,6 +408,7 @@
                 $("#POSHomeTEandTS").addClass("hidden");
 
             } else if ('3' == '<%=roleID%>') {
+
                 $("#CustomerDropdown").addClass("hidden");
                 $("#UserDropdown").addClass("hidden");
                 $("#AddOrder").addClass("hidden");
@@ -416,7 +417,9 @@
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#POSPanelBody").addClass("hidden");
                 $("#POSStockDropdown").addClass("hidden");
+
             } else if ('4' == '<%=roleID%>') {
+
                 $("#CustomerDropdown").addClass("hidden");
                 $("#UserDropdown").addClass("hidden");
                 $("#AddOrder").addClass("hidden");
@@ -425,6 +428,7 @@
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#POSPanelBody").addClass("hidden");
                 $("#POSStockDropdown").addClass("hidden");
+
             }
         </script>
     </div>

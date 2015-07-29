@@ -12,9 +12,7 @@ namespace TricorERP.POS.Product
     public partial class AddNewProduct : System.Web.UI.Page
     {
         Models.POS.Product.ProductModel product = new Models.POS.Product.ProductModel();
-        Database.POS.MainCatalogDB mainCatalogObject = new Database.POS.MainCatalogDB();
-
-
+        
         List<Models.Common.CatalogModel> sda = null;
 
         int pId;
