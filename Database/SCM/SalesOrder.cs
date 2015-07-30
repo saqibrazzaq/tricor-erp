@@ -13,7 +13,6 @@ namespace Database.SCM
         {
             String sql;
             if (searchtext == "")
-<<<<<<< HEAD
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
                             OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID where OrderStatus.ID>1";
@@ -21,15 +20,14 @@ namespace Database.SCM
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
                             OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where OrderStatus.ID>1 AND ProductOrder.ID='" + searchtext + "' ";
-=======
                 sql = @"select SalesOrder.ID ID, SalesOrder.CustomerID CID, SalesOrder.OrderDate ADate, SalesOrder.DeliveryDate DDate, SalesOrder.RejectedOn RejectedOn,
                             SalesOrder.RejectedBy RejectedBy, SalesOrder.RejectionReason RejectionReason,
                             OrderStatus.StatusName from SalesOrder join  OrderStatus on SalesOrder.OrderStatus = OrderStatus.ID ";
-            else
-                sql = @"select SalesOrder.ID ID, SalesOrder.CustomerID CID, SalesOrder.OrderDate ADate, SalesOrder.DeliveryDate DDate, SalesOrder.RejectedOn RejectedOn,
-                            SalesOrder.RejectedBy RejectedBy, SalesOrder.RejectionReason RejectionReason,
-                            OrderStatus.StatusName from SalesOrder join  OrderStatus on SalesOrder.OrderStatus = OrderStatus.ID  where SalesOrder.ID='" + searchtext + "' ";
->>>>>>> origin/master
+//            else
+//                sql = @"select SalesOrder.ID ID, SalesOrder.CustomerID CID, SalesOrder.OrderDate ADate, SalesOrder.DeliveryDate DDate, SalesOrder.RejectedOn RejectedOn,
+//                            SalesOrder.RejectedBy RejectedBy, SalesOrder.RejectionReason RejectionReason,
+//                            OrderStatus.StatusName from SalesOrder join  OrderStatus on SalesOrder.OrderStatus = OrderStatus.ID  where SalesOrder.ID='" + searchtext + "' ";
+
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
