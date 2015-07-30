@@ -15,11 +15,11 @@ namespace Database.SCM
             if (searchtext == "")
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID ";
+                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID where OrderStatus.ID>1";
             else
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where ProductOrder.ID='" + searchtext + "' ";
+                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where OrderStatus.ID>1 AND ProductOrder.ID='" + searchtext + "' ";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
