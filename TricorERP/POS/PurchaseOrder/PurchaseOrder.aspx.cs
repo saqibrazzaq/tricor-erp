@@ -38,19 +38,20 @@ namespace TricorERP.POS.PurchaseOrder
                     WaherHouseDropDownList.SelectedValue = purchaseOrder.WHID;
                     SavePurchaseOrderbtn.Text = "Update";
 
-                    txtOrderStatus.Text = purchaseOrder.OrderStatus;
+                    txtOrderStatus.Text = purchaseOrder.OrderStatusName;
 
-                    //if (DateTime.Now.ToShortDateString() != purchaseOrder.OrderDate)
-                    //{
-                    //    WaherHouseDropDownList.Enabled = false;
-                    //    btnAddNewItem.Enabled = false;
-                    //    SavePurchaseOrderbtn.Enabled = false;
-                    //}
-                    
+                    if (purchaseOrder.OrderStatus != Common.OrderPending)
+                    {
+                        WaherHouseDropDownList.Enabled = false;
+                        btnAddNewItem.Enabled = false;
+                        SavePurchaseOrderbtn.Enabled = false;
+                        btnManufacture.Enabled = false;
+                    }
                 }
                 else
                 {
                     SavePurchaseOrderbtn.Text = "Save";
+                    btnManufacture.Enabled = false;
                     btnAddNewItem.Enabled = false;
                     txtOrderStatus.Text = "Pending";
                     InitializeCurentDate();
@@ -212,21 +213,22 @@ namespace TricorERP.POS.PurchaseOrder
         protected void PurchaseOrderItemview_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
 
-            //purchaseOrder = GetPurchaseOrderInFon();
+            purchaseOrder = GetPurchaseOrderInFon();
 
-            //if (DateTime.Now.ToShortDateString().ToString() != purchaseOrder.OrderDate)
-            //{
-            //    Control myControl1 = e.Item.FindControl("ItemCommandtd");
-            //    if (myControl1 != null)
-            //    {
-            //        myControl1.Visible = false;
-            //    }
-            //}
+            if (purchaseOrder.OrderStatus != Common.OrderPending)
+            {
+                Control myControl1 = e.Item.FindControl("ItemCommandtd");
+                if (myControl1 != null)
+                {
+                    myControl1.Visible = false;
+                }
+            }
         }
 
         protected void aproveBTN_Click(object sender, EventArgs e)
         {
             UpdatePurchaseOrder(true);
+            InitializeCurentDate();
         }
 
         

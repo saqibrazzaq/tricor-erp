@@ -17,6 +17,8 @@ namespace Models.Common
         public String LastUpdatedBy { get; set; }
 
         public String OrderStatus { get; set; }
+
+        public String OrderStatusName { get; set; }
         public String WHName { get; set; }
     }
 }

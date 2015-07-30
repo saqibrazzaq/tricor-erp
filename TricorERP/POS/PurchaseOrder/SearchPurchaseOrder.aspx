@@ -22,7 +22,7 @@
         <div class="panel-body">
             <div class="panel-body">
                 <div class="col-lg-10">
-                    <asp:ListView ID="PurchaseOrderListview" runat="server" OnItemCommand="PurchaseOrderListview_ItemCommand">
+                    <asp:ListView ID="PurchaseOrderListview" runat="server" OnItemDataBound="PurchaseOrderListview_ItemDataBound" OnItemCommand="PurchaseOrderListview_ItemCommand">
                         <LayoutTemplate>
                             <table class="table table-bordered table-hover" runat="server" id="PurchaseOrderTable">
                                 <tr class="active">
@@ -41,6 +41,9 @@
                                 <td class="hidden PurchaseOrderItemID">
                                     <%# Eval("ID") %>
                                 </td>
+                                <td class="hidden PurchaseOrderStatus">
+                                    <%# Eval("OrderStatus") %>
+                                </td>
                                 <td>
                                     <%# Eval("OrderDate") %>
                                 </td>
@@ -48,17 +51,19 @@
                                     <%# Eval("WHName") %>
                                 </td>
                                 <td>
-                                    <%# Eval("OrderStatus") %>
+                                    <%# Eval("OrderStatusName") %>
                                 </td>
                                 <td>
                                     <asp:LinkButton ID="LinkButton2" runat="server" CommandName="EditPurchaseOrder" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>
                                 </td>
-                                <td>
-                                    <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
+                                <td  id="ItemCommandtd">
+                                    <div runat="server">
+                                        <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </button>
                                     <asp:Button ID="deletePurchaseItem" runat="server" CssClass="hidden deletePurchaseItem" CommandName="" OnClick="deletePurchaseOrder_Click" />
-                                </td>
+                                    </div>
+                                 </td>
                             </tr>
                         </ItemTemplate>
                     </asp:ListView>

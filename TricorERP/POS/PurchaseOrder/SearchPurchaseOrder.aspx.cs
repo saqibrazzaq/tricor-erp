@@ -25,7 +25,7 @@ namespace TricorERP.POS.PurchaseOrder
         }
 
         private void SearchFromPurchaseOrder(String OrderDate)
-        {
+        {            
             if (OrderDate == null)
             {
                 purchaseOrderModel = GetPurchaseOrderListFromDB(null);
@@ -34,6 +34,7 @@ namespace TricorERP.POS.PurchaseOrder
             {
                 purchaseOrderModel = GetPurchaseOrderListFromDB(OrderDate);
             }
+            
             PurchaseOrderListview.DataSource = purchaseOrderModel;
             PurchaseOrderListview.DataBind();
         }
@@ -71,6 +72,19 @@ namespace TricorERP.POS.PurchaseOrder
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
+        }
+        int i = 0;
+        protected void PurchaseOrderListview_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (purchaseOrderModel[i].OrderStatusName.ToString() != "Pending")
+            {
+                Control myControl1 = e.Item.FindControl("ItemCommandtd");
+                if (myControl1 != null)
+                {
+                    myControl1.Visible = false;
+                }
+            }
+            i++;
         }
     }
 }
