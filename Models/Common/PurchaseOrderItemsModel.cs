@@ -16,5 +16,7 @@ namespace Models.Common
         public String CreatedBy { get; set; }
         public String LastUpdatedBy { get; set; }
         public String ProductName { get; set; }
+
+        public string WHID { get; set; }
     }
 }

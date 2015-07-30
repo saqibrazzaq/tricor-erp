@@ -43,11 +43,11 @@ namespace Database.POS
         public static List<Models.POS.Report.ReportModel> getPurchaseReport(string p)
         {
             List<Models.POS.Report.ReportModel> purchaereport = new List<Models.POS.Report.ReportModel>();
-            String sql = @"SELECT [PurchaseOrder].OrderDate OrderDate, SUM([PurchaseOrderItems].Quantity) as TotalQuantity
-		                FROM PurchaseOrder
-		                JOIN [PurchaseOrderItems] on [PurchaseOrder].ID = [PurchaseOrderItems].POID
-		                WHERE [PurchaseOrder].OrderStatus = '"+CommonDB.OrderApproved+"' and [PurchaseOrder].OrderDate LIKE '%" +p+@"%'
-		                GROUP BY [PurchaseOrder].OrderDate";
+            String sql = @"SELECT [ProductOrder].OrderDate OrderDate, SUM([ProductOrderItem].TotalQuantity) as TotalQuantity
+		                FROM [ProductOrder]
+		                JOIN [ProductOrderItem] on [ProductOrder].ID = [ProductOrderItem].OrderID
+		                WHERE [ProductOrder].OrderStatus != '" + CommonDB.Pending + "' and [ProductOrder].OrderDate LIKE '%" + p + @"%'
+		                GROUP BY [ProductOrder].OrderDate";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())

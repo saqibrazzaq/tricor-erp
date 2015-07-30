@@ -116,6 +116,7 @@
             <div class="row container-fluid">
                 <div class="col-lg-5">
                     <asp:LinkButton ID="SavePurchaseOrderbtn" runat="server" CssClass="btn btn-info" OnClick="SavePurchaseOrderbtn_Click" Text="">Save</asp:LinkButton>
+                    <asp:LinkButton ID="Deliveredbtn" runat="server" CssClass="btn btn-success" OnClick="Deliveredbtn_Click" Text="">Delivered</asp:LinkButton>
                     <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-warning" OnClick="btnBack_Click" CausesValidation="False">Back</asp:LinkButton>
                 </div>
             </div>

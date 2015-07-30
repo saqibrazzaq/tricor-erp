@@ -12,6 +12,10 @@ namespace TricorERP.POS.PurchaseOrder
     public partial class PurchaseOrder : System.Web.UI.Page
     {
         Models.Common.PurchaseOrderModel purchaseOrder = new Models.Common.PurchaseOrderModel() { ID = Common.NULL_ID };
+
+        List<Models.Common.PurchaseOrderItemsModel> items;
+
+
         //Models.POS.Order.OrderStatusModel ordersttus = new Models.POS.Order.OrderStatusModel();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +41,6 @@ namespace TricorERP.POS.PurchaseOrder
                     DateTextBoox.Text = purchaseOrder.OrderDate;
                     WaherHouseDropDownList.SelectedValue = purchaseOrder.WHID;
                     SavePurchaseOrderbtn.Text = "Update";
-
                     txtOrderStatus.Text = purchaseOrder.OrderStatusName;
 
                     if (purchaseOrder.OrderStatus != Common.OrderPending)
@@ -47,12 +50,23 @@ namespace TricorERP.POS.PurchaseOrder
                         SavePurchaseOrderbtn.Enabled = false;
                         btnManufacture.Enabled = false;
                     }
+
+                    if (purchaseOrder.OrderStatus == Common.ManufacturingComplete)
+                    {
+                        Deliveredbtn.Enabled = true;
+                    }
+                    else 
+                    {
+                        Deliveredbtn.Enabled = false;
+                    }
+
                 }
                 else
                 {
                     SavePurchaseOrderbtn.Text = "Save";
                     btnManufacture.Enabled = false;
                     btnAddNewItem.Enabled = false;
+                    Deliveredbtn.Enabled = false;
                     txtOrderStatus.Text = "Pending";
                     InitializeCurentDate();
                 }
@@ -116,7 +130,7 @@ namespace TricorERP.POS.PurchaseOrder
         private void loadPurchaseOrderItemModel()
         {
             if (purchaseOrder.ID != Common.NULL_ID) {
-                List<Models.Common.PurchaseOrderItemsModel> items = GetPurchseItemsList();
+                items = GetPurchseItemsList();
                 PurchaseOrderItemview.DataSource = items;
                 PurchaseOrderItemview.DataBind();
             }
@@ -135,7 +149,7 @@ namespace TricorERP.POS.PurchaseOrder
             }
             else 
             {
-                UpdatePurchaseOrder(false);
+                UpdatePurchaseOrder(purchaseOrder.OrderStatus);
             }
         }
         private void NewPurchaseOrder()
@@ -153,14 +167,11 @@ namespace TricorERP.POS.PurchaseOrder
             }
         }
 
-        private void UpdatePurchaseOrder( bool temp )
+        private void UpdatePurchaseOrder( String temp )
         {
             purchaseOrder = GetPurchaseOrderInFon();
             purchaseOrder.WHID = WaherHouseDropDownList.SelectedValue.Trim();
-
-            if(temp == true)
-                    purchaseOrder.OrderStatus = Common.OrderReadyToManufacturing;
- 
+            purchaseOrder.OrderStatus = temp; 
             int check = Database.Common.PurchaseOrderDB.updatePurchaseOrder(purchaseOrder);
             if (check > 0)
                 ErrorMessage.Text = "Data is Updated...";
@@ -227,12 +238,17 @@ namespace TricorERP.POS.PurchaseOrder
 
         protected void aproveBTN_Click(object sender, EventArgs e)
         {
-            UpdatePurchaseOrder(true);
-            InitializeCurentDate();
+            UpdatePurchaseOrder(Common.OrderReadyToManufacturing);
+            InitializePageContents();
         }
 
-        
-
-
+        protected void Deliveredbtn_Click(object sender, EventArgs e)
+        {
+            int check = Database.POS.StockDB.updateStockItems(items);
+            if (check > 0) {
+                UpdatePurchaseOrder(Common.Delivered);
+            }
+            InitializePageContents();
+        }
     }
 }

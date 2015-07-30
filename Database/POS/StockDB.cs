@@ -14,7 +14,7 @@ namespace Database.POS
         {
 
             String sql = @"select Stock.PID from Stock 
-                          where Stock.PID = '" + stockItems.ProductID + "'";
+                          where Stock.PID = '" + stockItems.ProductID + "' AND Stock.WHID='"+stockItems.WHID+"'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
             {
@@ -63,15 +63,14 @@ namespace Database.POS
         }
 
         //that function return the Stock list and binde that list with listview
-        public static List<Models.POS.Stock.POSStockModel> getStockList(string productname)
+        public static List<Models.POS.Stock.POSStockModel> getStockList(string productname, String WHID)
         {
             List<Models.POS.Stock.POSStockModel> stocklist = new List<Models.POS.Stock.POSStockModel>();
             // changing
             String sql = @"select Stock.ID ID, Stock.Quantity Qant, Stock.WHID WHID, Product.PName PN
 	                     from Stock 
 	                     join Product on Stock.PID = Product.Id
-	                     where 1=1
-                         and (Product.PName like '%" + productname + "%') ";
+	                     where [Stock].WHID='"+WHID+"' and (Product.PName like '%" + productname + "%') ";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -205,6 +204,19 @@ namespace Database.POS
                 stockModel.Quantity = int.Parse(reader["Quantity"].ToString());
             }
             return stockModel;
-        } 
+        }
+
+        public static int updateStockItems(List<Models.Common.PurchaseOrderItemsModel> purchaseitems)
+        {
+            foreach (Models.Common.PurchaseOrderItemsModel soItem in purchaseitems)
+            {
+                String sqlupdatestock = @"UPDATE [dbo].[Stock]
+                                           SET [Quantity] = [Quantity] + " + soItem.Quantity
+                                   + " WHERE [Stock].PID = '" + soItem.ProductID + "' and [Stock].WHID = '"
+                                   + soItem.WHID + "'";
+                DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sqlupdatestock, null);
+            }
+            return 1;
+        }
     }
 }
