@@ -40,12 +40,12 @@ namespace TricorERP.POS.PurchaseOrder
 
                     txtOrderStatus.Text = purchaseOrder.OrderStatus;
 
-                    if (DateTime.Now.ToShortDateString() != purchaseOrder.OrderDate)
-                    {
-                        WaherHouseDropDownList.Enabled = false;
-                        btnAddNewItem.Enabled = false;
-                        SavePurchaseOrderbtn.Enabled = false;
-                    }
+                    //if (DateTime.Now.ToShortDateString() != purchaseOrder.OrderDate)
+                    //{
+                    //    WaherHouseDropDownList.Enabled = false;
+                    //    btnAddNewItem.Enabled = false;
+                    //    SavePurchaseOrderbtn.Enabled = false;
+                    //}
                     
                 }
                 else
@@ -134,7 +134,7 @@ namespace TricorERP.POS.PurchaseOrder
             }
             else 
             {
-                UpdatePurchaseOrder();
+                UpdatePurchaseOrder(false);
             }
         }
         private void NewPurchaseOrder()
@@ -152,12 +152,14 @@ namespace TricorERP.POS.PurchaseOrder
             }
         }
 
-        private void UpdatePurchaseOrder()
+        private void UpdatePurchaseOrder( bool temp )
         {
             purchaseOrder = GetPurchaseOrderInFon();
-            
             purchaseOrder.WHID = WaherHouseDropDownList.SelectedValue.Trim();
-             
+
+            if(temp == true)
+                    purchaseOrder.OrderStatus = Common.OrderReadyToManufacturing;
+ 
             int check = Database.Common.PurchaseOrderDB.updatePurchaseOrder(purchaseOrder);
             if (check > 0)
                 ErrorMessage.Text = "Data is Updated...";
@@ -168,8 +170,6 @@ namespace TricorERP.POS.PurchaseOrder
             return Database.Common.PurchaseOrderDB.getPurchaseOrderInFol(purchaseOrder.ID);
         }
 
-
-     
 
         protected void btnAddNewItem_Click(object sender, EventArgs e)
         {
@@ -212,17 +212,21 @@ namespace TricorERP.POS.PurchaseOrder
         protected void PurchaseOrderItemview_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
 
-            purchaseOrder = GetPurchaseOrderInFon();
+            //purchaseOrder = GetPurchaseOrderInFon();
 
-            if (DateTime.Now.ToShortDateString() != purchaseOrder.OrderDate)
-            {
-                Control myControl1 = e.Item.FindControl("ItemCommandtd");
-                if (myControl1 != null)
-                {
-                    myControl1.Visible = false;
-                    
-                }
-            }
+            //if (DateTime.Now.ToShortDateString().ToString() != purchaseOrder.OrderDate)
+            //{
+            //    Control myControl1 = e.Item.FindControl("ItemCommandtd");
+            //    if (myControl1 != null)
+            //    {
+            //        myControl1.Visible = false;
+            //    }
+            //}
+        }
+
+        protected void aproveBTN_Click(object sender, EventArgs e)
+        {
+            UpdatePurchaseOrder(true);
         }
 
         
