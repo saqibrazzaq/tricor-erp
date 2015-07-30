@@ -11,7 +11,8 @@
                     <tr class="active">
                         <th>Order ID</th>
                         <th>Product ID</th>
-                        <th>Quantity</th>
+                        <th>Total Quantity</th>
+                        <th>Manufactured Quantity</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -28,10 +29,9 @@
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("TotalQuantity") %>'></asp:LinkButton>
-
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Price") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ManufacturedQuantity") %>'></asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>
