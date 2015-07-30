@@ -20,9 +20,7 @@ namespace Database.SCM
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
                             OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where OrderStatus.ID>1 AND ProductOrder.ID='" + searchtext + "' ";
-                sql = @"select SalesOrder.ID ID, SalesOrder.CustomerID CID, SalesOrder.OrderDate ADate, SalesOrder.DeliveryDate DDate, SalesOrder.RejectedOn RejectedOn,
-                            SalesOrder.RejectedBy RejectedBy, SalesOrder.RejectionReason RejectionReason,
-                            OrderStatus.StatusName from SalesOrder join  OrderStatus on SalesOrder.OrderStatus = OrderStatus.ID ";
+              
 //            else
 //                sql = @"select SalesOrder.ID ID, SalesOrder.CustomerID CID, SalesOrder.OrderDate ADate, SalesOrder.DeliveryDate DDate, SalesOrder.RejectedOn RejectedOn,
 //                            SalesOrder.RejectedBy RejectedBy, SalesOrder.RejectionReason RejectionReason,

@@ -11,7 +11,8 @@
                     <tr class="active">
                         <th>Order ID</th>
                         <th>Product ID</th>
-                        <th>Quantity</th>
+                        <th>Total Quantity</th>
+                        <th>Manufacture Quantity</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
