@@ -20,6 +20,7 @@
                     <label for="InputName">Quantity :</label>
                     <div class="input-group">
                         <asp:TextBox ID="QuantityTextBox" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Quantity is Required" ControlToValidate="QuantityTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>

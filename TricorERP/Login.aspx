@@ -19,8 +19,7 @@
                     <div class="row glyphicon-align-center">
                         <div class="col-xs-4 col-xs-offset-4">
 
-                            <asp:Label ID="loginMsg" runat="server" ForeColor="Red" CssClass="alert">
-                            </asp:Label>
+                            <asp:Label ID="loginMsg" runat="server" ForeColor="Red" CssClass="alert"></asp:Label>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Name</label>

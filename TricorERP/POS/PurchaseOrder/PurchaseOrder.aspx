@@ -25,9 +25,15 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <label for="InputName">Order Status:</label>
+                    <label for="InputName">Current Order Status:</label>
                     <div class="input-group">
                         <asp:TextBox ID="txtOrderStatus" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label for="InputName">*</label>
+                    <div class="input-group">
+                        <asp:Button ID="btnManufacture" runat="server" CssClass="btn btn-primary" CausesValidation="false" Text="Manufacture" OnClick="aproveBTN_Click" />
                     </div>
                 </div>
             </div>
@@ -54,7 +60,7 @@
                     <h4 class="h4">
                         <asp:label id="ItemMessageLab" runat="server" for="InputName"></asp:label>
                     </h4>
-                    <asp:LinkButton ID="btnAddNewItem" runat="server" CssClass="btn btn-primary" OnClick="btnAddNewItem_Click">Add New Item</asp:LinkButton>
+                    <asp:LinkButton ID="btnAddNewItem" runat="server" CssClass="btn btn-info" OnClick="btnAddNewItem_Click">Add New Item</asp:LinkButton>
                 </div> 
             </div>
             
@@ -109,8 +115,8 @@
             </div>
             <div class="row container-fluid">
                 <div class="col-lg-5">
-                    <asp:LinkButton ID="SavePurchaseOrderbtn" runat="server" CssClass="btn btn-primary" OnClick="SavePurchaseOrderbtn_Click" Text="">Save</asp:LinkButton>
-                    <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click" CausesValidation="False">Back</asp:LinkButton>
+                    <asp:LinkButton ID="SavePurchaseOrderbtn" runat="server" CssClass="btn btn-info" OnClick="SavePurchaseOrderbtn_Click" Text="">Save</asp:LinkButton>
+                    <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-warning" OnClick="btnBack_Click" CausesValidation="False">Back</asp:LinkButton>
                 </div>
             </div>
             <br />

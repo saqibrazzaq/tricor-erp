@@ -14,11 +14,11 @@ namespace Database.Common
         {
             List<PurchaseOrderItemsModel> purchaseorderitems = new List<PurchaseOrderItemsModel>();
 
-            String sql = @"SELECT [Product].PName PName, [PurchaseOrderItems].Quantity Quantity, [PurchaseOrderItems].ID ID
-                        , [PurchaseOrderItems].CreatedBy CreatedBy, [PurchaseOrderItems].LastUpdatedBy LastUpdatedBy
+            String sql = @"SELECT [Product].PName PName, [ProductOrderItem].TotalQuantity Quantity, [ProductOrderItem].ID ID
+                        , [ProductOrderItem].CreatedBy CreatedBy, [ProductOrderItem].LastUpdatedBy LastUpdatedBy
                         from [Product]
-                        join [PurchaseOrderItems] ON [PurchaseOrderItems].PID=[Product].Id
-                        WHERE [PurchaseOrderItems].POID = '"+ID+"'";
+                        join [ProductOrderItem] ON [ProductOrderItem].ProductID=[Product].Id
+                        WHERE [ProductOrderItem].OrderID = '" +ID+"'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -36,8 +36,8 @@ namespace Database.Common
 
         public static PurchaseOrderItemsModel addPurchaseProductItems(PurchaseOrderItemsModel POIModel)
         {
-            String sql = @"INSERT INTO [dbo].[PurchaseOrderItems]
-           ([POID] ,[PID] ,[Quantity] ,[PurchasePrice] ,[CreatedBy] ,[LastUpdatedBy])
+            String sql = @"INSERT INTO [dbo].[ProductOrderItem]
+                        ([OrderID],[ProductID] ,[TotalQuantity] ,[ProductStatus] ,[CreatedBy] ,[LastUpdatedBy])
            output inserted.ID
            VALUES
            ('" + POIModel.PurchaseOrderID + "','" + POIModel.ProductID + "','" + POIModel.Quantity + "','"
@@ -50,9 +50,9 @@ namespace Database.Common
 
         public static int updatePurchaseOrderItems(PurchaseOrderItemsModel POIModel)
         {
-            String sql = @"UPDATE [PurchaseOrderItems]
-                        SET [Quantity] = '"+POIModel.Quantity+"' ,[LastUpdatedBy] = '"+POIModel.LastUpdatedBy
-                        +"'WHERE [PurchaseOrderItems].ID = '"+POIModel.ID+"'";
+            String sql = @"UPDATE [ProductOrderItem]
+                        SET [TotalQuantity] = '"+POIModel.Quantity+"' ,[LastUpdatedBy] = '"+POIModel.LastUpdatedBy
+                        +"'WHERE [ProductOrderItem].ID = '"+POIModel.ID+"'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -63,7 +63,7 @@ namespace Database.Common
 
         public static int deletePurchaseOrderItems(String ID)
         {
-            String sql = @"DELETE FROM PurchaseOrderItems WHERE ID ='" + ID + "'";
+            String sql = @"DELETE FROM ProductOrderItem WHERE ID ='" + ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check > 0)
             {
