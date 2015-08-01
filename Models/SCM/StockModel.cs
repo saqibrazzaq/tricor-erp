@@ -15,7 +15,6 @@ namespace Models.SCM
         public int Quantity { get; set; }
         public int CreatedBy { get; set; }
         public int LastUpdatedBy { get; set; }
-
         public int check { get; set; }
     }
 }

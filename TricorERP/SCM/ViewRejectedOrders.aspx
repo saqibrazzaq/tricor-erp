@@ -21,7 +21,7 @@
                 <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                     <tr class="active">
                         <th>ID</th>
-                        <th>Customer ID</th>
+                        <th>Customer</th>
                         <th>Order Date</th>
                         <th>Delivery Date</th>
                         <th>Order Status</th>
@@ -37,7 +37,7 @@
                         <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ID") %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("CustomerID") %>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("CustomerName") %>'></asp:LinkButton>
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("OrderDate") %>'></asp:LinkButton>

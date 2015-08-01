@@ -34,9 +34,6 @@
                             <th>ID</th>
                             <th>Product Code</th>
                             <th>Product Quantity</th>
-                            <th id="ReOrderHeading">ReOrder</th>
-                            <th id="EditHeading">Edit</th>
-                            <th id="DeleteHeading">Delete</th>
                         </tr>
                         <tr runat="server" id="itemPlaceholder"></tr>
                     </table>

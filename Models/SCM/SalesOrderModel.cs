@@ -18,7 +18,7 @@ namespace Models.SCM
         public string RejectedBy { set; get; }
         public string RejectionReason { set; get; }
         public string RejectedOn { set; get; }
-        public string WarehouseName { set; get; }
+        public string CustomerName { set; get; }
         public List<SalesOrderItemModel> items = new List<SalesOrderItemModel>();
     }
 }
