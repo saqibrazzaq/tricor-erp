@@ -42,7 +42,7 @@ namespace TricorERP.POS.Stock
 
         private List<Models.POS.Stock.POSStockModel> GetStockListFromBD(string productname)
         {
-            return Database.POS.StockDB.getStockList(productname);
+            return Database.POS.StockDB.getStockList(productname, Common.WarehouseIDDefault);
         }
 
         protected void SearchStockItems_Click(object sender, EventArgs e)

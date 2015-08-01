@@ -32,7 +32,7 @@ namespace TricorERP.POS.Reports
 
         private List<Models.POS.Stock.POSStockModel> GetStockListFromBD()
         {
-            return Database.POS.StockDB.getStockList("");
+            return Database.POS.StockDB.getStockList("", Common.WarehouseIDDefault);
         }
 
         protected void StockReportView_ItemDataBound(object sender, ListViewItemEventArgs e)

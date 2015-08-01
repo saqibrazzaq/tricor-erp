@@ -11,5 +11,8 @@ namespace Database
         public static string OrderComplete = "6";
         public static String NULL_ID = "0";
         public static string OrderApproved = "7";
+        public static String WHID = "2";
+
+        public static string Pending = "1";
     }
 }

@@ -14,11 +14,13 @@ namespace Database.Common
         {
             List<PurchaseOrderItemsModel> purchaseorderitems = new List<PurchaseOrderItemsModel>();
 
-            String sql = @"SELECT [Product].PName PName, [ProductOrderItem].TotalQuantity Quantity, [ProductOrderItem].ID ID
-                        , [ProductOrderItem].CreatedBy CreatedBy, [ProductOrderItem].LastUpdatedBy LastUpdatedBy
+            String sql = @"SELECT [Product].PName PName, [ProductOrderItem].TotalQuantity Quantity, [ProductOrderItem].ID ID, [ProductOrderItem].ProductID
+						, [ProductOrderItem].CreatedBy CreatedBy, [ProductOrderItem].LastUpdatedBy LastUpdatedBy
+						, [ProductOrder].WHID
                         from [Product]
                         join [ProductOrderItem] ON [ProductOrderItem].ProductID=[Product].Id
-                        WHERE [ProductOrderItem].OrderID = '" +ID+"'";
+						JOIN [ProductOrder] ON [ProductOrder].ID = [ProductOrderItem].OrderID
+						WHERE [ProductOrderItem].OrderID =  '" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
@@ -26,9 +28,10 @@ namespace Database.Common
                 item.ID = reader["ID"].ToString();
                 item.Quantity = int.Parse(reader["Quantity"].ToString());
                 item.ProductName = reader["PName"].ToString();
+                item.ProductID = reader["ProductID"].ToString();
                 item.LastUpdatedBy = reader["LastUpdatedBy"].ToString();
                 item.CreatedBy = reader["CreatedBy"].ToString();
-
+                item.WHID = reader["WHID"].ToString();
                 purchaseorderitems.Add(item);
             }
             return purchaseorderitems;
