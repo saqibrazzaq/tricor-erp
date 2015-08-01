@@ -18,5 +18,7 @@ namespace Models.Common
         public String ProductName { get; set; }
 
         public string WHID { get; set; }
+
+        public bool checkProduct = false;
     }
 }

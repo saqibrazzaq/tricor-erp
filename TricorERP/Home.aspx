@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <asp:HyperLink runat="server" ID="Itemhyp" NavigateUrl="~/POS/Stock/StockList.aspx" type="button" class="btn btn-default btn-lg btn-block">
-                                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Total Items:
+                                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Total Items in stock:
                                         <asp:Label ID="LabtotalItem" runat="server" Text=""></asp:Label>
                                     </asp:HyperLink>
                                 </div>
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <asp:HyperLink runat="server" ID="Reporthyp" type="button" NavigateUrl="~/POS/Order/OrderList.aspx" class="btn btn-default btn-lg btn-block">
-                                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Total Sales :
+                                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Pending Order:
                                         <asp:Label ID="Labtotalsales" runat="server" Text=""></asp:Label>
                                     </asp:HyperLink>
                                 </div>

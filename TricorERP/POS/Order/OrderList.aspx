@@ -28,7 +28,7 @@
                                     <th class="hidden">Customer ID</th>
                                     <th>Customer Name</th>
                                     <th>Order Date</th>
-                                    <th>Delivery Date</th>
+                                    <th class="hidden">Delivery Date</th>
                                     <th>Order Status</th>
                                     <th>Edit</th>
                                 </tr>
@@ -50,7 +50,7 @@
                                 <td>
                                     <%# Eval("OrderDate") %>
                                 </td>
-                                <td>
+                                <td class="hidden">
                                     <%# Eval("DeliveryDate") %>
                                 </td>
                                 <td>

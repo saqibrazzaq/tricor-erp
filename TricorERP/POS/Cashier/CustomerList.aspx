@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search Customer By Name Or Phone Number..." runat="server"></asp:TextBox>
+                        <asp:TextBox ID="SearchCustomer" CssClass="form-control" placeholder="Search Customer By Name..." runat="server"></asp:TextBox>
                         <span class="input-group-btn">
                             <asp:Button ID="Search" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchCustomerButton1_Click" />
                         </span>
@@ -27,7 +27,7 @@
                                 <tr class="active">
                                     <th class="hidden">ID</th>
                                     <th>Full Name</th>
-                                    <th>Phone Number</th>
+                                    <th>CNIC</th>
                                     <th>Edit</th>
                                 </tr>
                                 <tr runat="server" id="itemPlaceholder"></tr>
@@ -42,7 +42,7 @@
                                     <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Name") %>'></asp:LinkButton>
                                 </td>
                                 <td>
-                                    <%# Eval("Phonenumber") %>
+                                    <%# Eval("CNIC") %>
                                 </td>
                                 <td>
                                     <asp:LinkButton runat="server" CommandName="EditCustomer" CommandArgument='<%# Eval("ID") %>'><span class="glyphicon glyphicon-edit"></span></asp:LinkButton>

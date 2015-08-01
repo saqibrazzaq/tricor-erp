@@ -36,26 +36,63 @@ namespace Database.Common
             }
             return purchaseorderitems;
         }
-
         public static PurchaseOrderItemsModel addPurchaseProductItems(PurchaseOrderItemsModel POIModel)
         {
-            String sql = @"INSERT INTO [dbo].[ProductOrderItem]
+            PurchaseOrderItemsModel checkproductid = checkProductInfoiInPurchaseOrderItems(POIModel);
+
+            if (checkproductid.checkProduct)
+            {
+                String sql = @"UPDATE [ProductOrderItem]
+                        SET [TotalQuantity] = [TotalQuantity] +'" + checkproductid.Quantity
+                        + "'WHERE ProductOrderItem.OrderID = '" + POIModel.PurchaseOrderID
+                        + "' AND ProductOrderItem.ProductID = '" + POIModel.ProductID + "'";
+                DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
+            }
+            else
+            {
+                String sql = @"INSERT INTO [dbo].[ProductOrderItem]
                         ([OrderID],[ProductID] ,[TotalQuantity] ,[ProductStatus] ,[CreatedBy] ,[LastUpdatedBy])
-           output inserted.ID
-           VALUES
-           ('" + POIModel.PurchaseOrderID + "','" + POIModel.ProductID + "','" + POIModel.Quantity + "','"
-               + POIModel.PurchasePrice + "','" + POIModel.CreatedBy + "','" + POIModel.LastUpdatedBy + "')";
-            object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
-            POIModel.ID = id.ToString();
+                           output inserted.ID
+                           VALUES
+                           ('" + POIModel.PurchaseOrderID + "','" + POIModel.ProductID + "','" + POIModel.Quantity + "','"
+                                    + POIModel.PurchasePrice + "','" + POIModel.CreatedBy + "','" + POIModel.LastUpdatedBy + "')";
+
+                object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
+                POIModel.ID = id.ToString();
+            }
             return POIModel;
         }
+        public static PurchaseOrderItemsModel checkProductInfoiInPurchaseOrderItems(PurchaseOrderItemsModel POIModel)
+        {
+            String sql = @"SELECT ProductOrderItem.* from ProductOrderItem
+	                     WHERE ProductOrderItem.OrderID = '" + POIModel.PurchaseOrderID
+                         + "' AND ProductOrderItem.ProductID = '" + POIModel.ProductID + "'";
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+            String Productid = null;
+            if (reader.Read())
+            {
+                Productid = reader["ProductID"].ToString();
+                POIModel.ID = reader["ID"].ToString();
+                POIModel.PurchaseOrderID = reader["OrderID"].ToString();
+                POIModel.ProductID = reader["ProductID"].ToString();
+                POIModel.Quantity = int.Parse(reader["TotalQuantity"].ToString());
+            }
 
-
+            if (Productid == POIModel.ProductID)
+            {
+                POIModel.checkProduct = true;
+                return POIModel;
+            }
+            else
+            {
+                return POIModel;
+            }
+        }
         public static int updatePurchaseOrderItems(PurchaseOrderItemsModel POIModel)
         {
             String sql = @"UPDATE [ProductOrderItem]
-                        SET [TotalQuantity] = '"+POIModel.Quantity+"' ,[LastUpdatedBy] = '"+POIModel.LastUpdatedBy
-                        +"'WHERE [ProductOrderItem].ID = '"+POIModel.ID+"'";
+                        SET [TotalQuantity] = '" + POIModel.Quantity + "' ,[LastUpdatedBy] = '" + POIModel.LastUpdatedBy
+                        + "'WHERE [ProductOrderItem].ID = '" + POIModel.ID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)
             {
@@ -63,7 +100,6 @@ namespace Database.Common
             }
             return 0;
         }
-
         public static int deletePurchaseOrderItems(String ID)
         {
             String sql = @"DELETE FROM ProductOrderItem WHERE ID ='" + ID + "'";

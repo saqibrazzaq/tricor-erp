@@ -14,5 +14,9 @@ namespace Database
         public static String WHID = "2";
 
         public static string Pending = "1";
+
+        public static string BranchManagerID = "1";
+
+        public static string CashierID = "2";
     }
 }

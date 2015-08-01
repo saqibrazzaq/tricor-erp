@@ -24,7 +24,6 @@ namespace Database.POS
             productModel.ProductID = id.ToString();
             return productModel;
         }
-
         public static List<ProductModel> getProductList(String searchtext)
         {
             List<ProductModel> productList = new List<ProductModel>();
@@ -75,7 +74,6 @@ namespace Database.POS
             }
             return product;
         }
-
         public static int updateProduct(ProductModel pModel)
         {
             String sql = @"UPDATE [dbo].[Product]
@@ -92,7 +90,6 @@ namespace Database.POS
             }
             return 0;
         }
-
         public static List<ProductModel> getProductList() {
             List<ProductModel> products = new List<ProductModel>();
             string sql = "SELECT * FROM Product ";
@@ -126,5 +123,6 @@ namespace Database.POS
             }
             return totalitems;
         }
+        
     }
 }

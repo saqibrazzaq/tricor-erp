@@ -22,7 +22,7 @@ namespace Database.POS
             {
                 sql = @"INSERT INTO [dbo].[User] ([Username] ,[Password] ,[RoleID] ,[CNIC],[WarehouseID])
                   output inserted.ID 
-                  VALUES ('" + newuser.Name + "','" + newuser.Password + "','"+newuser.Role+"','" + newuser.CNIC + "','"+newuser.WHID+"')";
+                  VALUES ('" + newuser.Name + "','" + newuser.Password + "','" + newuser.Role + "','" + newuser.CNIC + "','" + newuser.WHID + "')";
                 object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
                 newuser.ID = id.ToString();
                 return newuser;
@@ -70,7 +70,7 @@ namespace Database.POS
                 cashier.Password = reader["Password"].ToString();
                 cashier.Role = reader["RoleID"].ToString();
                 cashier.CNIC = reader["CNIC"].ToString();
-                cashier.WHID = reader["WarehouseID"].ToString();   
+                cashier.WHID = reader["WarehouseID"].ToString();
             }
             return cashier;
         }
@@ -78,21 +78,28 @@ namespace Database.POS
         public static List<UserModel> getUserList(String searchtext, String roleid)
         {
             List<UserModel> users = new List<UserModel>();
-            String sql = @"select top 10 [User].ID ID, [User].Username Name, Address.PhoneNo PhoneNo
-                           from [User] 
-                           join UserAddress on [User].ID = UserAddress.UserID
-                           join Address on Address.Id = UserAddress.AddressID
-                           where [User].RoleID='"+ roleid
-                           +"'and([User].Username like '%" + searchtext 
-                           + "%' or Address.PhoneNo like '%" + searchtext + "%')";
+//            String sql = @"select top 10 [User].ID ID, [User].Username Name, Address.PhoneNo PhoneNo
+//                           from [User] 
+//                           join UserAddress on [User].ID = UserAddress.UserID
+//                           join Address on Address.Id = UserAddress.AddressID
+//                           where [User].RoleID='" + roleid
+//                           + "'and([User].Username like '%" + searchtext
+//                           + "%' or Address.PhoneNo like '%" + searchtext + "%')";
+
+            String sql = @"SELECT [User].ID, [User].Username, [User].CNIC
+		                   FROM [User]
+		                   Where [User].RoleID = '"+CommonDB.CashierID
+                           +"' AND ([User].Username LIKE '%"+searchtext
+                           +"%' OR [User].CNIC LIKE '%"+searchtext+"%')";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
                 UserModel user = new UserModel();
                 user.ID = reader["ID"].ToString();
-                user.Name = reader["Name"].ToString();
-                user.PhoneNo = reader["PhoneNo"].ToString();
+                user.Name = reader["Username"].ToString();
+                user.CNIC = reader["CNIC"].ToString();
+                // user.PhoneNo = reader["PhoneNo"].ToString();
                 users.Add(user);
             }
             return users;
@@ -155,7 +162,7 @@ namespace Database.POS
             try
             {
                 String sql = null;
-                if(AddressID != null)
+                if (AddressID != null)
                     sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + UserID + "' and [UserAddress].AddressID ='" + AddressID + "';";
                 else
                     sql = @"DELETE FROM [dbo].[UserAddress] WHERE [UserAddress].UserID='" + UserID + "'";
@@ -166,7 +173,7 @@ namespace Database.POS
                         Database.Common.AddressDB.deleteAddress(AddressID, trans);
                     else
                         Database.UserLogin.UserLogin.deleteUser(UserID, trans);
-                    
+
                     trans.Commit();
                 }
                 else
@@ -189,7 +196,7 @@ namespace Database.POS
         public static List<Models.POS.RoleModel> getRoleList()
         {
             List<Models.POS.RoleModel> roles = new List<Models.POS.RoleModel>();
-            String sql = @"select * from Role ";
+            String sql = @"select * from Role where [Role].Name != 'POS Manager' ";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
@@ -204,7 +211,10 @@ namespace Database.POS
 
         public static int getTotalEmploy(string WHID)
         {
-            String sql = @"SELECT COUNT (*) as Usercount FROM [dbo].[User] where [User].WarehouseID='"+WHID+"'";
+            String sql = @"SELECT COUNT (*) as Usercount FROM [dbo].[User] where [User].WarehouseID='" + WHID
+                + "' AND [User].RoleID = '" + CommonDB.CashierID + "'";
+
+            //+ "' AND ([User].RoleID = '" + CommonDB.BranchManagerID
             object employeescount = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
             return int.Parse(employeescount.ToString());
         }

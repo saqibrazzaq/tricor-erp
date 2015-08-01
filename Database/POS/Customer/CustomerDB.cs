@@ -14,20 +14,25 @@ namespace Database.POS.Customer
         public static List<CustomerModel> getCustomersList(String searchtext)
         {
             List<CustomerModel> customers = new List<CustomerModel>();
-            String sql = @"select Customer.Id ID, Customer.Name Name, Address.PhoneNo Phoneno
-                        from Customer
-                        join CustomerAddress on Customer.Id=CustomerAddress.Customer_ID
-                        join Address on Address.Id=CustomerAddress.Address_ID
-                        where 1=1
-                        and 
-	                    (Customer.Name like '%" + searchtext + "%' or Address.PhoneNo like '%" + searchtext + "%')";
+//            String sql = @"select Customer.Id ID, Customer.Name Name, Address.PhoneNo Phoneno
+//                        from Customer
+//                        join CustomerAddress on Customer.Id=CustomerAddress.Customer_ID
+//                        join Address on Address.Id=CustomerAddress.Address_ID
+//                        where 1=1
+//                        and 
+//	                    (Customer.Name like '%" + searchtext + "%' or Address.PhoneNo like '%" + searchtext + "%')";
+
+            String sql = @"SELECT Customer.* from Customer WHERE 
+                         1=1 AND (Customer.Name LIKE '%"+searchtext
+                                                        +"%' OR Customer.CNIC LIKE '%"+searchtext+"%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
                 CustomerModel customer = new CustomerModel();
-                customer.ID = reader["ID"].ToString();
+                customer.ID = reader["Id"].ToString();
                 customer.Name = reader["Name"].ToString();
-                customer.Phonenumber = reader["Phoneno"].ToString();
+                //customer.Phonenumber = reader["Phoneno"].ToString();
+                customer.CNIC = reader["CNIC"].ToString();
                 customers.Add(customer);
             }
             return customers;
