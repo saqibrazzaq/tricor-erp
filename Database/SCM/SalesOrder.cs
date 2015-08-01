@@ -15,17 +15,18 @@ namespace Database.SCM
             if (searchtext == "")
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID where OrderStatus.ID>1";
+                            OrderStatus.StatusName, Warehouse.WHName from ProductOrder
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID 
+                            where OrderStatus.ID>1";
             else
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where OrderStatus.ID>1 AND ProductOrder.ID='" + searchtext + "' ";
-              
-//            else
-//                sql = @"select SalesOrder.ID ID, SalesOrder.CustomerID CID, SalesOrder.OrderDate ADate, SalesOrder.DeliveryDate DDate, SalesOrder.RejectedOn RejectedOn,
-//                            SalesOrder.RejectedBy RejectedBy, SalesOrder.RejectionReason RejectionReason,
-//                            OrderStatus.StatusName from SalesOrder join  OrderStatus on SalesOrder.OrderStatus = OrderStatus.ID  where SalesOrder.ID='" + searchtext + "' ";
-
+                            OrderStatus.StatusName, Warehouse.WHName  from ProductOrder 
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID 
+                            where OrderStatus.ID>1 AND ProductOrder.ID='" + searchtext + "' ";
+ 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
@@ -39,6 +40,7 @@ namespace Database.SCM
                 order.RejectedBy = reader["RejectedBy"].ToString();
                 order.RejectedOn = reader["RejectedOn"].ToString();
                 order.RejectionReason = reader["RejectionReason"].ToString();
+                order.WarehouseName = reader["WHName"].ToString();
                 orders.Add(order);
             }
             return orders;
@@ -48,10 +50,16 @@ namespace Database.SCM
             String sql;
             if (searchtext == "")
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where OrderStatus=2";
+                            OrderStatus.StatusName, Warehouse.WHName from ProductOrder
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID 
+                            where OrderStatus=2";
             else
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where OrderStatus=2 AND ProductOrder.ID='" + searchtext + "' ";
+                            OrderStatus.StatusName from ProductOrder
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID 
+                            where OrderStatus=2 AND ProductOrder.ID='" + searchtext + "' ";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
@@ -62,6 +70,7 @@ namespace Database.SCM
                 order.OrderDate = reader["ADate"].ToString();
                 order.DeliveryDate = reader["DDate"].ToString();
                 order.OrderStatusName = reader["StatusName"].ToString();
+                order.WarehouseName = reader["WHName"].ToString();
                 orders.Add(order);
             }
             return orders;
@@ -72,11 +81,16 @@ namespace Database.SCM
             String sql;
             if (searchtext == "")
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where OrderStatus=7";
+                            OrderStatus.StatusName, Warehouse.WHName from ProductOrder
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID 
+                            where OrderStatus=7";
             else
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
-                            OrderStatus.StatusName from ProductOrder join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  where
-                            OrderStatus=7 AND ProductOrder.ID='" + searchtext + "' ";
+                            OrderStatus.StatusName from ProductOrder, Warehouse.WHName from ProductOrder
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID
+                            where OrderStatus=7 AND ProductOrder.ID='" + searchtext + "' ";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
@@ -87,6 +101,7 @@ namespace Database.SCM
                 order.OrderDate = reader["ADate"].ToString();
                 order.DeliveryDate = reader["DDate"].ToString();
                 order.OrderStatusName = reader["StatusName"].ToString();
+                order.WarehouseName = reader["WHName"].ToString();
                 orders.Add(order);
             }
             return orders;
@@ -204,10 +219,16 @@ namespace Database.SCM
             String sql;
             if (id.Equals(""))
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
-                            ProductOrder.OrderStatus Status from ProductOrder where OrderStatus=3";
+                            ProductOrder.OrderStatus Status, Warehouse.WHName from ProductOrder
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID
+                            where OrderStatus=3";
             else
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
-                            ProductOrder.OrderStatus Status from ProductOrder where OrderStatus=3 AND ProductOrder.ID='" + id + "'";
+                            ProductOrder.OrderStatus Status, Warehouse.WHName from ProductOrder
+                            join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
+                            join Warehouse on ProductOrder.WHID = Warehouse.ID
+                            where OrderStatus=3 AND ProductOrder.ID='" + id + "'";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
@@ -219,6 +240,7 @@ namespace Database.SCM
                 order.OrderDate = reader["ADate"].ToString();
                 order.DeliveryDate = reader["DDate"].ToString();
                 order.OrderStatus = int.Parse(reader["Status"].ToString());
+                order.WarehouseName = reader["WHName"].ToString();
                 orders.Add(order);
             }
             return orders;
