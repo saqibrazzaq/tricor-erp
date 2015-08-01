@@ -22,16 +22,28 @@
                             <asp:Label ID="loginMsg" runat="server" ForeColor="Red" CssClass="alert"></asp:Label>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Name</label>
-                                <div class="col-sm-10">
-                                    <asp:TextBox ID="NameTextBox" CssClass="form-control" placeholder="Name" runat="server"></asp:TextBox>
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Name</label>
+                                    <div class="col-md-5">
+                                        <asp:TextBox ID="NameTextBox" CssClass="form-control" placeholder="Name" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="NameTextBox" CssClass="danger" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter correct Usernaem" ControlToValidate="NameTextBox" ValidationExpression="^[a-zA-Z0-9_]*$" CssClass="danger" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                <div class="col-sm-10">
-                                    <asp:TextBox ID="PasswordTextBox" CssClass="form-control" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
+                                <div class="row">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                    <div class="col-sm-5">
+                                        <asp:TextBox ID="PasswordTextBox" CssClass="form-control" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="PasswordTextBox" CssClass="danger" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Enter correct password" ControlToValidate="PasswordTextBox" ValidationExpression="^[a-zA-Z'.\s | \d | \- | \/ | \$ | \£ | \€ | \( | \) | \ | \! | \% | \+ | \&amp; | \, | \! $]{1,200}$" CssClass="danger" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    </div>
                                 </div>
                             </div>
                             
