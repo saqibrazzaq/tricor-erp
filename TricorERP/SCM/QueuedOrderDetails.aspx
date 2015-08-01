@@ -11,10 +11,9 @@
                 <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                     <tr class="active">
                         <th>Order ID</th>
-                        <th>Product ID</th>
+                        <th>Product</th>
                         <th>TotalQuantity</th>
                         <th>Manufactured Quantity</th>
-                        <th>Price</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -25,25 +24,22 @@
                 <tr id="Tr1" runat="server">
 
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("OrderID") %>'></asp:LinkButton>
+                        <%# Eval("OrderID") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ProductID") %>'></asp:LinkButton>
+                        <%# Eval("ProductName") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("TotalQuantity") %>'></asp:LinkButton>
+                        <%# Eval("TotalQuantity") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ManufacturedQuantity") %>'></asp:LinkButton>
+                        <%# Eval("ManufacturedQuantity") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("Price") %>'></asp:LinkButton>
+                        <%# Eval("ProductStatus") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ProductStatus") %>'></asp:LinkButton>
-                    </td>
-                    <td>
-                        <asp:LinkButton runat="server" BorderStyle="Solid" BorderColor="silver" BackColor="WhiteSmoke" CommandName ="one-more-completion" CommandArgument='<%# Eval("ID") %>' Text="1 Item Done" />
+                        <asp:LinkButton runat="server" BackColor="Limegreen" CommandName ="one-more-completion" CommandArgument='<%# Eval("ID") %>' Text="1 Item Done" />
                     </td>                    
                 </tr>
             </ItemTemplate>

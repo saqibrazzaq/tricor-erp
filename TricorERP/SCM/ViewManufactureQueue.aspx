@@ -9,9 +9,11 @@
             <LayoutTemplate>
                 <table class="table table-bordered table-hover" runat="server" id="OrderTable">
                     <tr class="active">
-                        <th>Order ID</th>
+                        <th>Order ID</th>                        
                         <th>Customer</th>
+                        <th>Order Date</th>
                         <th>Delivery Date</th>
+                        <th>Action</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -20,13 +22,16 @@
                 <tr id="Tr1" runat="server">
 
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ID") %>'></asp:LinkButton>
+                        <%# Eval("ID") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("CustomerName") %>'></asp:LinkButton>
+                        <%# Eval("CustomerName") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("DeliveryDate") %>'></asp:LinkButton>
+                        <%# Eval("OrderDate") %>
+                    </td>
+                    <td>
+                        <%# Eval("DeliveryDate") %>
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="viewdetails" CommandArgument='<%# Eval("ID") %>' Text="View Details">  </asp:LinkButton>

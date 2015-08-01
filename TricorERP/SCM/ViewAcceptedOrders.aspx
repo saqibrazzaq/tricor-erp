@@ -25,7 +25,7 @@
                         <th>Order Date</th>
                         <th>Delivery Date</th>
                         <th>Order Status</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -34,19 +34,19 @@
                 <tr id="Tr1" runat="server">
 
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ID") %>'></asp:LinkButton>
+                        <%# Eval("ID") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("CustomerName") %>'></asp:LinkButton>
+                        <%# Eval("CustomerName") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("OrderDate") %>'></asp:LinkButton>
+                        <%# Eval("OrderDate") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("DeliveryDate") %>'></asp:LinkButton>
+                        <%# Eval("DeliveryDate") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" CommandName="none" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("OrderStatusName") %>'></asp:LinkButton>
+                        <%# Eval("OrderStatusName") %>
                     </td>
                     <td>
                         <asp:LinkButton runat="server" CommandName="viewdetails" CommandArgument='<%# Eval("ID") %>' Text="View Details">  </asp:LinkButton>
