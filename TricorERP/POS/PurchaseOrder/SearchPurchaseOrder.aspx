@@ -28,7 +28,7 @@
                                 <tr class="active">
                                     <th class="hidden PurchaseOrderItemID">ID</th>
                                     <th>OrderDate</th>
-                                    <th>Warehouse Name</th>
+                                    <th class="hidden">Warehouse Name</th>
                                     <th>Order Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -47,7 +47,7 @@
                                 <td>
                                     <%# Eval("OrderDate") %>
                                 </td>
-                                <td>
+                                <td class ="hidden">
                                     <%# Eval("WHName") %>
                                 </td>
                                 <td>

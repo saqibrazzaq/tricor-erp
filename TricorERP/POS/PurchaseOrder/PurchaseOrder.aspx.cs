@@ -154,7 +154,8 @@ namespace TricorERP.POS.PurchaseOrder
         }
         private void NewPurchaseOrder()
         {
-            purchaseOrder.WHID = WaherHouseDropDownList.SelectedValue.Trim();
+            //purchaseOrder.WHID = WaherHouseDropDownList.SelectedValue.Trim();
+            purchaseOrder.WHID = Common.WarehouseIDDefault;
             purchaseOrder.OrderDate = DateTextBoox.Text.Trim();
             purchaseOrder.LastUpdatedBy = Session["UserID"].ToString().Trim();
             purchaseOrder.CreatedBy = Session["UserID"].ToString().Trim();

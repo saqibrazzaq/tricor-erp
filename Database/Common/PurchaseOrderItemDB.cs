@@ -43,7 +43,7 @@ namespace Database.Common
             if (checkproductid.checkProduct)
             {
                 String sql = @"UPDATE [ProductOrderItem]
-                        SET [TotalQuantity] = [TotalQuantity] +'" + checkproductid.Quantity
+                        SET [TotalQuantity] = [TotalQuantity] +'" + POIModel.Quantity
                         + "'WHERE ProductOrderItem.OrderID = '" + POIModel.PurchaseOrderID
                         + "' AND ProductOrderItem.ProductID = '" + POIModel.ProductID + "'";
                 DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
@@ -75,7 +75,6 @@ namespace Database.Common
                 POIModel.ID = reader["ID"].ToString();
                 POIModel.PurchaseOrderID = reader["OrderID"].ToString();
                 POIModel.ProductID = reader["ProductID"].ToString();
-                POIModel.Quantity = int.Parse(reader["TotalQuantity"].ToString());
             }
 
             if (Productid == POIModel.ProductID)

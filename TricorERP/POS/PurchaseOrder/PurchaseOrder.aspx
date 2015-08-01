@@ -12,7 +12,7 @@
         </div>
         <div class="panel-body">
             <div class="row container-fluid">
-                <div class="col-lg-3">
+                <div class="hidden col-lg-3">
                     <label for="InputName">Waher House :</label>
                     <div class="input-group">
                         <asp:DropDownList ID="WaherHouseDropDownList" CssClass="form-control" runat="server"></asp:DropDownList>
