@@ -44,10 +44,10 @@
                     <div runat="server" id="StockStatusalert" class="alert alert-danger">
                         <a href="#" class="close" data-dismiss="alert">&times;
                         </a>
-                        <strong>Warning!</strong> Number Of Products which are Low in the.
-                            <a href="POS/Stock/StockList.aspx">stock :
+                        <strong>Warning!</strong> Number Of Products which are Low in the stock are
+                            <a href="POS/Stock/StockList.aspx"> 
                                  <asp:Label ID="StockStatusLab" runat="server" Text="">
-                                 </asp:Label>
+                                 </asp:Label> Click to check
                             </a>
                     </div>
 
