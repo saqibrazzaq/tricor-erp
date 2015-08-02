@@ -8,7 +8,7 @@ namespace Models.SCM
 {
     public class Common
     {
-        public static int OurWareHouseID = 1;
+        public static int OurWareHouseID = 1005;
 
     }
 }

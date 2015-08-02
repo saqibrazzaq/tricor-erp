@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <asp:TextBox ID="SearchOrdersText" CssClass="form-control" placeholder="Search Orders by ID/Customer" runat="server" OnTextChanged="SearchOrdersText_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="SearchOrdersText" CssClass="form-control" placeholder="Search Orders by ID" runat="server" OnTextChanged="SearchOrdersText_TextChanged"></asp:TextBox>
                 <span class="input-group-btn">
                     <asp:Button ID="SearchOrders" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchOrder" />
                 </span>
