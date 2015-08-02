@@ -138,9 +138,15 @@ namespace TricorERP.POS.Cashier
         protected void chkSelect_CheckedChanged(object sender, EventArgs e)
         {
             if (chkSelect.Checked == true)
+            {
                 Savebtn.Enabled = true;
+                Savebtn.CssClass = "btn btn-primary";
+            }
             else
+            {
                 Savebtn.Enabled = false;
+                Savebtn.CssClass = "btn btn-default";
+            }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

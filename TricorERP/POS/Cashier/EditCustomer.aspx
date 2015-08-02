@@ -131,7 +131,7 @@
             </div>
             <div class="row container-fluid">
                 <div class="col-lg-5">
-                    <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-primary" OnClick="Savebtn_Click" Text="">Save</asp:LinkButton>
+                    <asp:LinkButton ID="Savebtn" runat="server" CssClass="btn btn-default" OnClick="Savebtn_Click" Text="">Save</asp:LinkButton>
                     <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary" OnClick="btnBack_Click" CausesValidation="False">Back</asp:LinkButton>
                 </div>
             </div>
