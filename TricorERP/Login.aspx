@@ -20,7 +20,6 @@
     <link href="Content/signin.css" rel="stylesheet" />
     <script lang="javascript">
         function errorMessageCheck() {
-            var a = document.getElementById("loginMsg").innerHTML;
             document.getElementById("loginMsg").innerHTML="";
         }
     </script>
