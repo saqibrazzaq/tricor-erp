@@ -144,7 +144,6 @@
     <Content Include="Scripts\jquery.confirm.min.js" />
     <Content Include="Tricor.Master" />
     <Content Include="Images\Catalog\Thumbs.db" />
-    <Content Include="WebForm1.aspx" />
     <None Include="Properties\PublishProfiles\Publish to Directory.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -577,13 +576,6 @@
     </Compile>
     <Compile Include="Tricor.Master.designer.cs">
       <DependentUpon>Tricor.Master</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

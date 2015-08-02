@@ -16,6 +16,7 @@ namespace TricorERP.POS
             if (IsPostBack == false)
             {
                 InitializePageContents();
+                
             }
         }
 
@@ -29,7 +30,6 @@ namespace TricorERP.POS
 
         protected void Login_Click(object sender, EventArgs e)
         {
-            loginMsg.Text = "";
             UserModel userModel = UserLogin.loginCheck(NameTextBox.Text, PasswordTextBox.Text); // static method
             if (userModel != null)
             {
