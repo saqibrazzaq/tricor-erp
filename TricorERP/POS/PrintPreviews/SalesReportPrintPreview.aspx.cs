@@ -20,6 +20,7 @@ namespace TricorERP.POS.PrintPreviews
         private void InitializePageContents()
         {
             LoadSalesListView("");
+            CurrentDatVariable.Text = "("+System.DateTime.Now.ToString()+")";
         }
         private void LoadSalesListView(String searchbydate)
         {

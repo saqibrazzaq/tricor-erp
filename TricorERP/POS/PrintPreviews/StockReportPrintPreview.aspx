@@ -47,7 +47,7 @@
                 </div>
                 <br />
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Stock Report Details</strong></h3>
+                    <h3 class="panel-title"><strong>Stock Report Details</strong>&nbsp;<asp:Label ID="CurrentDatVariable" runat="server" Text="Label"></asp:Label></h3>
                 </div>
                 <hr />
                 <br />

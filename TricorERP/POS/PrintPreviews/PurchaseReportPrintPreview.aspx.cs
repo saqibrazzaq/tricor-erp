@@ -15,6 +15,7 @@ namespace TricorERP.POS.PrintPreviews
             if (IsPostBack == false)
             {
                 InitializePageContents();
+                CurrentDatVariable.Text = "(" + System.DateTime.Now.ToString() + ")";
             }
         }
 
