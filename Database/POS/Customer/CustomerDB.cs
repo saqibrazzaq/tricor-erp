@@ -93,20 +93,22 @@ namespace Database.POS.Customer
         }
 
         // get all data of customer and return a list of customer. 
-        //public static List<CustomerModel> getallCustomer()
-        //{
-        //    List<CustomerModel> customers = new List<CustomerModel>();
-        //    String sql = @"SELECT * FROM Customer";
-        //    SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-        //    while (reader.Read())
-        //    {
-        //        CustomerModel customer = new CustomerModel();
-        //        customer.ID = reader["ID"].ToString();
-        //        customer.Name = reader["Name"].ToString();
-        //        customers.Add(customer);
-        //    }
-        //    return customers;
-        //}
+//        public static List<CustomerModel> getallCustomer()
+//        {
+//            List<CustomerModel> customers = new List<CustomerModel>();
+//            String sql = @"Select Customer.Name Name, Customer.Id ID from Customer
+//	                    JOIN SalesOrder ON Customer.Id=SalesOrder.CustomerID AND SalesOrder.OrderStatus='1'
+//	                    Where 1=1";
+//            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+//            while (reader.Read())
+//            {
+//                CustomerModel customer = new CustomerModel();
+//                customer.ID = reader["ID"].ToString();
+//                customer.Name = reader["Name"].ToString();
+//                customers.Add(customer);
+//            }
+//            return customers;
+//        }
 
         // add new address in Customer Address and return an integer value for it
         public static int addAddress(string customerID, String CustomerAddressID)
