@@ -83,7 +83,6 @@
                     <div class="row container-fluid">
                         <div class="col-lg-4">
                             <asp:LinkButton ID="btnBack" runat="server" CssClass="btn btn-primary " OnClick="btnBack_Click">Back</asp:LinkButton>
-                            <asp:LinkButton ID="StockReport" runat="server" CssClass="btn btn-primary" OnClientClick="return PrintPanel();">Stock Report</asp:LinkButton>
                         </div>
                     </div>
 

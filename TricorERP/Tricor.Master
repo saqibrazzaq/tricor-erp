@@ -332,7 +332,7 @@
                                 </asp:HyperLink>
                             </li>
                             <li>
-                                <asp:HyperLink ID="HyperLink55" aria-label="Left Align" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">
+                                <asp:HyperLink ID="POSEmployees" aria-label="Left Align" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">
                                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Employees
                                 </asp:HyperLink>
                             </li>
@@ -389,10 +389,10 @@
                 $("#Supplier").addClass("hidden");
                 $("#OrderStatus").addClass("hidden");
                 $("#OrderStatus").addClass("hidden");
-                // $("#OrderApproved").addClass("hidden");
+                $("#POSEmployees").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
-                //$("#CatalogDropdown").addClass("hidden");
+                $("#POSProducDropdown").addClass("hidden");
                 $("#POSHomeTEandTS").addClass("hidden");
 
             } else if ('3' == '<%=roleID%>') {

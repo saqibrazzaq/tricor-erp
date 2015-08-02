@@ -544,13 +544,13 @@ namespace TricorERP {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink56;
         
         /// <summary>
-        /// HyperLink55 control.
+        /// POSEmployees control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink55;
+        protected global::System.Web.UI.WebControls.HyperLink POSEmployees;
         
         /// <summary>
         /// HyperLink57 control.
