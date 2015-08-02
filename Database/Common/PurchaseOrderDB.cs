@@ -69,7 +69,7 @@ namespace Database.Common
 							JOIN [Warehouse] ON [Warehouse].ID = [ProductOrder].WHID
 							JOIN [OrderStatus] ON [OrderStatus].ID = [ProductOrder].OrderStatus
 							WHERE 1=1
-                            AND (ProductOrder.OrderDate like '%" + searchtext + "%' or Warehouse.WHName like '%" + searchtext + "%')";
+                            AND (ProductOrder.OrderDate like '%" + searchtext + "%' or Warehouse.WHName like '%" + searchtext + "%') ORDER BY ID DESC  ";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {

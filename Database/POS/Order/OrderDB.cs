@@ -55,7 +55,7 @@ namespace Database.POS.Order
                          join  SalesOrder on SalesOrder.CustomerID = Customer.Id
 	                     join OrderStatus on SalesOrder.OrderStatus = OrderStatus.ID
                          where 1=1
-                         and Customer.Name like '%" + searchtext + "%' or SalesOrder.OrderDate like '%" + searchtext + "%'";
+                         and (Customer.Name like '%" + searchtext + "%' or SalesOrder.OrderDate like '%" + searchtext + "%') ORDER BY SalesOrder.ID DESC";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())
             {
