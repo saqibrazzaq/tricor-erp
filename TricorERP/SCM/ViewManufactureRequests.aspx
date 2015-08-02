@@ -3,12 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 class="h2">Manufacture Requests</h2>
+    <h2 class="h2">Pending Orders</h2>
     
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <asp:TextBox ID="SearchApprovedOrdersText" CssClass="form-control" placeholder="Search Approved Orders by Code/Name" runat="server" OnTextChanged="SearchApprovedOrdersText_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="SearchApprovedOrdersText" CssClass="form-control" placeholder="Search Pending Orders by ID/Customer" runat="server" OnTextChanged="SearchApprovedOrdersText_TextChanged"></asp:TextBox>
                 <span class="input-group-btn">
                     <asp:Button ID="SearchOrders" CssClass="btn btn-default" runat="server" Text="Search" OnClick="SearchOrder" />
                 </span>

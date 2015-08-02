@@ -33,7 +33,9 @@
                         <tr class="active">
                             <th>ID</th>
                             <th>Product Code</th>
+                            <th>Product Name</th>
                             <th>Product Quantity</th>
+                            <th colspan="3"><span style="padding-left:40px">User Actions</span></th>
                         </tr>
                         <tr runat="server" id="itemPlaceholder"></tr>
                     </table>
@@ -45,8 +47,10 @@
                             <%# Eval("ID") %>
                         </td>
                         <td class="ItemCol_ProductID">
-                            <%# Eval("ProductID") %>
-                            
+                            <%# Eval("ProductID") %>                        
+                        </td>
+                        <td>
+                            <%# Eval("ProductName") %>
                         </td>
                         <td class="ItemCol_Quantity">
                             <%# Eval("Quantity") %>

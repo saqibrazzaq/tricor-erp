@@ -170,9 +170,8 @@ namespace TricorERP.SCM
                 SalesOrderItemModel SOI = new SalesOrderItemModel();
                 SOI.ProductID = int.Parse(e.CommandArgument.ToString());
                 SOI.OrderID = SO.ID;
-                SOI.ProductStatus = "2";
-                SOI = Database.SCM.SalesOrder.addSaleOrderItems(SOI);
-                
+                SOI.ProductStatus = "Pending";
+                SOI = Database.SCM.SalesOrder.addSaleOrderItems(SOI);                
             }
         }
     }

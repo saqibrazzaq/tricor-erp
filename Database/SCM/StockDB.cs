@@ -89,8 +89,10 @@ namespace Database.SCM
         {
             StockModel sModel = null;
             List<StockModel> stockItemList = new List<StockModel>();
-            String sql = @"select  Stock.ID ID ,  Stock.PID PID , Stock.Quantity Quantity  
-                        from Stock where Stock.WHID= '" + WHID + "' and ( Stock.PID like '%" + SearchText + "%' or Stock.Quantity like '%" + SearchText + "%')";
+            String sql = @"select  Stock.ID ID ,  Stock.PID PID , Stock.Quantity Quantity, Product.PName  
+                        from Stock 
+                        join Product on Stock.PID=Product.ID
+                        where Stock.WHID= '" + WHID + "' and ( Stock.PID like '%" + SearchText + "%' or Stock.Quantity like '%" + SearchText + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while(reader.Read())
             {
@@ -98,6 +100,7 @@ namespace Database.SCM
                 sModel.ID = int.Parse(reader["ID"].ToString());
                 sModel.ProductID = int.Parse(reader["PID"].ToString());
                 sModel.Quantity = int.Parse(reader["Quantity"].ToString());
+                sModel.ProductName = reader["PName"].ToString();
                 stockItemList.Add(sModel);
             }
             return stockItemList;
