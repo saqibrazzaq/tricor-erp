@@ -49,10 +49,12 @@ namespace Database.Common
                 poModel.WHID = reader["WHID"].ToString();
                 poModel.SID = reader["SID"].ToString();
                 poModel.OrderDate = reader["OrderDate"].ToString();
+
                 poModel.CreatedBy = reader["CreatedBy"].ToString();
                 poModel.LastUpdatedBy = reader["LastUpdatedBy"].ToString();
                 poModel.OrderStatusName = reader["StatusName"].ToString();
                 poModel.OrderStatus = reader["OrderStatus"].ToString();
+                poModel.DeliveryDate = reader["DeliveryDate"].ToString();
 
             }
             return poModel;
@@ -61,7 +63,8 @@ namespace Database.Common
         public static List<PurchaseOrderModel> getPurchaseOrderList(String searchtext)
         {
             List<PurchaseOrderModel> POList = new List<PurchaseOrderModel>();
-            String sql = @"SELECT [ProductOrder].ID ID, [ProductOrder].OrderDate OrderDate, [Warehouse].WHName WHName, [OrderStatus].StatusName, [ProductOrder].OrderStatus
+            String sql = @"SELECT [ProductOrder].ID ID, [ProductOrder].OrderDate OrderDate, [Warehouse].WHName WHName
+                         , [OrderStatus].StatusName , [ProductOrder].OrderStatus ,[ProductOrder].DeliveryDate
 							FROM [ProductOrder]
 							JOIN [Warehouse] ON [Warehouse].ID = [ProductOrder].WHID
 							JOIN [OrderStatus] ON [OrderStatus].ID = [ProductOrder].OrderStatus
@@ -76,6 +79,7 @@ namespace Database.Common
                 POMOdel.OrderDate = reader["OrderDate"].ToString();
                 POMOdel.OrderStatusName = reader["StatusName"].ToString();
                 POMOdel.OrderStatus = reader["OrderStatus"].ToString();
+                POMOdel.DeliveryDate = reader["DeliveryDate"].ToString();
                 POList.Add(POMOdel);
             }
             return POList;

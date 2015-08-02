@@ -20,5 +20,7 @@ namespace Models.Common
 
         public String OrderStatusName { get; set; }
         public String WHName { get; set; }
+
+        public string DeliveryDate { get; set; }
     }
 }

@@ -29,6 +29,7 @@
                                     <th class="hidden PurchaseOrderItemID">ID</th>
                                     <th>OrderDate</th>
                                     <th class="hidden">Warehouse Name</th>
+                                    <th>Expected Delivery Date</th>
                                     <th>Order Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -49,6 +50,9 @@
                                 </td>
                                 <td class ="hidden">
                                     <%# Eval("WHName") %>
+                                </td>
+                                <td>
+                                    <%# Eval("DeliveryDate") %>
                                 </td>
                                 <td>
                                     <%# Eval("OrderStatusName") %>

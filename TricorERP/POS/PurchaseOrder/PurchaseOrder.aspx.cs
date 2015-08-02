@@ -42,6 +42,7 @@ namespace TricorERP.POS.PurchaseOrder
                     WaherHouseDropDownList.SelectedValue = purchaseOrder.WHID;
                     SavePurchaseOrderbtn.Text = "Update";
                     txtOrderStatus.Text = purchaseOrder.OrderStatusName;
+                    txtExpectedDeliveryDate.Text = purchaseOrder.DeliveryDate;
 
                     if (purchaseOrder.OrderStatus != Common.OrderPending)
                     {

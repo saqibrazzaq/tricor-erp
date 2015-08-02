@@ -19,9 +19,15 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <label for="InputName">Date :</label>
+                    <label for="InputName">Order Date :</label>
                     <div class="input-group">
                         <asp:TextBox ID="DateTextBoox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label for="InputName">Expected Delivery Date:</label>
+                    <div class="input-group">
+                        <asp:TextBox ID="txtExpectedDeliveryDate" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-3">
