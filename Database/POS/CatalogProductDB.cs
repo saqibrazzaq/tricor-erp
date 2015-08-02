@@ -98,5 +98,19 @@ namespace Database.POS
             return result;
         }
 
+        public static string getCatalogImgPath(int pId)
+        {
+            string imgPath = "";
+            sql = @"select  [ImagePath] from [dbo].[MainCatalog] where PId=" + pId;
+
+            SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+           if (reader.Read())
+            {
+                imgPath = reader["ImagePath"].ToString();
+            }
+
+            return imgPath;
+        }
+
     }
 }

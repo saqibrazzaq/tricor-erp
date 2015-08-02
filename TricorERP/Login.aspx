@@ -20,28 +20,26 @@
                     <div class="col-xs-4 col-xs-offset-4">
 
                         <asp:Label ID="loginMsg" runat="server" ForeColor="Red" CssClass="alert"></asp:Label>
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" BackColor="#FFCCCC" BorderColor="#FF9999" BorderStyle="Solid" BorderWidth="1px" HeaderText="Required Fields*" Font-Bold="False" /><br />
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-sm-2 control-label">Name</label>
-                                <div class="col-md-10">
+                                <label class="col-sm-3 control-label">Name
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Username is required" ControlToValidate="NameTextBox" CssClass="danger" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Only alphbates and digits are allow in Username" ControlToValidate="NameTextBox" ValidationExpression="^[a-zA-Z0-9_]*$" CssClass="danger" ForeColor="Red">*</asp:RegularExpressionValidator></label>
+                                <div class="col-md-8">
                                     <asp:TextBox ID="NameTextBox" CssClass="form-control" placeholder="Name" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Username is required" ControlToValidate="NameTextBox" CssClass="danger" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter correct Usernaem" ControlToValidate="NameTextBox" ValidationExpression="^[a-zA-Z0-9_]*$" CssClass="danger" ForeColor="Red"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="row">
-                                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                <div class="col-sm-10">
+                                <label for="inputPassword3" class="col-sm-4 control-label">Password
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password is required" ControlToValidate="PasswordTextBox" CssClass="danger" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Enter valid password" ControlToValidate="PasswordTextBox" ValidationExpression="^[a-zA-Z'.\s | \d | \- | \/ | \$ | \£ | \€ | \( | \) | \ | \! | \% | \+ | \&amp; | \, | \! $]{1,200}$" CssClass="danger" ForeColor="Red">*</asp:RegularExpressionValidator></label>
+                                <div class="col-sm-9">
                                     <asp:TextBox ID="PasswordTextBox" CssClass="form-control" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
-                               
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password is required" ControlToValidate="PasswordTextBox" CssClass="danger" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Enter correct password" ControlToValidate="PasswordTextBox" ValidationExpression="^[a-zA-Z'.\s | \d | \- | \/ | \$ | \£ | \€ | \( | \) | \ | \! | \% | \+ | \&amp; | \, | \! $]{1,200}$" CssClass="danger" ForeColor="Red"></asp:RegularExpressionValidator>
                                 </div>
-                            </div>
                         </div>
 
                         <br />

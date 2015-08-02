@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -50,7 +51,11 @@ namespace TricorERP.POS.Product
 
             if (pId != 0)
             {
-                string imgPath = uploadImage();
+                string imgPath = Database.POS.CatalogProductDB.getCatalogImgPath(pId);
+                File.Delete(Server.MapPath(imgPath));
+
+                imgPath = uploadImage();
+
                 int result = Database.POS.CatalogProductDB.updateProduct(pId, imgPath, product);
                 if (result == 1)
                 {
