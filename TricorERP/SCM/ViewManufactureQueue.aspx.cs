@@ -11,7 +11,7 @@ namespace TricorERP.SCM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Models.SCM.SalesOrderModel> orders = Database.SCM.SalesOrder.ViewAcceptedOrders("", 3);
+            List<Models.SCM.SalesOrderModel> orders = Database.SCM.SalesOrder.getAcceptedOrders("", 3);
             MQListview.DataSource = orders;
             MQListview.DataBind();
         }

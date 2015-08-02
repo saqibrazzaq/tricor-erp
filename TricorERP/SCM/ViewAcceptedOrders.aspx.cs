@@ -15,7 +15,7 @@ namespace TricorERP.SCM
         }
         private void SearchOrder(String text)
         {
-            List<Models.SCM.SalesOrderModel> orders = Database.SCM.SalesOrder.ViewAcceptedOrders(text,4);
+            List<Models.SCM.SalesOrderModel> orders = Database.SCM.SalesOrder.getAcceptedOrders(text,4);
             OrderListview.DataSource = orders;
             OrderListview.DataBind();
         }
