@@ -13,20 +13,23 @@ namespace Database.SCM
         {
             String sql;
             if (searchtext == "")
-                sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
+                sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate,
+                            ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
                             OrderStatus.StatusName, Warehouse.WHName from ProductOrder
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
                             join Warehouse on ProductOrder.WHID = Warehouse.ID 
                             where OrderStatus.ID>1";
+
             else
-                sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
+                sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, 
+                            ProductOrder.DeliveryDate DDate, ProductOrder.RejectedOn RejectedOn,
                             ProductOrder.RejectedBy RejectedBy, ProductOrder.RejectionReason RejectionReason,
                             OrderStatus.StatusName, Warehouse.WHName  from ProductOrder 
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID  
                             join Warehouse on ProductOrder.WHID = Warehouse.ID 
-                            where OrderStatus.ID>1 AND ProductOrder.ID='" + searchtext + "' ";
- 
+                            where OrderStatus.ID>1 and (ProductOrder.ID like '%" + searchtext + "%' or Warehouse.WHName like '%" + searchtext + "%' or OrderStatus.StatusName like '%" + searchtext + "%' or ProductOrder.OrderDate like '%" + searchtext + "%')";
+
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
@@ -45,7 +48,7 @@ namespace Database.SCM
             }
             return orders;
         }
-        public static List<Models.SCM.SalesOrderModel> GetApprovedOrders(String searchtext)
+        public static List<Models.SCM.SalesOrderModel> GetPendingOrders(String searchtext)
         {
             String sql;
             if (searchtext == "")
@@ -56,10 +59,10 @@ namespace Database.SCM
                             where OrderStatus=2";
             else
                 sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
-                            OrderStatus.StatusName from ProductOrder
+                            OrderStatus.StatusName, Warehouse.WHName from ProductOrder
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
                             join Warehouse on ProductOrder.WHID = Warehouse.ID 
-                            where OrderStatus=2 AND ProductOrder.ID='" + searchtext + "' ";
+                            where OrderStatus=2 and (ProductOrder.ID like '%" + searchtext + "%' or Warehouse.WHName like '%" + searchtext + "%' or OrderStatus.StatusName like '%" + searchtext + "%'or ProductOrder.OrderDate like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
@@ -70,7 +73,7 @@ namespace Database.SCM
                 order.OrderDate = reader["ADate"].ToString();
                 order.DeliveryDate = reader["DDate"].ToString();
                 order.OrderStatusName = reader["StatusName"].ToString();
-                order.CustomerName= reader["WHName"].ToString();
+                order.CustomerName = reader["WHName"].ToString();
                 orders.Add(order);
             }
             return orders;
@@ -90,7 +93,7 @@ namespace Database.SCM
                             OrderStatus.StatusName from ProductOrder, Warehouse.WHName from ProductOrder
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
                             join Warehouse on ProductOrder.WHID = Warehouse.ID
-                            where OrderStatus=7 AND ProductOrder.ID='" + searchtext + "' ";
+                            where OrderStatus=7 and (ProductOrder.ID like '%" + searchtext + "%' or Warehouse.WHName like '%" + searchtext + "%' or OrderStatus.StatusName like '%" + searchtext + "%'or ProductOrder.OrderDate like '%" + searchtext + "%')";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             List<Models.SCM.SalesOrderModel> orders = new List<Models.SCM.SalesOrderModel>();
             while (reader.Read())
@@ -144,10 +147,10 @@ namespace Database.SCM
                 String salesorderitemID;
                 while (reader.Read())
                 {
+                    salesorderitemID = reader["ID"].ToString();
                     manufacturedquantity = int.Parse(reader["ManufacturedQuantity"].ToString());
                     totalquantity = int.Parse(reader["TotalQuantity"].ToString());
                     productid = int.Parse(reader["ProductID"].ToString());
-                    salesorderitemID = reader["ID"].ToString();
                     sql = @"select Quantity from Stock where PID='" + productid + "' and WHID=1";
                     reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
                     reader.Read();
@@ -172,23 +175,32 @@ namespace Database.SCM
                         orderstatus = CheckOrUpdateSalesOrderStatus(id);
                     }
                 }
+
+                sql = @"select * from LastSalesOrderDeliveryDate";
+                reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+                DateTime deliverydate = new DateTime();
+                DateTime today = DateTime.Now;
+                while (reader.Read())
+                {
+                    deliverydate = DateTime.Parse(reader["Date"].ToString());
+                    if (today.Date > deliverydate.Date)
+                        deliverydate = DateTime.Today.Date;
+                    int days = CalculateDaysRequiredForManufacturing(id);
+                    deliverydate = deliverydate.Date.AddDays(days + 2); // add two days required for items delivery
+                }
+
+                sql = @"Update [dbo].[ProductOrder] set [OrderStatus]='" + orderstatus + "', [DeliveryDate]='" + deliverydate.Date + "' where [ProductOrder].ID=" + id + "";
+                DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+
+                sql = @"update [dbo].[LastSalesOrderDeliveryDate] set [Date]='" + deliverydate.Date + "'";
+                DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             }
 
-            sql = @"select * from LastSalesOrderDeliveryDate";
-            reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-            DateTime datetime = new DateTime();
-            while (reader.Read())
+            else
             {
-                datetime = DateTime.Parse(reader["Date"].ToString());
-                int days = CalculateDaysRequiredForManufacturing(id);
-                datetime = datetime.Date.AddDays(days);
+                sql = @"Update [dbo].[ProductOrder] set [OrderStatus]=3 where ProductOrder.ID='"+id+"'";
+                DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             }
-
-            sql = @"Update [dbo].[ProductOrder] set [OrderStatus]='" + orderstatus + "', [DeliveryDate]='" + datetime.Date + "' where [ProductOrder].ID=" + id + "";
-            DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-
-            sql = @"update [dbo].[LastSalesOrderDeliveryDate] set [Date]='" + datetime.Date + "'";
-            DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
         }
         public static void UpdateItemStatus(String id)
         {
@@ -219,27 +231,28 @@ namespace Database.SCM
             return days;
         }
 
-        public static List<Models.SCM.SalesOrderModel> ViewAcceptedOrders(String id, int status)
+        public static List<Models.SCM.SalesOrderModel> ViewAcceptedOrders(String searchtext, int status)
         {
             String sql;
             if (status == 3)
             {
-                if (id.Equals(""))
+                if (searchtext.Equals(""))
                     sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
                             ProductOrder.OrderStatus Status, OrderStatus.StatusName, Warehouse.WHName from ProductOrder
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
                             join Warehouse on ProductOrder.WHID = Warehouse.ID
-                            where OrderStatus=3";
+                            where OrderStatus=3 order by ProductOrder.DeliveryDate";
                 else
                     sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
                             ProductOrder.OrderStatus Status, OrderStatus.StatusName, Warehouse.WHName from ProductOrder
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
                             join Warehouse on ProductOrder.WHID = Warehouse.ID
-                            where OrderStatus=3 AND ProductOrder.ID='" + id + "'";
+                            where OrderStatus=3 and (ProductOrder.ID like '%" + searchtext + "%' or Warehouse.WHName like '%" + searchtext + "%' or OrderStatus.StatusName like '%" + searchtext + "%'or ProductOrder.OrderDate like '%" + searchtext + "%')";
+
             }
             else
             {
-                if (id.Equals(""))
+                if (searchtext.Equals(""))
                     sql = @"select ProductOrder.ID ID, ProductOrder.WHID CID, ProductOrder.OrderDate ADate, ProductOrder.DeliveryDate DDate, 
                             ProductOrder.OrderStatus Status, OrderStatus.StatusName, Warehouse.WHName from ProductOrder
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
@@ -250,7 +263,8 @@ namespace Database.SCM
                             ProductOrder.OrderStatus Status, OrderStatus.StatusName, Warehouse.WHName from ProductOrder
                             join  OrderStatus on ProductOrder.OrderStatus = OrderStatus.ID
                             join Warehouse on ProductOrder.WHID = Warehouse.ID
-                            where OrderStatus>2 AND ProductOrder.ID='" + id + "'";
+                            where OrderStatus>2 and (ProductOrder.ID like '%" + searchtext + "%' or Warehouse.WHName like '%" + searchtext + "%' or OrderStatus.StatusName like '%" + searchtext + "%'or ProductOrder.OrderDate like '%" + searchtext + "%')";
+
             }
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
@@ -307,7 +321,6 @@ namespace Database.SCM
                     sql = @"update [dbo].[Stock] set [Quantity]='" + quantity + "' where PID='" + productid + "' and WHID=1";
                     DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
                 }
-
             }
         }
         public static int CheckOrUpdateSalesOrderStatus(String orderid)
@@ -330,7 +343,6 @@ namespace Database.SCM
         }
         public static int RejectOrder(String id, String reason, String rejectedby)
         {
-
             String sql = @"Update [dbo].[ProductOrder] set [OrderStatus]=7, [RejectionReason]='" + reason + "', [RejectedOn]='" + DateTime.Today.Date + "',[RejectedBy]='" + rejectedby + "' where [ProductOrder].[ID]='" + id + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             return check;
@@ -342,7 +354,6 @@ namespace Database.SCM
             SalesOrderModel order = new SalesOrderModel();
             while (reader.Read())
             {
-
                 order.RejectedBy = reader["RejectedBy"].ToString();
                 order.RejectedOn = reader["RejectedOn"].ToString();
                 order.RejectionReason = reader["RejectionReason"].ToString();
@@ -372,11 +383,10 @@ namespace Database.SCM
                 }
             }
             String sqlInsert = @"INSERT INTO [dbo].[ProductOrderItem]
-                        ([OrderID] , [ProductID] , [TotalQuantity]
-                        ,[Price] ,[ProductStatus])
+                        ([OrderID] , [ProductID] , [TotalQuantity] ,[ProductStatus])
                         OUTPUT INSERTED.ID
                         VALUES('" + soItemModel.OrderID + "','" + soItemModel.ProductID + "','" + soItemModel.TotalQuantity
-                                + "','" + soItemModel.Price + "','" + soItemModel.ProductStatus
+                                + "','" + soItemModel.ProductStatus
                                 + "')";
             object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sqlInsert, null);
             soItemModel.ID = int.Parse(id.ToString());
