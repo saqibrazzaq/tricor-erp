@@ -336,7 +336,7 @@
                                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Employees
                                 </asp:HyperLink>
                             </li>
-                            <li>
+                            <li class="hidden">
                                 <asp:HyperLink ID="HyperLink57" aria-label="Left Align" NavigateUrl="#" runat="server">
                                     <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Reports
                                 </asp:HyperLink>
