@@ -59,7 +59,7 @@ namespace Database.SCM
             List<ProductModel> productList = new List<ProductModel>();
             String sql = @"select Product.Id PID, Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,
                         Product.PThreshHoldValue PthreshHold,Product.PReOrderValue pReOrder,Product.PurchasePrice purchasePrice,
-                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
+                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID, Product.ManufactureTime
                         from Product
                         where 1=1
                         and 
@@ -77,6 +77,7 @@ namespace Database.SCM
                 product.ProductCode = reader["PCode"].ToString();
                 product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
                 product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
+                product.ManufactureTime = int.Parse(reader["ManufactureTime"].ToString());
                 productList.Add(product);
             }
             return productList;
@@ -86,7 +87,7 @@ namespace Database.SCM
             ProductModel product =null;
             String sql = @"select Product.PName PName, Product.PCode PCode, Product.SalePrice SalePrice ,Product.PDescription PDescription ,
                         Product.PThreshHoldValue PthreshHold,Product.PReOrderValue pReOrder,Product.PurchasePrice purchasePrice,
-                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID
+                        Product.UnitTypeID UnitTypeID,Product.ProductTypeID productTypeID, Product.ManufactureTime
                         from Product where Product.id='" + ID + "'";
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             if (reader.Read())
@@ -101,6 +102,7 @@ namespace Database.SCM
                 product.ProductDescription = reader["PDescription"].ToString();
                 product.SalesPrice = float.Parse(reader["SalePrice"].ToString());
                 product.PurchasePrice = float.Parse(reader["PurchasePrice"].ToString());
+                product.ManufactureTime = int.Parse(reader["ManufactureTime"].ToString());
             }
             return product;
         }
@@ -113,7 +115,7 @@ namespace Database.SCM
                         + "' , [PThreshHoldValue] = '" + pModel.ProductThresholdValue 
                         + "',[PReOrderValue] = '" +pModel.ProductReOderValue + "' , [PurchasePrice] = '" + pModel.PurchasePrice 
                         + "' , [UnitTypeID] = '" +pModel.UnitTypeID + "' , [ProductTypeID] = '" + pModel.ProductTypeID
-                        + "' , [LastUpdatedBy] = '" + pModel.LastUpdatedBy
+                        + "' , [LastUpdatedBy] = '" + pModel.LastUpdatedBy + "' , [ManufactureTime] = '" + pModel.ManufactureTime
                         + "' WHERE Product.id = '" + pModel.ProductID + "'";
             int check = DBUtility.SqlHelper.ExecuteNonQuery(System.Data.CommandType.Text, sql, null);
             if (check == 1)

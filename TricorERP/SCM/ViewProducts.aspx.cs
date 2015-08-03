@@ -26,7 +26,7 @@ namespace TricorERP.SCM
             List<Models.SCM.ProductModel> product = null;
             if (SearchProduct == "")
             {
-                product = GetFromDatabase(null);
+                product = Database.SCM.ProductDB.getProductList("");
             }
             else if (SearchProduct != null)
             {

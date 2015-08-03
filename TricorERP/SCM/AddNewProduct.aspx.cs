@@ -31,6 +31,7 @@ namespace TricorERP.SCM
                 ProductDescriptionText.Text = product.ProductDescription;
                 ThresholdValueText.Text = product.ProductThresholdValue.ToString();
                 ReOrderValueText.Text = product.ProductReOderValue.ToString();
+                ManufactureTimeText.Text = product.ManufactureTime.ToString();
               
                 }
             else
