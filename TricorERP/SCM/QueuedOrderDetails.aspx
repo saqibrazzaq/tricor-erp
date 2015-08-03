@@ -39,7 +39,7 @@
                         <%# Eval("ProductStatus") %>
                     </td>
                     <td>
-                        <asp:LinkButton runat="server" BackColor="Limegreen" CommandName ="one-more-completion" CommandArgument='<%# Eval("ID") %>' Text="1 Item Done" />
+                        <asp:LinkButton runat="server" BorderWidth="2" BorderStyle="Inset" BackColor="silver" CommandName ="one-more-completion" CommandArgument='<%# Eval("ID") %>' Text="1 Item Done" />
                     </td>   
                                      
                 </tr>

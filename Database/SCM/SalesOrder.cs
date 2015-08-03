@@ -168,9 +168,9 @@ namespace Database.SCM
                     totalquantity = int.Parse(reader["TotalQuantity"].ToString());
                     productid = int.Parse(reader["ProductID"].ToString());
                     sql = @"select Quantity from Stock where PID='" + productid + "' and WHID=1";
-                    reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
-                    reader.Read();
-                    stockquantity = int.Parse(reader["Quantity"].ToString());
+                    SqlDataReader reader2 = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
+                    reader2.Read();
+                    stockquantity = int.Parse(reader2["Quantity"].ToString());
                     if ((stockquantity - totalquantity) < 0)
                     {
                         manufacturedquantity = stockquantity;

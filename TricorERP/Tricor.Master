@@ -241,14 +241,6 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink24" NavigateUrl="~/SCM/SearchPendingPurchaseOrder.aspx" runat="server">View Pending Purchase Orders</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/SCM/SearchConfirmedPurchaseOrder.aspx" runat="server">View Confirmed Purchase Orders</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
                                         <asp:HyperLink ID="HyperLink13" NavigateUrl="~/SCM/SearchAllPurchaseOrder.aspx" runat="server">View All Purchase Orders</asp:HyperLink>
                                     </li>
                                 </ul>
@@ -440,7 +432,7 @@
         </script>
     </div>
 
-    <div class="panel-footer">
+    <div class="hidden panel-footer" style="position:absolute; top:0; width:100%;">
         <center><p>&copy;Copyright 2015 All rights reserved.</p></center>
     </div>
 </body>
