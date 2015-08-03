@@ -8,8 +8,8 @@
         <div class="panel-heading">
             <div class="row container-fluid">
                 <div class="col-lg-2">
-                    <label for="InputName">Customer :</label>
-                    <asp:TextBox ID="CustomerNameTextBox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <label for="InputName">Customer :</label><asp:TextBox ID="Pricetxt" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                &nbsp;<asp:TextBox ID="CustomerNameTextBox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
                 <div class="col-lg-2">
                     <label for="InputName">Date:</label>
@@ -17,11 +17,13 @@
                 </div>
                 <div class="col-lg-2">
                     <label for="InputName">Total Price:</label>
-                    <asp:TextBox runat="server" ID="totalpaymettxt" Font-Names="InputName" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="totalpaymettxt" Font-Names="InputName" CssClass="form-control" ReadOnly="true" placeholder="Number only"></asp:TextBox>
                 </div>
                 <div class="col-lg-2">
-                    <label for="InputName">Payment :</label>
-                    <asp:TextBox ID="Pricetxt" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                    <label for="InputName">Payment:
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="Pricetxt" ForeColor="Red"></asp:RequiredFieldValidator> 
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ControlToValidate="Pricetxt" ForeColor="Red" ValidationExpression="^[0-9]"></asp:RegularExpressionValidator>
+                    </label>
                 </div>
                 <div class="input-group col-lg-2">
                     <label for="InputName">Payment method :</label>

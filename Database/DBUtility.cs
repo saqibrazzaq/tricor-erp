@@ -22,7 +22,7 @@ namespace Database
 
        // public static readonly string connectionString = @"Server=localhost\sqlexpress;Database=TRICOR;Trusted_Connection=True;";
      
-        //public static readonly string connectionString = @"Server= localhost;Database=TRICOR_INTID;User ID=tricor;Password=tricor123;";
+       // public static readonly string connectionString = @"Server= localhost;Database=TRICOR_INTID;User ID=tricor;Password=tricor123;";
 
         // Hashtable to store cached parameters
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());

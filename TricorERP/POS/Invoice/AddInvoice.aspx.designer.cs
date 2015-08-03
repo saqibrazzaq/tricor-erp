@@ -13,6 +13,15 @@ namespace TricorERP.POS.Invoice {
     public partial class AddInvoice {
         
         /// <summary>
+        /// Pricetxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Pricetxt;
+        
+        /// <summary>
         /// CustomerNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -40,13 +49,22 @@ namespace TricorERP.POS.Invoice {
         protected global::System.Web.UI.WebControls.TextBox totalpaymettxt;
         
         /// <summary>
-        /// Pricetxt control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Pricetxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// PaymentMethodDropDownList control.
