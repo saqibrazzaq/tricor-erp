@@ -17,6 +17,8 @@ namespace Models.POS.Order
         public String OrderStatusName { set; get; }
         public List<SaleOrderItemModel> items = new List<SaleOrderItemModel>();
         //that mathord is used for geting the total price of different items....
+        
         public float TotalPrice { get; set; }
+        public float TotalPayment { get; set; }
     }
 }

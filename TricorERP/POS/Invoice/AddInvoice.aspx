@@ -7,25 +7,32 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row container-fluid">
-                <div class="col-lg-2">
-                    <label for="InputName">Customer :</label><asp:TextBox ID="Pricetxt" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
-                &nbsp;<asp:TextBox ID="CustomerNameTextBox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
+                <div class="col-lg-3">
+                    <label for="InputName">Customer :</label>
+                    <asp:TextBox ID="CustomerNameTextBox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <label for="InputName">Date:</label>
                     <asp:TextBox ID="DateTextBox" ReadOnly="true" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <label for="InputName">Total Price:</label>
                     <asp:TextBox runat="server" ID="totalpaymettxt" Font-Names="InputName" CssClass="form-control" ReadOnly="true" placeholder="Number only"></asp:TextBox>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
+                    <label for="InputName">Remaning Payment:</label>
+                    <asp:TextBox ID="txtRemaningPayment" Font-Names="InputName" CssClass="form-control" ReadOnly="true" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row container-fluid"> 
+                <div class="col-lg-3">
                     <label for="InputName">Payment:
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="Pricetxt" ForeColor="Red"></asp:RequiredFieldValidator> 
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ControlToValidate="Pricetxt" ForeColor="Red" ValidationExpression="^[0-9]"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ControlToValidate="Pricetxt" ForeColor="Red" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
                     </label>
+                    <asp:TextBox ID="Pricetxt" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
-                <div class="input-group col-lg-2">
+                <div class="col-lg-3">
                     <label for="InputName">Payment method :</label>
                     <asp:DropDownList CssClass="form-control" ID="PaymentMethodDropDownList" runat="server">
                     </asp:DropDownList>
@@ -45,6 +52,7 @@
         </div>
 
         <div class="panel-body">
+            <h2>Received Payment...</h2>
             <asp:ListView ID="AddInvoiceListview" runat="server" OnItemDataBound="AddInvoiceListview_ItemDataBound">
                 <LayoutTemplate>
                     <table class="table table-bordered table-hover">
@@ -143,7 +151,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:Button runat="server" ID="UpdateInvoicePrice" OnClick="UpdateInvoicePrice_Click" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
+                        <asp:Button runat="server" ID="UpdateInvoicePrice" OnClick="UpdateInvoicePrice_Click" type="button" CausesValidation="false" class="btn btn-primary" Text="Save changes"></asp:Button>
                     </div>
                 </div>
             </div>

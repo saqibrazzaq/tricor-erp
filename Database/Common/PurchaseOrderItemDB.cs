@@ -51,11 +51,11 @@ namespace Database.Common
             else
             {
                 String sql = @"INSERT INTO [dbo].[ProductOrderItem]
-                        ([OrderID],[ProductID] ,[TotalQuantity] ,[ProductStatus] ,[CreatedBy] ,[LastUpdatedBy])
+                        ([OrderID],[ProductID] ,[TotalQuantity] ,[CreatedBy] ,[LastUpdatedBy])
                            output inserted.ID
                            VALUES
-                           ('" + POIModel.PurchaseOrderID + "','" + POIModel.ProductID + "','" + POIModel.Quantity + "','"
-                                    + POIModel.PurchasePrice + "','" + POIModel.CreatedBy + "','" + POIModel.LastUpdatedBy + "')";
+                           ('" + POIModel.PurchaseOrderID + "','" + POIModel.ProductID + "','" + POIModel.Quantity + "','" 
+                               + POIModel.CreatedBy + "','" + POIModel.LastUpdatedBy + "')";
 
                 object id = DBUtility.SqlHelper.ExecuteScalar(System.Data.CommandType.Text, sql, null);
                 POIModel.ID = id.ToString();

@@ -17,13 +17,29 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <label for="InputName">Quantity :</label>
+                    <label for="InputName">Quantity :
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Quantity is required" Text="*" ControlToValidate="QuantityTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Only digits are allowed" ControlToValidate="QuantityTextBox" ForeColor="Red" ValidationExpression="^[0-9]*$">*</asp:RegularExpressionValidator>
+                    </label>
                     <div class="input-group">
                         <asp:TextBox ID="QuantityTextBox" Font-Names="InputName" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Quantity is Required" ControlToValidate="QuantityTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>
+            <div class="row container-fluid">
+                <div class="col-lg-4">
+                    <label for="InputName"></label>
+                    <div class="input-group">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <label for="InputName"></label>
+                    <div class="input-group">
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="List" ForeColor="Red" />
+                    </div>
+                </div>
+            </div>
+
             <br />
 
 

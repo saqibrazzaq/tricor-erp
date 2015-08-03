@@ -31,9 +31,10 @@ namespace TricorERP.POS.Invoice
         {
             ErroMessage.Text = "";
             Pricetxt.Text = "";
+            
             InitializeInvoiceModel();
+            
             totalpaymettxt.Text = soModel.TotalPrice.ToString();
-
             LoadPaymentMethodDropDownListInDropdown();
             GetCustomerInFo(CustomerID);
             DateTextBox.Text = DateTime.Today.ToShortDateString();
@@ -46,7 +47,6 @@ namespace TricorERP.POS.Invoice
             {
                 btnAddInvoice.Enabled = false;
                 Pricetxt.Enabled = false;
-                
             }
         }
 
@@ -70,23 +70,17 @@ namespace TricorERP.POS.Invoice
         private void loadInvoiceModel()
         {
             invoicemodel = Database.POS.InvoiceDB.getInvoiceModel(OrderID, CustomerID);
-
-            var total = 0;
-
-            //foreach (var count in invoicemodel.Count.ToString())
-            //{
-            //    total = total + invoicemodel[count].Price;
-            //}
-
+            float total = 0;
             for (int i = 0; i < invoicemodel.Count; i++)
             {
                 total = total + invoicemodel[i].Price;
             }
-
             TotalAmount.Text = total.ToString();
-
             soModel.ID = OrderID;
+            soModel.TotalPayment = total;
             soModel = Database.POS.Order.OrderDB.loadOrderModel(soModel);
+            total = soModel.TotalPrice - soModel.TotalPayment;
+            txtRemaningPayment.Text = total.ToString();
         }
 
         private void GetCustomerInFo(String CustomerID)
