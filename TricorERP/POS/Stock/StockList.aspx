@@ -101,14 +101,18 @@
                     </div>
                     <div class="modal-body">
                         <div class="row form-group">
-                            <div class="col-lg-2">
-                                <label class="">Quantity</label>
+                            <div class="col-lg-3">
+                                <label class="">
+                                    Quantity <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ForeColor="Red" runat="server" ControlToValidate="txtQuantity" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                </label>
                             </div>
                             <div class="col-lg-3">
                                 <asp:TextBox CssClass="form-control txtQuantity" runat="server" ID="txtQuantity" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="hidden txtStockItemID" runat="server" ID="txtStockItemID" Text=""></asp:TextBox>
                             </div>
-
+                            <div class="col-lg-6">
+                                <asp:RegularExpressionValidator  ForeColor="Red" ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtQuantity" ValidationExpression="^[0-9]*$" ErrorMessage="Only integers values are allowed"></asp:RegularExpressionValidator>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

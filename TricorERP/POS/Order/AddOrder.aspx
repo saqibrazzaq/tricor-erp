@@ -188,8 +188,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="row form-group">
-                            <div class="col-lg-2">
-                                <label class="">Quantity :</label>
+                            <div class="col-lg-3">
+                                <label class="">Quantity 
+                                    <asp:RequiredFieldValidator ForeColor="Red" ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" Text="*" ControlToValidate="txtQuantity"></asp:RequiredFieldValidator>
+                                </label>
                             </div>
                             <div class="col-lg-3">
                                 <asp:TextBox CssClass="form-control txtQuantity" runat="server" ID="txtQuantity" Text=""></asp:TextBox>
@@ -198,24 +200,33 @@
                                 <asp:TextBox CssClass="hidden txtSalesProductID" runat="server" ID="txtSalesProductID" Text=""></asp:TextBox>
 
                             </div>
-                            <div class="hidden col-lg-3">
-                                <label class="InputName">WaherHouse :</label>
-                            </div>
-                            <div class="input-group col-lg-3">
-
-                                <asp:DropDownList CssClass="form-control" ID="WaherHouseDropDownList" runat="server">
-                                </asp:DropDownList>
+                            <div class="col-lg-6">
+                                <asp:RegularExpressionValidator  ForeColor="Red" ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtQuantity" ValidationExpression="^[0-9]*$" ErrorMessage="Only integers values are allowed"></asp:RegularExpressionValidator>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-lg-2">
-                                <label class="">Price :</label>
+                            <div class="col-lg-3">
+                                <label class="">
+                                    Price <asp:RequiredFieldValidator  ForeColor="Red" ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" Text="*" ControlToValidate="txtPrice"></asp:RequiredFieldValidator>
+                                </label>
                             </div>
                             <div class="col-lg-3">
                                 <asp:TextBox CssClass="form-control txtPrice" runat="server" ID="txtPrice" Text=""></asp:TextBox>
                             </div>
+                            <div class="col-lg-6">
+                                <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPrice" ValidationExpression="^[0-9]*$" ErrorMessage="Only integers values are allowed"></asp:RegularExpressionValidator>
+                            </div>
                         </div>
+
+                        <div class="hidden">
+                            <label class="InputName">WaherHouse :</label>
+                        </div>
+                        <div class="hidden">
+                            <asp:DropDownList CssClass="form-control" ID="WaherHouseDropDownList" runat="server">
+                            </asp:DropDownList>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

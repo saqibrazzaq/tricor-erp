@@ -94,7 +94,7 @@
                                 <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </button>
-                                <asp:Button runat="server" ID="DeleteInvoice" CssClass="hidden DeleteInvoice" OnClick="DeleteInvoice_Click" />
+                                <asp:Button runat="server" ID="DeleteInvoice" CssClass="hidden DeleteInvoice" CausesValidation="false" OnClick="DeleteInvoice_Click" />
                             </div>
                         </td>
                     </tr>
@@ -136,16 +136,22 @@
                     <div class="modal-body">
 
                         <div class="row form-group">
-                            
                             <div class="col-lg-3">
-                                <label class="">Price :</label>
+                                <label class="">
+                                    Price: <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ForeColor="Red" runat="server" ControlToValidate="txtPrice" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                </label>
                                 <asp:TextBox CssClass="hidden txtInvoiceID" runat="server" ID="txtInvoiceID" Text=""></asp:TextBox>
                                 <asp:TextBox CssClass="form-control txtPrice" runat="server" ID="txtPrice" Text=""></asp:TextBox>
                             </div>
                             <div class="input-group col-lg-3">
-                                <label for="InputName">Payment method :</label>
+                                <label for="InputName">Payment method:</label>
                                 <asp:DropDownList CssClass="form-control" ID="PaymentMethordDropDownListPop" runat="server">
                                 </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                <asp:RegularExpressionValidator  ForeColor="Red" ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtPrice" ValidationExpression="^[0-9]*$" ErrorMessage="Only integers values are allowed"></asp:RegularExpressionValidator>
                             </div>
                         </div>
                     </div>
