@@ -15,7 +15,7 @@
                         <th>TotalQuantity</th>
                         <th>Manufactured Quantity</th>
                         <th>Status</th>
-                        <th></th>
+                        <th>User Action</th>
                     </tr>
                     <tr runat="server" id="itemPlaceholder"></tr>
                 </table>
@@ -40,7 +40,8 @@
                     </td>
                     <td>
                         <asp:LinkButton runat="server" BackColor="Limegreen" CommandName ="one-more-completion" CommandArgument='<%# Eval("ID") %>' Text="1 Item Done" />
-                    </td>                    
+                    </td>   
+                                     
                 </tr>
             </ItemTemplate>
         </asp:ListView>

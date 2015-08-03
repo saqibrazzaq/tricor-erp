@@ -11,18 +11,10 @@ namespace TricorERP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //String User = Session["Username"].ToString();
-            //if (User == 0)
-            //{
-            //    Response.Redirect("~/Login.aspx");
-            //}
-            //else
-            //{
                 if (IsPostBack == false)
                 {
                     InitializePageContents();
                 }
-            //}
         }
         private void InitializePageContents()
         {
@@ -39,10 +31,35 @@ namespace TricorERP
                 UpdatePOSPanels();
             }
             else
-            { 
-
+            {
+                UpdateSCMPanel();
             }
         }
+
+        private void UpdateSCMPanel()
+        {
+            SCMStockStatus();
+            SCMPendingSalesOrderStatus();
+        }
+
+        private void SCMPendingSalesOrderStatus()
+        {
+            int pendingsalesorderscount = Database.SCM.SalesOrder.getProgressSalesOrderCount();
+            SCMPendingOrdersLabel.Text = pendingsalesorderscount.ToString();
+            //int stockstatus = GetStockStatus(Session["WHID"].ToString());
+            //StockStatusLab.Text = stockstatus.ToString();
+            //if (stockstatus == 0)
+            //    StockStatusalert.Attributes.Add("Class", "hidden");
+        }
+
+        private void SCMStockStatus()
+        {
+            int stockstatus = GetStockStatus(Session["WHID"].ToString());
+            SCMStockStatusLab.Text = stockstatus.ToString();
+            if (stockstatus == 0)
+                SCMStockStatusalert.Attributes.Add("Class", "hidden");
+        }
+
         /*That function load the data of Panels related to the POS*/
         private void UpdatePOSPanels()
         {
@@ -54,17 +71,6 @@ namespace TricorERP
             POSTotalItemCount();
             //POSTotalSalesOrder();
         }
-
-        //private void POSTotalSalesOrder()
-        //{
-        //    int totalsalesorder = GetTotalSalesOrder();
-        //    Labtotalsales.Text = totalsalesorder.ToString();
-        //}
-
-        //private int GetTotalSalesOrder()
-        //{
-        //    return Database.POS.Order.OrderDB.getTotlSalesOrder(Session["WHID"].ToString());
-        //}
 
         private void POSTotalItemCount()
         {

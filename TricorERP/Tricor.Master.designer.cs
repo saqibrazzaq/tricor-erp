@@ -310,24 +310,6 @@ namespace TricorERP {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink12;
         
         /// <summary>
-        /// HyperLink26 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink26;
-        
-        /// <summary>
-        /// HyperLink25 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink25;
-        
-        /// <summary>
         /// HyperLink28 control.
         /// </summary>
         /// <remarks>
@@ -526,13 +508,40 @@ namespace TricorERP {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink53;
         
         /// <summary>
-        /// HyperLink54 control.
+        /// SCMViewManufactureQueueHyper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink54;
+        protected global::System.Web.UI.WebControls.HyperLink SCMViewManufactureQueueHyper;
+        
+        /// <summary>
+        /// SCMViewManufactureRequestHyper control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink SCMViewManufactureRequestHyper;
+        
+        /// <summary>
+        /// SCMSearchStockItemHyper control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink SCMSearchStockItemHyper;
+        
+        /// <summary>
+        /// POSCustomerHyper control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink POSCustomerHyper;
         
         /// <summary>
         /// HyperLink56 control.
@@ -544,13 +553,13 @@ namespace TricorERP {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink56;
         
         /// <summary>
-        /// POSEmployees control.
+        /// POSEmployeesHyper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink POSEmployees;
+        protected global::System.Web.UI.WebControls.HyperLink POSEmployeesHyper;
         
         /// <summary>
         /// HyperLink57 control.

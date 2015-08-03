@@ -12,32 +12,8 @@
                     <h3 class="h3"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>Dashboard</h3>
                 </div>
             </div>
-
-            <%--<div class="row">
-                <div class="col-lg-12">
-                    <center><u><h4 class="h4">Welcome to TRICOR Point Of Sale!</h4></u></center>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="btn-group btn-group-lg">
-                        <asp:HyperLink runat="server" ID="Customerhyp" NavigateUrl="~/POS/Cashier/CustomerList.aspx" type="button" class="btn btn-primary btn-lg btn-block">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Customers
-                        </asp:HyperLink>
-
-                        <asp:HyperLink runat="server" ID="Itemhyp" NavigateUrl="~/POS/Catalog/MainCatalog.aspx?CatId=AllProducts&CatName=All Products" type="button" class="btn btn-primary btn-lg btn-block">
-                              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>   Items
-                        </asp:HyperLink>
-                        <asp:HyperLink runat="server" ID="Employhyp" NavigateUrl="~/POS/BranchManager/UserList.aspx" type="button" class="btn btn-primary btn-lg btn-block">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Employees
-                        </asp:HyperLink>
-                        <asp:HyperLink runat="server" ID="Reporthyp" type="button" class="btn btn-primary btn-lg btn-block">
-                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Reports
-                        </asp:HyperLink>
-                    </div>
-                </div>
-            </div>--%>
         </div>
+        <%-- POS Dashbord panal --%>
         <div class="panel-body" id="POSPanelBody">
             <div class="row">
                 <div class="col-lg-12">
@@ -114,5 +90,36 @@
 
             </div>
         </div>
+        <%-- POS Dashbord panal End--%>
+
+        <div class="panel-body" id="SCMPanelBody">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div runat="server" id="SCMStockStatusalert" class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert">&times;
+                        </a>
+                        <strong>Warning!</strong> Number Of low stock products:
+                            <a href="SCM/SearchStockItem.aspx">
+                                <asp:Label ID="SCMStockStatusLab" runat="server" Text="">
+                                </asp:Label>
+                            </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div runat="server" id="SCMPendingOrdersAlert" class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert">&times;
+                        </a>
+                        <strong>Warning!</strong> Number Of pending orders:
+                            <a href="SCM/ViewManufactureRequests.aspx">
+                                <asp:Label ID="SCMPendingOrdersLabel" runat="server" Text="">
+                                </asp:Label>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </asp:Content>

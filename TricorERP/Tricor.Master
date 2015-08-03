@@ -204,14 +204,7 @@
                                     <li>
                                         <asp:HyperLink ID="HyperLink12" NavigateUrl="~/SCM/AddNewProduct.aspx" runat="server">Add new Product</asp:HyperLink>
                                     </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink26" NavigateUrl="" runat="server">Update Product</asp:HyperLink>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:HyperLink ID="HyperLink25" NavigateUrl="" runat="server">Delete Product</asp:HyperLink>
-                                    </li>
+                                    <li class="divider"></li>                                    
                                 </ul>
                             </li>
                             <li id="WareHouse" class="dropdown">
@@ -316,13 +309,30 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <ul class="nav nav-pills nav-stacked">
+
                             <li class="active">
                                 <asp:HyperLink ID="HyperLink53" NavigateUrl="~/Home.aspx" runat="server">
                                     <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard
                                 </asp:HyperLink>
                             </li>
                             <li>
-                                <asp:HyperLink aria-label="Left Align" NavigateUrl="~/POS/Cashier/CustomerList.aspx" ID="HyperLink54" runat="server">
+                                <asp:HyperLink ID="SCMViewManufactureQueueHyper" aria-label="Left Align" NavigateUrl="~/SCM/ViewManufactureQueue.aspx" runat="server">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Manufacture Queue
+                                </asp:HyperLink>
+                            </li>
+                            <li>
+                                <asp:HyperLink ID="SCMViewManufactureRequestHyper" aria-label="Left Align" NavigateUrl="~/SCM/ViewManufactureRequests.aspx" runat="server">
+                                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Pending Orders
+                                </asp:HyperLink>
+                            </li>
+                            <li>
+                                <asp:HyperLink ID="SCMSearchStockItemHyper" aria-label="Left Align" NavigateUrl="~/SCM/SearchStockItem.aspx" runat="server">
+                                        <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Stock
+                                </asp:HyperLink>
+                            </li>
+
+                            <li>
+                                <asp:HyperLink aria-label="Left Align" NavigateUrl="~/POS/Cashier/CustomerList.aspx" ID="POSCustomerHyper" runat="server">
                                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Customers
                                 </asp:HyperLink>
                             </li>
@@ -332,7 +342,7 @@
                                 </asp:HyperLink>
                             </li>
                             <li>
-                                <asp:HyperLink ID="POSEmployees" aria-label="Left Align" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">
+                                <asp:HyperLink ID="POSEmployeesHyper" aria-label="Left Align" NavigateUrl="~/POS/BranchManager/UserList.aspx" runat="server">
                                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Employees
                                 </asp:HyperLink>
                             </li>
@@ -372,6 +382,9 @@
                 $("#WareHouse").addClass("hidden");
                 $("#Stock").addClass("hidden");
                 $("#Supplier").addClass("hidden");
+                $("#SCMViewManufactureRequestHyper").addClass("hidden");
+                $("#SCMViewManufactureQueueHyper").addClass("hidden");
+                $("#SCMSearchStockItemHyper").addClass("hidden");
 
 
                 //  $("#AddOrder").addClass("hidden");
@@ -389,11 +402,14 @@
                 $("#Supplier").addClass("hidden");
                 $("#OrderStatus").addClass("hidden");
                 $("#OrderStatus").addClass("hidden");
-                $("#POSEmployees").addClass("hidden");
+                $("#POSEmployeesHyper").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#POSProducDropdown").addClass("hidden");
                 $("#POSHomeTEandTS").addClass("hidden");
+                $("#SCMViewManufactureRequestHyper").addClass("hidden");
+                $("#SCMViewManufactureQueueHyper").addClass("hidden");
+                $("#SCMSearchStockItemHyper").addClass("hidden");
 
             } else if ('3' == '<%=roleID%>') {
                 $("#CustomerDropdown").addClass("hidden");
@@ -404,18 +420,22 @@
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#POSPanelBody").addClass("hidden");
                 $("#POSStockDropdown").addClass("hidden");
+                $("#POSEmployeesHyper").addClass("hidden");
                 $("#POSProducDropdown").addClass("hidden");
+                $("#POSCustomerHyper").addClass("hidden");
                 
             } else if ('4' == '<%=roleID%>') {
                 $("#CustomerDropdown").addClass("hidden");
                 $("#UserDropdown").addClass("hidden");
                 $("#AddOrder").addClass("hidden");
+                $("#POSEmployeesHyper").addClass("hidden");
                 $("#PendingSales").addClass("hidden");
                 $("#ReportsDropdown").addClass("hidden");
                 $("#PurchaseOrderPOS").addClass("hidden");
                 $("#POSPanelBody").addClass("hidden");
                 $("#POSStockDropdown").addClass("hidden");
                 $("#POSProducDropdown").addClass("hidden");
+                $("#POSCustomerHyper").addClass("hidden");
             }
         </script>
     </div>
