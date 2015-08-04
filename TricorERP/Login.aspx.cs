@@ -41,7 +41,7 @@ namespace TricorERP.POS
                 Response.Redirect("~/Home.aspx");
             }
             else
-                loginMsg.Text = "<h4>Invalid User/Name Password</h4>";
+                loginMsg.Text = "<h4>Invalid UserName/Password</h4>";
         }
     }
 }

@@ -190,8 +190,8 @@ namespace TricorERP.POS.Order
                 soItemModel.Quantity = 1;
                 soItemModel.WareHouseID = Common.WarehouseIDDefault;
                 soItemModel = Database.POS.Order.OrderDB.setSaleOrderItems(soItemModel);
-                if (soItemModel.Quantity <= 0 || soItemModel.QuantityCheck == -1)
-                    ErroMessage.Text = "Quantity of Selected Product is not Prasent in your Stock...";
+                if (soItemModel.QuantityCheck == -1 || soItemModel.Quantity <= 0)
+                    ErroMessage.Text = "The desired item is booked/Quantity of Selected Product is not Prasent in your Stock...";
                 else
                     InitializePageContents();
             }

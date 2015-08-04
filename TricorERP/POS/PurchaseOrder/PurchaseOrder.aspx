@@ -66,7 +66,7 @@
                     <h4 class="h4">
                         <asp:label id="ItemMessageLab" runat="server" for="InputName"></asp:label>
                     </h4>
-                    <asp:LinkButton ID="btnAddNewItem" runat="server" CssClass="btn btn-info" OnClick="btnAddNewItem_Click">Add New Item</asp:LinkButton>
+                    <asp:LinkButton ID="btnAddNewItem" runat="server" CssClass="btn btn-info" OnClick="btnAddNewItem_Click" CausesValidation="false">Add New Item</asp:LinkButton>
                 </div> 
             </div>
             
@@ -107,7 +107,7 @@
                                             <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
                                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             </button>
-                                            <asp:Button ID="deletePurchaseItem" runat="server" CssClass="hidden deletePurchaseItem" CommandName="DeleteAddress" OnClick="deletePurchaseItem_Click" />
+                                            <asp:Button ID="deletePurchaseItem" runat="server" CssClass="hidden deletePurchaseItem" CausesValidation="false" CommandName="DeleteAddress" OnClick="deletePurchaseItem_Click" />
                                         </div>
                                     </td>
                                 </tr>
@@ -156,7 +156,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <asp:Button ID="SavePurchaseOrder" runat="server" OnClick="SavePurchaseOrder_Click" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
+                    <asp:Button ID="SavePurchaseOrder" runat="server" OnClick="SavePurchaseOrder_Click" type="button" CausesValidation="false" class="btn btn-primary" Text="Save changes"></asp:Button>
                 </div>
             </div>
         </div>

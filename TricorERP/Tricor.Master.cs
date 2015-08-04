@@ -11,14 +11,16 @@ namespace TricorERP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session.Count == 0)
+            if (Session["UserID"] == null) 
             {
                 Response.Redirect("~/Login.aspx");
             }
         }
         protected void LogoffLinkButton(object sender, EventArgs e)
         {
-            Session.Abandon();
+            Session["UserID"] = null;
+            //Session.Abandon();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Redirect("~/Login.aspx");
         }
     }

@@ -61,6 +61,11 @@ namespace TricorERP.POS.PurchaseOrder
                         Deliveredbtn.Enabled = false;
                     }
 
+                    if (items.Count == 0) {
+                        SavePurchaseOrderbtn.Enabled = false;
+                        btnAddNewItem.Enabled = false;
+                    }
+
                 }
                 else
                 {

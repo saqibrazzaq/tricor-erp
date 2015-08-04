@@ -124,7 +124,7 @@
                                 <button type="button" class="ItemRowDelete btn btn-default btn-xs confirm">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </button>
-                                <asp:Button runat="server" ID="DeleteItem" CssClass="hidden DeleteSalesOrder" OnClick="deleteSalesOrderItem_onClick" />
+                                <asp:Button runat="server" ID="DeleteItem" CssClass="hidden DeleteSalesOrder" CausesValidation="false" OnClick="deleteSalesOrderItem_onClick" />
                             </div>
                         </td>
 
