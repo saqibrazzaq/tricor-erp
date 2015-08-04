@@ -322,8 +322,8 @@ namespace Database.POS.Order
             List<OrderStatusModel> orderstatus = new List<OrderStatusModel>();
             String sql = @"SELECT [ID] ID,[StatusName] SN
                            FROM [dbo].[OrderStatus]
-	                       where StatusName != 'Ready To Manufacturing' AND StatusName != 'Under Manufacturing'
-	                       AND StatusName != 'Manufacturing Complete'";
+	                       where ID!='2'  AND StatusName != 'Under Manufacturing'
+	                       AND StatusName != 'Manufacturing Complete' AND StatusName != 'Delivered' AND StatusName != 'Complete' AND StatusName !='Rejected'";
 
             SqlDataReader reader = DBUtility.SqlHelper.ExecuteReader(System.Data.CommandType.Text, sql, null);
             while (reader.Read())

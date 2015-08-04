@@ -377,9 +377,7 @@
                 $("#SCMViewManufactureRequestHyper").addClass("hidden");
                 $("#SCMViewManufactureQueueHyper").addClass("hidden");
                 $("#SCMSearchStockItemHyper").addClass("hidden");
-
-
-                //  $("#AddOrder").addClass("hidden");
+                $("#SCMPanelBody").addClass("hidden");
 
             } else if ('2' == '<%=roleID%>') {
                 $("#SCMMenu").addClass("hidden");
@@ -402,6 +400,7 @@
                 $("#SCMViewManufactureRequestHyper").addClass("hidden");
                 $("#SCMViewManufactureQueueHyper").addClass("hidden");
                 $("#SCMSearchStockItemHyper").addClass("hidden");
+                $("#SCMPanelBody").addClass("hidden");
 
             } else if ('3' == '<%=roleID%>') {
                 $("#CustomerDropdown").addClass("hidden");

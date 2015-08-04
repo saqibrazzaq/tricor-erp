@@ -62,7 +62,7 @@
             <br />
             <div class="row">
                 <div class="col-lg-3">
-                    <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " OnClick="NewSalesOrder_Click" />
+                    <asp:Button ID="NewSalesOrder" CssClass="btn btn-primary" runat="server" Text=" Create Sales Order " CausesValidation="false" OnClick="NewSalesOrder_Click" />
                 </div>
                 <div class="col-lg-2">
                     <asp:Button runat="server" ID="btnAddProduct" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-default" CausesValidation="False" />
@@ -230,7 +230,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:Button runat="server" ID="SaveSaleOrder" OnClick="SaveSalesOrderItem_onClick" type="button" class="btn btn-primary" Text="Save changes"></asp:Button>
+                        <asp:Button runat="server" ID="SaveSaleOrder" OnClick="SaveSalesOrderItem_onClick" type="button" CausesValidation="false" class="btn btn-primary" Text="Save changes"></asp:Button>
                     </div>
                 </div>
             </div>

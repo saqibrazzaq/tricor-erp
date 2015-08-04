@@ -46,7 +46,7 @@
             <br />
             <div class="row">
                 <div class="col-lg-3">
-                    <asp:Button runat="server" ID="btnAddInvoice" Text="Add Invoice" OnClick="btnAddInvoice_Click" CssClass="btn btn-default" />
+                    <asp:Button runat="server" ID="btnAddInvoice" Text="Add Invoice" OnClick="btnAddInvoice_Click" CausesValidation="false" CssClass="btn btn-default" />
                 </div>
             </div>
         </div>
